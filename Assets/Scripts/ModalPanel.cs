@@ -14,20 +14,22 @@ public class ModalPanel : MonoBehaviour {
 
 	void Update(){
 		if (Input.GetKeyDown (closeKey))
-			ClosePanel();
+			ClosePanel(0f);
 	}
 
 	// Yes/No/Cancel: A string, a Yes event, a No event and Cancel event
-	public void Tooltip (string message, string closeKey) {
+	public void Tooltip (string message, string closeKey, bool autoClose) {
 		this.closeKey = closeKey;
 		//this.iconImage.sprite = icon;
 
 		this.message.text = message;
 
 		//this.iconImage.gameObject.SetActive (false);
+		if (autoClose)
+			ClosePanel (5f);
 	}
 
-	void ClosePanel () {
-		Destroy (gameObject);
+	void ClosePanel (float delay) {
+		Destroy (gameObject, delay);
 	}
 }
