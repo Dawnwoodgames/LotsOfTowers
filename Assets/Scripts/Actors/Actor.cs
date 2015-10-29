@@ -1,5 +1,6 @@
-﻿using UnityEngine;
+﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 namespace LotsOfTowers.Actors {
 	public sealed class Actor : MonoBehaviour {
@@ -22,6 +23,16 @@ namespace LotsOfTowers.Actors {
 			if (onesies.Contains(onesie)) {
 				this.onesie = onesie;
 			}
+		}
+
+		public void Respawn() {
+			try {
+				transform.position = GameManager.Instance.SpawnPoint.position;
+			} catch (NullReferenceException) { }
+		}
+
+		public void Start() {
+			Respawn();
 		}
 	}
 }
