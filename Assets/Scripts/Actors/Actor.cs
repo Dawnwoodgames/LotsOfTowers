@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace LotsOfTowers.Actors {
 	public sealed class Actor : MonoBehaviour {
+
+		public GameObject tooltip;
+
 		// Private fields
 		private Onesie onesie;
 		private List<Onesie> onesies;
@@ -37,6 +40,7 @@ namespace LotsOfTowers.Actors {
 
 		public void Start() {
 			Respawn();
+			Tooltip.ShowTooltip (tooltip, "Movement",false,new string[]{"Horizontal", "Vertical"});
 		}
 	}
 }

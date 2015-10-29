@@ -15,7 +15,7 @@ public class ModalPanel : MonoBehaviour {
 
 	void Update(){
 		foreach(string key in closeKeys)
-			if (Input.GetButtonDown(key))
+			if (Input.GetButtonDown(key) || Input.GetAxisRaw(key) != 0)
 				ClosePanel(0f);
 	}
 		
