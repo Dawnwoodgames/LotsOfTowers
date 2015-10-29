@@ -13,6 +13,10 @@ namespace LotsOfTowers.Actors {
 			get { return onesie.jumpCount; }
 		}
 
+		public Onesie[] Onesies {
+			get { return onesies.ToArray(); }
+		}
+
 		// Methods
 		public void Awake() {
 			this.onesie = Onesie.Load("Default");
