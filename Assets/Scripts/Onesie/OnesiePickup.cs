@@ -16,7 +16,7 @@ namespace LotsOfTowers.Suits
 
 			Destroy(gameObject);
 			GameObject tip = Instantiate (tooltip) as GameObject;
-			tip.GetComponent<ModalPanel> ().Tooltip ("This onesie allows you to jump higher", "Press the jump button to close", new KeyCode[]{KeyCode.Space}, false);
+			tip.GetComponent<ModalPanel> ().Tooltip ("This onesie allows you to jump higher", "Press the jump button to close", new string[]{"Jump"}, false);
         }
 	}
 

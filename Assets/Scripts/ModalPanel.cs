@@ -7,19 +7,19 @@ public class ModalPanel : MonoBehaviour {
 	public Text message;
 	public Text hint;
 	//public Image iconImage;
-	public KeyCode[] closeKeys;
+	public string[] closeKeys;
 
 	void Awake(){
-		closeKeys = new KeyCode[]{KeyCode.Escape};
+		closeKeys = new string[]{"Escape"};
 	}
 
 	void Update(){
-		foreach(KeyCode key in closeKeys)
-			if (Input.GetKeyDown (key))
+		foreach(string key in closeKeys)
+			if (Input.GetAxisRaw(key) != 0)
 				ClosePanel(0f);
 	}
 		
-	public void Tooltip (string message, string hint, KeyCode[] possibleCloseKeys, bool autoClose) {
+	public void Tooltip (string message, string hint, string[] possibleCloseKeys, bool autoClose) {
 		this.closeKeys = possibleCloseKeys;
 		//this.iconImage.sprite = icon;
 		this.message.text = message;
