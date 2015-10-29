@@ -8,6 +8,7 @@ namespace LotsOfTowers.Actors {
 			default values for each field can be set below
 		 */
 
+		public bool canMoveObjects = false;
 		public int jumpCount = 1;
 
 		public static Onesie Load(string name) {
