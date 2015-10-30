@@ -22,7 +22,7 @@ public class MainCameraScript : MonoBehaviour {
 
     private void CameraDepth()
     {
-        gameObject.transform.position = new Vector3(cameraObject.transform.position.x, gameObject.transform.position.y, cameraObject.GetComponent<CameraFollowScript>().GetDistancePlayerFromCamera());
+        gameObject.transform.position = new Vector3(0, gameObject.transform.position.y, cameraObject.GetComponent<CameraFollowScript>().GetDistancePlayerFromCamera());
     }
 
     private void CameraInput()
