@@ -4,6 +4,9 @@ using UnityEngine;
 
 namespace LotsOfTowers.Actors {
 	public sealed class Actor : MonoBehaviour {
+
+		public GameObject tooltip;
+
 		// Private fields
 		private Onesie onesie;
 		private List<Onesie> onesies;
@@ -18,7 +21,14 @@ namespace LotsOfTowers.Actors {
 		}
 
 		// Methods
+		public void AddOnesie(Onesie onesie) {
+			if (!onesies.Contains(onesie)) {
+				onesies.Add(onesie);
+			}
+		}
+
 		public void Awake() {
+			DontDestroyOnLoad(gameObject);
 			this.onesie = Onesie.Load("Default");
 			this.onesies = new List<Onesie>(new Onesie[] { onesie });
 		}
@@ -29,14 +39,15 @@ namespace LotsOfTowers.Actors {
 			}
 		}
 
-		public void Respawn() {
+		public void OnLevelWasLoaded(int index) {
 			try {
 				transform.position = GameManager.Instance.SpawnPoint.position;
 			} catch (NullReferenceException) { }
 		}
 
 		public void Start() {
-			Respawn();
+			OnLevelWasLoaded(Application.loadedLevel);
+			Tooltip.ShowTooltip(tooltip, "Movement", false, new string[]{ "Horizontal", "Vertical" });
 		}
 	}
 }

@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 public class TriggerActions : MonoBehaviour {
 
 	public GameObject tooltip;
 
 	void OnTriggerEnter(Collider other){
-		Debug.Log (other);
-		GameObject c = Instantiate (tooltip) as GameObject;
-		c.GetComponent<ModalPanel>().Tooltip("Press Space to jump","Jump to close this tooltip",new string[]{"Jump"},false);
+		Tooltip.ShowTooltip (tooltip, "Jump",false,new string[]{"Jump"});
+
 	}
 }

@@ -14,5 +14,16 @@ namespace LotsOfTowers.Unity {
 			EditorUtility.FocusProjectWindow();
 			Selection.activeObject = asset;
 		}
+
+		[MenuItem("GameObject/3D Object/Ramp")]
+		public static void CreateRamp() {
+			GameObject ramp = new GameObject();
+			ramp.AddComponent<MeshFilter> ();
+			ramp.GetComponent<MeshFilter> ().mesh = (Mesh)Resources.Load("Triangle",typeof(Mesh));
+			ramp.AddComponent<MeshCollider> ();
+			ramp.AddComponent<MeshRenderer> ();
+			ramp.GetComponent<MeshRenderer> ().material = (Material)Resources.Load ("Materials/defaultMat");
+			ramp.name = "Ramp";
+		}
 	}
 }

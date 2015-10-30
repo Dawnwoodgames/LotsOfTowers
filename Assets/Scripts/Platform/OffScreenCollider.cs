@@ -4,7 +4,6 @@ namespace LotsOfTowers.Platform
 {
 	public class OffScreenCollider : MonoBehaviour
 	{
-		public Transform spawnPoint;
 
 		void OnCollisionEnter(Collision collision)
 		{
@@ -13,7 +12,7 @@ namespace LotsOfTowers.Platform
 				try
 				{
 					//Player fell off the stage, reset him to the spawn point
-					collision.gameObject.transform.position = spawnPoint.position;
+					collision.gameObject.transform.position = GameManager.Instance.SpawnPoint.position;
 				}
 				catch (System.Exception)
 				{
