@@ -21,6 +21,12 @@ namespace LotsOfTowers.Actors {
 		}
 
 		// Methods
+		public void AddOnesie(Onesie onesie) {
+			if (!onesies.Contains(onesie)) {
+				onesies.Add(onesie);
+			}
+		}
+
 		public void Awake() {
 			this.onesie = Onesie.Load("Default");
 			this.onesies = new List<Onesie>(new Onesie[] { onesie });
@@ -40,7 +46,7 @@ namespace LotsOfTowers.Actors {
 
 		public void Start() {
 			Respawn();
-			Tooltip.ShowTooltip (tooltip, "Movement",false,new string[]{"Horizontal", "Vertical"});
+			Tooltip.ShowTooltip(tooltip, "Movement", false, new string[]{ "Horizontal", "Vertical" });
 		}
 	}
 }
