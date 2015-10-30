@@ -16,7 +16,7 @@ namespace LotsOfTowers {
 		public void Awake() {
 			DontDestroyOnLoad(this);
 			GameManager.instance = this;
-			OnLevelWasLoaded(-1);
+			OnLevelWasLoaded(Application.loadedLevel);
 		}
 
 		public void OnLevelWasLoaded(int index) {

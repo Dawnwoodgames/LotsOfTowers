@@ -28,6 +28,7 @@ namespace LotsOfTowers.Actors {
 		}
 
 		public void Awake() {
+			DontDestroyOnLoad(gameObject);
 			this.onesie = Onesie.Load("Default");
 			this.onesies = new List<Onesie>(new Onesie[] { onesie });
 		}
@@ -38,14 +39,14 @@ namespace LotsOfTowers.Actors {
 			}
 		}
 
-		public void Respawn() {
+		public void OnLevelWasLoaded(int index) {
 			try {
 				transform.position = GameManager.Instance.SpawnPoint.position;
 			} catch (NullReferenceException) { }
 		}
 
 		public void Start() {
-			Respawn();
+			OnLevelWasLoaded(Application.loadedLevel);
 			Tooltip.ShowTooltip(tooltip, "Movement", false, new string[]{ "Horizontal", "Vertical" });
 		}
 	}
