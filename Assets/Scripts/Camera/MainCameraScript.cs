@@ -14,7 +14,6 @@ namespace LotsOfTowers.Camera
         public float camUpFromPlayer = 3f;
         public float camBehindPlayer = 7f;
 
-
         void Start()
         {
             centerObject = GameObject.Find("CenterFocus");
@@ -25,7 +24,7 @@ namespace LotsOfTowers.Camera
             CameraInput();
             CameraDepth();
         }
-
+        
         private void CameraDepth()
         {
             transform.localPosition = new Vector3(transform.localPosition.x, camUpFromPlayer, -camBehindPlayer);
