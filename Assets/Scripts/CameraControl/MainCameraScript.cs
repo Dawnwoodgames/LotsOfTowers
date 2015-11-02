@@ -26,7 +26,7 @@ namespace LotsOfTowers.CameraControl
 
 		private void CameraDepth()
 		{
-			transform.localPosition = new Vector3(transform.localPosition.x, camUpFromPlayer, -camBehindPlayer);
+			transform.localPosition = new Vector3(transform.localPosition.x, camUpFromPlayer, Mathf.Lerp(transform.localPosition.z,-camBehindPlayer,Time.deltaTime*2f));
 		}
 
 		private void CameraInput()
