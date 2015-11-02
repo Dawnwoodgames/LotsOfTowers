@@ -7,6 +7,7 @@ namespace LotsOfTowers.Camera
     public class MainCameraScript : MonoBehaviour
     {
         GameObject centerObject;
+        Vector3 playerPosition;
 
         void Start()
         {
@@ -21,6 +22,16 @@ namespace LotsOfTowers.Camera
         private void CameraInput()
         {
             centerObject.transform.Rotate(0, Input.GetAxis("CameraRotate") * 2, 0);
+
+            if (Input.GetButtonDown("CameraOverview"))
+            {
+                gameObject.transform.localPosition = new Vector3(0, 4, gameObject.transform.position.z - 40);
+            }
+            if (Input.GetButtonUp("CameraOverview"))
+            {
+                playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
+                gameObject.transform.localPosition = new Vector3(0, 4, -5);
+            }
         }
     }
 }

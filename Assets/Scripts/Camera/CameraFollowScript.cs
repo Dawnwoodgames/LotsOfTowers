@@ -6,12 +6,12 @@ namespace LotsOfTowers.Camera
     public class CameraFollowScript : MonoBehaviour
     {
 
-        Vector3 player;
+        Vector3 playerPosition;
 
         void Update()
         {
-            player = GameObject.FindGameObjectWithTag("Player").transform.position;
-            this.transform.position = new Vector3(player.x, player.y, player.z);
+            playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
+            this.transform.position = new Vector3(playerPosition.x, playerPosition.y, playerPosition.z);
         }
     }
 }
