@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
+using LotsOfTowers.Framework;
 
 namespace LotsOfTowers.Platform
 {
 	public class OffScreenCollider : MonoBehaviour
 	{
-
 		void OnCollisionEnter(Collision collision)
 		{
-			if(collision.gameObject.tag == "Player")
+			if (collision.gameObject.tag == "Player")
 			{
 				try
 				{
