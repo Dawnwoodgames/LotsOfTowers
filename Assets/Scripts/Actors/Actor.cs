@@ -8,16 +8,27 @@ namespace LotsOfTowers.Actors
 {
 	public class Actor : MonoBehaviour
 	{
-		public GameObject tooltip;
-
 		// Private fields
 		private Onesie onesie;
 		private List<Onesie> onesies;
 
+		// Public fields
+		public GameObject tooltip;
+
 		// Properties
+		public bool CanMoveObjects
+		{
+			get { return onesie.canMoveObjects; }
+		}
+
 		public int JumpCount
 		{
 			get { return onesie.jumpCount; }
+		}
+
+		public float MovementSpeed
+		{
+			get { return onesie.movementSpeed; }
 		}
 
 		public Onesie[] Onesies
