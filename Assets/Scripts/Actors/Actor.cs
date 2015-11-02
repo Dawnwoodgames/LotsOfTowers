@@ -31,6 +31,11 @@ namespace LotsOfTowers.Actors
 		{
 			get { return onesie.movementSpeed; }
 		}
+
+		public Onesie Onesie
+		{
+			get { return onesie; }
+		}
 		
 		public Onesie[] Onesies
 		{
