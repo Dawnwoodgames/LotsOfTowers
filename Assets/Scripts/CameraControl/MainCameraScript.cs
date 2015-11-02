@@ -10,6 +10,7 @@ namespace LotsOfTowers.CameraControl
         Vector3 playerPosition;
 
         public float camBehindPlayer = 7f;
+        public float camUpFromPlayer = 3f;
 
         void Start()
         {
@@ -19,7 +20,13 @@ namespace LotsOfTowers.CameraControl
         void Update()
         {
             CameraInput();
+            CameraDepth();
         }
+
+        private void CameraDepth()
+		{
+			transform.localPosition = new Vector3(transform.localPosition.x, camUpFromPlayer, Mathf.Lerp(transform.localPosition.z,-camBehindPlayer, Time.deltaTime*2f));
+		}
 
         private void CameraInput()
         {
