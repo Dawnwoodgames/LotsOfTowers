@@ -38,8 +38,8 @@ namespace LotsOfTowers.Framework
 		{
 			DontDestroyOnLoad(this);
 			GameManager.instance = this;
-
 			OnLevelWasLoaded(Application.loadedLevel);
+			this.actor = FindObjectOfType<Actor>();
 			this.languages = new string[] { "en_US", "nl_NL" };
 			this.timeScale = Time.timeScale;
 		}
@@ -50,7 +50,7 @@ namespace LotsOfTowers.Framework
 			{
 				spawnPoint = GameObject.Find("Level/Spawn Point").transform;
 				if (actor != null && spawnPoint != null) {
-					actor.transform = spawnPoint;
+					actor.transform.position = spawnPoint.position;
 				}
 			}
 		}
