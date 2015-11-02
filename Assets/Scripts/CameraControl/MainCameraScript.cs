@@ -9,6 +9,8 @@ namespace LotsOfTowers.CameraControl
         GameObject centerObject;
         Vector3 playerPosition;
 
+        public float camBehindPlayer = 7f;
+
         void Start()
         {
             centerObject = GameObject.Find("CenterFocus");
