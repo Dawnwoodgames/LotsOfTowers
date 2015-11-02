@@ -62,7 +62,6 @@ namespace LotsOfTowers.Actors
 
 		public void Start()
 		{
-			OnLevelWasLoaded(Application.loadedLevel);
 			Tooltip.ShowTooltip(tooltip, "Movement", false, new string[] { "Horizontal", "Vertical" });
 		}
 	}
