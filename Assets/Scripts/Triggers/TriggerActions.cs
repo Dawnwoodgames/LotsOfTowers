@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using LotsOfTowers.ToolTip;
 
-namespace LotsOfLowers.Triggers
+namespace LotsOfTowers.Triggers
 {
 	public class TriggerActions : MonoBehaviour
 	{
