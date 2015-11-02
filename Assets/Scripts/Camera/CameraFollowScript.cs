@@ -1,13 +1,17 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class CameraFollowScript : MonoBehaviour {
-
-    Vector3 player;
-
-    void Update()
+namespace LotsOfTowers.Camera
+{
+    public class CameraFollowScript : MonoBehaviour
     {
-        player = GameObject.FindGameObjectWithTag("Player").transform.position;
-        this.transform.position = new Vector3(player.x, player.y, player.z);
+
+        Vector3 player;
+
+        void Update()
+        {
+            player = GameObject.FindGameObjectWithTag("Player").transform.position;
+            this.transform.position = new Vector3(player.x, player.y, player.z);
+        }
     }
 }
