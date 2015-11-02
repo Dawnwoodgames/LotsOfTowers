@@ -12,6 +12,8 @@ namespace LotsOfTowers.CameraControl
         public float camBehindPlayer = 7f;
         public float camUpFromPlayer = 3f;
 
+        public bool zoomedOut;
+
         void Start()
         {
             centerObject = GameObject.Find("CenterFocus");
@@ -25,7 +27,8 @@ namespace LotsOfTowers.CameraControl
 
         private void CameraDepth()
 		{
-			transform.localPosition = new Vector3(transform.localPosition.x, camUpFromPlayer, Mathf.Lerp(transform.localPosition.z,-camBehindPlayer, Time.deltaTime*2f));
+            if (!zoomedOut)
+			    transform.localPosition = new Vector3(transform.localPosition.x, camUpFromPlayer, Mathf.Lerp(transform.localPosition.z,-camBehindPlayer, Time.deltaTime*2f));
 		}
 
         private void CameraInput()
@@ -34,10 +37,12 @@ namespace LotsOfTowers.CameraControl
 
             if (Input.GetButtonDown("CameraOverview"))
             {
+                zoomedOut = true;
                 gameObject.transform.localPosition = new Vector3(0, 4, gameObject.transform.position.z - 40);
             }
             if (Input.GetButtonUp("CameraOverview"))
             {
+                zoomedOut = false;
                 playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
                 gameObject.transform.localPosition = new Vector3(0, 4, -5);
             }

@@ -49,10 +49,14 @@ namespace LotsOfTowers.Platform
 					cameraDistance = Vector3.Distance (hit.point, player.transform.position);
 				}
 			}
-			GetComponent<LotsOfTowers.CameraControl.MainCameraScript> ().camBehindPlayer = cameraDistance;
-			Vector3 rot = transform.rotation.eulerAngles;
-			rot = new Vector3(Mathf.Lerp(rot.x,30f+30f*(7f-cameraDistance)/7f,Time.deltaTime*2f), rot.y, rot.z);
-			transform.rotation = Quaternion.Euler(rot);
+
+            if (!GetComponent<LotsOfTowers.CameraControl.MainCameraScript>().zoomedOut)
+            {
+                GetComponent<LotsOfTowers.CameraControl.MainCameraScript>().camBehindPlayer = cameraDistance;
+                Vector3 rot = transform.rotation.eulerAngles;
+                rot = new Vector3(Mathf.Lerp(rot.x, 30f + 30f * (7f - cameraDistance) / 7f, Time.deltaTime * 2f), rot.y, rot.z);
+                transform.rotation = Quaternion.Euler(rot);
+            }
 		}
 	}
 }

@@ -1034,7 +1034,9 @@ Prefab:
       propertyPath: player
       value: 
       objectReference: {fileID: 16190992}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 11425566, guid: 07e7a2ad4c8131443b190b37e9e4dc33, type: 2}
+    - {fileID: 11418628, guid: 07e7a2ad4c8131443b190b37e9e4dc33, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 07e7a2ad4c8131443b190b37e9e4dc33, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &621634330
@@ -1623,6 +1625,21 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1117737292}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1142206020 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 173192, guid: 07e7a2ad4c8131443b190b37e9e4dc33, type: 2}
+  m_PrefabInternal: {fileID: 578311013}
+--- !u!114 &1142206021
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1142206020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2af5c898c78a43343b4e80fdd9ce0674, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1156904804
 GameObject:
   m_ObjectHideFlags: 0
@@ -4090,6 +4107,24 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1970465540}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1973224787 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 178546, guid: 07e7a2ad4c8131443b190b37e9e4dc33, type: 2}
+  m_PrefabInternal: {fileID: 578311013}
+--- !u!114 &1973224790
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1973224787}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f02cc544d7ccb3147861ee3de2fb009f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camBehindPlayer: 7
+  camUpFromPlayer: 3
+  zoomedOut: 0
 --- !u!1 &1997323512
 GameObject:
   m_ObjectHideFlags: 0
