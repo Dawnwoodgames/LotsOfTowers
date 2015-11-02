@@ -16,7 +16,7 @@ namespace LotsOfTowers.Platform
 		{
 			cameraDistance = 7f;
 			Debug.DrawRay(player.transform.position, transform.TransformDirection(-Vector3.forward)*7, Color.magenta);
-			hits = Physics.RaycastAll(player.transform.position, transform.TransformDirection(-Vector3.forward), 7f).OrderBy(h=>h.distance).ToArray();
+			hits = Physics.RaycastAll(player.transform.position, transform.TransformDirection(-Vector3.forward), cameraDistance*1.1f).OrderBy(h=>h.distance).ToArray();
 			if (oldHits != null)
 			{
 				foreach (GameObject hit in oldHits)
