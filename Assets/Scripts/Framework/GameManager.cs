@@ -2,7 +2,7 @@
 
 namespace LotsOfTowers.Framework
 {
-	public sealed class GameManager : MonoBehaviour
+	public class GameManager : MonoBehaviour
 	{
 		private static GameManager instance;
 		private Transform spawnPoint;

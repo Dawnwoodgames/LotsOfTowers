@@ -5,7 +5,6 @@ namespace LotsOfTowers.ToolTip
 {
 	public class ModalPanel : MonoBehaviour
 	{
-
 		public Text message;
 		public Text hint;
 		//public Image iconImage;

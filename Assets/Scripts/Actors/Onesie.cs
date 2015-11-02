@@ -2,7 +2,7 @@
 
 namespace LotsOfTowers.Actors
 {
-	public sealed class Onesie : ScriptableObject
+	public class Onesie : ScriptableObject
 	{
 		/*
 			Every public field will show up in the editor when configuring onesies,

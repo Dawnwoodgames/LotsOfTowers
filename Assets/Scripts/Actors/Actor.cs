@@ -6,7 +6,7 @@ using UnityEngine;
 
 namespace LotsOfTowers.Actors
 {
-	public sealed class Actor : MonoBehaviour
+	public class Actor : MonoBehaviour
 	{
 		public GameObject tooltip;
 

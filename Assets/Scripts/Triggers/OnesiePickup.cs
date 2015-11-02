@@ -3,7 +3,7 @@ using LotsOfTowers.Actors;
 
 namespace LotsOfTowers.Triggers
 {
-	public sealed class OnesiePickup : MonoBehaviour
+	public class OnesiePickup : MonoBehaviour
 	{
 		public Onesie Onesie;
 
