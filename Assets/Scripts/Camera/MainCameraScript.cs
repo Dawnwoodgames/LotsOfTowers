@@ -19,11 +19,7 @@ public class MainCameraScript : MonoBehaviour {
 
     private void CameraInput()
     {
-        centerObject.transform.Rotate(0, Input.GetAxis("RightJoystickX") * 2, 0);
-        if (Input.GetKey("e"))
-            centerObject.transform.Rotate(Vector3.down * 2);
-        if (Input.GetKey("q"))
-            centerObject.transform.Rotate(Vector3.up * 2);
+        centerObject.transform.Rotate(0, Input.GetAxis("CameraRotate") * 2, 0);
 
         if (Input.GetKey("r"))
         {
