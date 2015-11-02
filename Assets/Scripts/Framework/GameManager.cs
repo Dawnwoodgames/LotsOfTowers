@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using LotsOfTowers.Actors;
+using System.Linq;
 using UnityEngine;
 
 namespace LotsOfTowers.Framework
@@ -6,6 +7,7 @@ namespace LotsOfTowers.Framework
 	public class GameManager : MonoBehaviour
 	{
 		private static GameManager instance;
+		private Actor actor;
 		private string[] languages;
 		private Transform spawnPoint;
 		private float timeScale;
@@ -47,6 +49,9 @@ namespace LotsOfTowers.Framework
 			if (GameObject.Find("Level") != null)
 			{
 				spawnPoint = GameObject.Find("Level/Spawn Point").transform;
+				if (actor != null && spawnPoint != null) {
+					actor.transform = spawnPoint;
+				}
 			}
 		}
 	}

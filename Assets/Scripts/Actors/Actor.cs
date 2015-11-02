@@ -60,15 +60,6 @@ namespace LotsOfTowers.Actors
 			}
 		}
 
-		public void OnLevelWasLoaded(int index)
-		{
-			try
-			{
-				transform.position = GameManager.Instance.SpawnPoint.position;
-			}
-			catch (NullReferenceException) { }
-		}
-
 		public void Start()
 		{
 			OnLevelWasLoaded(Application.loadedLevel);
