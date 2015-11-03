@@ -9,7 +9,7 @@ namespace LotsOfTowers.Unity {
 			Actor actor = (Actor)target;
 
 			base.OnInspectorGUI ();
-			EditorGUILayout.LabelField("Current onesie", actor.Onesie == null ? "<Runtime Only>" : actor.Onesie.name);
+			EditorGUILayout.LabelField("Current onesie", actor.Onesie == null ? "<null>" : actor.Onesie.name);
 		}
 	}
 }

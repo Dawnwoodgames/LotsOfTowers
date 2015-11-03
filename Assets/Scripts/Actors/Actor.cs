@@ -9,9 +9,13 @@ namespace LotsOfTowers.Actors
 {
 	public class Actor : MonoBehaviour
 	{
+		// Static fields
+		public static Onesie DefaultOnesie;
+		public static int MaxOnesies;
+
 		// Private fields
-		private Onesie onesie;
-		private List<Onesie> onesies;
+		private Onesie currentOnesie;
+		private Dictionary<Int32, Onesie> onesies;
 		
 		// Public fields
 		public GameObject tooltip;
@@ -19,76 +23,62 @@ namespace LotsOfTowers.Actors
 		// Properties
 		public bool CanMoveObjects
 		{
-			get { return onesie.canMoveObjects; }
+			get { return Onesie.canMoveObjects; }
 		}
 		
 		public int JumpCount
 		{
-			get { return onesie.jumpCount; }
+			get { return Onesie.jumpCount; }
 		}
 		
 		public float MovementSpeed
 		{
-			get { return onesie.movementSpeed; }
+			get { return Onesie.movementSpeed; }
 		}
 
 		public Onesie Onesie
 		{
-			get { return onesie; }
+			get { return currentOnesie == null ? DefaultOnesie : currentOnesie; }
 		}
 		
 		public Onesie[] Onesies
 		{
-			get { return onesies.ToArray(); }
+			get { return onesies.Values.ToArray(); }
 		}
 		
 		// Methods
-		public void AddOnesie(Onesie onesie)
+		public Onesie AddOnesie(int index, Onesie onesie)
 		{
-			if (onesies.Where(o => o.name == onesie.name).Count() == 0)
-			{
-				onesies.Add(onesie);
+			if (index > -1 && index < 3 && onesies.Values.Where(o => o.name == onesie.name).Count() == 0) {
+				Onesie replacedOnesie = onesies.ElementAtOrDefault(index).Value;
+
+				currentOnesie = currentOnesie == replacedOnesie ? onesie : currentOnesie;
+				onesies.Add(index, onesie);
+
+				return replacedOnesie;
 			}
+
+			return null;
 		}
-		
+
 		public void Awake()
 		{
+			Actor.DefaultOnesie = Resources.Load("OnesieDefault") as Onesie;
+			Actor.MaxOnesies = 3;
 			DontDestroyOnLoad(gameObject);
-			this.onesie = Onesie.Load("Default");
-			this.onesies = new List<Onesie>(new Onesie[] { onesie });
-		}
-		
-		public void Equip(Onesie onesie)
-		{
-			if (onesies.Contains(onesie))
-			{
-				this.onesie = onesie;
-			}
-		}
-		
-		public Onesie GetNextOnesie(Onesie current) {
-			int index = onesies.IndexOf(current);
-			
-			if (index != -1 && index != onesies.Count) {
-				return onesies.ElementAt(index + 1);
-			}
-			
-			return onesies.First();
-		}
-		
-		public Onesie GetPreviousOnesie(Onesie current) {
-			int index = onesies.IndexOf(current);
-			
-			if (index > 0) {
-				return onesies.ElementAt(index - 1);
-			}
-			
-			return onesies.Last();
+			onesies = new Dictionary<Int32, Onesie>( MaxOnesies );
 		}
 		
 		public void Start()
 		{
 			Tooltip.ShowTooltip(tooltip, "Movement", false, new string[] { "Horizontal", "Vertical" });
+		}
+
+		public void SwitchOnesie(int index)
+		{
+			if (onesies.ContainsKey(index)) {
+				currentOnesie = onesies.ElementAt(index).Value;
+			}
 		}
 	}
 }
