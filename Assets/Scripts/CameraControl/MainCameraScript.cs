@@ -6,12 +6,13 @@ namespace LotsOfTowers.CameraControl
 {
     public class MainCameraScript : MonoBehaviour
     {
-        GameObject centerObject;
-        Vector3 playerPosition;
+		public static readonly float MouseSensitivity = 8;
+
+        private GameObject centerObject;
+        private Vector3 playerPosition;
 
         public float camBehindPlayer = 7f;
         public float camUpFromPlayer = 3f;
-
         public bool zoomedOut;
 
         void Start()
@@ -33,7 +34,12 @@ namespace LotsOfTowers.CameraControl
 
         private void CameraInput()
         {
-            centerObject.transform.Rotate(0, Input.GetAxis("CameraRotate") * 2, 0);
+			if (Input.GetMouseButton (1) && Input.GetAxis("Mouse X") != 0) {
+				// Player is dragging mouse (right button)
+				centerObject.transform.Rotate(0, Input.GetAxis("Mouse X") * MouseSensitivity, 0);
+			} else {
+				centerObject.transform.Rotate (0, Input.GetAxis("CameraRotate") * 2, 0);
+			}
 
             if (Input.GetButtonDown("CameraOverview"))
             {
