@@ -67,10 +67,17 @@ namespace LotsOfTowers.Actors
 		}
 
 		private void FixedUpdate()
-		{
-			//Get Input controls
+		{ //Get Input controls
 			float h = CrossPlatformInputManager.GetAxis("Horizontal");
 			float v = CrossPlatformInputManager.GetAxis("Vertical");
+			
+			bool onesie1 = CrossPlatformInputManager.GetAxis("Onesie 1") > 0;
+			bool onesie2 = CrossPlatformInputManager.GetAxis("Onesie 2") > 0;
+			bool onesie3 = CrossPlatformInputManager.GetAxis("Onesie 3") > 0;
+
+			if (onesie1 || onesie2 || onesie3) {
+				player.SwitchOnesie(onesie1 ? 0 : (onesie2 ? 1 : 2));
+			}
 
 			movement = new Vector3(h, 0f, v);
 			Move(movement);
