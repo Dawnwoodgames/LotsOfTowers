@@ -15,40 +15,28 @@ namespace LotsOfTowers.Actors
 		private Transform mainCamera;
 		private Rigidbody rigidBody;
 
+		//Jumping variables
 		private bool jumping = false;
 		private int jumped = 0;
+		private Vector3 groundNormal;
+		private bool isGrounded;
+
+		//Moving variables
 		private Vector3 movement;
-
-		private float turningSpeed = 60f;
-
-		float m_TurnAmount;
-		float m_ForwardAmount;
-		float m_MovingTurnSpeed = 360;
-		float m_StationaryTurnSpeed = 180;
-		public float m_JumpPower = 12f;
-		float m_GravityMultiplier = 2f;
-		float m_RunCycleLegOffset = 0.2f; //specific to the character in sample assets, will need to be modified to work with others
-		float m_MoveSpeedMultiplier = 1f;
-		float m_AnimSpeedMultiplier = 1f;
-		float m_GroundCheckDistance = 0.1f;
-		Vector3 m_GroundNormal;
-
-		bool m_IsGrounded;
-		float m_OrigGroundCheckDistance;
-		const float k_Half = 0.5f;
-		float m_CapsuleHeight;
-		Vector3 m_CapsuleCenter;
-		CapsuleCollider m_Capsule;
-		bool m_Crouching;
-
+		private float turnAmount;
+		private float forwardAmount;
+		private float movingTurnSpeed = 360;
+		private float stationaryTurnSpeed = 180;
 
 		private void Start()
 		{
 			player = GetComponent<Actor>();
 			rigidBody = GetComponent<Rigidbody>();
+			
+			//Set constraints for rotation lock, so the character doesn't fall
 			rigidBody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
 
-
+			//Get camera transform
 			if (Camera.main != null)
 			{
 				mainCamera = Camera.main.transform;
@@ -106,44 +94,52 @@ namespace LotsOfTowers.Actors
 			//Get camera position to face walking directory
 			movement = Camera.main.transform.TransformDirection(movement);
 
+			//If the magintude goes higher then 1, bring it back to 1 
+			//Magnitude is the length between the vectors origin and its endpoint
 			if (movement.magnitude > 1f) movement.Normalize();
+
+			//Invert direction - http://docs.unity3d.com/ScriptReference/Transform.InverseTransformDirection.html
 			movement = transform.InverseTransformDirection(movement);
-			CheckGroundStatus();
-			movement = Vector3.ProjectOnPlane(movement, m_GroundNormal);
-			m_TurnAmount = Mathf.Atan2(movement.x, movement.z);
-			m_ForwardAmount = movement.z;
 
-			ApplyExtraTurnRotation();
+			//Check if the player is grounded
+			IsGrounded();
 
+			//I don't know wtf this does, please find out thanks :)
+			movement = Vector3.ProjectOnPlane(movement, groundNormal);
+			turnAmount = Mathf.Atan2(movement.x, movement.z);
+
+			forwardAmount = movement.z;
+
+			//Turn the character
+			TurnRotation();
+
+			//Translate the current position, based on the movementspeed / time to move the player
 			transform.Translate(movement * player.MovementSpeed * Time.deltaTime);
 		}
-		void ApplyExtraTurnRotation()
+
+		void TurnRotation()
 		{
 			// help the character turn faster (this is in addition to root rotation in the animation)
-			float turnSpeed = Mathf.Lerp(m_StationaryTurnSpeed, m_MovingTurnSpeed, m_ForwardAmount);
-			transform.Rotate(0, m_TurnAmount * turnSpeed * Time.deltaTime, 0);
+			float turnSpeed = Mathf.Lerp(stationaryTurnSpeed, movingTurnSpeed, forwardAmount);
+			transform.Rotate(0, turnAmount * turnSpeed * Time.deltaTime, 0);
 		}
 
-		void CheckGroundStatus()
+		void IsGrounded()
 		{
 			RaycastHit hitInfo;
-#if UNITY_EDITOR
-			// helper to visualise the ground check ray in the scene view
-			Debug.DrawLine(transform.position + (Vector3.up * 0.1f), transform.position + (Vector3.up * 0.1f) + (Vector3.down * m_GroundCheckDistance));
-#endif
+
 			// 0.1f is a small offset to start the ray from inside the character
 			// it is also good to note that the transform position in the sample assets is at the base of the character
-			if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, m_GroundCheckDistance))
+			if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, 0.1f))
 			{
-				m_GroundNormal = hitInfo.normal;
-				m_IsGrounded = true;
+				groundNormal = hitInfo.normal;
+				isGrounded = true;
 			}
 			else
 			{
-				m_IsGrounded = false;
-				m_GroundNormal = Vector3.up;
+				isGrounded = false;
+				groundNormal = Vector3.up;
 			}
 		}
-
 	}
 }
