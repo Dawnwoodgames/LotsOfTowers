@@ -80,7 +80,7 @@ namespace LotsOfTowers.Actors
 		public void SwitchOnesie(int index)
 		{
 			if (onesies.ContainsKey(index)) {
-				currentOnesie = onesies.ElementAt(index).Value;
+				currentOnesie = onesies[index];
 			}
 		}
 	}
