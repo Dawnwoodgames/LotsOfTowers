@@ -13,7 +13,7 @@ namespace LotsOfTowers.Actors
 
 		// Private fields
 		private Onesie currentOnesie;
-		private Dictionary<Int32, Onesie> onesies;
+		private Dictionary<int, Onesie> onesies;
 		
 		// Public fields
 		public GameObject tooltip;
@@ -36,7 +36,7 @@ namespace LotsOfTowers.Actors
 
 		public float JumpPower
 		{
-			get { return onesie.jumpPower; }
+			get { return Onesie.jumpPower; }
 		}
 
 		public Onesie Onesie
@@ -69,7 +69,7 @@ namespace LotsOfTowers.Actors
 			Actor.DefaultOnesie = Resources.Load("OnesieDefault") as Onesie;
 			Actor.MaxOnesies = 3;
 			DontDestroyOnLoad(gameObject);
-			onesies = new Dictionary<Int32, Onesie>( MaxOnesies );
+			onesies = new Dictionary<int, Onesie>( MaxOnesies );
 		}
 		
 		public void Start()
