@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using LotsOfTowers.Framework;
 using LotsOfTowers.ToolTip;
 using UnityEngine;
 
@@ -30,6 +28,11 @@ namespace LotsOfTowers.Actors
 		public float MovementSpeed
 		{
 			get { return onesie.movementSpeed; }
+		}
+
+		public float JumpPower
+		{
+			get { return onesie.jumpPower; }
 		}
 
 		public Onesie Onesie
