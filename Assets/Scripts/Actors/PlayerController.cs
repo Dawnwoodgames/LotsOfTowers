@@ -27,7 +27,7 @@ namespace LotsOfTowers.Actors
 		private float turnAmount;
 		private float forwardAmount;
 		private float movingTurnSpeed = 360;
-		private float stationaryTurnSpeed = 180;
+		private float stationaryTurnSpeed = 360;
 
 		//Crouch variables
 		private bool isCrouching = false;
