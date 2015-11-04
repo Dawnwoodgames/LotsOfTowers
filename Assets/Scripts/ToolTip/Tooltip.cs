@@ -18,7 +18,10 @@ namespace LotsOfTowers.ToolTip
 			if (!Convert.ToBoolean(PlayerPrefs.GetInt("Tutorial_" + name)))
 			{
 				GameObject c = Instantiate(tooltip) as GameObject;
-				c.GetComponent<ModalPanel>().Tooltip(tooltips[name][0], tooltips[name][1], possibleCloseKeys, autoClose);
+				String hint = ("tooltip." + name.ToLower() + ".hint").Localize();
+				String title = ("tooltip." + name.ToLower() + ".title").Localize();
+
+				c.GetComponent<ModalPanel>().Tooltip(title, hint, possibleCloseKeys, autoClose);
 				PlayerPrefs.SetInt("Tutorial_" + name, Convert.ToInt32(true));
 			}
 		}
