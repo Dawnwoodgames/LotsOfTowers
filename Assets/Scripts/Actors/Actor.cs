@@ -8,8 +8,8 @@ namespace LotsOfTowers.Actors
 	public class Actor : MonoBehaviour
 	{
 		// Static fields
-		public static Onesie DefaultOnesie;
-		public static int MaxOnesies;
+		private static Onesie DefaultOnesie;
+		private static int MaxOnesies;
 
 		// Private fields
 		private Onesie currentOnesie;
@@ -25,7 +25,7 @@ namespace LotsOfTowers.Actors
 		}
 
 		public bool HasFreeSlots {
-			get { return onesies.Count < 3; }
+			get { return onesies.Count < MaxOnesies; }
 		}
 		
 		public int JumpCount
@@ -56,7 +56,7 @@ namespace LotsOfTowers.Actors
 		// Methods
 		public Onesie AddOnesie(int index, Onesie onesie)
 		{
-			if (index > -1 && index < 3 && onesies.Values.Where(o => o.name == onesie.name).Count() == 0) {
+			if (index > -1 && index < MaxOnesies && onesies.Values.Where(o => o.name == onesie.name).Count() == 0) {
 				Onesie replacedOnesie = onesies.ElementAtOrDefault(index).Value;
 
 				currentOnesie = currentOnesie == replacedOnesie ? onesie : currentOnesie;
@@ -66,6 +66,19 @@ namespace LotsOfTowers.Actors
 			}
 
 			return null;
+		}
+
+		public bool AddOnesieToFirstFreeSlot(Onesie onesie)
+		{
+			for (int i = 0; i < MaxOnesies; i++)
+			{
+				if (!onesies.ContainsKey(i)) {
+					onesies.Add(i, onesie);
+					return true;
+				}
+			}
+
+			return false;
 		}
 
 		public void Awake()
