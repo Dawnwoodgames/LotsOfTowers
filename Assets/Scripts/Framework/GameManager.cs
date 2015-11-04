@@ -1,6 +1,7 @@
 ﻿using LotsOfTowers.Actors;
 using System.Linq;
 using UnityEngine;
+using SmartLocalization;
 
 namespace LotsOfTowers.Framework
 {
@@ -8,7 +9,6 @@ namespace LotsOfTowers.Framework
 	{
 		private static GameManager instance;
 		private Actor actor;
-		private string[] languages;
 		private Transform spawnPoint;
 		private float timeScale;
 
@@ -18,13 +18,18 @@ namespace LotsOfTowers.Framework
 		}
 
 		public string Language
-		{ // Default: en_US
-			get { return PlayerPrefs.HasKey("Language") ? PlayerPrefs.GetString("Language") : "en_US"; }
-			set { if (languages.Contains(value)) { PlayerPrefs.SetString("Language", value); } }
+		{ // Default: en
+			get { return PlayerPrefs.HasKey("Language") ? PlayerPrefs.GetString("Language") : "en"; }
+			set {
+				if (LanguageManager.Instance.GetSupportedLanguages().Where(l => l.languageCode == value).Count() != 0) {
+					LanguageManager.Instance.ChangeLanguage(value);
+					PlayerPrefs.SetString("Language", value);
+				}
+			}
 		}
 
 		public bool Paused
-		{
+		{ // Default: false
 			get { return Time.timeScale == 0; }
 			set { timeScale = Paused ? timeScale : Time.timeScale; Time.timeScale = value ? 0 : timeScale; }
 		}
@@ -38,9 +43,9 @@ namespace LotsOfTowers.Framework
 		{
 			DontDestroyOnLoad(this);
 			GameManager.instance = this;
+			LanguageManager.Instance.ChangeLanguage(Language);
 			OnLevelWasLoaded(Application.loadedLevel);
 			this.actor = FindObjectOfType<Actor>();
-			this.languages = new string[] { "en_US", "nl_NL" };
 			this.timeScale = Time.timeScale;
 		}
 
