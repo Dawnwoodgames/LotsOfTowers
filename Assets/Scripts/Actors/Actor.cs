@@ -23,20 +23,24 @@ namespace LotsOfTowers.Actors
 		{
 			get { return Onesie.canMoveObjects; }
 		}
+
+		public bool HasFreeSlots {
+			get { return onesies.Count < 3; }
+		}
 		
 		public int JumpCount
 		{
 			get { return Onesie.jumpCount; }
 		}
 		
-		public float MovementSpeed
-		{
-			get { return Onesie.movementSpeed; }
-		}
-
 		public float JumpPower
 		{
 			get { return Onesie.jumpPower; }
+		}
+		
+		public float MovementSpeed
+		{
+			get { return Onesie.movementSpeed; }
 		}
 
 		public Onesie Onesie
