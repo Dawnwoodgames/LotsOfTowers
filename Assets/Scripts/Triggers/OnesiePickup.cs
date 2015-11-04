@@ -18,6 +18,11 @@ namespace LotsOfTowers.Triggers
 
 		public void OnTriggerEnter(Collider collider) {
 			actor = collider.gameObject.GetComponent<Actor>();
+
+			if (actor.HasFreeSlots && actor.AddOnesieToFirstFreeSlot(Onesie))
+			{
+				Destroy(gameObject);
+			}
 		}
 		
 		public void OnTriggerStay(Collider collider) {

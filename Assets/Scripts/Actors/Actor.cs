@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using LotsOfTowers.ToolTip;
 using UnityEngine;
@@ -8,8 +9,8 @@ namespace LotsOfTowers.Actors
 	public class Actor : MonoBehaviour
 	{
 		// Static fields
-		public static Onesie DefaultOnesie;
-		public static int MaxOnesies;
+		private static Onesie DefaultOnesie;
+		private static int MaxOnesies;
 
 		// Private fields
 		private Onesie currentOnesie;
@@ -23,20 +24,24 @@ namespace LotsOfTowers.Actors
 		{
 			get { return Onesie.canMoveObjects; }
 		}
+
+		public bool HasFreeSlots {
+			get { return onesies.Count < MaxOnesies; }
+		}
 		
 		public int JumpCount
 		{
 			get { return Onesie.jumpCount; }
 		}
 		
-		public float MovementSpeed
-		{
-			get { return Onesie.movementSpeed; }
-		}
-
 		public float JumpPower
 		{
 			get { return Onesie.jumpPower; }
+		}
+		
+		public float MovementSpeed
+		{
+			get { return Onesie.movementSpeed; }
 		}
 
 		public Onesie Onesie
@@ -52,7 +57,7 @@ namespace LotsOfTowers.Actors
 		// Methods
 		public Onesie AddOnesie(int index, Onesie onesie)
 		{
-			if (index > -1 && index < 3 && onesies.Values.Where(o => o.name == onesie.name).Count() == 0) {
+			if (index > -1 && index < MaxOnesies && onesies.Values.Where(o => o.name == onesie.name).Count() == 0) {
 				Onesie replacedOnesie = onesies.ElementAtOrDefault(index).Value;
 
 				currentOnesie = currentOnesie == replacedOnesie ? onesie : currentOnesie;
@@ -64,15 +69,28 @@ namespace LotsOfTowers.Actors
 			return null;
 		}
 
-		public void Awake()
+		public bool AddOnesieToFirstFreeSlot(Onesie onesie)
+		{
+			for (int i = 0; i < MaxOnesies; i++)
+			{
+				if (!onesies.ContainsKey(i)) {
+					AddOnesie(i, onesie);
+					return true;
+				}
+			}
+
+			return false;
+		}
+
+		private void Awake()
 		{
 			Actor.DefaultOnesie = Resources.Load("OnesieDefault") as Onesie;
 			Actor.MaxOnesies = 3;
 			DontDestroyOnLoad(gameObject);
 			onesies = new Dictionary<int, Onesie>( MaxOnesies );
 		}
-		
-		public void Start()
+
+		private void Start()
 		{
 			Tooltip.ShowTooltip(tooltip, "Movement", false, new string[] { "Horizontal", "Vertical" });
 		}

@@ -67,7 +67,8 @@ namespace LotsOfTowers.Actors
 		}
 
 		private void FixedUpdate()
-		{ //Get Input controls
+		{ 
+			//Get Input controls
 			float h = CrossPlatformInputManager.GetAxis("Horizontal");
 			float v = CrossPlatformInputManager.GetAxis("Vertical");
 			
@@ -75,10 +76,16 @@ namespace LotsOfTowers.Actors
 			bool onesie2 = CrossPlatformInputManager.GetAxis("Onesie 2") > 0;
 			bool onesie3 = CrossPlatformInputManager.GetAxis("Onesie 3") > 0;
 
-			if (onesie1 || onesie2 || onesie3) {
+			if (onesie1 || onesie2 || onesie3)
+			{
+				//Switch to the selected onesie
 				player.SwitchOnesie(onesie1 ? 0 : (onesie2 ? 1 : 2));
+
+				//Reset the jump counter
+				jumped = player.Onesie.jumpCount;
 			}
 
+			//Apply movement, jumping and rotation
 			movement = new Vector3(h, 0f, v);
 			Move(movement);
 			Jump();
