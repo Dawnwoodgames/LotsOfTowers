@@ -5,7 +5,7 @@ using UnityEngine;
 
 namespace LotsOfTowers.Actors
 {
-	public class Actor : MonoBehaviour
+	public class Player : MonoBehaviour
 	{
 		// Static fields
 		public static Onesie DefaultOnesie;
@@ -66,8 +66,8 @@ namespace LotsOfTowers.Actors
 
 		public void Awake()
 		{
-			Actor.DefaultOnesie = Resources.Load("OnesieDefault") as Onesie;
-			Actor.MaxOnesies = 3;
+			Player.DefaultOnesie = Resources.Load("OnesieDefault") as Onesie;
+			Player.MaxOnesies = 3;
 			DontDestroyOnLoad(gameObject);
 			onesies = new Dictionary<int, Onesie>( MaxOnesies );
 		}

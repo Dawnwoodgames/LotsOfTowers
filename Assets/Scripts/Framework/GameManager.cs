@@ -7,7 +7,7 @@ namespace LotsOfTowers.Framework
 	public class GameManager : MonoBehaviour
 	{
 		private static GameManager instance;
-		private Actor actor;
+		private Player actor;
 		private string[] languages;
 		private Transform spawnPoint;
 		private float timeScale;
@@ -39,7 +39,7 @@ namespace LotsOfTowers.Framework
 			DontDestroyOnLoad(this);
 			GameManager.instance = this;
 			OnLevelWasLoaded(Application.loadedLevel);
-			this.actor = FindObjectOfType<Actor>();
+			this.actor = FindObjectOfType<Player>();
 			this.languages = new string[] { "en_US", "nl_NL" };
 			this.timeScale = Time.timeScale;
 		}

@@ -6,7 +6,7 @@ namespace LotsOfTowers.Triggers
 	public class OnesiePickup : MonoBehaviour
 	{
 		// Private variables
-		private Actor actor;
+		private Player actor;
 		private float y;
 
 		// Public variables
@@ -17,7 +17,7 @@ namespace LotsOfTowers.Triggers
 		}
 
 		public void OnTriggerEnter(Collider collider) {
-			actor = collider.gameObject.GetComponent<Actor>();
+			actor = collider.gameObject.GetComponent<Player>();
 		}
 		
 		public void OnTriggerStay(Collider collider) {
