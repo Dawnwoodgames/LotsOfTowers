@@ -73,7 +73,7 @@ namespace LotsOfTowers.Actors
 			for (int i = 0; i < MaxOnesies; i++)
 			{
 				if (!onesies.ContainsKey(i)) {
-					onesies.Add(i, onesie);
+					AddOnesie(i, onesie);
 					return true;
 				}
 			}
