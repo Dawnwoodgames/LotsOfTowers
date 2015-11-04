@@ -16,7 +16,7 @@ namespace LotsOfTowers.Platform
 		{
 			cameraDistance = 5f;
             Debug.DrawRay(player.transform.position, transform.TransformDirection(-Vector3.forward) * cameraDistance, Color.magenta);
-            hits = Physics.RaycastAll(player.transform.position, transform.TransformDirection(-Vector3.forward), cameraDistance * 1.1f).OrderBy(h => h.distance).ToArray();
+            hits = Physics.SphereCastAll(player.transform.position, 0.5f, transform.TransformDirection(-Vector3.forward), cameraDistance * 1.1f).OrderBy(h => h.distance).ToArray();
 			if (oldHits != null)
 			{
 				foreach (GameObject hit in oldHits)
@@ -44,12 +44,18 @@ namespace LotsOfTowers.Platform
 					Color color = r.material.color;
 					color.a = Mathf.Lerp (color.a, goalAlpha, 0.8f * Time.deltaTime);
 					r.material.color = color;
-				} else if (hit.collider.tag != "Player" && !cameraMoved) {
-					cameraMoved = true;
-					cameraDistance = Vector3.Distance (hit.point, player.transform.position);
 				}
 			}
 
+            hits = Physics.RaycastAll(player.transform.position, transform.TransformDirection(-Vector3.forward), cameraDistance * 1.1f).OrderBy(h => h.distance).ToArray();
+            foreach (RaycastHit hit in hits)
+            {
+               if (hit.collider.tag != "Player" && hit.collider.tag != "Trigger" && !cameraMoved)
+                {
+                    cameraMoved = true;
+                    cameraDistance = Vector3.Distance(hit.point, player.transform.position);
+                }
+            }
             if (!GetComponent<LotsOfTowers.CameraControl.MainCameraScript>().zoomedOut)
             {
                 GetComponent<LotsOfTowers.CameraControl.MainCameraScript>().camBehindPlayer = cameraDistance;

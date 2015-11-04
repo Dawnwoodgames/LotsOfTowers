@@ -402,6 +402,10 @@ Prefab:
       propertyPath: m_LocalScale.x
       value: 5
       objectReference: {fileID: 0}
+    - target: {fileID: 180566, guid: 65649c9d279b5bb4e9b782e9fbb30623, type: 2}
+      propertyPath: m_TagString
+      value: Trigger
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 65649c9d279b5bb4e9b782e9fbb30623, type: 2}
   m_IsPrefabParent: 0
@@ -550,6 +554,10 @@ Prefab:
       value: 
       objectReference: {fileID: 11400000, guid: 3cce77c4b0f874e3e95828998d5ce3a9,
         type: 2}
+    - target: {fileID: 144462, guid: 93cac6b2d7a264be6a212af23d3e1dab, type: 2}
+      propertyPath: m_TagString
+      value: Trigger
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 93cac6b2d7a264be6a212af23d3e1dab, type: 2}
   m_IsPrefabParent: 0
@@ -3376,7 +3384,7 @@ GameObject:
   - 114: {fileID: 1534551231}
   m_Layer: 0
   m_Name: JumpTooltipTrigger
-  m_TagString: Untagged
+  m_TagString: Trigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4234,7 +4242,7 @@ GameObject:
   - 114: {fileID: 1808456041}
   m_Layer: 0
   m_Name: Chicken Trigger
-  m_TagString: Untagged
+  m_TagString: Trigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4810,6 +4818,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   camBehindPlayer: 7
   camUpFromPlayer: 3
+  camRotate: 20
   zoomedOut: 0
 --- !u!1 &1997323512
 GameObject:
