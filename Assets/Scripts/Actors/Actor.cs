@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using LotsOfTowers.ToolTip;
 using UnityEngine;
@@ -81,15 +82,15 @@ namespace LotsOfTowers.Actors
 			return false;
 		}
 
-		public void Awake()
+		private void Awake()
 		{
 			Actor.DefaultOnesie = Resources.Load("OnesieDefault") as Onesie;
 			Actor.MaxOnesies = 3;
 			DontDestroyOnLoad(gameObject);
 			onesies = new Dictionary<int, Onesie>( MaxOnesies );
 		}
-		
-		public void Start()
+
+		private void Start()
 		{
 			Tooltip.ShowTooltip(tooltip, "Movement", false, new string[] { "Horizontal", "Vertical" });
 		}
