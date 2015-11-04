@@ -6,7 +6,7 @@ namespace LotsOfTowers.Triggers
 	public class OnesiePickup : MonoBehaviour
 	{
 		// Private variables
-		private Actor actor;
+		private Player actor;
 		private float y;
 
 		// Public variables
@@ -17,14 +17,14 @@ namespace LotsOfTowers.Triggers
 		}
 
 		public void OnTriggerEnter(Collider collider) {
-			actor = collider.gameObject.GetComponent<Actor>();
+			actor = collider.gameObject.GetComponent<Player>();
 
 			if (actor.HasFreeSlots && actor.AddOnesieToFirstFreeSlot(Onesie))
 			{
 				Destroy(gameObject);
 			}
 		}
-		
+
 		public void OnTriggerStay(Collider collider) {
 			if (actor != null) {
 				if (Input.GetAxis ("Onesie 1") > 0 || Input.GetAxis ("Onesie 2") > 0 || Input.GetAxis ("Onesie 3") > 0) {
