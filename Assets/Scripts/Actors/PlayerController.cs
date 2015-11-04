@@ -70,10 +70,12 @@ namespace LotsOfTowers.Actors
 			float height = GetComponent<Collider>().bounds.extents.y;
 
 			//Check if the floor is touching the feet of the model
-			if (Physics.Raycast(transform.position, Vector3.down, height))
+			if (Physics.Raycast(transform.position, Vector3.down * 1.2f, height))
 			{
 				jumped = 0;
-			}
+			} else { Debug.Log(jumped); }
+
+            Debug.DrawRay(transform.position, Vector3.down* height * 1.2f, Color.red);
 		}
 
 		private void FixedUpdate()
@@ -139,9 +141,9 @@ namespace LotsOfTowers.Actors
 		{
 			// check whether conditions are right to allow a jump:
 			if (jumping)
-			{
-				// Jump!
-				rigidBody.velocity = new Vector3(rigidBody.velocity.x, player.JumpPower, rigidBody.velocity.z);
+            {
+                // Jump!
+                rigidBody.velocity = new Vector3(rigidBody.velocity.x, player.JumpPower, rigidBody.velocity.z);
 				jumped++;
 				jumping = false;
 			}
@@ -188,18 +190,18 @@ namespace LotsOfTowers.Actors
 		{
 			RaycastHit hitInfo;
 
-			// 0.1f is a small offset to start the ray from inside the character
-			// it is also good to note that the transform position in the sample assets is at the base of the character
-			if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, 0.1f))
+            // 0.1f is a small offset to start the ray from inside the character
+            // it is also good to note that the transform position in the sample assets is at the base of the character
+            if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, 0.1f))
 			{
 				groundNormal = hitInfo.normal;
 				isGrounded = true;
-			}
-			else
+            }
+            else
 			{
 				isGrounded = false;
-				groundNormal = Vector3.up;
-			}
-		}
+                groundNormal = Vector3.up;
+            }
+        }
 	}
 }

@@ -14,9 +14,9 @@ namespace LotsOfTowers.Platform
 
 		private void Update()
 		{
-			cameraDistance = 7f;
-			Debug.DrawRay(player.transform.position, transform.TransformDirection(-Vector3.forward)*7, Color.magenta);
-			hits = Physics.RaycastAll(player.transform.position, transform.TransformDirection(-Vector3.forward), cameraDistance*1.1f).OrderBy(h=>h.distance).ToArray();
+			cameraDistance = 5f;
+            Debug.DrawRay(player.transform.position, transform.TransformDirection(-Vector3.forward) * cameraDistance, Color.magenta);
+            hits = Physics.RaycastAll(player.transform.position, transform.TransformDirection(-Vector3.forward), cameraDistance * 1.1f).OrderBy(h => h.distance).ToArray();
 			if (oldHits != null)
 			{
 				foreach (GameObject hit in oldHits)
@@ -54,7 +54,7 @@ namespace LotsOfTowers.Platform
             {
                 GetComponent<LotsOfTowers.CameraControl.MainCameraScript>().camBehindPlayer = cameraDistance;
                 Vector3 rot = transform.rotation.eulerAngles;
-                rot = new Vector3(Mathf.Lerp(rot.x, 30f + 30f * (7f - cameraDistance) / 7f, Time.deltaTime * 2f), rot.y, rot.z);
+                rot = new Vector3(Mathf.Lerp(rot.x, GetComponent<LotsOfTowers.CameraControl.MainCameraScript>().camRotate + 20f * (5f - cameraDistance) / 5f, Time.deltaTime * 2f), rot.y, rot.z);
                 transform.rotation = Quaternion.Euler(rot);
             }
 		}

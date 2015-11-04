@@ -11,8 +11,9 @@ namespace LotsOfTowers.CameraControl
         private GameObject centerObject;
         private Vector3 playerPosition;
 
-        public float camBehindPlayer = 7f;
+        public float camBehindPlayer = 5f;
         public float camUpFromPlayer = 3f;
+        public float camRotate = 20f;
         public bool zoomedOut;
 
         void Start()
@@ -29,7 +30,7 @@ namespace LotsOfTowers.CameraControl
         private void CameraDepth()
 		{
             if (!zoomedOut)
-			    transform.localPosition = new Vector3(transform.localPosition.x, camUpFromPlayer, Mathf.Lerp(transform.localPosition.z,-camBehindPlayer, Time.deltaTime*2f));
+                transform.localPosition = new Vector3(transform.localPosition.x, camUpFromPlayer, Mathf.Lerp(transform.localPosition.z, -camBehindPlayer, Time.deltaTime * 2f));
 		}
 
         private void CameraInput()
@@ -43,14 +44,16 @@ namespace LotsOfTowers.CameraControl
 
             if (Input.GetButtonDown("CameraOverview"))
             {
+                Debug.Log(gameObject.transform.rotation);
                 zoomedOut = true;
-                gameObject.transform.localPosition = new Vector3(0, 4, gameObject.transform.position.z - 40);
+                gameObject.transform.localRotation = new Quaternion(0, 0, 0, 1);
+                gameObject.transform.localPosition = new Vector3(0, camUpFromPlayer, -40);
             }
             if (Input.GetButtonUp("CameraOverview"))
             {
                 zoomedOut = false;
-                playerPosition = GameObject.FindGameObjectWithTag("Player").transform.position;
-                gameObject.transform.localPosition = new Vector3(0, 4, -5);
+                gameObject.transform.localRotation = new Quaternion(Mathf.Lerp(0, 0.2f, Time.deltaTime * 2f), 0, 0, 1);
+                transform.localPosition = new Vector3(transform.localPosition.x, camUpFromPlayer, Mathf.Lerp(transform.localPosition.z, -camBehindPlayer, Time.deltaTime * 2f));
             }
         }
     }
