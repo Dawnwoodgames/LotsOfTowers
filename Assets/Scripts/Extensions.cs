@@ -10,10 +10,12 @@ namespace LotsOfTowers {
 		// s.Localize();
 		public static string Localize(this string str, string key) {
 			if (GameManager.Instance.Language == "en_US") {
-				return Assets.Localization.en_US.ResourceManager.GetString (key);
+				return Assets.Localization.en_US.ResourceManager.GetString(key);
 			} else if (GameManager.Instance.Language == "nl_NL") {
 				// TODO: create nl_NL.resx and add it here
 			}
+
+			return string.Empty;
 		}
 	}
 }
