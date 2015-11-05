@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using LotsOfTowers.Actors;
+using LotsOfTowers.ToolTip;
 
 namespace LotsOfTowers.Triggers
 {
@@ -8,9 +9,10 @@ namespace LotsOfTowers.Triggers
 		// Private variables
 		private Player actor;
 		private float y;
+        public GameObject tooltip;
 
-		// Public variables
-		public Onesie Onesie;
+        // Public variables
+        public Onesie Onesie;
 
 		public void Awake() {
 			this.y = transform.position.y;
@@ -18,8 +20,10 @@ namespace LotsOfTowers.Triggers
 
 		public void OnTriggerEnter(Collider collider) {
 			actor = collider.gameObject.GetComponent<Player>();
+            if (collider.tag == "Player")
+                Tooltip.ShowTooltip(tooltip, "Onesie.Chicken", false, new string[] { "Jump" });
 
-			if (actor.HasFreeSlots && actor.AddOnesieToFirstFreeSlot(Onesie))
+            if (actor.HasFreeSlots && actor.AddOnesieToFirstFreeSlot(Onesie))
 			{
 				Destroy(gameObject);
 			}
