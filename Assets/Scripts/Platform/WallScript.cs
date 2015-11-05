@@ -21,6 +21,11 @@ namespace LotsOfTowers.Platform
 			{
 				foreach (GameObject hit in oldHits)
 				{
+                    if(hit == null)
+                    {
+                        continue;
+                    }
+
 					bool found = false;
 					foreach (RaycastHit newHit in hits)
 					{
@@ -32,7 +37,8 @@ namespace LotsOfTowers.Platform
 					{
 						r.material.color = Color.white;
 					}
-				}
+
+                }
 			}
 			oldHits = new List<GameObject>();
 			bool cameraMoved = false;
