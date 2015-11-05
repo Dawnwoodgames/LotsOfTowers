@@ -43,9 +43,6 @@ namespace LotsOfTowers.Actors
 			capsuleHeight = capsule.height;
 			capsuleCenter = capsule.center;
 
-			//Set constraints for rotation lock, so the character doesn't fall
-			rigidBody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
-
 			//Get camera transform
 			if (Camera.main != null)
 			{
