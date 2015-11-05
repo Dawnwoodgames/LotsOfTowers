@@ -6,7 +6,7 @@ namespace LotsOfTowers.CameraControl
 {
     public class MainCameraScript : MonoBehaviour
     {
-		public static readonly float MouseSensitivity = 8;
+		public static readonly float MouseSensitivity = 3;
 
         private GameObject centerObject;
         private Vector3 playerPosition;
@@ -39,7 +39,7 @@ namespace LotsOfTowers.CameraControl
 				// Player is dragging mouse (right button)
 				centerObject.transform.Rotate(0, Input.GetAxis("Mouse X") * MouseSensitivity, 0);
 			} else {
-				centerObject.transform.Rotate (0, Input.GetAxis("CameraRotate") * 2, 0);
+				centerObject.transform.Rotate (0, Input.GetAxis("CameraRotate"), 0);
 			}
 
             if (Input.GetButtonDown("CameraOverview"))

@@ -69,13 +69,11 @@ namespace LotsOfTowers.Actors
 			//Get object length to go through the floor
 			float height = GetComponent<Collider>().bounds.extents.y;
 
-			//Check if the floor is touching the feet of the model
-			if (Physics.Raycast(transform.position, Vector3.down * 1.2f, height))
+            //Check if the floor is touching the feet of the model
+            if (Physics.Raycast(transform.position, Vector3.down * 1.2f, height + 0.06f))
 			{
 				jumped = 0;
-			} else { Debug.Log(jumped); }
-
-            Debug.DrawRay(transform.position, Vector3.down* height * 1.2f, Color.red);
+			}
 		}
 
 		private void FixedUpdate()
