@@ -43,9 +43,6 @@ namespace LotsOfTowers.Actors
 			capsuleHeight = capsule.height;
 			capsuleCenter = capsule.center;
 
-			//Set constraints for rotation lock, so the character doesn't fall
-			rigidBody.constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
-
 			//Get camera transform
 			if (Camera.main != null)
 			{
@@ -60,7 +57,7 @@ namespace LotsOfTowers.Actors
 		private void Update()
 		{
 			//If the jumpcount is not equal to the amount of jumps done (mid air)
-			if (player.JumpCount != jumped)
+			if (player.JumpCount > jumped)
 			{
 				//Check if jump button is clicked
 				jumping = CrossPlatformInputManager.GetButtonDown("Jump");
@@ -91,9 +88,6 @@ namespace LotsOfTowers.Actors
 			{
 				//Switch to the selected onesie
 				player.SwitchOnesie(onesie1 ? 0 : (onesie2 ? 1 : 2));
-
-				//Reset the jump counter
-				jumped = player.Onesie.jumpCount;
 			}
 
 			//Apply movement, jumping and rotation
