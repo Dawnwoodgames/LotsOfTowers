@@ -137,8 +137,8 @@ Transform:
   m_LocalPosition: {x: 4.82999992, y: 15.1800003, z: -2.19000006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_Father: {fileID: 1886497909}
+  m_RootOrder: 2
 --- !u!1 &68126162
 GameObject:
   m_ObjectHideFlags: 0
@@ -660,8 +660,8 @@ Transform:
   m_LocalPosition: {x: -5.01000023, y: 11.46, z: -.50999999}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_Father: {fileID: 1886497909}
+  m_RootOrder: 1
 --- !u!1 &242481741
 GameObject:
   m_ObjectHideFlags: 0
@@ -933,8 +933,8 @@ Transform:
   m_LocalPosition: {x: -5.01999998, y: 4, z: 2.49000001}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_Father: {fileID: 1886497909}
+  m_RootOrder: 0
 --- !u!1 &426186594
 GameObject:
   m_ObjectHideFlags: 0
@@ -1270,6 +1270,7 @@ Transform:
   m_Children:
   - {fileID: 114850732}
   - {fileID: 621634331}
+  - {fileID: 1886497909}
   m_Father: {fileID: 0}
   m_RootOrder: 5
 --- !u!1 &501278171
@@ -2724,6 +2725,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tooltip: {fileID: 134260, guid: f3ae3e65f626c9041bb0b7ec44b1a91c, type: 2}
+  hudUi: {fileID: 0}
 --- !u!54 &1308662572
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -4509,6 +4511,36 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1828255113}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1886497908
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1886497909}
+  m_Layer: 0
+  m_Name: Tutorials
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1886497909
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1886497908}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 417663802}
+  - {fileID: 241460282}
+  - {fileID: 44864529}
+  m_Father: {fileID: 476880327}
+  m_RootOrder: 2
 --- !u!1 &1920041627
 GameObject:
   m_ObjectHideFlags: 0
