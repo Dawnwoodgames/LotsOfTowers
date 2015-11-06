@@ -53,6 +53,9 @@ namespace LotsOfTowers.Framework
 			this.languages = new string[] { "en_US", "nl_NL" };
 
 			this.timeScale = Time.timeScale;
+
+			//Set gravity for entire game
+			Physics.gravity = new Vector3(0, -35.0F, 0);
 		}
 
 		public void OnLevelWasLoaded(int index)

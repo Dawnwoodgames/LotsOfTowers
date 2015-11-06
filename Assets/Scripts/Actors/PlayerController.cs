@@ -56,20 +56,24 @@ namespace LotsOfTowers.Actors
 
 		private void Update()
 		{
+			//Get object length to go through the floor
+			float height = GetComponent<Collider>().bounds.extents.y;
+
+			//Check if the floor is touching the feet of the model
+			if (Physics.Raycast(transform.position, Vector3.down * 1.2f, height + 0.06f))
+			{
+				jumped = 0;
+			}
+			else if(player.JumpCount < 2)
+			{
+				jumped++;
+			}
+
 			//If the jumpcount is not equal to the amount of jumps done (mid air)
 			if (player.JumpCount > jumped)
 			{
 				//Check if jump button is clicked
 				jumping = CrossPlatformInputManager.GetButtonDown("Jump");
-			}
-
-			//Get object length to go through the floor
-			float height = GetComponent<Collider>().bounds.extents.y;
-
-            //Check if the floor is touching the feet of the model
-            if (Physics.Raycast(transform.position, Vector3.down * 1.2f, height + 0.06f))
-			{
-				jumped = 0;
 			}
 		}
 

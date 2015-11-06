@@ -84,8 +84,8 @@ namespace LotsOfTowers.Actors
 
 		private void Awake()
 		{
-			Player.DefaultOnesie = Resources.Load("OnesieDefault") as Onesie;
-			Player.MaxOnesies = 3;
+			DefaultOnesie = Resources.Load("OnesieDefault") as Onesie;
+			MaxOnesies = 3;
 			DontDestroyOnLoad(gameObject);
 			onesies = new Dictionary<int, Onesie>( MaxOnesies );
 		}

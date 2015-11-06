@@ -44,7 +44,6 @@ namespace LotsOfTowers.CameraControl
 
             if (Input.GetButtonDown("CameraOverview"))
             {
-                Debug.Log(gameObject.transform.rotation);
                 zoomedOut = true;
                 gameObject.transform.localRotation = new Quaternion(0, 0, 0, 1);
                 gameObject.transform.localPosition = new Vector3(0, camUpFromPlayer, -40);
