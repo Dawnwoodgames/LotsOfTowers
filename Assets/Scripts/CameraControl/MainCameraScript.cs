@@ -77,9 +77,20 @@ namespace LotsOfTowers.CameraControl
         private void InvisibleWalls()
         {
             rayDirection = transform.TransformDirection(Quaternion.AngleAxis(camRotate, new Vector3(-1, 0, 0)) * new Vector3(0, verticalRatio, -1));
-            Debug.DrawRay(centerObject.transform.position,  rayDirection*maxCameraDistance, Color.magenta);
 
-            hits = Physics.SphereCastAll(centerObject.transform.position, 0.5f, rayDirection, maxCameraDistance * 1.1f);
+            Debug.DrawRay(centerObject.transform.position,  rayDirection*maxCameraDistance, Color.magenta);
+            Debug.DrawRay(centerObject.transform.position, Quaternion.AngleAxis(10,new Vector3(0,1,0))*rayDirection * maxCameraDistance, Color.magenta);
+            Debug.DrawRay(centerObject.transform.position, Quaternion.AngleAxis(10, new Vector3(0, -1, 0)) * rayDirection * maxCameraDistance, Color.magenta);
+            Debug.DrawRay(centerObject.transform.position, Quaternion.AngleAxis(5, new Vector3(0, -1, 0)) * rayDirection * maxCameraDistance, Color.magenta);
+            Debug.DrawRay(centerObject.transform.position, Quaternion.AngleAxis(5, new Vector3(0, 1, 0)) * rayDirection * maxCameraDistance, Color.magenta);
+
+            List<RaycastHit> hitList = new List<RaycastHit>(Physics.RaycastAll(centerObject.transform.position, rayDirection, maxCameraDistance * 1.1f));
+            hitList.AddRange(Physics.RaycastAll(centerObject.transform.position, Quaternion.AngleAxis(10, new Vector3(0, 1, 0))*rayDirection, maxCameraDistance * 1.1f));
+            hitList.AddRange(Physics.RaycastAll(centerObject.transform.position, Quaternion.AngleAxis(10, new Vector3(0, -1, 0)) * rayDirection, maxCameraDistance * 1.1f));
+            hitList.AddRange(Physics.RaycastAll(centerObject.transform.position, Quaternion.AngleAxis(5, new Vector3(0, -1, 0)) * rayDirection, maxCameraDistance * 1.1f));
+            hitList.AddRange(Physics.RaycastAll(centerObject.transform.position, Quaternion.AngleAxis(5, new Vector3(0, 1, 0)) * rayDirection, maxCameraDistance * 1.1f));
+
+            hits = hitList.ToArray<RaycastHit>();
             if (oldHits != null)
             {
                 foreach (GameObject hit in oldHits)
@@ -109,11 +120,12 @@ namespace LotsOfTowers.CameraControl
                 oldHits.Add(hit.collider.gameObject);
                 Renderer r = hit.collider.GetComponent<Renderer>();
                 if (r && hit.collider.tag == "Wall")
-                {
+                { 
                     Color color = r.material.color;
                     color.a = Mathf.Lerp(color.a, goalAlpha, 0.8f * Time.deltaTime);
                     r.material.color = color;
                 }
+                
             }
         }
 
