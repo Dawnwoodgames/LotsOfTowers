@@ -52,7 +52,7 @@ namespace LotsOfTowers.Actors
 			{
 				Debug.LogWarning("No \"Main Camera\" found! Tag a camera as main");
 			}
-		}
+        }
 
 		private void Update()
 		{
