@@ -48,14 +48,13 @@ namespace LotsOfTowers.CameraControl
                 else
                     cameraPosition = Mathf.Lerp(transform.localPosition.z, -currentCameraDistance, Time.deltaTime * 2f);
 
-                Debug.Log(cameraPosition);
                 transform.localPosition = new Vector3(transform.localPosition.x, -cameraPosition * verticalRatio, cameraPosition);
             }
         }
 
         private void CameraInput()
         {
-			if (Input.GetMouseButton (1) && Input.GetAxis("Mouse X") != 0) {
+			if (Input.GetMouseButton(1) && Input.GetAxis("Mouse X") != 0) {
 				// Player is dragging mouse (right button)
 				centerObject.transform.Rotate(0, Input.GetAxis("Mouse X") * MouseSensitivity, 0);
 			} else {
@@ -64,7 +63,6 @@ namespace LotsOfTowers.CameraControl
 
             if (Input.GetButtonDown("CameraOverview"))
             {
-                Debug.Log(gameObject.transform.rotation);
                 zoomedOut = true;
                 gameObject.transform.localRotation = new Quaternion(0, 0, 0, 1);
                 gameObject.transform.localPosition = new Vector3(0, 40f*verticalRatio, -40);
@@ -130,7 +128,6 @@ namespace LotsOfTowers.CameraControl
                 {
                     cameraMoved = true;
                     cameraDistance = hit.distance;
-                    Debug.Log(cameraDistance);
                 }
             }
             if (!zoomedOut)
