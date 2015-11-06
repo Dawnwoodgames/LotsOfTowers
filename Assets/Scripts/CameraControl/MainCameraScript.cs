@@ -139,7 +139,7 @@ namespace LotsOfTowers.CameraControl
                 if (hit.collider.tag != "Player" && hit.collider.tag != "Trigger" && hit.collider.tag != "Wall" && !cameraMoved)
                 {
                     cameraMoved = true;
-                    cameraDistance = hit.distance;
+                    cameraDistance = hit.distance*0.8f;
                 }
             }
             if (!zoomedOut)
