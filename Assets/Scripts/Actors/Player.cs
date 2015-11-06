@@ -18,6 +18,7 @@ namespace LotsOfTowers.Actors
 		
 		// Public fields
 		public GameObject tooltip;
+        public GameObject hudUi;
 		
 		// Properties
 		public bool CanMoveObjects
@@ -63,7 +64,10 @@ namespace LotsOfTowers.Actors
 				currentOnesie = currentOnesie == replacedOnesie ? onesie : currentOnesie;
 				onesies.Add(index, onesie);
 
-				return replacedOnesie;
+                // Show HUD - skill
+                hudUi.GetComponent<HeadsUpDisplayScript>().skillsUi.SetActive(true);
+
+                return replacedOnesie;
 			}
 
 			return null;
@@ -75,6 +79,10 @@ namespace LotsOfTowers.Actors
 			{
 				if (!onesies.ContainsKey(i)) {
 					AddOnesie(i, onesie);
+
+                    // HUD - place onesie image to corresponding skill slot
+                    hudUi.GetComponent<HeadsUpDisplayScript>().AttachOnesieToSkillSlot(i, onesie.name);
+
 					return true;
 				}
 			}
@@ -87,12 +95,13 @@ namespace LotsOfTowers.Actors
 			DefaultOnesie = Resources.Load("OnesieDefault") as Onesie;
 			MaxOnesies = 3;
 			DontDestroyOnLoad(gameObject);
-			onesies = new Dictionary<int, Onesie>( MaxOnesies );
+			onesies = new Dictionary<int, Onesie>(MaxOnesies);
 		}
 
 		private void Start()
 		{
 			Tooltip.ShowTooltip(tooltip, "Movement", false, new string[] { "Horizontal", "Vertical" });
+            hudUi = GameObject.Find("HUD");
 		}
 
 		public void SwitchOnesie(int index)
