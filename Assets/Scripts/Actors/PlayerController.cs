@@ -64,7 +64,7 @@ namespace LotsOfTowers.Actors
 			{
 				jumped = 0;
 			}
-			else
+			else if(player.JumpCount < 2)
 			{
 				jumped++;
 			}
