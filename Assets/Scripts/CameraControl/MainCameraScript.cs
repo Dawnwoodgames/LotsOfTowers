@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
-using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 using System;
 
 namespace LotsOfTowers.CameraControl
@@ -8,30 +9,49 @@ namespace LotsOfTowers.CameraControl
     {
 		public static readonly float MouseSensitivity = 3;
 
-        private GameObject centerObject;
-        private Vector3 playerPosition;
+        
 
-        public float camBehindPlayer = 5f;
-        public float camUpFromPlayer = 3f;
         public float camRotate = 20f;
         public bool zoomedOut;
+        public float maxCameraDistance;
+        public float verticalRatio;
+
+        private float currentCameraDistance;
+        private GameObject centerObject;
+        private Vector3 playerPosition;
+        private RaycastHit[] hits = null;
+        private float goalAlpha = 0.2f;
+        private List<GameObject> oldHits;
+        private Vector3 rayDirection;
 
         void Start()
         {
             centerObject = GameObject.Find("CenterFocus");
+            currentCameraDistance = maxCameraDistance;
         }
 
         void Update()
         {
             CameraInput();
-            CameraDepth();
+            InvisibleWalls();
+            WallCollision();
+            CameraPosition();
         }
 
-        private void CameraDepth()
+        private void CameraPosition()
 		{
             if (!zoomedOut)
-                transform.localPosition = new Vector3(transform.localPosition.x, camUpFromPlayer, Mathf.Lerp(transform.localPosition.z, -camBehindPlayer, Time.deltaTime * 2f));
-		}
+            {
+                float cameraPosition;
+                if (-transform.localPosition.z > currentCameraDistance)
+                    cameraPosition = -currentCameraDistance;
+                else
+                    cameraPosition = Mathf.Lerp(transform.localPosition.z, -currentCameraDistance, Time.deltaTime * 2f);
+
+                Debug.Log(cameraPosition);
+                transform.localPosition = new Vector3(transform.localPosition.x, -cameraPosition * verticalRatio, cameraPosition);
+            }
+        }
 
         private void CameraInput()
         {
@@ -47,13 +67,75 @@ namespace LotsOfTowers.CameraControl
                 Debug.Log(gameObject.transform.rotation);
                 zoomedOut = true;
                 gameObject.transform.localRotation = new Quaternion(0, 0, 0, 1);
-                gameObject.transform.localPosition = new Vector3(0, camUpFromPlayer, -40);
+                gameObject.transform.localPosition = new Vector3(0, 40f*verticalRatio, -40);
             }
             if (Input.GetButtonUp("CameraOverview"))
             {
                 zoomedOut = false;
-                gameObject.transform.localRotation = new Quaternion(Mathf.Lerp(0, 0.2f, Time.deltaTime * 2f), 0, 0, 1);
-                transform.localPosition = new Vector3(transform.localPosition.x, camUpFromPlayer, Mathf.Lerp(transform.localPosition.z, -camBehindPlayer, Time.deltaTime * 2f));
+                transform.localRotation = new Quaternion(0.2f, 0, 0, 1);
+            }
+        }
+
+        private void InvisibleWalls()
+        {
+            rayDirection = transform.TransformDirection(Quaternion.AngleAxis(camRotate, new Vector3(-1, 0, 0)) * new Vector3(0, verticalRatio, -1));
+            Debug.DrawRay(centerObject.transform.position,  rayDirection*maxCameraDistance, Color.magenta);
+
+            hits = Physics.SphereCastAll(centerObject.transform.position, 0.5f, rayDirection, maxCameraDistance * 1.1f);
+            if (oldHits != null)
+            {
+                foreach (GameObject hit in oldHits)
+                {
+                    if (hit == null)
+                    {
+                        continue;
+                    }
+
+                    bool found = false;
+                    foreach (RaycastHit newHit in hits)
+                    {
+                        if (hit == newHit.collider.gameObject)
+                            found = true;
+                    }
+                    Renderer r = hit.GetComponent<Renderer>();
+                    if (r && !found)
+                    {
+                        r.material.color = Color.white;
+                    }
+
+                }
+            }
+            oldHits = new List<GameObject>();
+            foreach (RaycastHit hit in hits)
+            {
+                oldHits.Add(hit.collider.gameObject);
+                Renderer r = hit.collider.GetComponent<Renderer>();
+                if (r && hit.collider.tag == "Wall")
+                {
+                    Color color = r.material.color;
+                    color.a = Mathf.Lerp(color.a, goalAlpha, 0.8f * Time.deltaTime);
+                    r.material.color = color;
+                }
+            }
+        }
+
+        private void WallCollision()
+        {
+            bool cameraMoved = false;
+            float cameraDistance = maxCameraDistance;
+            hits = Physics.RaycastAll(centerObject.transform.position, rayDirection, maxCameraDistance * 1.1f).OrderBy(h => h.distance).ToArray();
+            foreach (RaycastHit hit in hits)
+            {
+                if (hit.collider.tag != "Player" && hit.collider.tag != "Trigger" && hit.collider.tag != "Wall" && !cameraMoved)
+                {
+                    cameraMoved = true;
+                    cameraDistance = hit.distance;
+                    Debug.Log(cameraDistance);
+                }
+            }
+            if (!zoomedOut)
+            {
+                currentCameraDistance = cameraDistance;
             }
         }
     }
