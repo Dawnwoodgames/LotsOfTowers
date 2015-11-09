@@ -65,7 +65,7 @@ namespace LotsOfTowers.Actors
 				onesies.Add(index, onesie);
 
                 // Show HUD - skill
-                hudUi.GetComponent<HeadsUpDisplayScript>().skillsUi.SetActive(true);
+                hudUi.GetComponent<LotsOfTowers.Framework.HeadsUpDisplayScript>().skillsUi.SetActive(true);
 
                 return replacedOnesie;
 			}
@@ -81,7 +81,7 @@ namespace LotsOfTowers.Actors
 					AddOnesie(i, onesie);
 
                     // HUD - place onesie image to corresponding skill slot
-                    hudUi.GetComponent<HeadsUpDisplayScript>().AttachOnesieToSkillSlot(i, onesie.name);
+                    hudUi.GetComponent<LotsOfTowers.Framework.HeadsUpDisplayScript>().AttachOnesieToSkillSlot(i, onesie.name);
 
 					return true;
 				}
