@@ -6,7 +6,8 @@ namespace LotsOfTowers.Actors
 	//We need the following components to make the player work
 	[RequireComponent(typeof(Rigidbody))]
 	[RequireComponent(typeof(CapsuleCollider))]
-	[RequireComponent(typeof(Player))]
+    [RequireComponent(typeof(BoxCollider))]
+    [RequireComponent(typeof(Player))]
 
 	public class PlayerController : MonoBehaviour
 	{
@@ -15,6 +16,7 @@ namespace LotsOfTowers.Actors
 		private Transform mainCamera;
 		private Rigidbody rigidBody;
 		private CapsuleCollider capsule;
+        private BoxCollider box;
 
 		//Jumping variables
 		private bool jumping = false;
@@ -33,6 +35,8 @@ namespace LotsOfTowers.Actors
 		private bool isCrouching = false;
 		private float capsuleHeight;
 		private Vector3 capsuleCenter;
+        private float boxHeight;
+        private Vector3 boxCenter;
 
 
 		private void Start()
@@ -42,6 +46,9 @@ namespace LotsOfTowers.Actors
 			capsule = GetComponent<CapsuleCollider>();
 			capsuleHeight = capsule.height;
 			capsuleCenter = capsule.center;
+            box = GetComponent<BoxCollider>();
+            boxHeight = box.size.y;
+            boxCenter = box.center;
 
 			//Get camera transform
 			if (Camera.main != null)
@@ -115,6 +122,7 @@ namespace LotsOfTowers.Actors
 				//Resize the capsule collider to half height / width
 				capsule.height = capsule.height / 2f;
 				capsule.center = capsule.center / 2f;
+                box.size = new Vector3(box.size.x, box.size.y/2, box.size.z);
 				isCrouching = true;
 			}
 			else
@@ -128,6 +136,7 @@ namespace LotsOfTowers.Actors
 				}
 				capsule.height = capsuleHeight;
 				capsule.center = capsuleCenter;
+                box.size = new Vector3(box.size.x, boxHeight, box.size.z);
 				isCrouching = false;
 			}
 		}
