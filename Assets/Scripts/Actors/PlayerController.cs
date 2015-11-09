@@ -148,7 +148,7 @@ namespace LotsOfTowers.Actors
 		private void Move(Vector3 movement)
 		{
 			//Get camera position to face walking directory
-			movement = Camera.main.transform.TransformDirection(movement);
+			movement = mainCamera.transform.TransformDirection(movement);
 
 			//If the magintude goes higher then 1, bring it back to 1
 			//Magnitude is the length between the vectors origin and its endpoint
@@ -191,11 +191,9 @@ namespace LotsOfTowers.Actors
             if (Physics.Raycast(transform.position + (Vector3.up * 0.1f), Vector3.down, out hitInfo, 0.1f))
 			{
 				groundNormal = hitInfo.normal;
-				isGrounded = true;
             }
             else
 			{
-				isGrounded = false;
                 groundNormal = Vector3.up;
             }
         }

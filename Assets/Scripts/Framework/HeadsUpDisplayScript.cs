@@ -34,7 +34,7 @@ namespace LotsOfTowers.Framework
 		// Update is called once per frame
 		void Update()
 		{
-			if (skillsUi.active)
+			if (skillsUi.activeSelf)
 			{
 				HideSkillUiInSeconds();
 			}
@@ -60,15 +60,15 @@ namespace LotsOfTowers.Framework
 			{
 				case 0:
 					skillOne.GetComponent<Image>().sprite = Resources.Load("HUD/" + name, typeof(Sprite)) as Sprite;
-					if (!skillOne.active) skillOne.active = true;
+					if (!skillOne.activeSelf) skillOne.SetActive(true);
 					break;
 				case 1:
 					skillTwo.GetComponent<Image>().sprite = Resources.Load("HUD/" + name, typeof(Sprite)) as Sprite;
-					if (!skillTwo.active) skillTwo.active = true;
+					if (!skillTwo.activeSelf) skillTwo.SetActive(true);
 					break;
 				case 2:
 					skillThree.GetComponent<Image>().sprite = Resources.Load("HUD/" + name, typeof(Sprite)) as Sprite;
-					if (!skillThree.active) skillThree.active = true;
+					if (!skillThree.activeSelf) skillThree.SetActive(true);
 					break;
 				default:
 					break;

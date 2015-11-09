@@ -10,7 +10,6 @@ namespace LotsOfTowers.Framework
 		private static GameManager instance;
 
 		private Player actor;
-		private string[] languages;
 
 		private Transform spawnPoint;
 		private float timeScale;
@@ -23,8 +22,10 @@ namespace LotsOfTowers.Framework
 		public string Language
 		{ // Default: en
 			get { return PlayerPrefs.HasKey("Language") ? PlayerPrefs.GetString("Language") : "en"; }
-			set {
-				if (LanguageManager.Instance.GetSupportedLanguages().Where(l => l.languageCode == value).Count() != 0) {
+			set
+			{
+				if (LanguageManager.Instance.GetSupportedLanguages().Where(l => l.languageCode == value).Count() != 0)
+				{
 					LanguageManager.Instance.ChangeLanguage(value);
 					PlayerPrefs.SetString("Language", value);
 				}
@@ -45,14 +46,13 @@ namespace LotsOfTowers.Framework
 		public void Awake()
 		{
 			DontDestroyOnLoad(this);
-			GameManager.instance = this;
+			instance = this;
 			LanguageManager.Instance.ChangeLanguage(Language);
 			OnLevelWasLoaded(Application.loadedLevel);
 
-			this.actor = FindObjectOfType<Player>();
-			this.languages = new string[] { "en_US", "nl_NL" };
+			actor = FindObjectOfType<Player>();
 
-			this.timeScale = Time.timeScale;
+			timeScale = Time.timeScale;
 
 			//Set gravity for entire game
 			Physics.gravity = new Vector3(0, -35.0F, 0);
@@ -63,7 +63,8 @@ namespace LotsOfTowers.Framework
 			if (GameObject.Find("Level") != null)
 			{
 				spawnPoint = GameObject.Find("Level/Spawn Point").transform;
-				if (actor != null && spawnPoint != null) {
+				if (actor != null && spawnPoint != null)
+				{
 					actor.transform.position = spawnPoint.position;
 				}
 			}
