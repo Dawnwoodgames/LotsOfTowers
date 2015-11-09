@@ -64,8 +64,11 @@ namespace LotsOfTowers.Actors
 				currentOnesie = currentOnesie == replacedOnesie ? onesie : currentOnesie;
 				onesies.Add(index, onesie);
 
+                // HUD - place onesie image to corresponding skill slot
+                hudUi.GetComponent<LotsOfTowers.Framework.HeadsUpDisplayScript>().AttachOnesieToSkillSlot(index, onesie.name);
                 // Show HUD - skill
                 hudUi.GetComponent<LotsOfTowers.Framework.HeadsUpDisplayScript>().skillsUi.SetActive(true);
+
 
                 return replacedOnesie;
 			}
@@ -80,10 +83,7 @@ namespace LotsOfTowers.Actors
 				if (!onesies.ContainsKey(i)) {
 					AddOnesie(i, onesie);
 
-                    // HUD - place onesie image to corresponding skill slot
-                    hudUi.GetComponent<LotsOfTowers.Framework.HeadsUpDisplayScript>().AttachOnesieToSkillSlot(i, onesie.name);
-
-					return true;
+                    return true;
 				}
 			}
 
