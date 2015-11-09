@@ -55,8 +55,8 @@ namespace LotsOfTowers.Framework
 		}
 
 		public void AttachOnesieToSkillSlot(int slot, string name)
-		{
-			switch (slot)
+        {
+            switch (slot)
 			{
 				case 0:
 					skillOne.GetComponent<Image>().sprite = Resources.Load("HUD/" + name, typeof(Sprite)) as Sprite;
