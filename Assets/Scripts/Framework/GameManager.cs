@@ -1,23 +1,18 @@
 ﻿using LotsOfTowers.Actors;
+using SmartLocalization;
+using System;
 using System.Linq;
 using UnityEngine;
-using SmartLocalization;
 
 namespace LotsOfTowers.Framework
 {
 	public class GameManager : MonoBehaviour
 	{
-		private static GameManager instance;
-
-		private Player actor;
-
+		private Player player;
 		private Transform spawnPoint;
-		private float timeScale;
 
-		public static GameManager Instance
-		{
-			get { return instance; }
-		}
+		public static bool Alive { get { return Instance != null; } }
+		public static GameManager Instance { get; private set; }
 
 		public string Language
 		{ // Default: en
@@ -31,43 +26,41 @@ namespace LotsOfTowers.Framework
 				}
 			}
 		}
-
-		public bool Paused
-		{ // Default: false
-			get { return Time.timeScale == 0; }
-			set { timeScale = Paused ? timeScale : Time.timeScale; Time.timeScale = value ? 0 : timeScale; }
+		
+		public TagManager ManagedObjects {
+			get { return gameObject.GetComponent<TagManager> (); }
 		}
 
-		public Transform SpawnPoint
-		{
+		public Transform SpawnPoint {
 			get { return spawnPoint; }
 		}
 
-		public void Awake()
+		static GameManager()
 		{
-			DontDestroyOnLoad(this);
-			instance = this;
-			LanguageManager.Instance.ChangeLanguage(Language);
-			OnLevelWasLoaded(Application.loadedLevel);
-
-			actor = FindObjectOfType<Player>();
-
-			timeScale = Time.timeScale;
-
-			//Set gravity for entire game
-			Physics.gravity = new Vector3(0, -35.0F, 0);
+			GameManager.Instance = new GameObject("Game Manager", new Type[] {
+				typeof(GameManager), typeof(TagManager)
+			}).GetComponent<GameManager>();
 		}
 
-		public void OnLevelWasLoaded(int index)
+
+		public void Awake()
 		{
-			if (GameObject.Find("Level") != null)
-			{
-				spawnPoint = GameObject.Find("Level/Spawn Point").transform;
-				if (actor != null && spawnPoint != null)
-				{
-					actor.transform.position = spawnPoint.position;
-				}
+			if (FindObjectsOfType<GameManager>().Length > 1) {
+				Destroy(gameObject);
 			}
+
+			DontDestroyOnLoad(this);
+			LanguageManager.Instance.ChangeLanguage(Language);
+			Physics.gravity = new Vector3(0, -35, 0);
+		}
+
+		public void OnLevelWasLoaded(int level) {
+			if (player == null) {
+				// Try to find the player
+				player = FindObjectOfType<Player>();
+			}
+
+			spawnPoint = GameObject.Find("Level/Spawn Point").transform;
 		}
 	}
 }
