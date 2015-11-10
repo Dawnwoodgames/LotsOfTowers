@@ -10,9 +10,9 @@ namespace LotsOfTowers.Actors
 		 */
 
 		public bool canMoveObjects = false;
-		public int jumpCount = 1;
+		public int jumpCount = 0;
 		public float movementSpeed = 5;
-		public float jumpPower = 5;
+		public float jumpPower = 10;
 
 		public static Onesie Load(string name)
 		{

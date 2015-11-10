@@ -10,7 +10,9 @@ namespace LotsOfTowers.Triggers
 		void OnTriggerEnter(Collider other)
 		{
 			if(other.tag == "Player")
-				Tooltip.ShowTooltip(tooltip, "Jump", false, new string[] { "Jump" });
+			{
+				//Show tooltip
+			}
 		}
 	}
 }
