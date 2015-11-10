@@ -8,7 +8,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 417826}
-  - 114: {fileID: 11425566}
+  - 114: {fileID: 11456678}
   m_Layer: 0
   m_Name: CenterFocus
   m_TagString: Untagged
@@ -28,7 +28,8 @@ GameObject:
   - 92: {fileID: 9262772}
   - 124: {fileID: 12446438}
   - 81: {fileID: 8106738}
-  - 114: {fileID: 11418628}
+  - 114: {fileID: 11425594}
+  - 114: {fileID: 11433678}
   m_Layer: 0
   m_Name: Camera
   m_TagString: MainCamera
@@ -42,7 +43,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 178546}
-  m_LocalRotation: {x: .258819073, y: 0, z: 0, w: .965925813}
+  m_LocalRotation: {x: .173648223, y: 0, z: 0, w: .984807789}
   m_LocalPosition: {x: 0, y: 4, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
@@ -109,7 +110,7 @@ Behaviour:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 178546}
   m_Enabled: 1
---- !u!114 &11418628
+--- !u!114 &11425594
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -117,10 +118,26 @@ MonoBehaviour:
   m_GameObject: {fileID: 178546}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 53d10c0bd92768643b823b964cbbed42, type: 3}
+  m_Script: {fileID: 11500000, guid: 98c7214a517d95f4fa02d8fe4dc9048d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &11425566
+  player: {fileID: 0}
+--- !u!114 &11433678
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 178546}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f02cc544d7ccb3147861ee3de2fb009f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  camBehindPlayer: 5
+  camUpFromPlayer: 4
+  camRotate: 20
+  zoomedOut: 0
+--- !u!114 &11456678
 MonoBehaviour:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
@@ -128,7 +145,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 173192}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 4457c3ab556c42d47af1514bd121cf6f, type: 3}
+  m_Script: {fileID: 11500000, guid: 2af5c898c78a43343b4e80fdd9ce0674, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!124 &12446438
