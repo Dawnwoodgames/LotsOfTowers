@@ -37,7 +37,7 @@ namespace LotsOfTowers.Framework
 
 		static GameManager()
 		{
-			GameManager.Instance = new GameObject("Game Manager", new Type[] {
+			Instance = new GameObject("Game Manager", new Type[] {
 				typeof(GameManager), typeof(TagManager)
 			}).GetComponent<GameManager>();
 		}
