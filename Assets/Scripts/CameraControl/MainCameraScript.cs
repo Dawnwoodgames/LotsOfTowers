@@ -30,7 +30,7 @@ public class MainCameraScript : MonoBehaviour {
             degree -= 90;
 
         angle = Mathf.LerpAngle(centerFocus.rotation.y, degree, Time.deltaTime);
-        centerFocus.rotation = Quaternion.Slerp(centerFocus.rotation, Quaternion.Euler(30, degree, 0), Time.deltaTime * 2);
+        centerFocus.rotation = Quaternion.Slerp(centerFocus.rotation, Quaternion.Euler(30, degree, 0), Time.deltaTime*15f);
 
         // Zoom controls
         if (Input.GetButtonDown("DPADup") || Input.GetAxis("DPADup") == 1)
