@@ -5,11 +5,15 @@ public class MainCameraScript : MonoBehaviour {
 
     private Transform centerFocus;
 
-    private Vector3 startRot, endRot;
+    public float degree;
+    private float angle;
 
-	// Use this for initialization
-	void Start () {
+    private Quaternion rotateLeft = Quaternion.Euler(0, 90, 0);
+
+    // Use this for initialization
+    void Start () {
         centerFocus = GameObject.Find("CenterFocus").transform;
+        degree = 135;
 	}
 	
 	// Update is called once per frame
@@ -21,12 +25,15 @@ public class MainCameraScript : MonoBehaviour {
     {
         // Rotate controls
         if (Input.GetButtonDown("LeftBumper"))
-            centerFocus.Rotate(0, +90, 0, Space.World);
+            degree += 90;
         if (Input.GetButtonDown("RightBumper"))
-            centerFocus.Rotate(0, -90, 0, Space.World);
+            degree -= 90;
+
+        angle = Mathf.LerpAngle(centerFocus.rotation.y, degree, Time.deltaTime);
+        centerFocus.rotation = Quaternion.Slerp(centerFocus.rotation, Quaternion.Euler(30, degree, 0), Time.deltaTime * 2);
 
         // Zoom controls
-        /*if (Input.GetButtonDown("DPADup") || Input.GetAxis("DPADup") == 1)
+        if (Input.GetButtonDown("DPADup") || Input.GetAxis("DPADup") == 1)
         {
             centerFocus.position = new Vector3(25, 45, 0);
             gameObject.GetComponent<Camera>().orthographicSize = 10;
@@ -35,6 +42,6 @@ public class MainCameraScript : MonoBehaviour {
         {
             centerFocus.position = new Vector3(20, 45, 0);
             gameObject.GetComponent<Camera>().orthographicSize = 7;
-        }*/
+        }
     }
 }
