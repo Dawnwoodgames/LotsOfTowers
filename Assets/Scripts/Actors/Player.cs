@@ -90,7 +90,7 @@ namespace LotsOfTowers.Actors
 			return false;
 		}
 
-		private void Awake()
+		public void Awake()
 		{
 			DefaultOnesie = Resources.Load("OnesieDefault") as Onesie;
 			MaxOnesies = 3;
@@ -98,7 +98,7 @@ namespace LotsOfTowers.Actors
 			onesies = new Dictionary<int, Onesie>(MaxOnesies);
 		}
 
-		private void Start()
+		public void Start()
 		{
 			Tooltip.ShowTooltip(tooltip, "Movement", false, new string[] { "Horizontal", "Vertical" });
             hudUi = GameObject.Find("HUD");
