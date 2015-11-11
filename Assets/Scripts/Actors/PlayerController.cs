@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
 namespace LotsOfTowers.Actors
@@ -11,6 +12,8 @@ namespace LotsOfTowers.Actors
 
 	public class PlayerController : MonoBehaviour
 	{
+
+        public GameObject mirror;
 		//The actual player with all the movement properties
 		private Player player;
 		private Transform mainCamera;
@@ -75,9 +78,10 @@ namespace LotsOfTowers.Actors
 			movement = new Vector3(h, 0f, v);
 			Move(movement);
 			Crouch(crouch);
-		}
+            CheckMirror();
+        }
 
-		private void Crouch(bool crouch)
+        private void Crouch(bool crouch)
 		{
 			//Check if the player clicked on crouch and the player is actually grounded (can change, crouch mid air?)
 			if (crouch)
@@ -160,6 +164,31 @@ namespace LotsOfTowers.Actors
             else
 			{
                 groundNormal = Vector3.up;
+            }
+        }
+
+        private void CheckMirror()
+        {
+            Debug.DrawRay(transform.position + new Vector3(0, 1, 0), Quaternion.AngleAxis(45, Vector3.down) * Vector3.left * 20, Color.red);
+            Debug.DrawRay(transform.position + new Vector3(0, 1, 0), Quaternion.AngleAxis(45, Vector3.down) * Vector3.forward * 20, Color.blue);
+            Debug.DrawRay(transform.position + new Vector3(0, 1, 0), Quaternion.AngleAxis(45, Vector3.down) * Vector3.back * 20, Color.green);
+            Debug.DrawRay(transform.position + new Vector3(0, 1, 0), Quaternion.AngleAxis(45, Vector3.down) * Vector3.right * 20, Color.magenta);
+            
+            List<RaycastHit> hitList = new List<RaycastHit>(Physics.RaycastAll(transform.position + new Vector3(0, 1, 0), Quaternion.AngleAxis(45, Vector3.down) * Vector3.left, 20));
+            hitList.AddRange(Physics.RaycastAll(transform.position + new Vector3(0, 1, 0), Quaternion.AngleAxis(45, Vector3.down) * Vector3.forward, 20));
+            hitList.AddRange(Physics.RaycastAll(transform.position + new Vector3(0, 1, 0), Quaternion.AngleAxis(45, Vector3.down) * Vector3.back, 20));
+            hitList.AddRange(Physics.RaycastAll(transform.position + new Vector3(0, 1, 0), Quaternion.AngleAxis(45, Vector3.down) * Vector3.right, 20));
+
+            RaycastHit[] hits = hitList.ToArray();
+            bool mirrorfound = false;
+            foreach (RaycastHit hit in hits)
+            {
+                if (hit.collider.tag == "Mirror" && !mirrorfound)
+                {
+                    hit.collider.GetComponent<MirrorScript>().UpdateMirroredPlayerPosition(gameObject, hit.point);
+                    mirrorfound = true;
+                }
+
             }
         }
 	}
