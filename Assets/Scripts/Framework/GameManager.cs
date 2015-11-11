@@ -27,10 +27,6 @@ namespace LotsOfTowers.Framework
 			}
 		}
 		
-		public TagManager ManagedObjects {
-			get { return gameObject.GetComponent<TagManager> (); }
-		}
-		
 		public Transform SpawnPoint {
 			get { return spawnPoint; }
 		}
