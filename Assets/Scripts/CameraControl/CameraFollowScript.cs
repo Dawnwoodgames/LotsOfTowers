@@ -5,20 +5,15 @@ namespace LotsOfTowers.CameraControl
 	public class CameraFollowScript : MonoBehaviour
 	{
 		private GameObject player;
-        public float verticalOffset;
 
 		public void Start()
 		{
-			this.player = GameObject.FindGameObjectWithTag("Player");
+			player = GameObject.FindGameObjectWithTag("Player");
 		}
 
 		void Update()
 		{
-			this.transform.position = new Vector3(
-				player.transform.position.x,
-				player.transform.position.y+verticalOffset,
-				player.transform.position.z
-			);
+            gameObject.transform.position = new Vector3(player.transform.position.x / 1.5f, player.transform.position.y + 3, player.transform.position.z / 1.5f);
 		}
 	}
 }
