@@ -42,6 +42,7 @@ namespace LotsOfTowers.Framework
 			
 			DontDestroyOnLoad(this);
 			LanguageManager.Instance.ChangeLanguage(Language);
+			OnLevelWasLoaded(Application.loadedLevel);
 			Physics.gravity = new Vector3(0, -35, 0);
 		}
 		
