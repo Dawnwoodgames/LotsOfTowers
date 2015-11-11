@@ -11,6 +11,10 @@ public class MirrorScript : MonoBehaviour {
         mirrorPlayer.transform.position = newPosition;
 
         Debug.DrawLine(player.transform.position+new Vector3(0,1,0), rayHit, Color.red);
+        mirrorPlayer.transform.localRotation = new Quaternion(player.transform.localRotation.x,
+            player.transform.localRotation.y*-1,
+            player.transform.localRotation.z*-1,
+            player.transform.localRotation.w)*Quaternion.AngleAxis(90,Vector3.up);
     }
 
 
