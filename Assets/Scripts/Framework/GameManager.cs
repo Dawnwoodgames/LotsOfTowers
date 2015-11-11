@@ -10,10 +10,10 @@ namespace LotsOfTowers.Framework
 	{
 		private Player player;
 		private Transform spawnPoint;
-
+		
 		public static bool Alive { get { return Instance != null; } }
 		public static GameManager Instance { get; private set; }
-
+		
 		public string Language
 		{ // Default: en
 			get { return PlayerPrefs.HasKey("Language") ? PlayerPrefs.GetString("Language") : "en"; }
@@ -30,36 +30,31 @@ namespace LotsOfTowers.Framework
 		public TagManager ManagedObjects {
 			get { return gameObject.GetComponent<TagManager> (); }
 		}
-
+		
 		public Transform SpawnPoint {
 			get { return spawnPoint; }
 		}
-
-		static GameManager()
-		{
-			Instance = new GameObject("Game Manager", new Type[] {
-				typeof(GameManager), typeof(TagManager)
-			}).GetComponent<GameManager>();
-		}
-
-
+		
+		
 		public void Awake()
 		{
-			if (FindObjectsOfType<GameManager>().Length > 1) {
-				Destroy(gameObject);
+			if (FindObjectsOfType<GameManager> ().Length > 1) {
+				Destroy (gameObject);
+			} else {
+				GameManager.Instance = this;
 			}
-
+			
 			DontDestroyOnLoad(this);
 			LanguageManager.Instance.ChangeLanguage(Language);
 			Physics.gravity = new Vector3(0, -35, 0);
 		}
-
+		
 		public void OnLevelWasLoaded(int level) {
 			if (player == null) {
 				// Try to find the player
 				player = FindObjectOfType<Player>();
 			}
-
+			
 			spawnPoint = GameObject.Find("Level/Spawn Point").transform;
 		}
 	}

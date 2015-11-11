@@ -691,7 +691,8 @@ Prefab:
       propertyPath: m_LocalPosition.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 3300000, guid: 71436f7b0d80a20408edeb2b8cf6fd14, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: 71436f7b0d80a20408edeb2b8cf6fd14, type: 3}
   m_IsPrefabParent: 0
 --- !u!4 &1052245459 stripped
@@ -931,6 +932,57 @@ MeshCollider:
   serializedVersion: 2
   m_Convex: 0
   m_Mesh: {fileID: 4300000, guid: c0b27e746f02fce4e8582fc1c6e8cfb2, type: 3}
+--- !u!1 &1485746103
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1485746106}
+  - 114: {fileID: 1485746105}
+  - 114: {fileID: 1485746104}
+  m_Layer: 0
+  m_Name: Game Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1485746104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1485746103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1caec6276e7246189f4860a0d5adc59, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1485746105
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1485746103}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b2e2f16576074ceaa89c5b59a83bcde, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &1485746106
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1485746103}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1791830170}
+  m_RootOrder: 2
 --- !u!1001 &1521444249
 Prefab:
   m_ObjectHideFlags: 0
@@ -1204,6 +1256,7 @@ Transform:
   m_Children:
   - {fileID: 1339550954}
   - {fileID: 658609847}
+  - {fileID: 1485746106}
   m_Father: {fileID: 0}
   m_RootOrder: 2
 --- !u!1001 &1923713896
