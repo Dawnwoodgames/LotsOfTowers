@@ -3,17 +3,21 @@
 namespace LotsOfTowers.CameraControl
 {
 	public class CameraFollowScript : MonoBehaviour
-	{
-		private GameObject player;
+    {
+        private Transform startTransform;
+        private GameObject player;
 
 		public void Start()
-		{
-			player = GameObject.FindGameObjectWithTag("Player");
+        {
+            startTransform = gameObject.transform;
+            player = GameObject.FindGameObjectWithTag("Player");
 		}
 
 		void Update()
 		{
-            gameObject.transform.position = new Vector3(player.transform.position.x / 1.5f, player.transform.position.y + 3, player.transform.position.z / 1.5f);
-		}
-	}
+            gameObject.transform.position = new Vector3(player.transform.position.x / 1.2f, player.transform.position.y + 3, player.transform.position.z / 1.2f);
+        }
+
+        public Transform getStartTransform() { return startTransform; }
+    }
 }
