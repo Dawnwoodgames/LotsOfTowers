@@ -4,7 +4,6 @@ namespace LotsOfTowers.Interaction {
 	[RequireComponent(typeof(Collider))]
 	public sealed class PressurePlate : MonoBehaviour {
 		public Side Side = Side.Top;
-		public TriggerBehaviour Trigger;
 
 		public void OnCollisionEnter(Collision collision) {
 			bool trigger;
@@ -20,8 +19,10 @@ namespace LotsOfTowers.Interaction {
 				trigger = (dZ > 0 && Side == Side.Front) || (dZ < 0 && Side == Side.Behind);
 			}
 
-			if (trigger && Trigger != null) {
-				Trigger.Trigger();
+			if (trigger) {
+				foreach (TriggerBehaviour triggerBehaviour in GetComponents<TriggerBehaviour>()) {
+					triggerBehaviour.Trigger();
+				}
 			}
 		}
 	}
