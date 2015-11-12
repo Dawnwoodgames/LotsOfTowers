@@ -8,7 +8,8 @@ namespace LotsOfTowers.Interaction.Triggers {
 	public sealed class WeightTrigger : TriggerBehaviour {
 		private List<Rigidbody> objects;
 		private Rigidbody rigidBody;
-
+		
+		public float FallDelay; // How long it will take before this object will fall after breaching it's threshold
 		public float MassThreshold; // Max mass this object can carry without falling
 
 		public float CarryWeight { get { return objects.Select(g => g.mass).Sum(); } }
@@ -22,16 +23,20 @@ namespace LotsOfTowers.Interaction.Triggers {
 
 		public override IEnumerator TriggerOn(GameObject source) {
 			Rigidbody body = source.GetComponent<Rigidbody>();
+			float t = 0;
 
 			if (body != null) {
 				objects.Add(body);
 			}
 
 			if (CarryWeight >= MassThreshold) {
+				while (t < FallDelay) {
+					t += Time.smoothDeltaTime;
+					yield return null;
+				}
+
 				rigidBody.isKinematic = false;
 			}
-
-			yield return null;
 		}
 
 		public override IEnumerator TriggerOff(GameObject source) {
