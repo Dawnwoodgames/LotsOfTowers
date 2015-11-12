@@ -3,9 +3,13 @@
 namespace LotsOfTowers.Interaction {
 	[RequireComponent(typeof(Collider))]
 	public sealed class PressurePlate : MonoBehaviour {
+		private bool colliding;
 		public Side Side = Side.Top;
 
 		public void OnCollisionEnter(Collision collision) {
+			if (colliding) return;
+			colliding = true;
+
 			bool trigger;
 
 			if (Side == Side.Bottom || Side == Side.Top) {
@@ -27,6 +31,9 @@ namespace LotsOfTowers.Interaction {
 		}
 
 		public void OnCollisionExit(Collision collision) {
+			if (colliding) return;
+			colliding = true;
+
 			bool trigger;
 			
 			if (Side == Side.Bottom || Side == Side.Top) {
@@ -45,6 +52,10 @@ namespace LotsOfTowers.Interaction {
 					StartCoroutine(triggerBehaviour.TriggerOff());
 				}
 			}
+		}
+
+		public void Update() {
+			colliding = false;
 		}
 	}
 	
