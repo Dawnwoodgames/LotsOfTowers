@@ -45,6 +45,11 @@ namespace LotsOfTowers.Actors
 			get { return Onesie.movementSpeed; }
 		}
 
+		public bool isStatic
+		{
+			get { return Onesie.isStatic; }
+		}
+
 		public Onesie Onesie
 		{
 			get { return currentOnesie == null ? DefaultOnesie : currentOnesie; }
