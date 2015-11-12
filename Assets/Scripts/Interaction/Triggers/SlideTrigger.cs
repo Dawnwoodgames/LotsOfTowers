@@ -4,7 +4,7 @@ using UnityEngine;
 namespace LotsOfTowers.Interaction.Triggers {
 	public class SlideTrigger : TriggerBehaviour {
 		private float aX;
-		private bool aLock;
+		private bool aLock, bLock;
 
 		public GameObject Target; // Object that needs to be moved when trigger is called
 		public Direction Direction; // Direction to go along X-axis
@@ -21,8 +21,9 @@ namespace LotsOfTowers.Interaction.Triggers {
 
 			if (!aLock) {
 				aLock = true;
+				bLock = false;
 
-				while (t < Duration) {
+				while (aLock && t < Duration) {
 					t += Time.smoothDeltaTime;
 
 					if (t >= Duration) { // Last cycle
@@ -39,19 +40,21 @@ namespace LotsOfTowers.Interaction.Triggers {
 		
 		public override IEnumerator TriggerOff() {
 			float bX = Target.transform.position.x;
+			float dX = (bX - aX) * -1;
 			float t = 0;
 
-			if (!aLock) {
-				aLock = true;
+			if (!bLock) {
+				aLock = false;
+				bLock = true;
 				
-				while (t < Duration) {
+				while (bLock && t < Duration) {
 					t += Time.smoothDeltaTime;
 					
 					if (t >= Duration) { // Last cycle
-						aLock = false;
+						bLock = false;
 						Target.transform.position = new Vector3(aX, Target.transform.position.y, Target.transform.position.z);
 					} else {
-						Target.transform.position = new Vector3(bX - (Distance * (t / Duration)) * (int)Direction, Target.transform.position.y, Target.transform.position.z);
+						Target.transform.position = new Vector3(bX - (dX * (t / Duration)) * (int)Direction, Target.transform.position.y, Target.transform.position.z);
 					}
 					
 					yield return null;
