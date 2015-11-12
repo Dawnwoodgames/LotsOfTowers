@@ -13,7 +13,7 @@ public class DoorScript : MonoBehaviour {
 
     void Update()
     {
-        if (Input.GetButtonDown("Submit"))
+        if (Input.GetButtonDown("Submit") && inTrigger)
             if (player.GetComponentInChildren<DoorKeyScript>() != null)
                 OpenDoor(player.GetComponentInChildren<DoorKeyScript>().gameObject);
     }
