@@ -24,7 +24,7 @@ public class MirrorScript : MonoBehaviour {
         mirrorPlayer.transform.localRotation = new Quaternion(player.transform.localRotation.x,
             player.transform.localRotation.y*-1,
             player.transform.localRotation.z*-1,
-            player.transform.localRotation.w)*Quaternion.AngleAxis(90,Vector3.up);
+            player.transform.localRotation.w)*Quaternion.AngleAxis(90,Vector3.down);
     }
 
     private void CheckMirror()
@@ -43,7 +43,6 @@ public class MirrorScript : MonoBehaviour {
                 UpdateMirroredPlayerPosition(player, hit.point);
                 mirrorfound = true;
             }
-
         }
     }
 
@@ -53,7 +52,7 @@ public class MirrorScript : MonoBehaviour {
 
         //First check if the mirrored player can be seen through the mirror
 
-        RaycastHit[] hits = Physics.RaycastAll(mirrorPlayer.transform.position + new Vector3(0, 3, 0), cam.transform.position - mirrorPlayer.transform.position, 20);
+        RaycastHit[] hits = Physics.RaycastAll(mirrorPlayer.transform.position + new Vector3(0, 1, 0), cam.transform.position - mirrorPlayer.transform.position, 20);
         bool mirrorfound = false;
         foreach (RaycastHit hit in hits)
         {
@@ -83,7 +82,9 @@ public class MirrorScript : MonoBehaviour {
 
         //Then check if there is a mirror between the camera and the player
 
-        hits = Physics.RaycastAll(player.transform.position + new Vector3(0, 3, 0), cam.transform.position - player.transform.position, 20);
+        Vector3 rayDirection = cam.transform.position - player.transform.position;
+        rayDirection.y = 0;
+        hits = Physics.RaycastAll(player.transform.position + new Vector3(0, 1, 0), rayDirection, 20);
         mirrorfound = false;
         foreach (RaycastHit hit in hits)
         {
