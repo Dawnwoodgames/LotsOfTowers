@@ -4,7 +4,7 @@ using UnityEngine.UI;
 
 namespace LotsOfTowers.Menu
 {
-    public class LoadOnClick : MonoBehaviour {
+    public class MenuScript : MonoBehaviour {
 
         public GameObject loadingImage;
         public GameObject playButton;
