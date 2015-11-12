@@ -16,7 +16,7 @@ namespace LotsOfTowers.Interaction.Triggers {
 			this.aLock = false;
 		}
 		
-		public override IEnumerator TriggerOn() {
+		public override IEnumerator TriggerOn(GameObject source) {
 			float t = 0;
 
 			if (!aLock) {
@@ -38,7 +38,7 @@ namespace LotsOfTowers.Interaction.Triggers {
 			}
 		}
 		
-		public override IEnumerator TriggerOff() {
+		public override IEnumerator TriggerOff(GameObject source) {
 			float bX = Target.transform.position.x;
 			float dX = (bX - aX) * -1;
 			float t = 0;

@@ -25,7 +25,7 @@ namespace LotsOfTowers.Interaction {
 
 			if (trigger) {
 				foreach (TriggerBehaviour triggerBehaviour in GetComponents<TriggerBehaviour>()) {
-					StartCoroutine(triggerBehaviour.TriggerOn());
+					StartCoroutine(triggerBehaviour.TriggerOn(collision.gameObject));
 				}
 			}
 		}
@@ -49,7 +49,7 @@ namespace LotsOfTowers.Interaction {
 			
 			if (trigger) {
 				foreach (TriggerBehaviour triggerBehaviour in GetComponents<TriggerBehaviour>()) {
-					StartCoroutine(triggerBehaviour.TriggerOff());
+					StartCoroutine(triggerBehaviour.TriggerOff(collision.gameObject));
 				}
 			}
 		}
