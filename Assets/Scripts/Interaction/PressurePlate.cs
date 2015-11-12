@@ -4,7 +4,6 @@ namespace LotsOfTowers.Interaction {
 	[RequireComponent(typeof(Collider))]
 	public sealed class PressurePlate : MonoBehaviour {
 		private bool colliding;
-		public Side Side = Side.Top;
 
 		public void OnCollisionEnter(Collision collision) {
 			if (colliding) return;
