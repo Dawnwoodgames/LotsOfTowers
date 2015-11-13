@@ -13,7 +13,6 @@ namespace LotsOfTowers.Actors
 		public int jumpCount = 0;
 		public float movementSpeed = 5;
 		public float jumpPower = 10;
-		public bool isStatic = false;
 
 		public static Onesie Load(string name)
 		{

@@ -24,7 +24,7 @@ namespace LotsOfTowers.Objects
 				//Check if the player is staticly loaded
 				// If the action button is clicked
 				// And the player is inside the trigger
-				if (GameObject.Find("Player").GetComponent<Player>().isStatic 
+				if (GameObject.Find("Player").GetComponent<Player>().Static 
 					&& Input.GetButtonUp("Submit")
 					&& inTrigger)
 				{

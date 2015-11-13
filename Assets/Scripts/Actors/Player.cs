@@ -13,6 +13,7 @@ namespace LotsOfTowers.Actors
 		private static int MaxOnesies;
 
 		// Private fields
+		private float charge;
 		private Onesie currentOnesie;
 		private Dictionary<int, Onesie> onesies;
 		
@@ -24,6 +25,11 @@ namespace LotsOfTowers.Actors
 		public bool CanMoveObjects
 		{
 			get { return Onesie.canMoveObjects; }
+		}
+
+		public float Charge {
+			get { return charge; }
+			set { charge = Math.Max(0, Math.Min (value, 100)); }
 		}
 
 		public bool HasFreeSlots {
@@ -45,11 +51,6 @@ namespace LotsOfTowers.Actors
 			get { return Onesie.movementSpeed; }
 		}
 
-		public bool isStatic
-		{
-			get { return Onesie.isStatic; }
-		}
-
 		public Onesie Onesie
 		{
 			get { return currentOnesie == null ? DefaultOnesie : currentOnesie; }
@@ -58,6 +59,11 @@ namespace LotsOfTowers.Actors
 		public Onesie[] Onesies
 		{
 			get { return onesies.Values.ToArray(); }
+		}
+		
+		public bool Static
+		{
+			get { return charge > 99; }
 		}
 		
 		// Methods
@@ -97,6 +103,7 @@ namespace LotsOfTowers.Actors
 
 		public void Awake()
 		{
+			charge = 0;
 			DefaultOnesie = Resources.Load("OnesieDefault") as Onesie;
 			MaxOnesies = 3;
 			DontDestroyOnLoad(gameObject);
