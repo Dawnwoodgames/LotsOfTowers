@@ -8,29 +8,26 @@ namespace LotsOfTowers.Objects
 	{
 		private State currentState;
 		private bool inTrigger;
+		private Player player;
+
+		public float ChargeThreshold = 80; // Charge needed to activate the machine
 
 		private void Start()
 		{
 			//Default state is deactive for the machine
 			currentState = State.Deactive;
 			inTrigger = false;
+			player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 		}
 
 		private void Update()
 		{
-			//Check if the player collides
-			if (GameObject.Find("Player") != null)
-			{
-				//Check if the player is staticly loaded
-				// If the action button is clicked
-				// And the player is inside the trigger
-				if (GameObject.Find("Player").GetComponent<Player>().Static 
-					&& Input.GetButtonUp("Submit")
-					&& inTrigger)
-				{
-					//Activate the machine!
-					ChangeState(State.Active);
-				}
+			if (player == null) {
+				player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+			}
+
+			if (inTrigger && Input.GetAxis("Submit") > 0 && player != null && player.StaticCharge >= ChargeThreshold) {
+				ChangeState(State.Active);
 			}
 		}
 

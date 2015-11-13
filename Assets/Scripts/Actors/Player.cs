@@ -8,6 +8,9 @@ namespace LotsOfTowers.Actors
 {
 	public class Player : MonoBehaviour
 	{
+		// Constants
+		public static readonly float ChargeDecayRate = 2; // How much charge is lost per second
+
 		// Static fields
 		private static Onesie DefaultOnesie;
 		private static int MaxOnesies;
@@ -25,11 +28,6 @@ namespace LotsOfTowers.Actors
 		public bool CanMoveObjects
 		{
 			get { return Onesie.canMoveObjects; }
-		}
-
-		public float Charge {
-			get { return charge; }
-			set { charge = Math.Max(0, Math.Min (value, 100)); }
 		}
 
 		public bool HasFreeSlots {
@@ -61,9 +59,9 @@ namespace LotsOfTowers.Actors
 			get { return onesies.Values.ToArray(); }
 		}
 		
-		public bool Static
-		{
-			get { return charge > 99; }
+		public float StaticCharge {
+			get { return charge; }
+			set { charge = Math.Max(0, Math.Min (value, 100)); }
 		}
 		
 		// Methods
@@ -74,12 +72,10 @@ namespace LotsOfTowers.Actors
 
 				currentOnesie = currentOnesie == replacedOnesie ? onesie : currentOnesie;
 				onesies.Add(index, onesie);
-
                 // HUD - place onesie image to corresponding skill slot
                 hudUi.GetComponent<LotsOfTowers.Framework.HeadsUpDisplayScript>().AttachOnesieToSkillSlot(index, onesie.name);
                 // Show HUD - skill
                 hudUi.GetComponent<LotsOfTowers.Framework.HeadsUpDisplayScript>().skillsUi.SetActive(true);
-
 
                 return replacedOnesie;
 			}
@@ -120,6 +116,13 @@ namespace LotsOfTowers.Actors
 		{
 			if (onesies.ContainsKey(index)) {
 				currentOnesie = onesies[index];
+			}
+		}
+
+		public void Update()
+		{
+			if (StaticCharge > 0) {
+				StaticCharge -= ChargeDecayRate * Time.smoothDeltaTime;
 			}
 		}
 	}
