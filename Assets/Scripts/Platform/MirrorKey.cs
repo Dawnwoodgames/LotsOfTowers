@@ -11,7 +11,9 @@ public class MirrorKey : MonoBehaviour {
     private bool currentlyVisible = true;
 
 	void Update () {
-	    if(!pickedUp && !SameSideAs(mirrorPlayer))
+        if (pickedUp)
+            return;
+	    if(!SameSideAs(mirrorPlayer))
         {
             float oldY = transform.position.y;
             Vector3 newPosition = mirror.transform.position - (transform.position - mirror.transform.position);
