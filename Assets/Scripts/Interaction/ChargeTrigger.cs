@@ -1,0 +1,42 @@
+﻿using LotsOfTowers.Actors;
+using UnityEngine;
+
+namespace LotsOfTowers.Interaction {
+	public sealed class ChargeTrigger : MonoBehaviour {
+		private bool connected;
+		private Player player;
+		private float x, y, z;
+
+		public float ChargeRate = 15; // How much charge the player will get per second
+
+		public bool HasPlayerMoved {
+			get {
+				return player != null && (x != player.transform.position.x ||
+                      y != player.transform.position.y || z != player.transform.position.z);
+			}
+		}
+
+		public void OnCollisionEnter(Collision collision) {
+			connected = collision.gameObject.GetComponent<Player>() != null;
+			player = collision.gameObject.GetComponent<Player>();
+
+			if (player != null) {
+				x = player.transform.position.x;
+				y = player.transform.position.y;
+				z = player.transform.position.z;
+			}
+		}
+
+		public void OnCollisionExit(Collision collision) {
+			if (collision.gameObject.GetComponent<Player>() == player) {
+				connected = false;
+			}
+		}
+
+		public void Update() {
+			if (connected && HasPlayerMoved) {
+				player.StaticCharge += (ChargeRate + Player.ChargeDecayRate) * Time.smoothDeltaTime;
+			}
+		}
+	}
+}
