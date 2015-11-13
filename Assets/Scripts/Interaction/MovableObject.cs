@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using LotsOfTowers.Actors;
 
-namespace LotsOfTowers.Platform
+namespace LotsOfTowers.Interaction
 {
 	[RequireComponent(typeof(Rigidbody))]
 	public sealed class MovableObject : MonoBehaviour
