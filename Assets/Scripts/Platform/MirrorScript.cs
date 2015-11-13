@@ -80,6 +80,16 @@ public class MirrorScript : MonoBehaviour {
             mirrorPlayerCurrentlyVisible = true;
         }
 
+        // If there is no mirror between the player and the mirrorplayer, hide the mirrorplayer
+        if(!MirrorBetween(mirrorPlayer, player) && mirrorfound)
+        {
+            Renderer[] rs = mirrorPlayer.GetComponentsInChildren<Renderer>();
+            foreach (Renderer r in rs)
+                r.enabled = false;
+
+            mirrorPlayerCurrentlyVisible = false;
+        }
+
         //Then check if there is a mirror between the camera and the player
 
         Vector3 rayDirection = cam.transform.position - player.transform.position;
@@ -113,5 +123,19 @@ public class MirrorScript : MonoBehaviour {
         }
     }
 
+    private bool MirrorBetween(GameObject p1, GameObject p2)
+    {
+        RaycastHit[] hits = Physics.RaycastAll(p1.transform.position, p2.transform.position - p1.transform.position, 20);
+        bool mirrorfound = false;
+        foreach (RaycastHit hit in hits)
+        {
+            if (hit.collider.tag == "Mirror" && !mirrorfound)
+            {
+                mirrorfound = true;
+            }
 
+        }
+
+        return mirrorfound;
+    }
 }

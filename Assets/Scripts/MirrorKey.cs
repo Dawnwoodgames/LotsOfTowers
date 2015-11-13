@@ -10,7 +10,7 @@ public class MirrorKey : MonoBehaviour {
     private bool currentlyVisible = true;
 
 	void Update () {
-	    if(SameSideAs(player))
+	    if(!SameSideAs(mirrorPlayer))
         {
             float oldY = transform.position.y;
             Vector3 newPosition = mirror.transform.position - (transform.position - mirror.transform.position);
@@ -33,7 +33,7 @@ public class MirrorKey : MonoBehaviour {
     {
         bool sameSide = true;
 
-        RaycastHit[] hits = Physics.RaycastAll(transform.position, go.transform.position + new Vector3(0, 1, 0) - transform.position, 20);
+        RaycastHit[] hits = Physics.RaycastAll(transform.position, go.transform.position + new Vector3(0, 1, 0) - transform.position, Vector3.Distance(transform.position,go.transform.position));
         foreach (RaycastHit hit in hits)
         {
             if (hit.collider.tag == "Mirror")
