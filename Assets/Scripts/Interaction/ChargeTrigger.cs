@@ -15,6 +15,12 @@ namespace LotsOfTowers.Interaction {
                       y != player.transform.position.y || z != player.transform.position.z);
 			}
 		}
+		
+		public void FixedUpdate() {
+			if (connected && HasPlayerMoved) {
+				player.StaticCharge += (ChargeRate + Player.ChargeDecayRate) * Time.smoothDeltaTime;
+			}
+		}
 
 		public void OnCollisionEnter(Collision collision) {
 			connected = collision.gameObject.GetComponent<Player>() != null;
@@ -30,12 +36,6 @@ namespace LotsOfTowers.Interaction {
 		public void OnCollisionExit(Collision collision) {
 			if (collision.gameObject.GetComponent<Player>() == player) {
 				connected = false;
-			}
-		}
-
-		public void Update() {
-			if (connected && HasPlayerMoved) {
-				player.StaticCharge += (ChargeRate + Player.ChargeDecayRate) * Time.smoothDeltaTime;
 			}
 		}
 	}
