@@ -7,6 +7,7 @@ public class DoorScript : MonoBehaviour {
     public Vector3 unlockedPosition;
     public GameObject key;
     private bool inTrigger = false;
+    public GameObject mirrorDoor;
 
     void Update()
     {
@@ -20,7 +21,8 @@ public class DoorScript : MonoBehaviour {
 
     private void OpenDoor(GameObject key)
     {
-        this.gameObject.transform.localPosition = unlockedPosition;
+        Destroy(mirrorDoor);
         Destroy(key);
+        Destroy(gameObject);
     }
 }
