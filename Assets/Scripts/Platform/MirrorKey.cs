@@ -7,10 +7,13 @@ public class MirrorKey : MonoBehaviour {
     public GameObject mirrorPlayer;
     public GameObject mirror;
 
+    private bool pickedUp = false;
     private bool currentlyVisible = true;
 
 	void Update () {
-	    if(SameSideAs(player))
+        if (pickedUp)
+            return;
+	    if(!SameSideAs(mirrorPlayer))
         {
             float oldY = transform.position.y;
             Vector3 newPosition = mirror.transform.position - (transform.position - mirror.transform.position);
@@ -33,7 +36,7 @@ public class MirrorKey : MonoBehaviour {
     {
         bool sameSide = true;
 
-        RaycastHit[] hits = Physics.RaycastAll(transform.position, go.transform.position + new Vector3(0, 1, 0) - transform.position, 20);
+        RaycastHit[] hits = Physics.RaycastAll(transform.position, go.transform.position + new Vector3(0, 1, 0) - transform.position, Vector3.Distance(transform.position,go.transform.position));
         foreach (RaycastHit hit in hits)
         {
             if (hit.collider.tag == "Mirror")
@@ -58,5 +61,15 @@ public class MirrorKey : MonoBehaviour {
 
         }
         return throughMirror;
+    }
+
+    private void OnTriggerEnter(Collider coll)
+    {
+        if (coll.gameObject == mirrorPlayer)
+        {
+            this.gameObject.transform.SetParent(mirrorPlayer.transform);
+            this.gameObject.transform.localPosition = new Vector3(0, .08f, 0);
+            pickedUp = true;
+        }
     }
 }
