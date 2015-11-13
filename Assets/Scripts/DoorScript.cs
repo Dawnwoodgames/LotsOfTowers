@@ -3,19 +3,16 @@ using System.Collections;
 
 public class DoorScript : MonoBehaviour {
 
-    private GameObject player;
+    public GameObject player;
     public Vector3 unlockedPosition;
+    public GameObject key;
     private bool inTrigger = false;
-
-	void Start () {
-        player = GameObject.FindGameObjectWithTag("Player");
-	}
 
     void Update()
     {
         if (Input.GetButtonDown("Submit") && inTrigger)
-            if (player.GetComponentInChildren<DoorKeyScript>() != null)
-                OpenDoor(player.GetComponentInChildren<DoorKeyScript>().gameObject);
+            if (player.GetComponentInChildren<MirrorKey>() != null)
+                OpenDoor(key);
     }
 	
 	private void OnTriggerStay(Collider coll) { inTrigger = true; }
