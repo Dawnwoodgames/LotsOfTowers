@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
 namespace LotsOfTowers.Actors
@@ -11,6 +12,8 @@ namespace LotsOfTowers.Actors
 
 	public class PlayerController : MonoBehaviour
 	{
+
+        public GameObject mirror;
 		//The actual player with all the movement properties
 		private Player player;
 		private Transform mainCamera;
@@ -75,9 +78,9 @@ namespace LotsOfTowers.Actors
 			movement = new Vector3(h, 0f, v);
 			Move(movement);
 			Crouch(crouch);
-		}
+        }
 
-		private void Crouch(bool crouch)
+        private void Crouch(bool crouch)
 		{
 			//Check if the player clicked on crouch and the player is actually grounded (can change, crouch mid air?)
 			if (crouch)
