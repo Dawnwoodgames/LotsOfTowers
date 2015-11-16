@@ -2,7 +2,7 @@
 using LotsOfTowers.Actors;
 using LotsOfTowers.ToolTip;
 
-namespace LotsOfTowers.Triggers
+namespace LotsOfTowers.Interaction
 {
 	public class OnesiePickup : MonoBehaviour
 	{
