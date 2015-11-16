@@ -1,9 +1,12 @@
 ﻿using Assets.Scripts.Framework;
 using LotsOfTowers.Actors;
+using LotsOfTowers.Interaction.Triggers;
 using UnityEngine;
 
-namespace LotsOfTowers.Objects
+namespace LotsOfTowers.Interaction
 {
+	[RequireComponent(typeof(BoxCollider))]
+
 	public class Windmachine : MonoBehaviour
 	{
 		private State currentState;
@@ -24,7 +27,7 @@ namespace LotsOfTowers.Objects
 				//Check if the player is staticly loaded
 				// If the action button is clicked
 				// And the player is inside the trigger
-				if (GameObject.Find("Player").GetComponent<Player>().isStatic 
+				if (GameObject.Find("Player").GetComponent<Player>().isStatic
 					&& Input.GetButtonUp("Submit")
 					&& inTrigger)
 				{
@@ -32,6 +35,9 @@ namespace LotsOfTowers.Objects
 					ChangeState(State.Active);
 				}
 			}
+
+			//Set state from trigger to state of machine
+			WindTrigger.state = currentState;
 		}
 
 		private void OnTriggerStay(Collider coll)
