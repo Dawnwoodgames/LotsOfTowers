@@ -9,7 +9,7 @@ namespace LotsOfTowers.Interaction.Triggers
 
 	public class WindTrigger : MonoBehaviour
 	{
-		public static State state;
+		public static State state = State.Deactive;
 		public float forcePower = 50;
 
 		// Declare and initialize a new List of GameObjects called currentCollisions.

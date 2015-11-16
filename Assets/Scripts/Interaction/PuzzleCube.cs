@@ -26,7 +26,6 @@ namespace LotsOfTowers.Interaction
 				sphere.GetComponent<Rigidbody>().AddForce(transform.up * 1200, ForceMode.Force);
 				foreach (Transform child in fractures)
 				{
-					child.gameObject.AddComponent<Rigidbody>();
 					child.GetComponent<Rigidbody>().useGravity = true;
 				}
 			}
