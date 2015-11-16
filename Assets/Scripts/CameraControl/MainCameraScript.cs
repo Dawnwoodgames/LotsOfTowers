@@ -13,7 +13,7 @@ public class MainCameraScript : MonoBehaviour {
     // Use this for initialization
     void Start () {
         centerFocus = GameObject.Find("CenterFocus").transform;
-        degree = 135;
+        degree = 45;
 	}
 
 	// Update is called once per frame

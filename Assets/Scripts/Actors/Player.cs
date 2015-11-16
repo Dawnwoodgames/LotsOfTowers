@@ -53,6 +53,7 @@ namespace LotsOfTowers.Actors
 		public Onesie Onesie
 		{
 			get { return currentOnesie == null ? DefaultOnesie : currentOnesie; }
+            set { currentOnesie = value; }
 		}
 		
 		public Onesie[] Onesies
@@ -68,7 +69,7 @@ namespace LotsOfTowers.Actors
 
 				currentOnesie = currentOnesie == replacedOnesie ? onesie : currentOnesie;
 				onesies.Add(index, onesie);
-
+                
                 // HUD - place onesie image to corresponding skill slot
                 hudUi.GetComponent<LotsOfTowers.Framework.HeadsUpDisplayScript>().AttachOnesieToSkillSlot(index, onesie.name);
                 // Show HUD - skill

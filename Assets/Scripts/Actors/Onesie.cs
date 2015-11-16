@@ -15,6 +15,8 @@ namespace LotsOfTowers.Actors
 		public float jumpPower = 10;
 		public bool isStatic = false;
 
+        public bool isElephant = false;
+
 		public static Onesie Load(string name)
 		{
 			return Resources.Load("Onesie" + name) as Onesie;

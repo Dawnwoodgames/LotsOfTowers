@@ -19,7 +19,7 @@ namespace LotsOfTowers.Framework
 		private float timer = 0;
 
 		// Use this for initialization
-		void Start()
+		void Awake()
 		{
 			skillsUi = GameObject.Find("Skills");
 			skillOne = GameObject.Find("One");
@@ -59,6 +59,7 @@ namespace LotsOfTowers.Framework
             switch (slot)
 			{
 				case 0:
+                    
 					skillOne.GetComponent<Image>().sprite = Resources.Load("HUD/" + name, typeof(Sprite)) as Sprite;
 					if (!skillOne.activeSelf) skillOne.SetActive(true);
 					break;
