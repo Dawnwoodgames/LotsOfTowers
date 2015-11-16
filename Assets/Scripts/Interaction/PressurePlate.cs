@@ -6,7 +6,7 @@ namespace LotsOfTowers.Interaction {
 		private bool colliding;
 
 		public void OnCollisionEnter(Collision collision) {
-			if (colliding) return;
+			if (colliding || collision.gameObject.tag != "Player") return;
 			colliding = true;
 
 			foreach (TriggerBehaviour triggerBehaviour in GetComponents<TriggerBehaviour>()) {

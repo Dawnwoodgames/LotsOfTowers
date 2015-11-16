@@ -7,12 +7,13 @@ namespace LotsOfTowers.Interaction.Triggers {
 		private bool aLock, bLock;
 
 		public GameObject Target; // Object that needs to be moved when trigger is called
+		public Axis Axis; // The axis the object should move on
 		public Direction Direction; // Direction to go along X-axis
 		public float Distance; // Distance to move along X-axis
 		public float Duration; // How long the animation should last (seconds)
 
 		public void Awake() {
-			this.aX = Target.transform.position.x;
+			this.aX = Axis == Axis.X ? Target.transform.position.x : Target.transform.position.z;
 			this.aLock = false;
 		}
 		
@@ -28,9 +29,17 @@ namespace LotsOfTowers.Interaction.Triggers {
 
 					if (t >= Duration) { // Last cycle
 						aLock = false;
-						Target.transform.position = new Vector3(aX + Distance * (int)Direction, Target.transform.position.y, Target.transform.position.z);
+						if (Axis == Axis.X) {
+							Target.transform.position = new Vector3(aX + Distance * (int)Direction, Target.transform.position.y, Target.transform.position.z);
+						} else {
+							Target.transform.position = new Vector3(Target.transform.position.x, Target.transform.position.y, aX + Distance * (int)Direction);
+						}
 					} else {
-						Target.transform.position = new Vector3(aX + (Distance * (t / Duration)) * (int)Direction, Target.transform.position.y, Target.transform.position.z);
+						if (Axis == Axis.X) {
+							Target.transform.position = new Vector3(aX + (Distance * (t / Duration)) * (int)Direction, Target.transform.position.y, Target.transform.position.z);
+						} else {
+							Target.transform.position = new Vector3(Target.transform.position.x, Target.transform.position.y, aX + (Distance * (t / Duration)) * (int)Direction);
+						}
 					}
 
 					yield return null;
@@ -39,7 +48,7 @@ namespace LotsOfTowers.Interaction.Triggers {
 		}
 		
 		public override IEnumerator TriggerOff(GameObject source) {
-			float bX = Target.transform.position.x;
+			float bX = Axis == Axis.X ? Target.transform.position.x : Target.transform.position.z;
 			float dX = (bX - aX) * -1;
 			float t = 0;
 
@@ -52,15 +61,27 @@ namespace LotsOfTowers.Interaction.Triggers {
 					
 					if (t >= Duration) { // Last cycle
 						bLock = false;
-						Target.transform.position = new Vector3(aX, Target.transform.position.y, Target.transform.position.z);
+						if (Axis == Axis.X) {
+							Target.transform.position = new Vector3(aX, Target.transform.position.y, Target.transform.position.z);
+						} else {
+							Target.transform.position = new Vector3(Target.transform.position.x, Target.transform.position.y, aX);
+						}
 					} else {
-						Target.transform.position = new Vector3(bX - (dX * (t / Duration)) * (int)Direction, Target.transform.position.y, Target.transform.position.z);
+						if (Axis == Axis.X) {
+							Target.transform.position = new Vector3(bX - (dX * (t / Duration)) * (int)Direction, Target.transform.position.y, Target.transform.position.z);
+						} else {
+							Target.transform.position = new Vector3(Target.transform.position.x, Target.transform.position.y, bX - (dX * (t / Duration)) * (int)Direction);
+						}
 					}
 					
 					yield return null;
 				}
 			}
 		}
+	}
+
+	public enum Axis {
+		X, Z
 	}
 
 	public enum Direction {
