@@ -34,6 +34,7 @@ public class PuzzleCubeScript : MonoBehaviour {
                 child.GetComponent<Rigidbody>().mass = 0.1f;
                 child.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
             }
+
             Destroy(sphere.gameObject);
         }
     }
