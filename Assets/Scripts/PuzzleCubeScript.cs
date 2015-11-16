@@ -20,7 +20,7 @@ public class PuzzleCubeScript : MonoBehaviour {
 	void Update() {
         if (Input.GetKeyDown(KeyCode.C))
         {
-            sphere.GetComponent<Rigidbody>().AddForce(transform.up * 800, ForceMode.Force);
+            sphere.GetComponent<Rigidbody>().AddForce(transform.up * 2000, ForceMode.Force);
             foreach (Transform child in fractures)
             {
                 child.gameObject.AddComponent<Rigidbody>();
@@ -28,6 +28,13 @@ public class PuzzleCubeScript : MonoBehaviour {
             }
         }
         if (Input.GetKeyDown(KeyCode.V))
+        {
+            foreach (Transform child in fractures)
+            {
+                child.GetComponent<Rigidbody>().mass = 0.1f;
+                child.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX | RigidbodyConstraints.FreezeRotationY | RigidbodyConstraints.FreezeRotationZ;
+            }
             Destroy(sphere.gameObject);
+        }
     }
 }
