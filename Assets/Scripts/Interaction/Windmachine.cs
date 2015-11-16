@@ -5,6 +5,8 @@ using UnityEngine;
 
 namespace LotsOfTowers.Interaction
 {
+	[RequireComponent(typeof(BoxCollider))]
+
 	public class Windmachine : MonoBehaviour
 	{
 		private State currentState;

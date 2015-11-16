@@ -5,6 +5,8 @@ using System.Collections.Generic;
 
 namespace LotsOfTowers.Interaction.Triggers
 {
+	[RequireComponent(typeof(BoxCollider))]
+
 	public class WindTrigger : MonoBehaviour
 	{
 		public static State state;
