@@ -15,8 +15,19 @@ public class MirrorKey : MonoBehaviour {
             return;
 	    if(!SameSideAs(mirrorPlayer))
         {
+            Vector3 hitTarget = mirror.transform.position - player.transform.position;
+            hitTarget.y = 1;
+            RaycastHit[] hits = Physics.RaycastAll(player.transform.position + Vector3.up, hitTarget, 20);
+            Vector3 mirrorNormal = new Vector3(0,0,0);
+            foreach (RaycastHit hit in hits)
+            {
+                if (hit.collider.tag == "Mirror")
+                {
+                    mirrorNormal = hit.normal;
+                }
+            }
             float oldY = transform.position.y;
-            Vector3 newPosition = mirror.transform.position - (transform.position - mirror.transform.position);
+            Vector3 newPosition = mirror.transform.position + Vector3.Reflect(transform.position - mirror.transform.position, mirrorNormal);
             newPosition.y = oldY;
             transform.position = newPosition;
         }

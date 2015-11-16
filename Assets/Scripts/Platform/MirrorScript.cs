@@ -6,9 +6,15 @@ public class MirrorScript : MonoBehaviour {
 
     public GameObject player;
     public GameObject mirrorPlayer;
+    private Vector3 mirrorNormal;
 
     private bool mirrorPlayerCurrentlyVisible = true;
     private bool playerCurrentlyVisible = true;
+
+    void Start()
+    {
+        
+    }
 
     void Update()
     {
@@ -17,7 +23,7 @@ public class MirrorScript : MonoBehaviour {
     }
 
     public void UpdateMirroredPlayerPosition(GameObject player,Vector3 rayHit) {
-        Vector3 newPosition = rayHit - (player.transform.position - rayHit);
+        Vector3 newPosition = transform.position + Vector3.Reflect(player.transform.position - transform.position, mirrorNormal);
         newPosition.y = player.transform.position.y;
         mirrorPlayer.transform.position = newPosition;
 
@@ -29,19 +35,16 @@ public class MirrorScript : MonoBehaviour {
 
     private void CheckMirror()
     {
-        List<RaycastHit> hitList = new List<RaycastHit>(Physics.RaycastAll(player.transform.position + new Vector3(0, 1, 0), Quaternion.AngleAxis(45, Vector3.down) * Vector3.left, 20));
-        hitList.AddRange(Physics.RaycastAll(player.transform.position + new Vector3(0, 1, 0), Quaternion.AngleAxis(45, Vector3.down) * Vector3.forward, 20));
-        hitList.AddRange(Physics.RaycastAll(player.transform.position + new Vector3(0, 1, 0), Quaternion.AngleAxis(45, Vector3.down) * Vector3.back, 20));
-        hitList.AddRange(Physics.RaycastAll(player.transform.position + new Vector3(0, 1, 0), Quaternion.AngleAxis(45, Vector3.down) * Vector3.right, 20));
 
-        RaycastHit[] hits = hitList.ToArray();
-        bool mirrorfound = false;
+        Vector3 hitTarget = transform.position - player.transform.position;
+        hitTarget.y = 1;
+        RaycastHit[] hits = Physics.RaycastAll(player.transform.position+Vector3.up, hitTarget, 20);
         foreach (RaycastHit hit in hits)
         {
-            if (hit.collider.tag == "Mirror" && !mirrorfound)
+            if (hit.collider.tag == "Mirror")
             {
-                UpdateMirroredPlayerPosition(player, hit.point);
-                mirrorfound = true;
+                mirrorNormal = hit.normal;
+                UpdateMirroredPlayerPosition(player, hit.normal);
             }
         }
     }
