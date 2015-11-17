@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
+using LotsOfTowers.Actors;
 
 namespace LotsOfTowers.Interaction.Triggers {
-	public sealed class ElevatorTrigger : TriggerBehaviour {
+
+	public class ElevatorTrigger : TriggerBehaviour {
+
 		private bool hasStarted;
 
 		public float Delay = 0.5f; // Delay before the animation starts, after it's been triggered (seconds)
@@ -16,10 +19,11 @@ namespace LotsOfTowers.Interaction.Triggers {
 
 		public override IEnumerator TriggerOn (GameObject source)
 		{
-			if (!hasStarted) {
-				hasStarted = true;
+            if (source.tag == "Player" && source.GetComponent<Player>().IsElephant) { // This should only trigger from the player
 
-				if (source.tag == "Player") { // This should only trigger from the player
+                if (!hasStarted) {
+				    hasStarted = true;
+                    
 					float t0 = 0, t1 = 0, y0 = 0, y1 = 0;
 
 					while (t0 < Delay) {
@@ -49,7 +53,7 @@ namespace LotsOfTowers.Interaction.Triggers {
 
 		public override IEnumerator TriggerOff (GameObject source)
 		{
-			yield return null;
+            yield return null;
 		}
 	}
 }

@@ -5,12 +5,14 @@ public class MainCameraScript : MonoBehaviour
 {
 	private Transform centerFocus;
 	public float degree;
+    public float verticalDegree;
 
 	// Use this for initialization
 	void Start()
 	{
 		centerFocus = GameObject.Find("CenterFocus").transform;
 		degree = 135;
+        verticalDegree = 30;
 	}
 
 	// Update is called once per frame
@@ -32,7 +34,7 @@ public class MainCameraScript : MonoBehaviour
 		}
 
 		//Set rotation to next degree with a slight lerp
-		centerFocus.rotation = Quaternion.Slerp(centerFocus.rotation, Quaternion.Euler(30, degree, 0), Time.deltaTime * 20);
+		centerFocus.rotation = Quaternion.Slerp(centerFocus.rotation, Quaternion.Euler(verticalDegree, degree, 0), Time.deltaTime * 20);
 
 		// Zoom controls
 		if (Input.GetButtonDown("DPADup") || Input.GetAxis("DPADup") == 1)
@@ -47,5 +49,9 @@ public class MainCameraScript : MonoBehaviour
 			centerFocus.position = new Vector3(20, 45, 0);
 			gameObject.GetComponent<Camera>().orthographicSize = 7;
 		}
+        if (Input.GetKeyDown(KeyCode.K))
+            verticalDegree = 10f;
+        else if (Input.GetKeyUp(KeyCode.K))
+            verticalDegree = 30f;
 	}
 }
