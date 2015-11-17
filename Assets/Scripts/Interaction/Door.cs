@@ -14,7 +14,12 @@ namespace LotsOfTowers.Interaction
 		{
 			if (Input.GetButtonDown("Submit") && inTrigger)
 				if (player.GetComponentInChildren<MirrorKey>() != null)
-					OpenDoor(key);
+                {
+                    OpenDoor(key);
+                    GameObject.Find("Switch").SetActive(false);
+                }
+					
+                
 		}
 
 		private void OnTriggerStay(Collider coll) { inTrigger = true; }
