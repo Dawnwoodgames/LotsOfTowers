@@ -11,7 +11,7 @@ namespace LotsOfTowers.Interaction
 
 		void Start()
 		{
-			sphere = GameObject.Find("Sphere").transform;
+			//sphere = GameObject.Find("Sphere").transform;
 			floor = GameObject.Find("FloatingFloor").transform;
 			foreach (Transform child in floor)
 			{
@@ -19,14 +19,14 @@ namespace LotsOfTowers.Interaction
 			}
 		}
 
-		void Update()
+		void FixedUpdate()
 		{
 			if (Input.GetKeyDown(KeyCode.C))
 			{
-				sphere.GetComponent<Rigidbody>().AddForce(transform.up * 1200, ForceMode.Force);
+				//sphere.GetComponent<Rigidbody>().AddForce(transform.up * 1200, ForceMode.Force);
 				foreach (Transform child in fractures)
 				{
-					child.GetComponent<Rigidbody>().useGravity = true;
+					//child.GetComponent<Rigidbody>().useGravity = true;
 				}
 			}
 			if (Input.GetKeyDown(KeyCode.V))

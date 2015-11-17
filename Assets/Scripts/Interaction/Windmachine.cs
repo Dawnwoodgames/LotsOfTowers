@@ -1,5 +1,6 @@
 ﻿using Assets.Scripts.Framework;
 using LotsOfTowers.Actors;
+using LotsOfTowers.Interaction.Triggers;
 using UnityEngine;
 
 namespace LotsOfTowers.Objects
@@ -22,13 +23,15 @@ namespace LotsOfTowers.Objects
 
 		private void Update()
 		{
-			if (player == null) {
-				player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-			}
-
-			if (inTrigger && Input.GetAxis("Submit") > 0 && player != null && player.StaticCharge >= ChargeThreshold) {
+			//If the player is staticly charged (higher then threshold) and is inside the trigger activating the machine
+			if (inTrigger && (Input.GetAxis("Submit") > 0) && (player.StaticCharge >= ChargeThreshold))
+			{
+				//Then activate the machine + wind
 				ChangeState(State.Active);
 			}
+
+			//Set state from trigger to state of machine
+			WindTrigger.state = currentState;
 		}
 
 		private void OnTriggerStay(Collider coll)
