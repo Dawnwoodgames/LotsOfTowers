@@ -8,11 +8,15 @@ namespace LotsOfTowers.Actors
 {
 	public class Player : MonoBehaviour
 	{
+		// Constants
+		public static readonly float ChargeDecayRate = 2; // How much charge is lost per second
+
 		// Static fields
 		private static Onesie DefaultOnesie;
 		private static int MaxOnesies;
 
 		// Private fields
+		private float charge;
 		private Onesie currentOnesie;
 		private Dictionary<int, Onesie> onesies;
 		
@@ -45,11 +49,6 @@ namespace LotsOfTowers.Actors
 			get { return Onesie.movementSpeed; }
 		}
 
-		public bool isStatic
-		{
-			get { return Onesie.isStatic; }
-		}
-
 		public Onesie Onesie
 		{
 			get { return currentOnesie == null ? DefaultOnesie : currentOnesie; }
@@ -60,6 +59,11 @@ namespace LotsOfTowers.Actors
 			get { return onesies.Values.ToArray(); }
 		}
 		
+		public float StaticCharge {
+			get { return charge; }
+			set { charge = Math.Max(0, Math.Min (value, 100)); }
+		}
+		
 		// Methods
 		public Onesie AddOnesie(int index, Onesie onesie)
 		{
@@ -68,12 +72,10 @@ namespace LotsOfTowers.Actors
 
 				currentOnesie = currentOnesie == replacedOnesie ? onesie : currentOnesie;
 				onesies.Add(index, onesie);
-
                 // HUD - place onesie image to corresponding skill slot
                 hudUi.GetComponent<LotsOfTowers.Framework.HeadsUpDisplayScript>().AttachOnesieToSkillSlot(index, onesie.name);
                 // Show HUD - skill
                 hudUi.GetComponent<LotsOfTowers.Framework.HeadsUpDisplayScript>().skillsUi.SetActive(true);
-
 
                 return replacedOnesie;
 			}
@@ -97,6 +99,7 @@ namespace LotsOfTowers.Actors
 
 		public void Awake()
 		{
+			charge = 0;
 			DefaultOnesie = Resources.Load("OnesieDefault") as Onesie;
 			MaxOnesies = 3;
 			DontDestroyOnLoad(gameObject);
@@ -113,6 +116,13 @@ namespace LotsOfTowers.Actors
 		{
 			if (onesies.ContainsKey(index)) {
 				currentOnesie = onesies[index];
+			}
+		}
+
+		public void Update()
+		{
+			if (StaticCharge > 0) {
+				StaticCharge -= ChargeDecayRate * Time.smoothDeltaTime;
 			}
 		}
 	}
