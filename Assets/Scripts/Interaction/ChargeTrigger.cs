@@ -19,6 +19,9 @@ namespace LotsOfTowers.Interaction {
 		public void FixedUpdate() {
 			if (connected && HasPlayerMoved) {
 				player.StaticCharge += (ChargeRate + Player.ChargeDecayRate) * Time.smoothDeltaTime;
+				x = player.transform.position.x;
+				y = player.transform.position.y;
+				z = player.transform.position.z;
 			}
 		}
 
