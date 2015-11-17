@@ -19,28 +19,28 @@ namespace LotsOfTowers.Framework
 		private float timer = 0;
 
 		// Use this for initialization
-		void Start()
+		void Awake()
 		{
 			skillsUi = GameObject.Find("Skills");
 			skillOne = GameObject.Find("One");
 			skillTwo = GameObject.Find("Two");
 			skillThree = GameObject.Find("Three");
-			skillOne.SetActive(false);
-			skillTwo.SetActive(false);
-			skillThree.SetActive(false);
-			skillsUi.SetActive(false);
+			//skillOne.SetActive(false);
+			//skillTwo.SetActive(false);
+			//skillThree.SetActive(false);
+			//skillsUi.SetActive(false);
 		}
 
 		// Update is called once per frame
 		void Update()
 		{
-			if (skillsUi.activeSelf)
-			{
-				HideSkillUiInSeconds();
-			}
+			//if (skillsUi.activeSelf)
+			//{
+			//	HideSkillUiInSeconds();
+			//}
 
-			if (Input.GetButton("ShowUi"))
-				skillsUi.SetActive(true);
+			//if (Input.GetButton("ShowUi"))
+			//	skillsUi.SetActive(true);
 		}
 
 		private void HideSkillUiInSeconds()
