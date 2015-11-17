@@ -8,12 +8,16 @@ namespace LotsOfTowers.Actors
 {
 	public class Player : MonoBehaviour
 	{
+
+        public static readonly float ChargeDecayRate = 2; // How much charge is lost per second
+
 		// Static fields
 		private static Onesie DefaultOnesie;
 		private static int MaxOnesies;
 
-		// Private fields
-		private Onesie currentOnesie;
+        // Private fields
+        private float charge;
+        private Onesie currentOnesie;
 		private Dictionary<int, Onesie> onesies;
 		
 		// Public fields
@@ -44,16 +48,17 @@ namespace LotsOfTowers.Actors
 		{
 			get { return Onesie.movementSpeed; }
 		}
-
-		public bool isStatic
-		{
-			get { return Onesie.isStatic; }
-		}
-
+        
         public bool IsElephant
         {
             get { return Onesie.isElephant; }
         }
+
+        public float StaticCharge
+        {
+			get { return charge; }
+			set { charge = Math.Max(0, Math.Min(value, 100)); }
+		}
 
         public Onesie Onesie
 		{
