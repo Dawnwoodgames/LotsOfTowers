@@ -50,7 +50,12 @@ namespace LotsOfTowers.Actors
 			get { return Onesie.isStatic; }
 		}
 
-		public Onesie Onesie
+        public bool IsElephant
+        {
+            get { return Onesie.isElephant; }
+        }
+
+        public Onesie Onesie
 		{
 			get { return currentOnesie == null ? DefaultOnesie : currentOnesie; }
             set { currentOnesie = value; }

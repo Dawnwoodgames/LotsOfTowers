@@ -25,22 +25,22 @@ namespace LotsOfTowers.Framework
 			skillOne = GameObject.Find("One");
 			skillTwo = GameObject.Find("Two");
 			skillThree = GameObject.Find("Three");
-			skillOne.SetActive(false);
-			skillTwo.SetActive(false);
-			skillThree.SetActive(false);
-			skillsUi.SetActive(false);
+			//skillOne.SetActive(false);
+			//skillTwo.SetActive(false);
+			//skillThree.SetActive(false);
+			//skillsUi.SetActive(false);
 		}
 
 		// Update is called once per frame
 		void Update()
 		{
-			if (skillsUi.activeSelf)
-			{
-				HideSkillUiInSeconds();
-			}
+			//if (skillsUi.activeSelf)
+			//{
+			//	HideSkillUiInSeconds();
+			//}
 
-			if (Input.GetButton("ShowUi"))
-				skillsUi.SetActive(true);
+			//if (Input.GetButton("ShowUi"))
+			//	skillsUi.SetActive(true);
 		}
 
 		private void HideSkillUiInSeconds()
@@ -59,7 +59,6 @@ namespace LotsOfTowers.Framework
             switch (slot)
 			{
 				case 0:
-                    
 					skillOne.GetComponent<Image>().sprite = Resources.Load("HUD/" + name, typeof(Sprite)) as Sprite;
 					if (!skillOne.activeSelf) skillOne.SetActive(true);
 					break;
