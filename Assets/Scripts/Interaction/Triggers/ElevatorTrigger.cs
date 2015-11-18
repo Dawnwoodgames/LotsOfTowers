@@ -3,8 +3,7 @@ using System.Collections;
 using LotsOfTowers.Actors;
 
 namespace LotsOfTowers.Interaction.Triggers {
-
-	public class ElevatorTrigger : TriggerBehaviour {
+	public class ElevatorTrigger : MonoBehaviour {
 
 		private bool hasStarted;
 
@@ -17,43 +16,40 @@ namespace LotsOfTowers.Interaction.Triggers {
 		public GameObject UpwardsObject; // Object that will be moved upwards
 		public float UpwardDistance; // Distance said object will move along Y-axis
 
-		public override IEnumerator TriggerOn (GameObject source)
-		{
-            if (source.tag == "Player" && source.GetComponent<Player>().IsElephant) { // This should only trigger from the player
+		public void OnCollisionStay(Collision coll) {
+			GameObject source = coll.gameObject;
 
-                if (!hasStarted) {
-				    hasStarted = true;
-                    
-					float t0 = 0, t1 = 0, y0 = 0, y1 = 0;
-
-					while (t0 < Delay) {
-						t0 += Time.smoothDeltaTime;
-						yield return null;
-					}
-
-					y0 = DownwardsObject.transform.position.y;
-					y1 = UpwardsObject.transform.position.y;
-
-					while (t1 < Duration) {
-						t1 += Time.smoothDeltaTime;
-
-						if (t1 >= Duration) {
-							DownwardsObject.transform.position = new Vector3(DownwardsObject.transform.position.x, y0 - DownwardDistance, DownwardsObject.transform.position.z);
-							UpwardsObject.transform.position = new Vector3(UpwardsObject.transform.position.x, y1 + UpwardDistance, UpwardsObject.transform.position.z);
-						} else {
-							DownwardsObject.transform.position = new Vector3(DownwardsObject.transform.position.x, y0 - (DownwardDistance * (t1 / Duration)), DownwardsObject.transform.position.z);
-							UpwardsObject.transform.position = new Vector3(UpwardsObject.transform.position.x, y1+ (UpwardDistance * (t1 / Duration)), UpwardsObject.transform.position.z);
-						}
-
-						yield return null;
-					}
-				}
+			if (!hasStarted && source.tag == "Player" && source.GetComponent<Player>().IsElephant) {
+				hasStarted = true;
+				StartCoroutine (Trigger());
 			}
 		}
 
-		public override IEnumerator TriggerOff (GameObject source)
+		public IEnumerator Trigger ()
 		{
-            yield return null;
+			float t0 = 0, t1 = 0, y0 = 0, y1 = 0;
+
+			while (t0 < Delay) {
+				t0 += Time.smoothDeltaTime;
+				yield return null;
+			}
+
+			y0 = DownwardsObject.transform.position.y;
+			y1 = UpwardsObject.transform.position.y;
+
+			while (t1 < Duration) {
+				t1 += Time.smoothDeltaTime;
+
+				if (t1 >= Duration) {
+					DownwardsObject.transform.position = new Vector3(DownwardsObject.transform.position.x, y0 - DownwardDistance, DownwardsObject.transform.position.z);
+					UpwardsObject.transform.position = new Vector3(UpwardsObject.transform.position.x, y1 + UpwardDistance, UpwardsObject.transform.position.z);
+				} else {
+					DownwardsObject.transform.position = new Vector3(DownwardsObject.transform.position.x, y0 - (DownwardDistance * (t1 / Duration)), DownwardsObject.transform.position.z);
+					UpwardsObject.transform.position = new Vector3(UpwardsObject.transform.position.x, y1+ (UpwardDistance * (t1 / Duration)), UpwardsObject.transform.position.z);
+				}
+
+				yield return null;
+			}
 		}
 	}
 }
