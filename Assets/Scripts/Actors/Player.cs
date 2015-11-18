@@ -126,5 +126,12 @@ namespace LotsOfTowers.Actors
 				currentOnesie = onesies[index];
 			}
 		}
+		
+		public void Update()
+		{
+			if (StaticCharge > 0) {
+				StaticCharge -= ChargeDecayRate * Time.smoothDeltaTime;
+			}
+		}
 	}
 }
