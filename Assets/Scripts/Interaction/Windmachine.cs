@@ -28,6 +28,9 @@ namespace LotsOfTowers.Objects
 			{
 				//Then activate the machine + wind
 				ChangeState(State.Active);
+
+				//Release the load of the static charge of the player
+				player.StaticCharge = 0.1f;
 			}
 
 			//Set state from trigger to state of machine
