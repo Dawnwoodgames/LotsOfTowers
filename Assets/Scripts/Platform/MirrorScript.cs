@@ -54,17 +54,25 @@ public class MirrorScript : MonoBehaviour {
         GameObject cam = Camera.main.gameObject;
 
         //First check if the mirrored player can be seen through the mirror
-
-        RaycastHit[] hits = Physics.RaycastAll(mirrorPlayer.transform.position + new Vector3(0, 1, 0), cam.transform.position - mirrorPlayer.transform.position, 20);
-        bool mirrorfound = false;
-        foreach (RaycastHit hit in hits)
-        {
-            if (hit.collider.tag == "Mirror" && !mirrorfound)
+        RaycastHit[] hits;
+        bool mirrorfound = true;
+        for (int hor = 0; hor <= 1; hor++)
+            for (int vert = 0; vert <= 1; vert++)
             {
-                mirrorfound = true;
-            }
+                if (!mirrorfound)
+                    continue;
+                bool throughmirror = false;
+                hits = Physics.RaycastAll(mirrorPlayer.transform.position, Camera.main.ViewportToWorldPoint(new Vector3(hor, vert, Camera.main.nearClipPlane)) - mirrorPlayer.transform.position, 20);
+                foreach (RaycastHit hit in hits)
+                {
+                    if (hit.collider.tag == "Mirror")
+                    {
+                        throughmirror = true;
+                    }
 
-        }
+                }
+                mirrorfound = throughmirror;
+            }
 
         if (!mirrorfound && mirrorPlayerCurrentlyVisible)
         {
@@ -125,7 +133,12 @@ public class MirrorScript : MonoBehaviour {
             playerCurrentlyVisible = true;
         }
     }
-
+    /// <summary>
+    /// Check if there is a mirror between two game objects
+    /// </summary>
+    /// <param name="p1">Game object 1</param>
+    /// <param name="p2">Game object 2</param>
+    /// <returns></returns>
     private bool MirrorBetween(GameObject p1, GameObject p2)
     {
         RaycastHit[] hits = Physics.RaycastAll(p1.transform.position, p2.transform.position - p1.transform.position, 20);
