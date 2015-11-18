@@ -61,16 +61,25 @@ public class MirrorKey : MonoBehaviour {
 
     private bool CameraThroughMirror()
     {
-        bool throughMirror = false;
-        RaycastHit[] hits = Physics.RaycastAll(transform.position + new Vector3(0, 1, 0), Camera.main.transform.position - mirrorPlayer.transform.position, 20);
-        foreach (RaycastHit hit in hits)
-        {
-            if (hit.collider.tag == "Mirror")
+        bool throughMirror = true;
+        for (int hor = 0;hor <= 1;hor++)
+            for(int vert = 0;vert<=1;vert++)
             {
-                throughMirror = true;
-            }
+                if (!throughMirror)
+                    continue;
+                bool mirrorfound = false;
+                RaycastHit[] hits = Physics.RaycastAll(transform.position, Camera.main.ViewportToWorldPoint(new Vector3(hor, vert, Camera.main.nearClipPlane)) - transform.position, 20);
+                foreach (RaycastHit hit in hits)
+                {
+                    if (hit.collider.tag == "Mirror")
+                    {
+                        mirrorfound = true;
+                    }
 
-        }
+                }
+                throughMirror = mirrorfound;
+            }
+        
         return throughMirror;
     }
 

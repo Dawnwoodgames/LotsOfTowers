@@ -20,6 +20,7 @@ namespace LotsOfTowers.Interaction.Triggers {
 			GameObject source = coll.gameObject;
 
 			if (!hasStarted && source.tag == "Player" && source.GetComponent<Player>().IsElephant) {
+                GameObject.Find("Level").GetComponent<Level.LevelTwo>().ModifySpawnPoint();
 				hasStarted = true;
 				StartCoroutine (Trigger());
 			}
