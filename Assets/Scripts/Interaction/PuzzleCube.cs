@@ -1,57 +1,49 @@
 ﻿using UnityEngine;
 using System.Collections.Generic;
 using System.Collections;
+using System.Linq;
 
 namespace LotsOfTowers.Interaction
 {
     public class PuzzleCube : MonoBehaviour
     {
-        public GameObject snapArea;
-        private Transform sphere;
-        private List<Transform> fractures = new List<Transform>();
+		public GameObject snapArea;
+		public GameObject triggerBrickPuzzle;
+		private bool brickPuzzleComplete = false;
 
-        void Start()
+		void Start()
         {
             foreach (Transform child in transform)
             {
 				child.GetComponent<Rigidbody>().isKinematic = true;
-                fractures.Add(child);
             }
         }
 
-        void OnTriggerEnter(Collider coll)
-        {
-            if (coll.tag == "Player")
-            {
-				foreach (Transform child in fractures)
-                {
-					Rigidbody childRigid = child.GetComponent<Rigidbody>();
+		private void Update()
+		{
+			if(!brickPuzzleComplete)
+			{
+				if (GetComponentsInChildren<Rigidbody>().All(ri => ri.isKinematic == true) && triggerBrickPuzzle.GetComponent<BoxCollider>().enabled == false)
+				{
+					snapArea.SetActive(false);
+					brickPuzzleComplete = true;
+					ActivateFloatingFloor();
+                }
+			}
+		}
 
-					childRigid.isKinematic = false;
-                    child.localScale = new Vector3(0.45f, 0.45f, 0.45f);
+		private void ActivateFloatingFloor()
+		{
+			foreach (Transform child in transform)
+			{
+				child.gameObject.GetComponent<Rigidbody>().isKinematic = false;
+				child.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
+			}
 
-					childRigid.AddForce(transform.up * 923, ForceMode.Force);
-					childRigid.AddForce(child.forward * 291, ForceMode.Force);
-
-					childRigid.useGravity = true;
-				}
-
-				//Disable trigger to add force to fracments
-				GetComponent<BoxCollider>().enabled = false;
-
-                StartCoroutine(ActivateFrozenFractures());
-            }
-        }
-
-        private IEnumerator ActivateFrozenFractures()
-        {
-            yield return new WaitForSeconds(2);
-
-            snapArea.SetActive(true);
-            foreach (Transform child in fractures)
-            {
-                child.GetComponent<Rigidbody>().mass = 0.1f;
-            }
+			Rigidbody ri = GetComponent<Rigidbody>();
+			GetComponent<BoxCollider>().enabled = true;
+			ri.isKinematic = false;
+			ri.useGravity = true;
         }
     }
 }

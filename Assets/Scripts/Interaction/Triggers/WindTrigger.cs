@@ -2,6 +2,8 @@
 using System.Collections;
 using Assets.Scripts.Framework;
 using System.Collections.Generic;
+using System.Linq;
+using LotsOfTowers.Actors;
 
 namespace LotsOfTowers.Interaction.Triggers
 {
@@ -35,10 +37,31 @@ namespace LotsOfTowers.Interaction.Triggers
 			if (state == State.Active)
 			{
 				windParticles.enableEmission = true;
-				foreach (GameObject item in currentCollisions)
+				if(currentCollisions.Count > 1 && currentCollisions.Any(player => player.tag == "Player"))
 				{
-					//Add force so the object goes up
-					item.GetComponent<Rigidbody>().AddForce(Vector3.up * forcePower);
+					try
+					{
+						if (currentCollisions.Single(player => player.name == "Player").GetComponent<Player>().Onesie.isElephant)
+						{
+							currentCollisions.Single(ff => ff.name == "FloatingFloor").GetComponent<Rigidbody>().AddForce(Vector3.up * 50, ForceMode.Acceleration);
+						}
+						else
+						{
+							currentCollisions.Single(ff => ff.name == "FloatingFloor").GetComponent<Rigidbody>().AddForce(Vector3.up * 150, ForceMode.Acceleration);
+						}
+					}
+					catch (System.Exception)
+					{
+						throw;
+					}
+				}
+				else
+				{
+					foreach (GameObject item in currentCollisions)
+					{
+						//Add force so the object goes up
+						item.GetComponent<Rigidbody>().AddForce(Vector3.up * 50, ForceMode.Acceleration);
+					}
 				}
 			}
 			else if (state == State.Deactive)
@@ -53,7 +76,10 @@ namespace LotsOfTowers.Interaction.Triggers
 			// Add the GameObject collided with to the list.
 			if (col.GetComponent<Rigidbody>())
 			{
-				currentCollisions.Add(col.gameObject);
+				if (!col.GetComponent<Rigidbody>().isKinematic)
+				{
+					currentCollisions.Add(col.gameObject);
+				}
 			}
 		}
 
@@ -63,7 +89,10 @@ namespace LotsOfTowers.Interaction.Triggers
 			// Remove the GameObject collided with from the list.
 			if (col.GetComponent<Rigidbody>())
 			{
-				currentCollisions.Remove(col.gameObject);
+				if (!col.GetComponent<Rigidbody>().isKinematic)
+				{
+					currentCollisions.Remove(col.gameObject);
+				}
 			}
 		}
 	}
