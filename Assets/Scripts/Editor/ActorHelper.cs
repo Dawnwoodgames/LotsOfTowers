@@ -19,6 +19,7 @@ namespace LotsOfTowers.Unity {
 			EditorGUILayout.EndVertical();
 
 			EditorGUILayout.Separator();
+            base.OnInspectorGUI();
 		}
 	}
 }

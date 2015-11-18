@@ -13,7 +13,6 @@ namespace LotsOfTowers.Actors
 	public class PlayerController : MonoBehaviour
 	{
 
-        public GameObject mirror;
 		//The actual player with all the movement properties
 		private Player player;
 		private Transform mainCamera;

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using LotsOfTowers.ToolTip;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace LotsOfTowers.Actors
 {
@@ -23,6 +24,7 @@ namespace LotsOfTowers.Actors
 		// Public fields
 		public GameObject tooltip;
         public GameObject hudUi;
+        public GameObject chargeDisplay;
 		
 		// Properties
 		public bool CanMoveObjects
@@ -131,6 +133,7 @@ namespace LotsOfTowers.Actors
 		{
 			if (StaticCharge > 0) {
 				StaticCharge -= ChargeDecayRate * Time.smoothDeltaTime;
+                chargeDisplay.GetComponent<Image>().fillAmount = StaticCharge/100f;
 			}
 		}
 	}
