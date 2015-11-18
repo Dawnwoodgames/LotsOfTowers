@@ -11,7 +11,6 @@ public class MainCameraScript : MonoBehaviour
 	void Start()
 	{
 		centerFocus = GameObject.Find("CenterFocus").transform;
-		degree = 135;
         verticalDegree = 30;
 	}
 
