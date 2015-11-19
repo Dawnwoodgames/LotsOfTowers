@@ -3,22 +3,28 @@ using System.Collections.Generic;
 using System.Linq;
 using LotsOfTowers.ToolTip;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace LotsOfTowers.Actors
 {
 	public class Player : MonoBehaviour
 	{
+
+        public static readonly float ChargeDecayRate = 2; // How much charge is lost per second
+
 		// Static fields
 		private static Onesie DefaultOnesie;
 		private static int MaxOnesies;
 
-		// Private fields
-		private Onesie currentOnesie;
+        // Private fields
+        private float charge;
+        private Onesie currentOnesie;
 		private Dictionary<int, Onesie> onesies;
 		
 		// Public fields
 		public GameObject tooltip;
         public GameObject hudUi;
+        public GameObject chargeDisplay;
 		
 		// Properties
 		public bool CanMoveObjects
@@ -44,10 +50,22 @@ namespace LotsOfTowers.Actors
 		{
 			get { return Onesie.movementSpeed; }
 		}
+        
+        public bool IsElephant
+        {
+            get { return Onesie.isElephant; }
+        }
 
-		public Onesie Onesie
+        public float StaticCharge
+        {
+			get { return charge; }
+			set { charge = Math.Max(0, Math.Min(value, 100)); }
+		}
+
+        public Onesie Onesie
 		{
 			get { return currentOnesie == null ? DefaultOnesie : currentOnesie; }
+            set { currentOnesie = value; }
 		}
 		
 		public Onesie[] Onesies
@@ -63,7 +81,7 @@ namespace LotsOfTowers.Actors
 
 				currentOnesie = currentOnesie == replacedOnesie ? onesie : currentOnesie;
 				onesies.Add(index, onesie);
-
+                
                 // HUD - place onesie image to corresponding skill slot
                 hudUi.GetComponent<LotsOfTowers.Framework.HeadsUpDisplayScript>().AttachOnesieToSkillSlot(index, onesie.name);
                 // Show HUD - skill
@@ -90,7 +108,7 @@ namespace LotsOfTowers.Actors
 			return false;
 		}
 
-		private void Awake()
+		public void Awake()
 		{
 			DefaultOnesie = Resources.Load("OnesieDefault") as Onesie;
 			MaxOnesies = 3;
@@ -98,7 +116,7 @@ namespace LotsOfTowers.Actors
 			onesies = new Dictionary<int, Onesie>(MaxOnesies);
 		}
 
-		private void Start()
+		public void Start()
 		{
 			Tooltip.ShowTooltip(tooltip, "Movement", false, new string[] { "Horizontal", "Vertical" });
             hudUi = GameObject.Find("HUD");
@@ -108,6 +126,14 @@ namespace LotsOfTowers.Actors
 		{
 			if (onesies.ContainsKey(index)) {
 				currentOnesie = onesies[index];
+			}
+		}
+		
+		public void Update()
+		{
+			if (StaticCharge > 0) {
+				StaticCharge -= ChargeDecayRate * Time.smoothDeltaTime;
+                chargeDisplay.GetComponent<Image>().fillAmount = StaticCharge/100f;
 			}
 		}
 	}

@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System.Collections.Generic;
+using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
 namespace LotsOfTowers.Actors
@@ -11,6 +12,7 @@ namespace LotsOfTowers.Actors
 
 	public class PlayerController : MonoBehaviour
 	{
+
 		//The actual player with all the movement properties
 		private Player player;
 		private Transform mainCamera;
@@ -18,25 +20,19 @@ namespace LotsOfTowers.Actors
 		private CapsuleCollider capsule;
         private BoxCollider box;
 
-		//Jumping variables
-		private bool jumping = false;
-		private int jumped = 0;
-		private Vector3 groundNormal;
-		private bool isGrounded;
-
 		//Moving variables
 		private Vector3 movement;
 		private float turnAmount;
 		private float forwardAmount;
 		private float movingTurnSpeed = 360;
 		private float stationaryTurnSpeed = 360;
+		private Vector3 groundNormal;
 
 		//Crouch variables
 		private bool isCrouching = false;
 		private float capsuleHeight;
 		private Vector3 capsuleCenter;
         private float boxHeight;
-        private Vector3 boxCenter;
 
 
 		private void Start()
@@ -48,7 +44,6 @@ namespace LotsOfTowers.Actors
 			capsuleCenter = capsule.center;
             box = GetComponent<BoxCollider>();
             boxHeight = box.size.y;
-            boxCenter = box.center;
 
 			//Get camera transform
 			if (Camera.main != null)
@@ -60,29 +55,6 @@ namespace LotsOfTowers.Actors
 				Debug.LogWarning("No \"Main Camera\" found! Tag a camera as main");
 			}
         }
-
-		private void Update()
-		{
-			//Get object length to go through the floor
-			float height = GetComponent<Collider>().bounds.extents.y;
-
-			//Check if the floor is touching the feet of the model
-			if (Physics.Raycast(transform.position, Vector3.down * 1.2f, height + 0.06f))
-			{
-				jumped = 0;
-			}
-			else if(player.JumpCount < 2)
-			{
-				jumped++;
-			}
-
-			//If the jumpcount is not equal to the amount of jumps done (mid air)
-			if (player.JumpCount > jumped)
-			{
-				//Check if jump button is clicked
-				jumping = CrossPlatformInputManager.GetButtonDown("Jump");
-			}
-		}
 
 		private void FixedUpdate()
 		{ 
@@ -104,11 +76,10 @@ namespace LotsOfTowers.Actors
 			//Apply movement, jumping and rotation
 			movement = new Vector3(h, 0f, v);
 			Move(movement);
-			Jump();
-			Crouch(crouch);
-		}
+			
+        }
 
-		private void Crouch(bool crouch)
+        private void Crouch(bool crouch)
 		{
 			//Check if the player clicked on crouch and the player is actually grounded (can change, crouch mid air?)
 			if (crouch)
@@ -138,19 +109,6 @@ namespace LotsOfTowers.Actors
 				capsule.center = capsuleCenter;
                 box.size = new Vector3(box.size.x, boxHeight, box.size.z);
 				isCrouching = false;
-			}
-		}
-
-
-		private void Jump()
-		{
-			// check whether conditions are right to allow a jump:
-			if (jumping)
-            {
-                // Jump!
-                rigidBody.velocity = new Vector3(rigidBody.velocity.x, player.JumpPower, rigidBody.velocity.z);
-				jumped++;
-				jumping = false;
 			}
 		}
 

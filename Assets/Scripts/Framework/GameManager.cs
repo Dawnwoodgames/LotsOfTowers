@@ -1,24 +1,19 @@
 ﻿using LotsOfTowers.Actors;
+using SmartLocalization;
+using System;
 using System.Linq;
 using UnityEngine;
-using SmartLocalization;
 
 namespace LotsOfTowers.Framework
 {
 	public class GameManager : MonoBehaviour
 	{
-		private static GameManager instance;
-
-		private Player actor;
-
+		private Player player;
 		private Transform spawnPoint;
-		private float timeScale;
-
-		public static GameManager Instance
-		{
-			get { return instance; }
-		}
-
+		
+		public static bool Alive { get { return Instance != null; } }
+		public static GameManager Instance { get; private set; }
+		
 		public string Language
 		{ // Default: en
 			get { return PlayerPrefs.HasKey("Language") ? PlayerPrefs.GetString("Language") : "en"; }
@@ -31,43 +26,33 @@ namespace LotsOfTowers.Framework
 				}
 			}
 		}
-
-		public bool Paused
-		{ // Default: false
-			get { return Time.timeScale == 0; }
-			set { timeScale = Paused ? timeScale : Time.timeScale; Time.timeScale = value ? 0 : timeScale; }
-		}
-
-		public Transform SpawnPoint
-		{
+		
+		public Transform SpawnPoint {
 			get { return spawnPoint; }
 		}
-
+		
+		
 		public void Awake()
 		{
+			if (FindObjectsOfType<GameManager> ().Length > 1) {
+				Destroy (gameObject);
+			} else {
+				GameManager.Instance = this;
+			}
+			
 			DontDestroyOnLoad(this);
-			instance = this;
 			LanguageManager.Instance.ChangeLanguage(Language);
 			OnLevelWasLoaded(Application.loadedLevel);
-
-			actor = FindObjectOfType<Player>();
-
-			timeScale = Time.timeScale;
-
-			//Set gravity for entire game
-			Physics.gravity = new Vector3(0, -35.0F, 0);
+			Physics.gravity = new Vector3(0, -35, 0);
 		}
-
-		public void OnLevelWasLoaded(int index)
-		{
-			if (GameObject.Find("Level") != null)
-			{
-				spawnPoint = GameObject.Find("Level/Spawn Point").transform;
-				if (actor != null && spawnPoint != null)
-				{
-					actor.transform.position = spawnPoint.position;
-				}
+		
+		public void OnLevelWasLoaded(int level) {
+			if (player == null) {
+				// Try to find the player
+				player = FindObjectOfType<Player>();
 			}
+			
+			spawnPoint = GameObject.Find("Level/Spawn Point").transform;
 		}
 	}
 }
