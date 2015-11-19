@@ -76,7 +76,7 @@ namespace LotsOfTowers.Actors
 			//Apply movement, jumping and rotation
 			movement = new Vector3(h, 0f, v);
 			Move(movement);
-			Crouch(crouch);
+			
         }
 
         private void Crouch(bool crouch)
