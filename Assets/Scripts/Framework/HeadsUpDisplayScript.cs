@@ -25,9 +25,9 @@ namespace LotsOfTowers.Framework
 			skillOne = GameObject.Find("One");
 			skillTwo = GameObject.Find("Two");
 			skillThree = GameObject.Find("Three");
-			//skillOne.SetActive(false);
-			//skillTwo.SetActive(false);
-			//skillThree.SetActive(false);
+			skillOne.SetActive(false);
+			skillTwo.SetActive(false);
+			skillThree.SetActive(false);
 			//skillsUi.SetActive(false);
 		}
 
