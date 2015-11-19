@@ -103,18 +103,24 @@ public class MirrorScript : MonoBehaviour {
 
         //Then check if there is a mirror between the camera and the player
 
-        Vector3 rayDirection = cam.transform.position - player.transform.position;
-        rayDirection.y = 0;
-        hits = Physics.RaycastAll(player.transform.position + new Vector3(0, 1, 0), rayDirection, 20);
-        mirrorfound = false;
-        foreach (RaycastHit hit in hits)
-        {
-            if (hit.collider.tag == "Mirror" && !mirrorfound)
+        mirrorfound = true;
+        for (int hor = 0; hor <= 1; hor++)
+            for (int vert = 0; vert <= 1; vert++)
             {
-                mirrorfound = true;
-            }
+                if (!mirrorfound)
+                    continue;
+                bool throughmirror = false;
+                hits = Physics.RaycastAll(player.transform.position, Camera.main.ViewportToWorldPoint(new Vector3(hor, vert, Camera.main.nearClipPlane)) - player.transform.position, 20);
+                foreach (RaycastHit hit in hits)
+                {
+                    if (hit.collider.tag == "Mirror")
+                    {
+                        throughmirror = true;
+                    }
 
-        }
+                }
+                mirrorfound = throughmirror;
+            }
 
         if (mirrorfound && playerCurrentlyVisible)
         {

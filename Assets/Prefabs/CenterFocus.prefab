@@ -77,7 +77,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: .300000012
+  near clip plane: -10
   far clip plane: 1000
   field of view: 60
   orthographic: 1
@@ -158,6 +158,10 @@ Prefab:
     - target: {fileID: 0}
       propertyPath: verticalDegree
       value: 30
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: near clip plane
+      value: -10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
