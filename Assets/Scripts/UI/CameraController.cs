@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace LotsOfTowers.UI {
 	[RequireComponent(typeof(Camera))]
-	public sealed class MenuCameraController : MonoBehaviour {
+	public sealed class CameraController : MonoBehaviour {
 		private Transform mount;
 
 		public float speed = 0.1f;

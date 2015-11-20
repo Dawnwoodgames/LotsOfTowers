@@ -150,7 +150,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Play
+  m_Text: menu.controls.play
 --- !u!222 &73859787
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -321,7 +321,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Back
+  m_Text: menu.controls.back
 --- !u!222 &408371684
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -662,6 +662,7 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1125067697}
+  - 114: {fileID: 1125067698}
   m_Layer: 0
   m_Name: Menu
   m_TagString: Untagged
@@ -682,7 +683,18 @@ Transform:
   - {fileID: 1042012581}
   - {fileID: 488201641}
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
+--- !u!114 &1125067698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1125067696}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 27551374740354e8dbeae2be6a76006d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1223863943
 GameObject:
   m_ObjectHideFlags: 0
@@ -1100,7 +1112,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Preferences
+  m_Text: menu.controls.preferences
 --- !u!222 &1497111041
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1172,7 +1184,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 0
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: Button
+  m_Text: menu.controls.quit
 --- !u!222 &1615325944
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -1252,7 +1264,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 1
 --- !u!1 &2106506625
 GameObject:
   m_ObjectHideFlags: 0
