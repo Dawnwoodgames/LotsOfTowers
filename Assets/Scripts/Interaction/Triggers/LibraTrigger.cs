@@ -7,19 +7,19 @@ namespace LotsOfTowers.Interaction.Triggers
     {
 
         public GameObject libra;
-        public bool firstTrigger = false;
-        public bool secondTrigger = false;
+        public bool playerOnLibra = false;
+        public bool elephantReadyToLaunch = false;
 
         private void OnTriggerEnter(Collider coll)
         {
-            if (coll.tag == "Player" && libra.transform.rotation.x >= -13 && !firstTrigger)
+            if (coll.tag == "Player" && libra.transform.rotation.x >= -13 && !playerOnLibra)
             {
-                firstTrigger = true;
+                playerOnLibra = true;
                 this.transform.localPosition = new Vector3(-10.49f, -5f, 1f);
             }
-            if (coll.tag == "Player" && libra.transform.rotation.x >= 13 && firstTrigger)
+            if (coll.tag == "Player" && libra.transform.rotation.x >= 13 && playerOnLibra)
             {
-                secondTrigger = true;
+                elephantReadyToLaunch = true;
             }
         }
     }

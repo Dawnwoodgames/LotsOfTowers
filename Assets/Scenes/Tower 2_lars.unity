@@ -84,7 +84,7 @@ NavMeshSettings:
     minRegionArea: 2
     cellSize: .166666672
     manualCellSize: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: a777edd20cee5d045ae07763651a0ee9, type: 2}
 --- !u!4 &26189153 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400002, guid: bb33d72b95b0575448b019d8fea3129c, type: 3}
@@ -106,7 +106,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &135411362
 Transform:
@@ -149,7 +149,7 @@ GameObject:
   - 4: {fileID: 216244078}
   - 65: {fileID: 216244079}
   m_Layer: 0
-  m_Name: elephanttrigger
+  m_Name: RotateElephantTrigger
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -162,7 +162,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 216244077}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -8, y: 1, z: -3}
+  m_LocalPosition: {x: -6.73999977, y: 1.63, z: -3}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 969702501}
@@ -222,6 +222,14 @@ Prefab:
       propertyPath: m_Name
       value: trap 2 inc texture (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: bb33d72b95b0575448b019d8fea3129c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bb33d72b95b0575448b019d8fea3129c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb33d72b95b0575448b019d8fea3129c, type: 3}
   m_IsPrefabParent: 0
@@ -238,7 +246,6 @@ GameObject:
   - 23: {fileID: 264693821}
   - 54: {fileID: 264693824}
   - 114: {fileID: 264693825}
-  - 195: {fileID: 264693826}
   m_Layer: 0
   m_Name: Elephant
   m_TagString: Untagged
@@ -314,7 +321,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 80
   m_CollisionDetection: 0
 --- !u!114 &264693825
 MonoBehaviour:
@@ -330,26 +337,6 @@ MonoBehaviour:
   libraTrigger: {fileID: 1695159405}
   elephantTrigger: {fileID: 216244077}
   elephantLaunch: {fileID: 1056690886}
---- !u!195 &264693826
-NavMeshAgent:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 264693819}
-  m_Enabled: 1
-  m_Radius: .49999994
-  m_Speed: 3.5
-  m_Acceleration: 8
-  avoidancePriority: 50
-  m_AngularSpeed: 120
-  m_StoppingDistance: 0
-  m_AutoTraverseOffMeshLink: 1
-  m_AutoBraking: 1
-  m_AutoRepath: 1
-  m_Height: 1
-  m_BaseOffset: .5
-  m_WalkableMask: 4294967295
-  m_ObstacleAvoidanceType: 4
 --- !u!1 &279088827
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,7 +353,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &279088828
 Transform:
@@ -711,7 +698,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &520890520
 Transform:
@@ -845,7 +832,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &661707116
 Transform:
@@ -1155,6 +1142,14 @@ Prefab:
       propertyPath: m_Name
       value: trap 2 inc texture (1)
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: bb33d72b95b0575448b019d8fea3129c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bb33d72b95b0575448b019d8fea3129c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb33d72b95b0575448b019d8fea3129c, type: 3}
   m_IsPrefabParent: 0
@@ -1251,7 +1246,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1339837971
 Transform:
@@ -1367,6 +1362,14 @@ Prefab:
       propertyPath: m_Name
       value: trap 2 inc texture (4)
       objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: bb33d72b95b0575448b019d8fea3129c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bb33d72b95b0575448b019d8fea3129c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb33d72b95b0575448b019d8fea3129c, type: 3}
   m_IsPrefabParent: 0
@@ -1463,6 +1466,14 @@ Prefab:
     - target: {fileID: 100002, guid: bb33d72b95b0575448b019d8fea3129c, type: 3}
       propertyPath: m_Name
       value: trap 2 inc texture (3)
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: bb33d72b95b0575448b019d8fea3129c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bb33d72b95b0575448b019d8fea3129c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb33d72b95b0575448b019d8fea3129c, type: 3}
@@ -1627,7 +1638,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1667991874
 Transform:
@@ -1771,8 +1782,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   libra: {fileID: 479901249}
-  firstTrigger: 0
-  secondTrigger: 0
+  playerOnLibra: 0
+  elephantReadyToLaunch: 0
 --- !u!65 &1695159408
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1892,7 +1903,7 @@ GameObject:
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 8
   m_IsActive: 1
 --- !u!4 &1883432746
 Transform:
@@ -2073,6 +2084,14 @@ Prefab:
     - target: {fileID: 400002, guid: bb33d72b95b0575448b019d8fea3129c, type: 3}
       propertyPath: m_RootOrder
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 100002, guid: bb33d72b95b0575448b019d8fea3129c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: bb33d72b95b0575448b019d8fea3129c, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: bb33d72b95b0575448b019d8fea3129c, type: 3}
