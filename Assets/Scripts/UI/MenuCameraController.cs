@@ -7,10 +7,9 @@ namespace LotsOfTowers.UI {
 		private Transform mount;
 
 		public float speed = 0.1f;
-		public float zoom = 1;
 
 		public void Awake() {
-			SetActiveMenu(FindObjectOfType<Canvas>().gameObject);
+			SetActiveMenu(GameObject.Find("Menu/Main"));
 		}
 
 		public void SetActiveMenu(GameObject menu) {
