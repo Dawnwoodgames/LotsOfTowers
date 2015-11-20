@@ -1,4 +1,5 @@
-﻿using SmartLocalization;
+﻿using LotsOfTowers.Framework;
+using SmartLocalization;
 
 namespace LotsOfTowers
 {

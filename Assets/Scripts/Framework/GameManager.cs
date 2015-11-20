@@ -1,13 +1,19 @@
 ﻿using LotsOfTowers.Actors;
 using SmartLocalization;
 using System;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace LotsOfTowers.Framework
 {
+	[RequireComponent(typeof(Canvas))]
+	[RequireComponent(typeof(CanvasRenderer))]
 	public class GameManager : MonoBehaviour
 	{
+		private Canvas canvas;
+		private Image fader;
 		private Player player;
 		private Transform spawnPoint;
 		
@@ -30,7 +36,12 @@ namespace LotsOfTowers.Framework
 		public Transform SpawnPoint {
 			get { return spawnPoint; }
 		}
-		
+
+		static GameManager() {
+			try {
+				GameManager.Instance = new GameObject("Game Manager", typeof(GameManager)).GetComponent<GameManager>();
+			} catch (UnityException) { }
+		}
 		
 		public void Awake()
 		{
@@ -44,15 +55,47 @@ namespace LotsOfTowers.Framework
 			LanguageManager.Instance.ChangeLanguage(Language);
 			OnLevelWasLoaded(Application.loadedLevel);
 			Physics.gravity = new Vector3(0, -35, 0);
+
+			this.canvas = GetComponent<Canvas>();
+			this.fader = new GameObject ("Transition Fader", typeof(Image)).GetComponent<Image>();
+		}
+
+		public void FadeIn() {
+			StopAllCoroutines();
+			StartCoroutine(FadeInCoroutine());
+		}
+
+		private IEnumerator FadeInCoroutine() {
+			while (fader.color.a > 0.01f) {
+				fader.color = Color.Lerp(fader.color, Color.clear, 0.1f);
+				yield return null;
+			}
+		}
+
+		public void FadeOut() {
+			StopAllCoroutines();
+			StartCoroutine(FadeOutCoroutine());
+		}
+
+		private IEnumerator FadeOutCoroutine() {
+			while (fader.color.a < 0.99f) {
+				fader.color = Color.Lerp(fader.color, Color.black, 0.1f);
+				yield return null;
+			}
 		}
 		
 		public void OnLevelWasLoaded(int level) {
-			if (player == null) {
-				// Try to find the player
+			try {
 				player = FindObjectOfType<Player>();
-			}
-			
-			spawnPoint = GameObject.Find("Level/Spawn Point").transform;
+				spawnPoint = GameObject.Find("Level/Spawn Point").transform;
+			} catch (Exception) { }
+		}
+
+		public void Start() {
+			canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+			fader.color = Color.clear;
+			fader.rectTransform.sizeDelta = new Vector2(Screen.width, Screen.height);
+			fader.transform.SetParent(transform, false);
 		}
 	}
 }
