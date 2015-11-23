@@ -54,11 +54,13 @@ namespace LotsOfTowers
 			
 			DontDestroyOnLoad(this);
 			LanguageManager.Instance.ChangeLanguage(Language);
+			LanguageManager.Instance.name = "Language Manager";
+			LanguageManager.Instance.transform.SetParent(transform, false);
 			OnLevelWasLoaded(Application.loadedLevel);
 			Physics.gravity = new Vector3(0, -35, 0);
 
 			this.canvas = GetComponent<Canvas>();
-			this.fader = new GameObject("Transition Fader", typeof(Image)).GetComponent<Image>();
+			this.fader = new GameObject ("Transition Fader", typeof(Image)).GetComponent<Image> ();
 		}
 
 		public void FadeIn() {
@@ -92,12 +94,53 @@ namespace LotsOfTowers
 				yield return null;
 			}
 		}
+
+		public void LoadLevel(int index) {
+			StopAllCoroutines();
+			StartCoroutine(LoadLevelCoroutine(index));
+		}
+
+		private IEnumerator LoadLevelCoroutine(int index) {
+			while (!hasStarted) {
+				yield return null;
+			}
+			
+			while (fader.color.a < 0.99f) {
+				fader.color = Color.Lerp(fader.color, Color.black, 0.1f);
+				yield return null;
+			}
+
+			Application.LoadLevel(index);
+			
+			while (fader.color.a > 0.01f) {
+				fader.color = Color.Lerp(fader.color, Color.clear, 0.1f);
+				yield return null;
+			}
+		}
 		
-		public void OnLevelWasLoaded(int level) {
+		public void OnLevelWasLoaded(int index) {
 			try {
 				player = FindObjectOfType<Player>();
 				spawnPoint = GameObject.Find("Level/Spawn Point").transform;
 			} catch (Exception) { }
+		}
+
+		public void Quit() {
+			StopAllCoroutines();
+			StartCoroutine(QuitCoroutine());
+		}
+
+		private IEnumerator QuitCoroutine() {
+			while (!hasStarted) {
+				yield return null;
+			}
+			
+			while (fader.color.a < 0.99f) {
+				fader.color = Color.Lerp(fader.color, Color.black, 0.1f);
+				yield return null;
+			}
+
+			Application.Quit();
 		}
 
 		public void Start() {

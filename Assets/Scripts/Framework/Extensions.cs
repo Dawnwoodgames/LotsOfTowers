@@ -7,6 +7,11 @@ namespace LotsOfTowers
 	// Do not change
 	public static class Extensions
 	{
+
+		static Extensions() {
+			GameManager.Instance.Language = GameManager.Instance.Language;
+		}
+
 		// Usage:
 		// string s = "tooltips.jump.title";
 		// s.Localize();
