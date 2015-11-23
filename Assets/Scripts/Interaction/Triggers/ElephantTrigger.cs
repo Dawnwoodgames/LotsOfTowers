@@ -44,8 +44,9 @@ namespace LotsOfTowers.Interaction.Triggers
         {
             if (coll.name == "RotateElephantTrigger")
             {
+                Debug.Log("esd");
                 transform.rotation = new Quaternion(0, 0, transform.rotation.y - 0.3f, 0);
-                StartCoroutine(Wait(2));
+                StartCoroutine(Wait(1));
             }
         }
         IEnumerator Wait(int amount)

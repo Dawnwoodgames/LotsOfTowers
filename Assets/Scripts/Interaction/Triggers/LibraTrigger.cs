@@ -16,6 +16,7 @@ namespace LotsOfTowers.Interaction.Triggers
             {
                 playerOnLibra = true;
                 this.transform.localPosition = new Vector3(-10.49f, -5f, 1f);
+                libra.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             }
             if (coll.tag == "Player" && libra.transform.rotation.x >= 13 && playerOnLibra)
             {
