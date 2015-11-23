@@ -11,7 +11,7 @@ namespace LotsOfTowers.Interaction.Triggers
         private LibraTrigger triggerScript;
         private NavMeshAgent agent;
 
-        private bool agentActive = false;
+        public bool agentActive = false;
         private bool elephantStrafes = false;
 
         void Start()
@@ -44,7 +44,6 @@ namespace LotsOfTowers.Interaction.Triggers
         {
             if (coll.name == "RotateElephantTrigger")
             {
-                Debug.Log("esd");
                 transform.rotation = new Quaternion(0, 0, transform.rotation.y - 0.3f, 0);
                 StartCoroutine(Wait(1));
             }
