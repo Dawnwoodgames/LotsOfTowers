@@ -46,7 +46,7 @@ namespace LotsOfTowers
 		
 		public void Awake()
 		{
-			if (FindObjectsOfType<GameManager> ().Length > 1) {
+			if (FindObjectsOfType<GameManager>().Length > 1) {
 				Destroy (gameObject);
 			} else {
 				GameManager.Instance = this;
@@ -58,7 +58,7 @@ namespace LotsOfTowers
 			Physics.gravity = new Vector3(0, -35, 0);
 
 			this.canvas = GetComponent<Canvas>();
-			this.fader = new GameObject ("Transition Fader", typeof(Image)).GetComponent<Image>();
+			this.fader = new GameObject("Transition Fader", typeof(Image)).GetComponent<Image>();
 		}
 
 		public void FadeIn() {
