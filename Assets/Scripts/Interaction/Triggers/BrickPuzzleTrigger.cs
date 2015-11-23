@@ -48,7 +48,7 @@ namespace LotsOfTowers.Interaction.Triggers
 			snapArea.SetActive(true);
 			foreach (Transform child in fractures)
 			{
-				child.GetComponent<Rigidbody>().mass = 0.1f;
+				child.GetComponent<Rigidbody>().mass = 0.05f;
 			}
 		}
 	}
