@@ -6,8 +6,6 @@ namespace LotsOfTowers.Actors
 {
 	//We need the following components to make the player work
 	[RequireComponent(typeof(Rigidbody))]
-	[RequireComponent(typeof(CapsuleCollider))]
-    [RequireComponent(typeof(BoxCollider))]
     [RequireComponent(typeof(Player))]
 
 	public class PlayerController : MonoBehaviour
@@ -42,8 +40,6 @@ namespace LotsOfTowers.Actors
 			capsule = GetComponent<CapsuleCollider>();
 			capsuleHeight = capsule.height;
 			capsuleCenter = capsule.center;
-            box = GetComponent<BoxCollider>();
-            boxHeight = box.size.y;
 
 			//Get camera transform
 			if (Camera.main != null)
@@ -76,7 +72,6 @@ namespace LotsOfTowers.Actors
 			//Apply movement, jumping and rotation
 			movement = new Vector3(h, 0f, v);
 			Move(movement);
-			
         }
 
         private void Crouch(bool crouch)

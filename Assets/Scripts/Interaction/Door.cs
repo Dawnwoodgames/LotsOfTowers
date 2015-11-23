@@ -16,7 +16,7 @@ namespace LotsOfTowers.Interaction
 				if (player.GetComponentInChildren<MirrorKey>() != null)
                 {
                     OpenDoor(key);
-                    GameObject.Find("Switch").SetActive(false);
+                    GameObject.Find("PressurePlate").SetActive(false);
                 }
 					
                 
