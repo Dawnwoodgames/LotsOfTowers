@@ -5,6 +5,7 @@ using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using LotsOfTowers.UI;
 
 namespace LotsOfTowers
 {
@@ -98,6 +99,20 @@ namespace LotsOfTowers
 				player = FindObjectOfType<Player>();
 				spawnPoint = GameObject.Find("Level/Spawn Point").transform;
 			} catch (Exception) { }
+		}
+
+		public UITooltip ShowTooltip(String resourceName) {
+			if (PlayerPrefs.GetInt ("bTooltipBeenShown" + resourceName) > 0) {
+				PlayerPrefs.SetInt("bTooltipBeenShown" + resourceName, 1);
+				UITooltip tooltip = new GameObject ("UITooltip", typeof(UITooltip)).GetComponent<UITooltip> ();
+				tooltip.duration = 5;
+				tooltip.gameObject.transform.SetParent (transform, false);
+				tooltip.GetComponent<Image> ().sprite = Resources.Load<Sprite> ("Textures/" + resourceName);
+
+				return tooltip;
+			}
+
+			return null;
 		}
 
 		public void Start() {
