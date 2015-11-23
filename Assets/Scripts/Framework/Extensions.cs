@@ -12,7 +12,8 @@ namespace LotsOfTowers
 		// s.Localize();
 		public static string Localize(this string str)
 		{
-			return LanguageManager.Instance.GetTextValue(str);
+			string localized = LanguageManager.Instance.GetTextValue(str);
+			return localized.Equals(string.Empty) ? str : localized;
 		}
 	}
 }
