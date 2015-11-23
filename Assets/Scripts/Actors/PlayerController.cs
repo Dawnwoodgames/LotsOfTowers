@@ -57,7 +57,7 @@ namespace LotsOfTowers.Actors
         }
 
 		private void FixedUpdate()
-		{ 
+		{
 			//Get Input controls
 			float h = CrossPlatformInputManager.GetAxis("Horizontal");
 			float v = CrossPlatformInputManager.GetAxis("Vertical");
