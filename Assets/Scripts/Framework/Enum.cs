@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Assets.Scripts.Framework
+namespace LotsOfTowers.Framework
 {
 	public enum State
 	{
@@ -13,4 +13,10 @@ namespace Assets.Scripts.Framework
 		Invisible,
 		Charging
 	}
+
+    public enum Direction
+    {
+        Forward,
+        Backward
+    }
 }
