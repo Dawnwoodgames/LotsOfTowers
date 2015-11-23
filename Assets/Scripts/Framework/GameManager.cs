@@ -6,7 +6,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace LotsOfTowers.Framework
+namespace LotsOfTowers
 {
 	[RequireComponent(typeof(Canvas))]
 	[RequireComponent(typeof(CanvasRenderer))]
@@ -14,6 +14,7 @@ namespace LotsOfTowers.Framework
 	{
 		private Canvas canvas;
 		private Image fader;
+		private bool hasStarted;
 		private Player player;
 		private Transform spawnPoint;
 		
@@ -66,6 +67,10 @@ namespace LotsOfTowers.Framework
 		}
 
 		private IEnumerator FadeInCoroutine() {
+			while (!hasStarted) {
+				yield return null;
+			}
+
 			while (fader.color.a > 0.01f) {
 				fader.color = Color.Lerp(fader.color, Color.clear, 0.1f);
 				yield return null;
@@ -78,6 +83,10 @@ namespace LotsOfTowers.Framework
 		}
 
 		private IEnumerator FadeOutCoroutine() {
+			while (!hasStarted) {
+				yield return null;
+			}
+
 			while (fader.color.a < 0.99f) {
 				fader.color = Color.Lerp(fader.color, Color.black, 0.1f);
 				yield return null;
@@ -96,6 +105,7 @@ namespace LotsOfTowers.Framework
 			fader.color = Color.clear;
 			fader.rectTransform.sizeDelta = new Vector2(Screen.width, Screen.height);
 			fader.transform.SetParent(transform, false);
+			hasStarted = true;
 		}
 	}
 }
