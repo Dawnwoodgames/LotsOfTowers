@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using LotsOfTowers.Actors;
 using LotsOfTowers.Framework;
 
+
 namespace LotsOfTowers.Interaction
 {
     public class BlowWind : MonoBehaviour
@@ -13,50 +14,51 @@ namespace LotsOfTowers.Interaction
         public Direction direction = Direction.Forward;
 
         private float blockMass;
-        private bool active = false;
 
         private Vector3 dir;
         private List<GameObject> collisions = new List<GameObject>();
 
-        private bool hasBlock = false;
-        private bool hasPlayer = false;
+        private bool hasPlayer;
+        private bool hasBlock;
 
+        private GameObject block;
+        private GameObject player;
+        
         void Start()
         {
             blockMass = GameObject.Find("MovableByWindBlockOne").GetComponent<Rigidbody>().mass;
-
             DetermineDirection();
 
+            block = GameObject.FindGameObjectWithTag("MovableByWind");
+            player = GameObject.FindGameObjectWithTag("Player");
         }
-
-
+        
         void Update()
         {
+            hasPlayer = false;
+            hasBlock = false;
+            checkCollisions();
             Wind();
         }
 
-       
-
-        private void Wind()
+        private void checkCollisions()
         {
             foreach (GameObject collision in collisions)
             {
-                CheckCollisions(collision);
-
-                
-                if (hasPlayer && collision.GetComponent<Player>().IsElephant)
+                if(collision.tag == "Player")
                 {
-                    // Player can Push it.
-                    GameObject.Find("MovableByWindBlockOne").GetComponent<Rigidbody>().mass = 0.1f;
-                    collision.GetComponent<Rigidbody>().AddForce(dir * force / 5, ForceMode.Acceleration);
+                    hasPlayer = true;
                 }
-                else
+                if(collision.tag == "MovableByWind")
                 {
-                    GameObject.Find("MovableByWindBlockOne").GetComponent<Rigidbody>().mass = blockMass;
-                    collision.GetComponent<Rigidbody>().AddForce(dir * force, ForceMode.Acceleration);
+                    hasBlock = true;
                 }
-
             }
+        }
+
+        private void Wind()
+        {
+            block.GetComponent<Rigidbody>().AddForce(dir * force, ForceMode.Acceleration);
         }
 
 
@@ -72,32 +74,10 @@ namespace LotsOfTowers.Interaction
         {
             if (!col.GetComponent<Rigidbody>().isKinematic)
             {
-                Debug.Log(col.name);
                 collisions.Remove(col.gameObject);
             }
         }
 
-        // Check the collisions and set the right variables to the right values
-        private void CheckCollisions(GameObject c)
-        {
-            if (c.tag == "Player")
-            {
-                hasPlayer = true;
-            }
-            else
-            {
-                hasPlayer = false;
-            }
-
-            if (c.tag == "MovableByWind")
-            {
-                hasBlock = true;
-            }
-            else
-            {
-                hasBlock = false;
-            }
-        }
 
         // Sets the direction the wind is blowing
         private void DetermineDirection()
