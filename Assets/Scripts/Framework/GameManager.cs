@@ -102,7 +102,7 @@ namespace LotsOfTowers
 		}
 
 		public UITooltip ShowTooltip(String resourceName) {
-			if (PlayerPrefs.GetInt ("bTooltipBeenShown" + resourceName) > 0) {
+			if (PlayerPrefs.GetInt ("bTooltipBeenShown" + resourceName) != 1) {
 				PlayerPrefs.SetInt("bTooltipBeenShown" + resourceName, 1);
 				UITooltip tooltip = new GameObject ("UITooltip", typeof(UITooltip)).GetComponent<UITooltip> ();
 				tooltip.duration = 5;
