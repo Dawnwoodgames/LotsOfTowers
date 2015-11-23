@@ -17,6 +17,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &129502
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 485642}
+  - 65: {fileID: 6589012}
+  m_Layer: 0
+  m_Name: ElephantLaunch
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &145544
 GameObject:
   m_ObjectHideFlags: 0
@@ -81,6 +97,7 @@ Transform:
   - {fileID: 460810}
   - {fileID: 457650}
   - {fileID: 478366}
+  - {fileID: 485642}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &457650
@@ -90,8 +107,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 103064}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4, y: -1, z: 0}
-  m_LocalScale: {x: 1.5, y: .5, z: 1.5}
+  m_LocalPosition: {x: 4.19999981, y: -.0500000007, z: 0}
+  m_LocalScale: {x: .5, y: .5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 452330}
   m_RootOrder: 1
@@ -101,7 +118,7 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 159382}
-  m_LocalRotation: {x: .0922960192, y: .701057076, z: .0922959298, w: -.701057732}
+  m_LocalRotation: {x: .0818857849, y: .702349484, z: -.0818857998, w: .702349365}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 2, y: .200000003, z: 10}
   m_Children: []
@@ -119,6 +136,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 452330}
   m_RootOrder: 2
+--- !u!4 &485642
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129502}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.5999999, y: 2.23000002, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 452330}
+  m_RootOrder: 3
 --- !u!23 &2326914
 MeshRenderer:
   m_ObjectHideFlags: 1
@@ -163,7 +192,7 @@ Rigidbody:
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
-  m_Constraints: 0
+  m_Constraints: 16
   m_CollisionDetection: 0
 --- !u!59 &5968110
 HingeJoint:
@@ -175,7 +204,7 @@ HingeJoint:
   m_Anchor: {x: 0, y: .5, z: 0}
   m_Axis: {x: 1, y: 0, z: 0}
   m_AutoConfigureConnectedAnchor: 1
-  m_ConnectedAnchor: {x: -.774118125, y: 17.5965919, z: -2.38418583e-08}
+  m_ConnectedAnchor: {x: -.776995063, y: 17.5973186, z: -4.47034854e-09}
   m_UseSpring: 0
   m_Spring:
     spring: 0
@@ -215,6 +244,18 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 103064}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &6589012
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 129502}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
   m_Enabled: 1
