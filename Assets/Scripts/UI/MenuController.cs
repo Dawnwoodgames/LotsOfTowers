@@ -6,6 +6,7 @@ using UnityEngine.UI;
 namespace LotsOfTowers.UI {
 	public sealed class MenuController : MonoBehaviour {
 		private CameraController camera;
+		private GameObject currentActiveMenu;
 		private EventSystem eventSystem;
 		private Text[] labels;
 		private GameObject[] menus;
@@ -30,12 +31,19 @@ namespace LotsOfTowers.UI {
 		public void SetActiveMenu(GameObject menu) {
 			if (menus.Contains(menu)) {
 				camera.mount = GameObject.Find(name + "/" + menu.name + "/Mounting Point").transform;
+				currentActiveMenu = menu;
 				eventSystem.SetSelectedGameObject(menu.GetComponentsInChildren<Selectable>().FirstOrDefault().gameObject);
 			}
 		}
 
 		public void Start() {
 			SetActiveMenu(menus.FirstOrDefault());
+		}
+
+		public void Update() {
+			if (eventSystem.currentSelectedGameObject == null && currentActiveMenu != null) {
+				eventSystem.SetSelectedGameObject(currentActiveMenu.GetComponentsInChildren<Selectable>().FirstOrDefault().gameObject);
+			}
 		}
 
 		// Event handles used by the menu
