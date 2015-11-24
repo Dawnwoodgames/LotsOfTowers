@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 using System.Collections;
+using UnityStandardAssets.CrossPlatformInput;
+using LotsOfTowers.Actors;
 
 public class Binocular : MonoBehaviour {
 
@@ -20,9 +22,13 @@ public class Binocular : MonoBehaviour {
 
     }
 
-    void OnCollisionEnter()
+    void OnTriggerStay(Collider coll)
     {
-        isDisplayed = true;
-        levelPreview.gameObject.SetActive(true);
+		if(CrossPlatformInputManager.GetButton("Submit") && coll.tag == "Player")
+		{
+			isDisplayed = true;
+			levelPreview.gameObject.SetActive(true);
+			coll.GetComponent<PlayerController>().enabled = false;
+		}
     }
 }
