@@ -329,6 +329,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9f08605610feb481082d39c596f82608, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mount: {fileID: 0}
   speed: .0700000003
 --- !u!81 &122803036
 AudioListener:
@@ -1455,6 +1456,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 27551374740354e8dbeae2be6a76006d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  colors:
+    m_NormalColor: {r: 0, g: 0, b: 0, a: 0}
+    m_HighlightedColor: {r: 0, g: 0, b: 0, a: 0}
+    m_PressedColor: {r: 0, g: 0, b: 0, a: 0}
+    m_DisabledColor: {r: 0, g: 0, b: 0, a: 0}
+    m_ColorMultiplier: 0
+    m_FadeDuration: 0
+  font: {fileID: 0}
 --- !u!1 &1223863943
 GameObject:
   m_ObjectHideFlags: 0
@@ -1530,7 +1539,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 122803035}
+      - m_Target: {fileID: 1125067698}
         m_MethodName: SetActiveMenu
         m_Mode: 2
         m_Arguments:
@@ -2397,7 +2406,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 122803035}
+      - m_Target: {fileID: 1125067698}
         m_MethodName: SetActiveMenu
         m_Mode: 2
         m_Arguments:
@@ -2643,7 +2652,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
     m_HighlightedColor: {r: .960784316, g: .960784316, b: .960784316, a: 1}
     m_PressedColor: {r: .784313738, g: .784313738, b: .784313738, a: 1}
     m_DisabledColor: {r: .784313738, g: .784313738, b: .784313738, a: .501960814}
