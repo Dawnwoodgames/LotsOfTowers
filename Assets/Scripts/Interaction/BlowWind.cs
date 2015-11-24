@@ -9,24 +9,22 @@ namespace LotsOfTowers.Interaction
 {
     public class BlowWind : MonoBehaviour
     {
-
         public float force = 50f;
         public Direction direction = Direction.Forward;
-
-        private float blockMass;
 
         private Vector3 dir;
         private List<GameObject> collisions = new List<GameObject>();
 
         private bool hasPlayer;
         private bool hasBlock;
+        private bool active;
 
         private GameObject block;
         private GameObject player;
         
+        
         void Start()
         {
-            blockMass = GameObject.Find("MovableByWindBlockOne").GetComponent<Rigidbody>().mass;
             DetermineDirection();
 
             block = GameObject.FindGameObjectWithTag("MovableByWind");
@@ -41,6 +39,7 @@ namespace LotsOfTowers.Interaction
             Wind();
         }
 
+        //
         private void checkCollisions()
         {
             foreach (GameObject collision in collisions)
@@ -58,12 +57,16 @@ namespace LotsOfTowers.Interaction
 
         private void Wind()
         {
-            block.GetComponent<Rigidbody>().AddForce(dir * force, ForceMode.Acceleration);
+            if (active)
+            {
+                block.GetComponent<Rigidbody>().AddForce(dir * force, ForceMode.Acceleration);
+            }
         }
 
 
-        void OnTriggerEnter(Collider col)
+        void OnTriggerStay(Collider col)
         {
+            active = true;
             if (!col.GetComponent<Rigidbody>().isKinematic)
             {
                 collisions.Add(col.gameObject);
@@ -72,6 +75,7 @@ namespace LotsOfTowers.Interaction
 
         void OnTriggerExit(Collider col)
         {
+            active = false;
             if (!col.GetComponent<Rigidbody>().isKinematic)
             {
                 collisions.Remove(col.gameObject);
