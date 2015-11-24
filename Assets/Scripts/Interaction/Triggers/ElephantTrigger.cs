@@ -30,9 +30,13 @@ namespace LotsOfTowers.Interaction.Triggers
             if (agentActive)
                 agent.SetDestination(elephantLaunch.transform.position);
 
-            // Move elepgant forward when elephant is on launch position AND player is on libra
+            // Move elephant forward when elephant is on launch position AND player is on libra
             if (triggerScript.elephantReadyToLaunch)
+            {
+                if (triggerScript.playerOnLibra)
+                    triggerScript.libra.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
                 MoveElephant();
+            }
         }
 
         private void MoveElephant() {
@@ -45,6 +49,7 @@ namespace LotsOfTowers.Interaction.Triggers
             if (coll.name == "RotateElephantTrigger")
             {
                 transform.rotation = new Quaternion(0, 0, transform.rotation.y - 0.3f, 0);
+                triggerScript.libra.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX;
                 StartCoroutine(Wait(1));
             }
         }

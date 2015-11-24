@@ -13,5 +13,20 @@ namespace LotsOfTowers.Interaction.Triggers
                 GameObject.Find("PlayerTrigger").GetComponent<LibraTrigger>().elephantReadyToLaunch = true;
             }
         }
+
+        private void OnTriggerExit(Collider coll)
+        {
+            if (coll.name == "NpcElephant")
+            {
+                StartCoroutine(Wait(.5f));
+            }
+        }
+
+        IEnumerator Wait(float amount)
+        {
+            yield return new WaitForSeconds(amount);
+            Debug.Log(transform.forward);
+            GameObject.Find("Player").GetComponent<Rigidbody>().AddForce(Vector3.left * 10, ForceMode.Impulse);
+        }
     }
 }
