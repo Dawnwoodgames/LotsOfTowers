@@ -30,6 +30,7 @@ namespace LotsOfTowers.UI {
 		public void SetActiveMenu(GameObject menu) {
 			if (menus.Contains(menu)) {
 				camera.mount = GameObject.Find(name + "/" + menu.name + "/Mounting Point").transform;
+				eventSystem.SetSelectedGameObject(menu.GetComponentsInChildren<Selectable>().FirstOrDefault().gameObject);
 			}
 		}
 

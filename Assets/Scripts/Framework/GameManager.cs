@@ -1,11 +1,11 @@
 ﻿using LotsOfTowers.Actors;
+using LotsOfTowers.UI;
 using SmartLocalization;
 using System;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
-using LotsOfTowers.UI;
 
 namespace LotsOfTowers
 {
