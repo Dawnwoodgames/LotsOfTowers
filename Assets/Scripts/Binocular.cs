@@ -9,10 +9,12 @@ public class Binocular : MonoBehaviour {
     public Image levelPreview;
     bool isDisplayed = false;
     RectTransform imageTransform;
+    Vector2 startSize;
 	// Use this for initialization
 	void Start () {
         levelPreview.gameObject.SetActive(false);
         imageTransform = levelPreview.GetComponent<RectTransform>();
+        startSize = imageTransform.sizeDelta;
 	}
 	
 	// Update is called once per frame
@@ -30,5 +32,14 @@ public class Binocular : MonoBehaviour {
 			levelPreview.gameObject.SetActive(true);
 			coll.GetComponent<PlayerController>().enabled = false;
 		}
+    }
+    void OnTriggerExit(Collider coll)
+    {
+        if(coll.tag == "Player")
+        {
+            isDisplayed = false;
+            imageTransform.sizeDelta = startSize;
+            levelPreview.gameObject.SetActive(false);
+        }
     }
 }
