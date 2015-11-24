@@ -5,6 +5,7 @@ using System.Collections;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
+using LotsOfTowers.UI;
 
 namespace LotsOfTowers
 {
@@ -125,6 +126,7 @@ namespace LotsOfTowers
 			} catch (Exception) { }
 		}
 
+
 		public void Quit() {
 			StopAllCoroutines();
 			StartCoroutine(QuitCoroutine());
@@ -134,13 +136,27 @@ namespace LotsOfTowers
 			while (!hasStarted) {
 				yield return null;
 			}
-			
+				
 			while (fader.color.a < 0.99f) {
-				fader.color = Color.Lerp(fader.color, Color.black, 0.1f);
+				fader.color = Color.Lerp (fader.color, Color.black, 0.1f);
 				yield return null;
 			}
 
-			Application.Quit();
+			Application.Quit ();
+		}
+
+		public UITooltip ShowTooltip(String resourceName) {
+			if (PlayerPrefs.GetInt ("bTooltipBeenShown" + resourceName) != 1) {
+				PlayerPrefs.SetInt("bTooltipBeenShown" + resourceName, 1);
+				UITooltip tooltip = new GameObject ("UITooltip", typeof(UITooltip)).GetComponent<UITooltip> ();
+				tooltip.duration = 5;
+				tooltip.gameObject.transform.SetParent (transform, false);
+				tooltip.GetComponent<Image> ().sprite = Resources.Load<Sprite> ("Textures/" + resourceName);
+
+				return tooltip;
+			}
+
+			return null;
 		}
 
 		public void Start() {

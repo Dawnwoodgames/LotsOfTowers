@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using LotsOfTowers.ToolTip;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -118,7 +117,6 @@ namespace LotsOfTowers.Actors
 
 		public void Start()
 		{
-			Tooltip.ShowTooltip(tooltip, "Movement", false, new string[] { "Horizontal", "Vertical" });
             hudUi = GameObject.Find("HUD");
 		}
 
