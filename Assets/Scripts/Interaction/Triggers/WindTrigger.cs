@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Assets.Scripts.Framework;
+using LotsOfTowers.Framework;
 using System.Collections.Generic;
 using System.Linq;
 using LotsOfTowers.Actors;
