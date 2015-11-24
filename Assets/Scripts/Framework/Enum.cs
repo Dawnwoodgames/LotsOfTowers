@@ -19,11 +19,4 @@ namespace LotsOfTowers.Framework
         Forward,
         Backward
     }
-
-    public enum OpenDoorDirection
-    {
-        Leftward,
-        Rightward,
-        Squidward
-    }
 }

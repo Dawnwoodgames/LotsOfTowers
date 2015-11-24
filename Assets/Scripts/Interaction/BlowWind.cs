@@ -21,14 +21,16 @@ namespace LotsOfTowers.Interaction
 
         private GameObject block;
         private GameObject player;
-        
-        
+
+        private ParticleSystem windParticles; // We can use this to maybe stop the windparticles at the block?
+
         void Start()
         {
             DetermineDirection();
 
             block = GameObject.FindGameObjectWithTag("MovableByWind");
             player = GameObject.FindGameObjectWithTag("Player");
+
         }
         
         void Update()
@@ -60,6 +62,17 @@ namespace LotsOfTowers.Interaction
             if (active)
             {
                 block.GetComponent<Rigidbody>().AddForce(dir * force, ForceMode.Acceleration);
+                if (!hasBlock)
+                {
+                    if (player.GetComponent<Player>().IsElephant)
+                    {
+
+                    }
+                    else
+                    {
+                        player.GetComponent<Rigidbody>().AddForce(dir * force, ForceMode.Acceleration);
+                    }
+                }
             }
         }
 
