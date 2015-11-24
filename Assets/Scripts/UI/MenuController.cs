@@ -9,16 +9,17 @@ namespace LotsOfTowers.UI {
 		private EventSystem eventSystem;
 		private Text[] labels;
 		private GameObject[] menus;
-		
-		public ColorBlock colors; // Colors used for all UI elements in this controller
-		public Font font; // Font used for all text elements in this controller
+
+		public ColorBlock colors = ColorBlock.defaultColorBlock;
+		public Font font = Resources.GetBuiltinResource<Font>("Arial.ttf");
 
 		public void Awake() {
 			this.camera = FindObjectOfType<CameraController>();
 			this.eventSystem = FindObjectOfType<EventSystem>();
-			this.font = (font == null) ? Resources.GetBuiltinResource<Font>("Arial.ttf") : font;
 			this.labels = GetComponentsInChildren<Text>();
 			this.menus = GetComponentsInChildren<Canvas>().Select(c => c.gameObject).ToArray();
+
+			GetComponentsInChildren<Selectable>().ToList().ForEach(s => s.colors = colors);
 
 			foreach (Text label in labels) {
 				label.font = font;
@@ -34,11 +35,6 @@ namespace LotsOfTowers.UI {
 
 		public void Start() {
 			SetActiveMenu(menus.FirstOrDefault());
-
-			Button b = GetComponentInChildren<Button> ();
-			Debug.Log ("normal: " + b.colors.normalColor);
-			Debug.Log ("highlight: " + b.colors.highlightedColor);
-			Debug.Log ("pressed: " + b.colors.pressedColor);
 		}
 
 		// Event handles used by the menu
