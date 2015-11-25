@@ -16,7 +16,6 @@ namespace LotsOfTowers
 		private Canvas canvas;
 		private Image fader;
 		private bool hasStarted;
-		private Player player;
 		private Transform spawnPoint;
 		
 		public static bool Alive { get { return Instance != null; } }
@@ -121,7 +120,6 @@ namespace LotsOfTowers
 		
 		public void OnLevelWasLoaded(int index) {
 			try {
-				player = FindObjectOfType<Player>();
 				spawnPoint = GameObject.Find("Level/Spawn Point").transform;
 			} catch (Exception) { }
 		}
