@@ -25,7 +25,6 @@ namespace LotsOfTowers.Interaction.Triggers
         IEnumerator Wait(float amount)
         {
             yield return new WaitForSeconds(amount);
-            Debug.Log(transform.forward);
             GameObject.Find("Player").GetComponent<Rigidbody>().AddForce(Vector3.left * 10, ForceMode.Impulse);
         }
     }
