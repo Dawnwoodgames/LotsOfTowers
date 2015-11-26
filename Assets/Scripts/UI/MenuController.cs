@@ -1,10 +1,13 @@
 ﻿using System.Linq;
 using UnityEngine;
+using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace LotsOfTowers.UI {
 	public sealed class MenuController : MonoBehaviour {
 		private new CameraController camera;
+		private GameObject currentMenu;
+		private EventSystem eventSystem;
 		private Text[] labels;
 		private GameObject[] menus;
 
@@ -13,6 +16,7 @@ namespace LotsOfTowers.UI {
 
 		public void Awake() {
 			this.camera = FindObjectOfType<CameraController>();
+			this.eventSystem = FindObjectOfType<EventSystem>();
 			this.font = (font == null) ? Resources.GetBuiltinResource<Font>("Arial.ttf") : font;
 			this.labels = GetComponentsInChildren<Text>();
 			this.menus = GetComponentsInChildren<Canvas>().Select(c => c.gameObject).ToArray();
@@ -27,12 +31,23 @@ namespace LotsOfTowers.UI {
 
 		public void SetActiveMenu(GameObject menu) {
 			if (menus.Contains(menu)) {
-				camera.mount = GameObject.Find(name + "/" + menu.name + "/Mounting Point").transform;
+				camera.mount = GameObject.Find(menu.name + "/Mounting Point").transform;
+				currentMenu = menu;
+
+				if (eventSystem.currentSelectedGameObject == null || eventSystem.currentSelectedGameObject.transform.parent.gameObject != menu) {
+					eventSystem.SetSelectedGameObject(menu.GetComponentsInChildren<Selectable>().FirstOrDefault().gameObject);
+				}
 			}
 		}
 
 		public void Start() {
 			SetActiveMenu(menus.FirstOrDefault());
+		}
+
+		public void Update() {
+			if (currentMenu != null && eventSystem.currentSelectedGameObject == null) {
+				eventSystem.SetSelectedGameObject(currentMenu.GetComponentsInChildren<Selectable>().FirstOrDefault().gameObject);
+			}
 		}
 
 		// Event handles used by the menu
