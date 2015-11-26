@@ -39,6 +39,8 @@ namespace LotsOfTowers.Interaction
             {
                 if (!waterFloats)
                     floatingWaterSystem.Play();
+                if (waterBasket.transform.localPosition.y < 1.05f)
+                    waterBasket.transform.Translate(Vector3.up * 0.07f * Time.deltaTime);
                 waterFloats = true;
             }
             else if (rotateSpeed < 20)
@@ -46,9 +48,7 @@ namespace LotsOfTowers.Interaction
                 waterFloats = false;
                 floatingWaterSystem.Stop();
             }
-
             gameObject.transform.Rotate(Vector3.up * rotateSpeed);
-            Debug.Log(rotateSpeed);
         }
 
         public float GetRotateSpeed() { return rotateSpeed; }
