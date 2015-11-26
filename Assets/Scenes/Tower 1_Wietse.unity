@@ -1346,7 +1346,6 @@ Transform:
   - {fileID: 354048817}
   - {fileID: 1009222352}
   - {fileID: 1610129957}
-  - {fileID: 183795565}
   - {fileID: 1409345234}
   m_Father: {fileID: 1895515729}
   m_RootOrder: 0
@@ -1722,87 +1721,6 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 178187663}
   m_Mesh: {fileID: 4300004, guid: e097d9ac12bd2d84aace7f1c36e1d421, type: 3}
---- !u!1 &183795564
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 100164, guid: 490a4874645ee4f43a3d0b85d78a4f4a, type: 3}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 183795565}
-  - 33: {fileID: 183795567}
-  - 23: {fileID: 183795566}
-  - 64: {fileID: 183795568}
-  m_Layer: 0
-  m_Name: KLAP_TRAP
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 0
---- !u!4 &183795565
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 400164, guid: 490a4874645ee4f43a3d0b85d78a4f4a, type: 3}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 183795564}
-  m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106829}
-  m_LocalPosition: {x: -1.61249328, y: .281528443, z: -11.4828186}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 153757568}
-  m_RootOrder: 77
---- !u!23 &183795566
-MeshRenderer:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 2300004, guid: 490a4874645ee4f43a3d0b85d78a4f4a,
-    type: 3}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 183795564}
-  m_Enabled: 1
-  m_CastShadows: 1
-  m_ReceiveShadows: 1
-  m_Materials:
-  - {fileID: 2100000, guid: b17ca71b5330dfa4eb4ed62b11aec5db, type: 2}
-  - {fileID: 2100000, guid: 8aff6043ad0efdb4ab4e317c3233138a, type: 2}
-  - {fileID: 2100000, guid: f0a92b7d9ea7e544e9009833c7f270d7, type: 2}
-  - {fileID: 2100000, guid: 5266b678e808c6746915ecd4894de59f, type: 2}
-  - {fileID: 2100000, guid: abbd5100d5d2c7d45adbd824686adae8, type: 2}
-  m_SubsetIndices: 
-  m_StaticBatchRoot: {fileID: 0}
-  m_UseLightProbes: 1
-  m_ReflectionProbeUsage: 1
-  m_ProbeAnchor: {fileID: 0}
-  m_ScaleInLightmap: 1
-  m_PreserveUVs: 0
-  m_IgnoreNormalsForChartDetection: 0
-  m_ImportantGI: 0
-  m_MinimumChartSize: 4
-  m_AutoUVMaxDistance: .5
-  m_AutoUVMaxAngle: 89
-  m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
---- !u!33 &183795567
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 3300004, guid: 490a4874645ee4f43a3d0b85d78a4f4a,
-    type: 3}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 183795564}
-  m_Mesh: {fileID: 4300352, guid: 490a4874645ee4f43a3d0b85d78a4f4a, type: 3}
---- !u!64 &183795568
-MeshCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 183795564}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Convex: 0
-  m_Mesh: {fileID: 4300352, guid: 490a4874645ee4f43a3d0b85d78a4f4a, type: 3}
 --- !u!1 &188268802
 GameObject:
   m_ObjectHideFlags: 0
@@ -4337,33 +4255,6 @@ MeshCollider:
   serializedVersion: 2
   m_Convex: 0
   m_Mesh: {fileID: 4300330, guid: 490a4874645ee4f43a3d0b85d78a4f4a, type: 3}
---- !u!1 &379840926
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 100000, guid: 43de5b24fd5605349bcff3259d84c3a3, type: 3}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 379840927}
-  m_Layer: 0
-  m_Name: deurtje voor timmetje
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &379840927
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 400000, guid: 43de5b24fd5605349bcff3259d84c3a3, type: 3}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 379840926}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 6.88000011, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 1448005462}
-  m_RootOrder: 8
 --- !u!1 &386708724
 GameObject:
   m_ObjectHideFlags: 0
@@ -13453,7 +13344,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 153757568}
-  m_RootOrder: 78
+  m_RootOrder: 77
 --- !u!64 &1409345235
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -13935,7 +13826,6 @@ Transform:
   - {fileID: 211689670}
   - {fileID: 819426264}
   - {fileID: 589214063}
-  - {fileID: 379840927}
   m_Father: {fileID: 1895515729}
   m_RootOrder: 2
 --- !u!1 &1467409597
