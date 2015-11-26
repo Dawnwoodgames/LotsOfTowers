@@ -23,6 +23,10 @@ namespace LotsOfTowers.UI {
 		public void Update() {
 			if (mounts.Contains(camera.mount.gameObject)) {
 				// Camera is looking at level select
+				if (eventSystem.currentSelectedGameObject == null) {
+					return;
+				}
+
 				if (currentSelectedInput.transform.parent != eventSystem.currentSelectedGameObject.transform.parent) {
 					menu.SetActiveMenu(eventSystem.currentSelectedGameObject.transform.parent.gameObject);
 				}

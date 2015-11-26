@@ -46,7 +46,7 @@ namespace LotsOfTowers.UI {
 
 		public void Update() {
 			if (currentMenu != null && eventSystem.currentSelectedGameObject == null) {
-				eventSystem.SetSelectedGameObject(currentMenu.GetComponentsInChildren<Selectable>().FirstOrDefault().gameObject);
+				SetActiveMenu(menus.FirstOrDefault());
 			}
 		}
 
