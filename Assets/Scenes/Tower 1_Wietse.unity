@@ -7320,6 +7320,10 @@ Transform:
   - {fileID: 236062281}
   m_Father: {fileID: 1689910037}
   m_RootOrder: 2
+--- !u!1 &727641549 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 148018, guid: c3b13c08264cdfa48910a5a9ac5b06d6, type: 2}
+  m_PrefabInternal: {fileID: 236062280}
 --- !u!1 &754342025
 GameObject:
   m_ObjectHideFlags: 0
@@ -18456,6 +18460,7 @@ GameObject:
   - 4: {fileID: 1988588355}
   - 114: {fileID: 1988588357}
   - 65: {fileID: 1988588356}
+  - 65: {fileID: 1988588358}
   m_Layer: 0
   m_Name: Segment2_Levelslider
   m_TagString: Untagged
@@ -18485,8 +18490,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 11.7227345, y: 1.81266832, z: 9.56548691}
-  m_Center: {x: -1.0164423, y: -.898645401, z: .0284471512}
+  m_Size: {x: 11.7227345, y: .846137047, z: 9.56548691}
+  m_Center: {x: -1.0164423, y: -1.38191223, z: .0284471512}
 --- !u!114 &1988588357
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -18499,9 +18504,24 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   toMove:
-  - {fileID: 696656885}
+  - {fileID: 12182896}
+  - {fileID: 427853362}
   - {fileID: 1079115144}
-  increaseBy: 10
+  - {fileID: 953270046}
+  - {fileID: 727641549}
+  increaseBy: 30
+--- !u!65 &1988588358
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1988588354}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.30558825, y: 3.42534733, z: 3.20357108}
+  m_Center: {x: .132688284, y: 1.10844231, z: .0868607759}
 --- !u!1 &2003046650
 GameObject:
   m_ObjectHideFlags: 0
