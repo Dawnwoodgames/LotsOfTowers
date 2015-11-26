@@ -7,6 +7,7 @@ namespace LotsOfTowers.Framework
 		public GameObject[] toMove;
 		private Vector3[] oldPosition;
 		public float increaseBy;
+        public float speed = 1f;
 		private bool moveUp = false;
 
 		void Start()
@@ -22,7 +23,7 @@ namespace LotsOfTowers.Framework
 				for (int obj = 0; obj < toMove.Length; obj++)
 				{
 					if (toMove[obj].transform.position.y < oldPosition[obj].y + increaseBy)
-						toMove[obj].transform.position = toMove[obj].transform.position + new Vector3(0, increaseBy * Time.deltaTime, 0);
+						toMove[obj].transform.position = toMove[obj].transform.position + new Vector3(0, increaseBy * Time.deltaTime * speed , 0);
 					else
 						toMove[obj].transform.position = new Vector3(toMove[obj].transform.position.x, oldPosition[obj].y + increaseBy, toMove[obj].transform.position.z);
 				}
@@ -30,7 +31,7 @@ namespace LotsOfTowers.Framework
 				for (int obj = 0; obj < toMove.Length; obj++)
 				{
 					if (toMove[obj].transform.position.y > oldPosition[obj].y)
-						toMove[obj].transform.position = toMove[obj].transform.position + new Vector3(0, -increaseBy * Time.deltaTime, 0);
+						toMove[obj].transform.position = toMove[obj].transform.position + new Vector3(0, -increaseBy * Time.deltaTime * speed, 0);
 					else
 						toMove[obj].transform.position = oldPosition[obj];
 				}
