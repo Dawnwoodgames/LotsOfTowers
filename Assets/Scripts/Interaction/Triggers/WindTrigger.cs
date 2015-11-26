@@ -13,6 +13,7 @@ namespace LotsOfTowers.Interaction.Triggers
 	{
 		public static State state = State.Deactive;
 		public float forcePower = 50;
+		public float forcePowerWithoutOnesie = 150;
 
 		// Declare and initialize a new List of GameObjects called currentCollisions.
 		private List<GameObject> currentCollisions = new List<GameObject>();
@@ -43,11 +44,11 @@ namespace LotsOfTowers.Interaction.Triggers
 					{
 						if (currentCollisions.Single(player => player.name == "Player").GetComponent<Player>().Onesie.isElephant)
 						{
-							currentCollisions.Single(ff => ff.name == "FloatingFloor").GetComponent<Rigidbody>().AddForce(Vector3.up * 50, ForceMode.Acceleration);
+							currentCollisions.Single(ff => ff.name == "FloatingFloor").GetComponent<Rigidbody>().AddForce(Vector3.up * forcePower, ForceMode.Acceleration);
 						}
 						else
 						{
-							currentCollisions.Single(ff => ff.name == "FloatingFloor").GetComponent<Rigidbody>().AddForce(Vector3.up * 150, ForceMode.Acceleration);
+							currentCollisions.Single(ff => ff.name == "FloatingFloor").GetComponent<Rigidbody>().AddForce(Vector3.up * forcePowerWithoutOnesie, ForceMode.Acceleration);
 						}
 					}
 					catch (System.Exception)
