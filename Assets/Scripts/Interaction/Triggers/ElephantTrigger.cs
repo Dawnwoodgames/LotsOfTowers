@@ -13,6 +13,7 @@ namespace LotsOfTowers.Interaction.Triggers
 
         public bool agentActive = false;
         private bool elephantStrafes = false;
+        private bool initialPush;
 
         void Start()
         {
@@ -24,7 +25,15 @@ namespace LotsOfTowers.Interaction.Triggers
         {
             // Move elephant forward when player collides with libra
             if (triggerScript.playerOnLibra)
+            {
+                if (!initialPush)
+                {
+                    transform.Translate(Vector3.forward * 10 * Time.deltaTime);
+                    initialPush = true;
+                }
+
                 MoveElephant();
+            }
 
             // Activate pathfinding when elephant steps off the libra
             if (agentActive)
@@ -48,7 +57,7 @@ namespace LotsOfTowers.Interaction.Triggers
         {
             if (coll.name == "RotateElephantTrigger")
             {
-                transform.rotation = new Quaternion(0, 0, transform.rotation.y - 0.3f, 0);
+                transform.rotation = new Quaternion(0, 0, transform.rotation.y + 0.3f, 0);
                 triggerScript.libra.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX;
                 StartCoroutine(Wait(1));
             }
