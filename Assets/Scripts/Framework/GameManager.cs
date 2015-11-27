@@ -4,7 +4,7 @@ using System;
 using System.Linq;
 using UnityEngine;
 
-namespace LotsOfTowers.Framework
+namespace LotsOfTowers
 {
 	public class GameManager : MonoBehaviour
 	{
