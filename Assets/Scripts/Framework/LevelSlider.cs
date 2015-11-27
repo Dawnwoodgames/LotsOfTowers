@@ -25,7 +25,7 @@ namespace LotsOfTowers.Framework
 					if (toMove[obj].transform.position.y < oldPosition[obj].y + increaseBy)
 						toMove[obj].transform.position = toMove[obj].transform.position + new Vector3(0, increaseBy * Time.deltaTime * speed , 0);
 					else
-						toMove[obj].transform.position = new Vector3(toMove[obj].transform.position.x, oldPosition[obj].y + increaseBy, toMove[obj].transform.position.z);
+						toMove[obj].transform.position = new Vector3(toMove[obj].transform.position.x, oldPosition[obj].y + increaseBy+1, toMove[obj].transform.position.z);
 				}
 			else
 				for (int obj = 0; obj < toMove.Length; obj++)
