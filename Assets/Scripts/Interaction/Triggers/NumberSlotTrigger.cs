@@ -5,11 +5,8 @@ namespace LotsOfTowers.Interaction.Triggers
 {
     public class NumberSlotTrigger : MonoBehaviour
     {
-        public GameObject numberslotOne;
-        public GameObject numberslotTwo;
-        public GameObject numberslotThree;
-
-        private bool numberslotSolved, numberslotOneSolved, numberslotTwoSolved, numberslotThreeSolved;
+        public GameObject numberslotOne, numberslotTwo, numberslotThree, numberslotFour;
+        private bool numberslotSolved, numberslotOneSolved, numberslotTwoSolved, numberslotThreeSolved, numberslotFourSolved;
 
         // Update is called once per frame
         void Update()
@@ -26,8 +23,10 @@ namespace LotsOfTowers.Interaction.Triggers
                 numberslotTwoSolved = true;
             if (coll.name == numberslotThree.name)
                 numberslotThreeSolved = true;
+            if (coll.name == numberslotFour.name)
+                numberslotFourSolved = true;
 
-            if (numberslotOneSolved && numberslotTwoSolved && numberslotThreeSolved)
+            if (numberslotOneSolved && numberslotTwoSolved && numberslotThreeSolved && numberslotFourSolved)
                 numberslotSolved = true;
         }
     }
