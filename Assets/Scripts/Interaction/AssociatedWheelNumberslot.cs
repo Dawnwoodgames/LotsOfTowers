@@ -18,14 +18,14 @@ namespace LotsOfTowers.Interaction
         // Update is called once per frame
         void Update()
         {
-            if (wheel.GetRotateSpeed() > 10)
+            if (wheel.GetRotateSpeed() > 15)
             {
                 if (amountOfWheels == 1)
-                    numberSlots[0].transform.Rotate(Vector3.forward * 5 * Time.deltaTime);
+                    numberSlots[0].transform.Rotate(Vector3.forward * 8 * Time.deltaTime);
                 else if (amountOfWheels == 2)
                 {
-                    numberSlots[0].transform.Rotate(Vector3.forward * 5 * Time.deltaTime);
-                    numberSlots[1].transform.Rotate(Vector3.forward * 5 * Time.deltaTime);
+                    numberSlots[0].transform.Rotate(Vector3.forward * 8 * Time.deltaTime);
+                    numberSlots[1].transform.Rotate(Vector3.forward * 8 * Time.deltaTime);
                 }
             }
         }
