@@ -25,9 +25,15 @@ namespace LotsOfTowers.Actors
 		public GameObject tooltip;
         public GameObject hudUi;
         public GameObject chargeDisplay;
-		
-		// Properties
-		public bool CanMoveObjects
+
+        public GameObject elephantHead;
+        public GameObject elephantBody;
+
+        private GameObject defaultHead;
+        private GameObject defaultBody;
+
+        // Properties
+        public bool CanMoveObjects
 		{
 			get { return Onesie.canMoveObjects; }
 		}
@@ -114,7 +120,10 @@ namespace LotsOfTowers.Actors
 			MaxOnesies = 3;
 			DontDestroyOnLoad(gameObject);
 			onesies = new Dictionary<int, Onesie>(MaxOnesies);
-		}
+
+            defaultHead = GameObject.Find("Head_Default");
+            defaultBody = GameObject.Find("Body_Default");
+        }
 
 		public void Start()
 		{
@@ -126,7 +135,24 @@ namespace LotsOfTowers.Actors
 		{
 			if (onesies.ContainsKey(index)) {
 				currentOnesie = onesies[index];
-			}
+
+                if(currentOnesie.name == "OnesieElephant")
+                {
+                    defaultHead.SetActive(false);
+                    defaultBody.SetActive(false);
+
+                    elephantHead.SetActive(true);
+                    elephantBody.SetActive(true);
+                }
+                else
+                {
+                    elephantHead.SetActive(false);
+                    elephantBody.SetActive(false);
+
+                    defaultHead.SetActive(true);
+                    defaultBody.SetActive(true);
+                }
+            }
 		}
 		
 		public void Update()
