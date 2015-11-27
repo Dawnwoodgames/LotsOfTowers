@@ -20,7 +20,7 @@ namespace LotsOfTowers.Interaction.Triggers
             if (coll.tag == "Player" && libra.transform.rotation.x >= -13 && !playerOnLibra)
             {
                 playerOnLibra = true;
-                this.transform.localPosition = new Vector3(-4f, -0.5f, 0f);
+                this.transform.localPosition = new Vector3(-19f, transform.localPosition.y, transform.localPosition.z);
                 libra.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             }
             if (coll.tag == "Player" && elephantReadyToLaunch && playerOnLibra)

@@ -28,7 +28,7 @@ namespace LotsOfTowers.Interaction.Triggers
             {
                 if (!initialPush)
                 {
-                    transform.Translate(Vector3.forward * 10 * Time.deltaTime);
+                    transform.Translate(Vector3.forward * 8 * Time.deltaTime);
                     initialPush = true;
                 }
 
@@ -44,7 +44,6 @@ namespace LotsOfTowers.Interaction.Triggers
             {
                 if (triggerScript.playerOnLibra)
                     triggerScript.libra.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-                MoveElephant();
             }
         }
 
@@ -57,7 +56,7 @@ namespace LotsOfTowers.Interaction.Triggers
         {
             if (coll.name == "RotateElephantTrigger")
             {
-                transform.rotation = new Quaternion(0, 0, transform.rotation.y + 0.3f, 0);
+                transform.rotation = new Quaternion(0, 0, transform.rotation.y - 0.3f, 0);
                 triggerScript.libra.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX;
                 StartCoroutine(Wait(1));
             }
