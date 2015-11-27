@@ -17,6 +17,8 @@ namespace LotsOfTowers.Framework
     public enum Direction
     {
         Forward,
-        Backward
+        Backward,
+        Left,
+        Right
     }
 }

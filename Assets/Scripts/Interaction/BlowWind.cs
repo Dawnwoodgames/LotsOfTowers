@@ -99,14 +99,26 @@ namespace LotsOfTowers.Interaction
         // Sets the direction the wind is blowing
         private void DetermineDirection()
         {
-            if (direction == Direction.Forward)
+            switch (direction)
             {
-                dir = Vector3.forward;
+                case Direction.Forward:
+                    dir = Vector3.forward;
+                    break;
+                case Direction.Backward:
+                    dir = Vector3.back;
+                    break;
+                case Direction.Left:
+                    dir = Vector3.left;
+                    break;
+                case Direction.Right:
+                    dir = Vector3.right;
+                    break;
+                default:
+                    dir = Vector3.forward;
+                    break;
             }
-            else
-            {
-                dir = Vector3.back;
-            }
+
+            
         }
         
     }
