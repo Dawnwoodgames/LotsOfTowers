@@ -5,29 +5,37 @@ namespace LotsOfTowers.Interaction
 {
     public class AssociatedWheelNumberslot : MonoBehaviour
     {
-        private HamsterWheel wheel;
-        public int amountOfWheels;
         public GameObject[] numberSlots;
+        public int rotateCount;
+        
+        private HamsterWheel wheel;
+        private bool slotIsSpinning = false;
 
-        // Use this for initialization
         void Start()
         {
             wheel = GetComponent<HamsterWheel>();
         }
 
-        // Update is called once per frame
         void Update()
         {
-            if (wheel.GetRotateSpeed() > 15)
+            if (wheel.GetRotateSpeed() >= 20 && !slotIsSpinning)
+                RotateQuarterNumberslot();
+        }
+
+        private void RotateQuarterNumberslot()
+        {
+            foreach (GameObject numberslot in numberSlots)
             {
-                if (amountOfWheels == 1)
-                    numberSlots[0].transform.Rotate(Vector3.forward * 8 * Time.deltaTime);
-                else if (amountOfWheels == 2)
-                {
-                    numberSlots[0].transform.Rotate(Vector3.forward * 8 * Time.deltaTime);
-                    numberSlots[1].transform.Rotate(Vector3.forward * 8 * Time.deltaTime);
-                }
+                slotIsSpinning = true;
+                numberslot.transform.Rotate(Vector3.left * (90 * rotateCount));
+                StartCoroutine(DelaySpinningSlot());
             }
+        }
+
+        private IEnumerator DelaySpinningSlot()
+        {
+            yield return new WaitForSeconds(1f);
+            slotIsSpinning = false;
         }
     }
 }

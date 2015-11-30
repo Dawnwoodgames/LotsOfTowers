@@ -16,7 +16,7 @@ namespace LotsOfTowers.Interaction
         // Update is called once per frame
         void Update()
         {
-            if (wheel.GetRotateSpeed() > 20)
+            if (wheel.GetRotateSpeed() >= 15)
             {
                 if (!waterFloats)
                     floatingWaterSystem.Play();
@@ -32,7 +32,7 @@ namespace LotsOfTowers.Interaction
 
                 waterFloats = true;
             }
-            else if (wheel.GetRotateSpeed() < 20)
+            else if (wheel.GetRotateSpeed() < 15)
             {
                 waterFloats = false;
                 floatingWaterSystem.Stop();

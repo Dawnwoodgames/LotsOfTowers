@@ -11,19 +11,17 @@ namespace LotsOfTowers.Interaction
         private WheelRotateTrigger rotateTriggerScript;
         private float rotateSpeed = 0f;
         private int speedGain = 1;
-        private int speedLoss = 5;
+        private int speedLoss = 3;
 
-        // Use this for initialization
         void Start()
         {
             rotateTriggerScript = rotateTrigger.GetComponent<WheelRotateTrigger>();
         }
 
-        // Update is called once per frame
         void Update()
         {
             if (rotateTriggerScript.GetPlayerRunning())
-                if (rotateSpeed < 60)
+                if (rotateSpeed < 20)
                     rotateSpeed += speedGain;
 
             if (!rotateTriggerScript.GetPlayerRunning())
