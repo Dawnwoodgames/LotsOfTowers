@@ -1,14 +1,21 @@
 ﻿using LotsOfTowers.Actors;
+using LotsOfTowers.UI;
 using SmartLocalization;
 using System;
+using System.Collections;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.UI;
 
-namespace LotsOfTowers.Framework
+namespace LotsOfTowers
 {
+	[RequireComponent(typeof(Canvas))]
+	[RequireComponent(typeof(CanvasRenderer))]
 	public class GameManager : MonoBehaviour
 	{
-		private Player player;
+		private Canvas canvas;
+		private Image fader;
+		private bool hasStarted;
 		private Transform spawnPoint;
 		
 		public static bool Alive { get { return Instance != null; } }
@@ -30,11 +37,16 @@ namespace LotsOfTowers.Framework
 		public Transform SpawnPoint {
 			get { return spawnPoint; }
 		}
-		
+
+		static GameManager() {
+			try {
+				GameManager.Instance = new GameObject("Game Manager", typeof(GameManager)).GetComponent<GameManager>();
+			} catch (Exception) { }
+		}
 		
 		public void Awake()
 		{
-			if (FindObjectsOfType<GameManager> ().Length > 1) {
+			if (FindObjectsOfType<GameManager>().Length > 1) {
 				Destroy (gameObject);
 			} else {
 				GameManager.Instance = this;
@@ -42,17 +54,116 @@ namespace LotsOfTowers.Framework
 			
 			DontDestroyOnLoad(this);
 			LanguageManager.Instance.ChangeLanguage(Language);
+			LanguageManager.Instance.name = "Language Manager";
+			LanguageManager.Instance.transform.SetParent(transform, false);
 			OnLevelWasLoaded(Application.loadedLevel);
 			Physics.gravity = new Vector3(0, -35, 0);
+
+			this.canvas = GetComponent<Canvas>();
+			this.fader = new GameObject ("Transition Fader", typeof(Image)).GetComponent<Image> ();
 		}
-		
-		public void OnLevelWasLoaded(int level) {
-			if (player == null) {
-				// Try to find the player
-				player = FindObjectOfType<Player>();
+
+		public void FadeIn() {
+			StopAllCoroutines();
+			StartCoroutine(FadeInCoroutine());
+		}
+
+		private IEnumerator FadeInCoroutine() {
+			while (!hasStarted) {
+				yield return null;
+			}
+
+			while (fader.color.a > 0.01f) {
+				fader.color = Color.Lerp(fader.color, Color.clear, 0.1f);
+				yield return null;
+			}
+		}
+
+		public void FadeOut() {
+			StopAllCoroutines();
+			StartCoroutine(FadeOutCoroutine());
+		}
+
+		private IEnumerator FadeOutCoroutine() {
+			while (!hasStarted) {
+				yield return null;
+			}
+
+			while (fader.color.a < 0.99f) {
+				fader.color = Color.Lerp(fader.color, Color.black, 0.1f);
+				yield return null;
+			}
+		}
+
+		public void LoadLevel(int index) {
+			StopAllCoroutines();
+			StartCoroutine(LoadLevelCoroutine(index));
+		}
+
+		private IEnumerator LoadLevelCoroutine(int index) {
+			while (!hasStarted) {
+				yield return null;
 			}
 			
-			spawnPoint = GameObject.Find("Level/Spawn Point").transform;
+			while (fader.color.a < 0.99f) {
+				fader.color = Color.Lerp(fader.color, Color.black, 0.1f);
+				yield return null;
+			}
+
+			Application.LoadLevel(index);
+			yield return new WaitForSeconds(1);
+			
+			while (fader.color.a > 0.01f) {
+				fader.color = Color.Lerp(fader.color, Color.clear, 0.1f);
+				yield return null;
+			}
+		}
+		
+		public void OnLevelWasLoaded(int index) {
+			try {
+				spawnPoint = GameObject.Find("Level/Spawn Point").transform;
+			} catch (Exception) { }
+		}
+
+
+		public void Quit() {
+			StopAllCoroutines();
+			StartCoroutine(QuitCoroutine());
+		}
+
+		private IEnumerator QuitCoroutine() {
+			while (!hasStarted) {
+				yield return null;
+			}
+				
+			while (fader.color.a < 0.99f) {
+				fader.color = Color.Lerp (fader.color, Color.black, 0.1f);
+				yield return null;
+			}
+
+			Application.Quit ();
+		}
+
+		public UITooltip ShowTooltip(String resourceName) {
+			if (PlayerPrefs.GetInt ("bTooltipBeenShown" + resourceName) != 1) {
+				PlayerPrefs.SetInt("bTooltipBeenShown" + resourceName, 1);
+				UITooltip tooltip = new GameObject ("UITooltip", typeof(UITooltip)).GetComponent<UITooltip> ();
+				tooltip.duration = 5;
+				tooltip.gameObject.transform.SetParent (transform, false);
+				tooltip.GetComponent<Image> ().sprite = Resources.Load<Sprite> ("Textures/" + resourceName);
+
+				return tooltip;
+			}
+
+			return null;
+		}
+
+		public void Start() {
+			canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+			fader.color = Color.clear;
+			fader.rectTransform.sizeDelta = new Vector2(Screen.width, Screen.height);
+			fader.transform.SetParent(transform, false);
+			hasStarted = true;
 		}
 	}
 }
