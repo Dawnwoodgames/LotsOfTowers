@@ -1,4 +1,5 @@
-﻿using System.Linq;
+﻿using System;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
@@ -33,9 +34,13 @@ namespace LotsOfTowers.UI {
 			if (menus.Contains(menu)) {
 				camera.mount = GameObject.Find(menu.name + "/Mounting Point").transform;
 				currentMenu = menu;
+				//currentMenu.GetComponent<Canvas>().enabled = true;
+				//menus.Where(m => m != currentMenu).ToList().ForEach(m => m.GetComponent<Canvas>().enabled = false);
 
 				if (eventSystem.currentSelectedGameObject == null || eventSystem.currentSelectedGameObject.transform.parent.gameObject != menu) {
-					eventSystem.SetSelectedGameObject(menu.GetComponentsInChildren<Selectable>().FirstOrDefault().gameObject);
+					try {
+						eventSystem.SetSelectedGameObject(menu.GetComponentsInChildren<Selectable>().FirstOrDefault().gameObject);
+					} catch (NullReferenceException) { }
 				}
 			}
 		}
@@ -54,6 +59,10 @@ namespace LotsOfTowers.UI {
 		public void ChangeLanguage(string language) {
 			GameManager.Instance.Language = language;
 			GameManager.Instance.LoadLevel(Application.loadedLevel);
+		}
+
+		public void LoadLevel(int index) {
+			GameManager.Instance.LoadLevel(index);
 		}
 
 		public void QuitApplication() {

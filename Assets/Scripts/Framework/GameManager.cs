@@ -41,7 +41,7 @@ namespace LotsOfTowers
 		static GameManager() {
 			try {
 				GameManager.Instance = new GameObject("Game Manager", typeof(GameManager)).GetComponent<GameManager>();
-			} catch (UnityException) { }
+			} catch (Exception) { }
 		}
 		
 		public void Awake()
@@ -111,6 +111,7 @@ namespace LotsOfTowers
 			}
 
 			Application.LoadLevel(index);
+			yield return new WaitForSeconds(1);
 			
 			while (fader.color.a > 0.01f) {
 				fader.color = Color.Lerp(fader.color, Color.clear, 0.1f);
