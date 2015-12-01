@@ -19,7 +19,8 @@ namespace LotsOfTowers.UI {
 			this.menu = FindObjectOfType<MenuController>();
 			this.mounts = chapters.Select(c => c.transform.FindChild("Mounting Point").gameObject).ToArray();
 
-			PlayerPrefs.SetInt ("bIsLevelAvailable1", 1);
+			PlayerPrefs.SetInt("bIsLevelAvailable0", 1);
+			PlayerPrefs.SetInt("bIsLevelAvailable1", 1);
 			int levelIndex = 1;
 
 			foreach (Button button in GetComponentsInChildren<Button>()) {
