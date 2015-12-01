@@ -98,6 +98,15 @@ namespace LotsOfTowers
 		}
 
 		public void LoadLevel(int index) {
+			LoadLevel(index, false);
+		}
+
+		public void LoadLevel(int index, bool forceUnlock) {
+			if (!forceUnlock && PlayerPrefs.GetInt("bIsLevelAvailable" + index, 0) == 0) {
+				return;
+			}
+
+			PlayerPrefs.SetInt("bIsLevelAvailable" + index, 1);
 			StopAllCoroutines();
 			StartCoroutine(LoadLevelCoroutine(index));
 		}

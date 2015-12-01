@@ -117,7 +117,6 @@ namespace LotsOfTowers.Actors
 		{
 			DefaultOnesie = Resources.Load("OnesieDefault") as Onesie;
 			MaxOnesies = 3;
-			DontDestroyOnLoad(gameObject);
 			onesies = new Dictionary<int, Onesie>(MaxOnesies);
 
             defaultHead = GameObject.Find("Head_Default");
