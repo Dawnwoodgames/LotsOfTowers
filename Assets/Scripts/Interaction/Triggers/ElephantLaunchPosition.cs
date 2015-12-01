@@ -5,6 +5,7 @@ namespace LotsOfTowers.Interaction.Triggers
 {
     public class ElephantLaunchPosition : MonoBehaviour
     {
+        public GameObject player;
         private void OnTriggerEnter(Collider coll)
         {
             if (coll.name == "NpcElephant")
@@ -18,6 +19,7 @@ namespace LotsOfTowers.Interaction.Triggers
         {
             if (coll.name == "NpcElephant")
             {
+                GameObject.Find("PlayerTrigger").GetComponent<LibraTrigger>().elephantReadyToLaunch = false;
                 StartCoroutine(Wait(.5f));
             }
         }
@@ -25,7 +27,7 @@ namespace LotsOfTowers.Interaction.Triggers
         IEnumerator Wait(float amount)
         {
             yield return new WaitForSeconds(amount);
-            GameObject.Find("Player").GetComponent<Rigidbody>().AddForce(Vector3.left * 10, ForceMode.Impulse);
+            player.GetComponent<Rigidbody>().AddForce(Vector3.left * 10, ForceMode.Impulse);
         }
     }
 }
