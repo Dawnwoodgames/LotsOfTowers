@@ -59,7 +59,6 @@ namespace LotsOfTowers
 			LanguageManager.Instance.name = "Language Manager";
 			LanguageManager.Instance.transform.SetParent(transform, false);
 			OnLevelWasLoaded(Application.loadedLevel);
-			Physics.gravity = new Vector3(0, -35, 0);
 
 			this.canvas = GetComponent<Canvas>();
 			this.fader = new GameObject ("Transition Fader", typeof(Image)).GetComponent<Image> ();

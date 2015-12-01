@@ -115,6 +115,8 @@ namespace LotsOfTowers.Actors
 
 		public void Awake()
 		{
+			Physics.gravity = new Vector3(0, -35, 0);
+
 			DefaultOnesie = Resources.Load("OnesieDefault") as Onesie;
 			MaxOnesies = 3;
 			DontDestroyOnLoad(gameObject);
