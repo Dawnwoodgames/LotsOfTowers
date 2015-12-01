@@ -6387,7 +6387,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1517305678}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 11.8299999, z: 0}
+  m_LocalPosition: {x: 0, y: 12.5799999, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1689910037}
@@ -6403,8 +6403,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 11.0708675, y: 2.13574982, z: 9.92370224}
-  m_Center: {x: .219130516, y: 8.4684639, z: -.158389091}
+  m_Size: {x: 9.80000019, y: 2.48999977, z: 9.27060795}
+  m_Center: {x: 0, y: 8.37000084, z: -.185304165}
 --- !u!114 &1517305681
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6420,7 +6420,7 @@ MonoBehaviour:
   toMove:
   - {fileID: 923387190}
   increaseBy: 8
-  speed: 1
+  speed: 2
 --- !u!1 &1519596624
 GameObject:
   m_ObjectHideFlags: 0
@@ -6860,6 +6860,7 @@ GameObject:
   - 65: {fileID: 1767387500}
   - 23: {fileID: 1767387499}
   - 54: {fileID: 1767387498}
+  - 114: {fileID: 1767387502}
   m_Layer: 0
   m_Name: Fracture1
   m_TagString: Fracture
@@ -6943,6 +6944,18 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1767387496}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &1767387502
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1767387496}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3d08a5425bcb144492e660cd9104253, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  resetPosition: {x: 1, y: 0, z: 1}
 --- !u!1 &1778430631
 GameObject:
   m_ObjectHideFlags: 0
