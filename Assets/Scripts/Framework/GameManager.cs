@@ -162,6 +162,7 @@ namespace LotsOfTowers
 
 		public void Start() {
 			canvas.renderMode = RenderMode.ScreenSpaceOverlay;
+			canvas.sortingOrder = Int16.MaxValue;
 			fader.color = Color.clear;
 			fader.rectTransform.sizeDelta = new Vector2(Screen.width, Screen.height);
 			fader.transform.SetParent(transform, false);
