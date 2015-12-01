@@ -13,13 +13,21 @@ namespace LotsOfTowers
 	[RequireComponent(typeof(CanvasRenderer))]
 	public class GameManager : MonoBehaviour
 	{
+		private static GameManager instance;
 		private Canvas canvas;
 		private Image fader;
 		private bool hasStarted;
 		private Transform spawnPoint;
 		
 		public static bool Alive { get { return Instance != null; } }
-		public static GameManager Instance { get; private set; }
+		public static GameManager Instance {
+			get {
+				if (instance == null) {
+					instance = new GameObject("Game Manager", typeof(GameManager)).GetComponent<GameManager>();
+				}
+				return instance;
+			}
+		}
 		
 		public string Language
 		{ // Default: en
@@ -36,12 +44,6 @@ namespace LotsOfTowers
 		
 		public Transform SpawnPoint {
 			get { return spawnPoint; }
-		}
-
-		static GameManager() {
-			try {
-				GameManager.Instance = new GameObject("Game Manager", typeof(GameManager)).GetComponent<GameManager>();
-			} catch (Exception) { }
 		}
 		
 		public void Awake()
