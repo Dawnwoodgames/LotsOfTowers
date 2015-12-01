@@ -1,32 +1,37 @@
 ﻿using UnityEngine;
 using System.Collections;
+using LotsOfTowers.Actors;
 
 namespace LotsOfTowers.Interaction.Triggers
 {
     public class LibraTrigger : MonoBehaviour
     {
         public GameObject libra;
-        private GameObject elephant;
+        public GameObject elephant;
         public bool playerOnLibra = false;
         public bool elephantReadyToLaunch = false;
+        public bool playerReadyToLaunch = false;
+        private GameObject player;
+        private float regularMass;
 
-        private void Start()
+        void Update()
         {
-            elephant = GameObject.Find("NpcElephant");
+            if (player != null && player.GetComponent<Player>().Onesie.isElephant && player.GetComponent<Rigidbody>().mass != regularMass)
+            {
+                player.GetComponent<Rigidbody>().mass = elephant.GetComponent<Rigidbody>().mass;
+                elephant.GetComponent<ElephantTrigger>().StartMoving();
+            }
         }
 
         private void OnTriggerEnter(Collider coll)
         {
-            if (coll.tag == "Player" && libra.transform.rotation.x >= -13 && !playerOnLibra)
+            if (coll.tag == "Player")
             {
+                regularMass = coll.GetComponent<Rigidbody>().mass;
+                player = coll.gameObject;
                 playerOnLibra = true;
-                this.transform.localPosition = new Vector3(-19f, transform.localPosition.y, transform.localPosition.z);
+                coll.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
                 libra.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-            }
-            if (coll.tag == "Player" && elephantReadyToLaunch && playerOnLibra)
-            {
-                Destroy(elephant.GetComponent<NavMeshAgent>());
-                elephant.GetComponent<Rigidbody>().useGravity = true;
             }
         }
     }

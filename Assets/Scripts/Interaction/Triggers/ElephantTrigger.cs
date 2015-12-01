@@ -8,11 +8,15 @@ namespace LotsOfTowers.Interaction.Triggers
         public GameObject libraTrigger;
         public GameObject elephantTrigger;
         public GameObject elephantLaunch;
+        public GameObject player;
         private LibraTrigger triggerScript;
         private NavMeshAgent agent;
 
         public bool agentActive = false;
         private bool initialPush;
+        private bool onElephantTrigger = false;
+        private bool moving = false;
+        private bool moveNow = false;
 
         void Start()
         {
@@ -23,26 +27,32 @@ namespace LotsOfTowers.Interaction.Triggers
         private void Update()
         {
             // Move elephant forward when player collides with libra
-            if (triggerScript.playerOnLibra)
+            if (triggerScript.playerOnLibra && !onElephantTrigger || moveNow)
             {
                 if (!initialPush)
                 {
-                    transform.Translate(Vector3.forward * 8 * Time.deltaTime);
+                    transform.Translate(Vector3.forward * 2 * Time.deltaTime);
                     initialPush = true;
                 }
-
                 MoveElephant();
             }
 
             // Activate pathfinding when elephant steps off the libra
-            if (agentActive)
+            if (agentActive && !moving)
+            {
                 agent.SetDestination(elephantLaunch.transform.position);
+                moving = true;
+            }
 
             // Move elephant forward when elephant is on launch position AND player is on libra
-            if (triggerScript.elephantReadyToLaunch)
+            if (triggerScript.elephantReadyToLaunch && triggerScript.playerReadyToLaunch)
             {
-                if (triggerScript.playerOnLibra)
-                    triggerScript.libra.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+                transform.LookAt(player.transform);
+                agent.enabled = false;
+                MoveElephant();
+                GetComponent<Rigidbody>().useGravity = true;
+                GetComponent<Rigidbody>().mass = 20;
+                player.GetComponent<Rigidbody>().mass = 1;
             }
         }
 
@@ -53,17 +63,22 @@ namespace LotsOfTowers.Interaction.Triggers
         // When elephant collides with trigger 
         private void OnTriggerEnter(Collider coll)
         {
-            if (coll.name == "RotateElephantTrigger")
+            if (coll.name == "ElephantTrigger")
             {
-                transform.rotation = new Quaternion(0, 0, transform.rotation.y - 0.3f, 0);
-                triggerScript.libra.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotationX;
-                StartCoroutine(Wait(1));
+                onElephantTrigger = true;
+                player.GetComponent<Rigidbody>().mass = GetComponent<Rigidbody>().mass-2;
+                GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ | RigidbodyConstraints.FreezeRotation;
             }
         }
+
+        public void StartMoving()
+        {
+            StartCoroutine(Wait(3));
+        }
+
         IEnumerator Wait(int amount)
         {
             yield return new WaitForSeconds(amount);
-            triggerScript.playerOnLibra = false;
             agent.enabled = true;
             gameObject.GetComponent<Rigidbody>().useGravity = false;
             gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;

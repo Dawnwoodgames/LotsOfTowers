@@ -1,0 +1,19 @@
+﻿using UnityEngine;
+using System.Collections;
+using LotsOfTowers.Actors;
+
+namespace LotsOfTowers.Interaction.Triggers
+{
+    public class JumpTrigger : MonoBehaviour {
+
+        public GameObject libra;
+
+        void OnTriggerStay(Collider coll)
+        {
+            if (coll.tag == "Player" && !coll.GetComponent<Player>().Onesie.isElephant)
+            {
+                libra.GetComponent<LibraTrigger>().playerReadyToLaunch = true;
+            }
+        }
+    }
+}

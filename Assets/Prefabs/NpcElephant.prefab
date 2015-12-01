@@ -28,7 +28,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 175370}
   m_LocalRotation: {x: 0, y: .707106829, z: 0, w: .707106709}
-  m_LocalPosition: {x: -10, y: 11, z: -3}
+  m_LocalPosition: {x: -4.61732483, y: 2.91429901, z: -2.4392004}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -51,7 +51,9 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
   m_PreserveUVs: 1
+  m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
+  m_MinimumChartSize: 4
   m_AutoUVMaxDistance: .5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
@@ -93,6 +95,8 @@ MonoBehaviour:
   libraTrigger: {fileID: 0}
   elephantTrigger: {fileID: 0}
   elephantLaunch: {fileID: 0}
+  player: {fileID: 0}
+  agentActive: 0
 --- !u!136 &13634342
 CapsuleCollider:
   m_ObjectHideFlags: 1
