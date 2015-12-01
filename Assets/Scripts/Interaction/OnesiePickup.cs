@@ -20,9 +20,12 @@ namespace LotsOfTowers.Interaction
 		public void OnTriggerEnter(Collider collider) {
 			actor = collider.gameObject.GetComponent<Player>();
 
-            if (actor.HasFreeSlots && actor.AddOnesieToFirstFreeSlot(Onesie))
+			if (actor != null)
 			{
-				Destroy(gameObject);
+				if (actor.HasFreeSlots && actor.AddOnesieToFirstFreeSlot(Onesie))
+				{
+					Destroy(gameObject);
+				}
 			}
 		}
 

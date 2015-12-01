@@ -64,7 +64,7 @@ namespace LotsOfTowers.Interaction
                 block.GetComponent<Rigidbody>().AddForce(dir * force, ForceMode.Acceleration);
                 if (!hasBlock)
                 {
-                    if (player.GetComponent<Player>().IsElephant)
+                    if (player.GetComponent<Player>().Onesie.isElephant)
                     {
 
                     }

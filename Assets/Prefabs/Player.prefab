@@ -45,8 +45,6 @@ GameObject:
   - 114: {fileID: 11493362}
   - 54: {fileID: 5409106}
   - 136: {fileID: 13637650}
-  - 136: {fileID: 13606514}
-  - 136: {fileID: 13650970}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -277,7 +275,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100868}
   m_LocalRotation: {x: 0, y: -.707106829, z: 0, w: .707106709}
-  m_LocalPosition: {x: -1.21000004, y: 6.75, z: -11.3000002}
+  m_LocalPosition: {x: -1.21000004, y: -3.51999998, z: -11.3000002}
   m_LocalScale: {x: 20, y: 20, z: 20}
   m_Children:
   - {fileID: 22421836}
@@ -662,33 +660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1432783715c3d2642b55d2cb68cbfaac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!136 &13606514
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100868}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .0172157343
-  m_Height: .0690458864
-  m_Direction: 1
-  m_Center: {x: 0, y: .0299999993, z: 0}
 --- !u!136 &13637650
-CapsuleCollider:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 100868}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_Enabled: 1
-  m_Radius: .0172157343
-  m_Height: .0690458864
-  m_Direction: 1
-  m_Center: {x: 0, y: .0299999993, z: 0}
---- !u!136 &13650970
 CapsuleCollider:
   m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
