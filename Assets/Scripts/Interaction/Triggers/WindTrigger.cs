@@ -38,17 +38,20 @@ namespace LotsOfTowers.Interaction.Triggers
 			if (state == State.Active)
 			{
 				windParticles.enableEmission = true;
+
+				currentCollisions = currentCollisions.Distinct().ToList();
+
 				if(currentCollisions.Count > 1 && currentCollisions.Any(player => player.tag == "Player"))
 				{
 					try
 					{
-						if (currentCollisions.Single(player => player.name == "Player").GetComponent<Player>().Onesie.isElephant)
+						if (currentCollisions.SingleOrDefault(player => player.name == "Player").GetComponent<Player>().Onesie.isElephant)
 						{
-							currentCollisions.Single(ff => ff.name == "FloatingFloor").GetComponent<Rigidbody>().AddForce(Vector3.up * forcePower, ForceMode.Acceleration);
+							currentCollisions.SingleOrDefault(ff => ff.name == "FloatingFloor").GetComponent<Rigidbody>().AddForce(Vector3.up * forcePower, ForceMode.Acceleration);
                         }
 						else
 						{
-							currentCollisions.Single(ff => ff.name == "FloatingFloor").GetComponent<Rigidbody>().AddForce(Vector3.up * forcePowerWithoutOnesie, ForceMode.Acceleration);
+							currentCollisions.SingleOrDefault(ff => ff.name == "FloatingFloor").GetComponent<Rigidbody>().AddForce(Vector3.up * forcePowerWithoutOnesie, ForceMode.Acceleration);
 						}
 					}
 					catch (System.Exception)
