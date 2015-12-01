@@ -12,9 +12,9 @@ namespace LotsOfTowers.Interaction.Triggers
 		
 		void Update()
 		{
-			if (DownwardsObject.transform.rotation.z != 0f)
+			if (DownwardsObject.transform.rotation.x != 0f)
 			{
-				DownwardsObject.transform.rotation = Quaternion.Slerp(DownwardsObject.transform.rotation, Quaternion.Euler(0, 90, 0), Time.deltaTime * 2);
+				DownwardsObject.transform.rotation = Quaternion.Slerp(DownwardsObject.transform.rotation, Quaternion.Euler(0, 0, 0), Time.deltaTime * 2);
 			}
 		}
 	}
