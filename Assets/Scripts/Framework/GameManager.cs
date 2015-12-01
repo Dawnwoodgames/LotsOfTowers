@@ -51,7 +51,7 @@ namespace LotsOfTowers
 			if (FindObjectsOfType<GameManager>().Length > 1) {
 				Destroy (gameObject);
 			} else {
-				GameManager.Instance = this;
+				GameManager.instance = this;
 			}
 			
 			DontDestroyOnLoad(this);
