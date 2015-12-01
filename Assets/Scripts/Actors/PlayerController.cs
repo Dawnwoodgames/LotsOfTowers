@@ -14,7 +14,6 @@ namespace LotsOfTowers.Actors
 		//The actual player with all the movement properties
 		private Player player;
 		private Transform mainCamera;
-		private Rigidbody rigidBody;
 		private CapsuleCollider capsule;
         private BoxCollider box;
 
@@ -26,20 +25,10 @@ namespace LotsOfTowers.Actors
 		private float stationaryTurnSpeed = 360;
 		private Vector3 groundNormal;
 
-		//Crouch variables
-		private bool isCrouching = false;
-		private float capsuleHeight;
-		private Vector3 capsuleCenter;
-        private float boxHeight;
-
 
 		private void Start()
 		{
 			player = GetComponent<Player>();
-			rigidBody = GetComponent<Rigidbody>();
-			capsule = GetComponent<CapsuleCollider>();
-			capsuleHeight = capsule.height;
-			capsuleCenter = capsule.center;
 
 			//Get camera transform
 			if (Camera.main != null)
@@ -57,7 +46,6 @@ namespace LotsOfTowers.Actors
 			//Get Input controls
 			float h = CrossPlatformInputManager.GetAxis("Horizontal");
 			float v = CrossPlatformInputManager.GetAxis("Vertical");
-			bool crouch = CrossPlatformInputManager.GetButton("Crouch");
 
 			bool onesie1 = CrossPlatformInputManager.GetAxis("Onesie 1") > 0;
 			bool onesie2 = CrossPlatformInputManager.GetAxis("Onesie 2") > 0;
@@ -73,39 +61,6 @@ namespace LotsOfTowers.Actors
 			movement = new Vector3(h, 0f, v);
 			Move(movement);
         }
-
-        private void Crouch(bool crouch)
-		{
-			//Check if the player clicked on crouch and the player is actually grounded (can change, crouch mid air?)
-			if (crouch)
-			{
-				//Already crouching
-				if (isCrouching)
-				{
-					return;
-				}
-
-				//Resize the capsule collider to half height / width
-				capsule.height = capsule.height / 2f;
-				capsule.center = capsule.center / 2f;
-                box.size = new Vector3(box.size.x, box.size.y/2, box.size.z);
-				isCrouching = true;
-			}
-			else
-			{
-				Ray crouchRay = new Ray(rigidBody.position + Vector3.up * capsule.radius * 0.5f, Vector3.up);
-				float crouchRayLength = capsuleHeight - capsule.radius * 0.5f;
-				if (Physics.SphereCast(crouchRay, capsule.radius * 0.5f, crouchRayLength))
-				{
-					isCrouching = true;
-					return;
-				}
-				capsule.height = capsuleHeight;
-				capsule.center = capsuleCenter;
-                box.size = new Vector3(box.size.x, boxHeight, box.size.z);
-				isCrouching = false;
-			}
-		}
 
 		private void Move(Vector3 movement)
 		{

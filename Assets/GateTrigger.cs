@@ -7,7 +7,6 @@ namespace LotsOfTowers.Interaction.Triggers
 	public class GateTrigger : MonoBehaviour
 	{
 		public GameObject DownwardsObject; // Object that will be moved downwards
-		private bool inTrigger = false;
 		private Player player;
 		
 		void Update()

@@ -12,7 +12,6 @@ namespace LotsOfTowers.Interaction.Triggers
         private NavMeshAgent agent;
 
         public bool agentActive = false;
-        private bool elephantStrafes = false;
         private bool initialPush;
 
         void Start()
