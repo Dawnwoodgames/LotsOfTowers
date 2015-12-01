@@ -58,7 +58,7 @@ namespace LotsOfTowers.Interaction
         // Open the door to the given position.
         private void OpenDoor()
         {
-            targetDoor.transform.position = new Vector3(targetX, targetY, targetZ); // Move position
+            targetDoor.transform.localPosition = new Vector3(targetX, targetY, targetZ); // Move position
             targetDoor.transform.Rotate(new Vector3(0, 90, 0)); // Rotate, so it `opens`
             doorOpen = true;
         }
