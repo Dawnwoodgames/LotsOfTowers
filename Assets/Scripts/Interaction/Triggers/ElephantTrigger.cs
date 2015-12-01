@@ -53,6 +53,7 @@ namespace LotsOfTowers.Interaction.Triggers
                 MoveElephant();
                 GetComponent<Rigidbody>().useGravity = true;
                 GetComponent<Rigidbody>().mass = 20;
+                player.GetComponent<Rigidbody>().mass = 1;
             }
         }
 
@@ -73,7 +74,7 @@ namespace LotsOfTowers.Interaction.Triggers
 
         public void StartMoving()
         {
-            StartCoroutine(Wait(1));
+            StartCoroutine(Wait(3));
         }
 
         IEnumerator Wait(int amount)
