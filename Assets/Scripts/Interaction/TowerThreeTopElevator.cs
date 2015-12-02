@@ -5,156 +5,58 @@ using LotsOfTowers.Actors;
 namespace LotsOfTowers.Interaction
 {
     public class TowerThreeTopElevator : MonoBehaviour {
+		private GameObject player;
+		private PlayerController playerController;
+		private Vector3 playerDistance;
+		private int state;
+		private bool triggered;
 
-        public float targetY;
-        public float targetZ;
-        public float halfwayZ;
-        public float elevateSpeed = 1.0F;
-        
-        public GameObject invisWalls;
-        public GameObject invisWallEntrance;
+		public float interpolationSpeed = 1;
+		public Vector3 targetMidway;
+		public Vector3 targetEnd;
 
-        private float elevatorY;
-        private float elevatorX;
-        private float elevatorZ;
+		public void Awake() {
+			this.player = GameObject.FindGameObjectWithTag ("Player");
+			this.playerController = player.GetComponent<PlayerController>();
+			this.state = 0;
+		}
+		
+		public void FixedUpdate() {
+			if (triggered) {
+				if (state == 0) {
+					transform.localPosition = Vector3.Slerp(transform.localPosition, targetMidway, interpolationSpeed * Time.deltaTime);
+					player.transform.position = transform.position + playerDistance;
+				} else if (state == 1) {
+					transform.localPosition = Vector3.Lerp(transform.localPosition, targetEnd, interpolationSpeed * Time.deltaTime);
+					player.transform.position = transform.position + playerDistance;
+				} else if (state == 2) {
+					state = 3;
+					transform.localPosition = targetEnd;
+					player.transform.position = transform.position + playerDistance;
+					playerController.enabled = true;
+				}
+			}
+		}
 
-        private bool elevating = false;
-        private bool elevated = false;
-        private bool halfwayelevated = false;
-        private bool secondwayelevated = false;
+		public void OnTriggerEnter(Collider coll) {
+			if (coll.gameObject.tag == "Player" && state == 0) {
+				playerController.enabled = false;
+				playerDistance = new Vector3 (
+				transform.position.x - player.transform.position.x,
+				transform.position.y - player.transform.position.y,
+				transform.position.z - player.transform.position.z
+				);
+				triggered = true;
+			}
+		}
 
-        private PlayerController playerController;
-
-        private Vector3 targetPosition;
-        private Vector3 targetHalfwayPosition;
-        private Vector3 targetSecondPosition;
-
-        private float startTime;
-        private float journeyLength;
-        private float journeyHalfLenght;
-        private float journeySecondLenght;
-        private float halfofdist;
-
-        void Start()
-        {
-            if (targetZ != 0)
-            {
-                elevatorZ = targetZ;
-            }
-            else
-            {
-                elevatorZ = transform.localPosition.z;
-            }
-
-            elevatorY = transform.localPosition.y;
-            elevatorX = transform.localPosition.x;
-            playerController = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>();
-
-
-            halfofdist = (transform.localPosition.y - targetY) / 2;
-            halfofdist = transform.localPosition.y - halfofdist;
-
-            targetHalfwayPosition = new Vector3(elevatorX, halfofdist, halfwayZ);
-            targetSecondPosition = new Vector3(elevatorX, targetY, halfwayZ);
-            targetPosition = new Vector3(elevatorX, targetY, elevatorZ);
-
-            journeyHalfLenght = Vector3.Distance(transform.localPosition, targetHalfwayPosition);
-            journeySecondLenght = Vector3.Distance(transform.localPosition, targetSecondPosition);
-            journeyLength = Vector3.Distance(transform.localPosition, targetPosition);
-            
-        }
-
-        void FixedUpdate()
-        {
-            if (elevating)
-            {
-                elevateHalfway();
-            }
-
-            if (halfwayelevated)
-            {
-                elevateSecond();
-            }
-
-            if (secondwayelevated)
-            {
-                elevateToTop();
-            }
-            
-            if (elevated)
-            {
-                elevating = false;
-                halfwayelevated = false;
-                secondwayelevated = false;
-
-                playerController.enabled = true;
-                invisWallEntrance.SetActive(false);
-            }
-        }
-
-        void elevateSecond()
-        {
-            if (transform.localPosition == targetSecondPosition)
-            {
-                startTime = Time.time;
-                secondwayelevated = true;
-                halfwayelevated = false;
-            }
-            else
-            {
-                float distCovered = (Time.time - startTime) * 0.25f;
-                float fracJourney = distCovered / journeySecondLenght;
-
-                transform.localPosition = Vector3.MoveTowards(transform.localPosition, targetSecondPosition, fracJourney);
-            }
-        }
-
-        void elevateHalfway()
-        {
-            if (transform.localPosition == targetHalfwayPosition)
-            {
-                startTime = Time.time;
-                elevating = false;
-                halfwayelevated = true;
-            }
-            else
-            {
-                float distCovered = (Time.time - startTime) * (elevateSpeed / 2);
-                float fracJourney = distCovered / journeyHalfLenght;
-
-                transform.localPosition = Vector3.MoveTowards(transform.localPosition, targetHalfwayPosition, fracJourney);
-            }
-        }
-
-        void elevateToTop()
-        {
-            if(Vector3.Distance(transform.localPosition, targetPosition) < 0.1f)
-            {
-                secondwayelevated = false;
-                elevated = true;
-            }
-            else
-            {
-                float distCovered = (Time.time - startTime) * (elevateSpeed / 2);
-                float fracJourney = distCovered / journeyLength;
-
-                transform.localPosition = Vector3.MoveTowards(transform.localPosition, targetPosition, fracJourney);
-            }
-        }
-
-
-        void OnTriggerEnter()
-        {
-            if(!elevating)
-            {
-                startTime = Time.time;
-                playerController.enabled = false;
-                elevating = true;
-                invisWalls.SetActive(true);
-            }
-        
-        }
-
+		public void Update() {
+			if (state == 0 && Vector3.Distance(transform.localPosition, targetMidway) < 0.25f) {
+				state = 1;
+			} else if (state == 1 && Vector3.Distance(transform.localPosition, targetEnd) < 0.1f) {
+				state = 2;
+			}
+		}
     }
 
 }
