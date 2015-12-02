@@ -21,7 +21,10 @@ namespace LotsOfTowers.Interaction.Triggers
             if (coll.tag == "Player")
             {
                 libra.GetComponent<LibraTrigger>().playerReadyToLaunch = false;
-            }
-        }
+				coll.GetComponent<Rigidbody>().mass = 1;
+				coll.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+                GameObject.Find("Level").GetComponent<Level.LevelOne>().ModifySpawnPoint();
+			}
+		}
     }
 }

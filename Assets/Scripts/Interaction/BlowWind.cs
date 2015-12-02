@@ -64,14 +64,15 @@ namespace LotsOfTowers.Interaction
                 block.GetComponent<Rigidbody>().AddForce(dir * force, ForceMode.Acceleration);
                 if (!hasBlock)
                 {
-                    if (player.GetComponent<Player>().Onesie.isElephant)
+                    if (!player.GetComponent<Player>().Onesie.isElephant)
                     {
-
+						Debug.Log("Player is not wearing elephant");
+						player.GetComponent<Rigidbody>().AddForce(dir * force, ForceMode.Acceleration);
                     }
-                    else
-                    {
-                        player.GetComponent<Rigidbody>().AddForce(dir * force, ForceMode.Acceleration);
-                    }
+					else
+					{
+						Debug.Log("Player is wearing elephant");
+					}
                 }
             }
         }

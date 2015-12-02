@@ -16,6 +16,11 @@ namespace LotsOfTowers.Level
 
             player.GetComponent<Player>().AddOnesieToFirstFreeSlot(defaultOnesie);
         }
-    }
+
+		public void ModifySpawnPoint()
+		{
+			GameObject.Find("Spawn Point").transform.position = new Vector3(-6.7f, 21.49f, 4.08f);
+		}
+	}
 
 }
