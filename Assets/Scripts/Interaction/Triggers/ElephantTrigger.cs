@@ -17,6 +17,7 @@ namespace LotsOfTowers.Interaction.Triggers
         private bool onElephantTrigger = false;
         private bool moving = false;
         private bool moveNow = false;
+        private bool isJumping = false;
 
         void Start()
         {
@@ -47,12 +48,20 @@ namespace LotsOfTowers.Interaction.Triggers
             // Move elephant forward when elephant is on launch position AND player is on libra
             if (triggerScript.elephantReadyToLaunch && triggerScript.playerReadyToLaunch)
             {
+                isJumping = true;
                 transform.LookAt(player.transform);
                 agent.enabled = false;
                 MoveElephant();
                 GetComponent<Rigidbody>().useGravity = true;
                 GetComponent<Rigidbody>().mass = 20;
                 player.GetComponent<Rigidbody>().mass = 1;
+                moving = false;
+            }
+            if (!triggerScript.elephantReadyToLaunch && !triggerScript.playerReadyToLaunch && isJumping)
+            {
+                StartCoroutine(ReturnToPosition());
+                isJumping = false;
+                
             }
         }
 
@@ -83,6 +92,16 @@ namespace LotsOfTowers.Interaction.Triggers
             gameObject.GetComponent<Rigidbody>().useGravity = false;
             gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
             agentActive = true;
+        }
+
+        IEnumerator ReturnToPosition()
+        {
+            yield return new WaitForSeconds(0.2f);
+            agent.enabled = true;
+            GetComponent<Rigidbody>().useGravity = false;
+            GetComponent<Rigidbody>().mass = 5;
+            agent.SetDestination(elephantLaunch.transform.position);
+            moving = true;
         }
     }
 }

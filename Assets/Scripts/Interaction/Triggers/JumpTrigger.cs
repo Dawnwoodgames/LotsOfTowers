@@ -15,5 +15,13 @@ namespace LotsOfTowers.Interaction.Triggers
                 libra.GetComponent<LibraTrigger>().playerReadyToLaunch = true;
             }
         }
+
+        void OnTriggerExit(Collider coll)
+        {
+            if (coll.tag == "Player")
+            {
+                libra.GetComponent<LibraTrigger>().playerReadyToLaunch = false;
+            }
+        }
     }
 }
