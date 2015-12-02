@@ -67,7 +67,7 @@ namespace LotsOfTowers.UI {
 			PlayerPrefs.DeleteAll();
 			PlayerPrefs.Save();
 			GameManager.Instance.Language = "en";
-			GameManager.Instance.LoadLevel(Application.loadedLevel);
+			GameManager.Instance.LoadLevel(Application.loadedLevel, true);
 		}
 
 		public void QuitApplication() {
