@@ -10,8 +10,8 @@ namespace LotsOfTowers.UI {
 
 		public void Update() {
 			if (mount != null && speed > 0) {
-				transform.position = Vector3.Lerp(transform.position, mount.position, speed);
-				transform.rotation = Quaternion.Slerp(transform.rotation, mount.rotation, speed);
+				transform.position = Vector3.Lerp(transform.position, mount.position, speed * Time.smoothDeltaTime);
+				transform.rotation = Quaternion.Slerp(transform.rotation, mount.rotation, speed * Time.smoothDeltaTime);
 			}
 		}
 	}
