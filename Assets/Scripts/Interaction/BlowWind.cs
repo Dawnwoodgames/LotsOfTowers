@@ -33,7 +33,7 @@ namespace LotsOfTowers.Interaction
 
         }
         
-        void Update()
+        void FixedUpdate()
         {
             hasPlayer = false;
             hasBlock = false;
