@@ -8,6 +8,8 @@ namespace LotsOfTowers.Interaction.Triggers
 	public class CombineFractures : MonoBehaviour
 	{
 		public FanSnapTrigger[] fracturesSnapped;
+        public GameObject completeFan;
+        public GameObject fractures;
 
 		void Start()
 		{
@@ -27,7 +29,9 @@ namespace LotsOfTowers.Interaction.Triggers
 		{
 			if(fracturesSnapped.All(f => f.isPlaced == true))
 			{
-
+                fractures.SetActive(false);
+                completeFan.SetActive(true);
+                gameObject.SetActive(false);
 			}
 		}
 	}
