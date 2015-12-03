@@ -66,13 +66,8 @@ namespace LotsOfTowers.Interaction
                 {
                     if (!player.GetComponent<Player>().Onesie.isElephant)
                     {
-						Debug.Log("Player is not wearing elephant");
 						player.GetComponent<Rigidbody>().AddForce(dir * force, ForceMode.Acceleration);
                     }
-					else
-					{
-						Debug.Log("Player is wearing elephant");
-					}
                 }
             }
         }
