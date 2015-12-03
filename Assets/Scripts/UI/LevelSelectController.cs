@@ -21,6 +21,7 @@ namespace LotsOfTowers.UI {
 
 			PlayerPrefs.SetInt("bIsLevelAvailable0", 1);
 			PlayerPrefs.SetInt("bIsLevelAvailable1", 1);
+			PlayerPrefs.SetInt("bIsLevelAvailable2", 1);
 			int levelIndex = 1;
 
 			foreach (Button button in GetComponentsInChildren<Button>()) {
