@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 
 namespace LotsOfTowers.Environment {
-	[RequireComponent(typeof(Light))]
 	public sealed class AmbientFire : MonoBehaviour {
 		private Light light;
 
