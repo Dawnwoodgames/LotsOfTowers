@@ -15,6 +15,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &139786
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 417600}
+  - 65: {fileID: 6547768}
+  - 114: {fileID: 11431212}
+  m_Layer: 0
+  m_Name: ResetArea
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &184498
 GameObject:
   m_ObjectHideFlags: 0
@@ -46,8 +63,21 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 423562}
+  - {fileID: 417600}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!4 &417600
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 139786}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -16.2000008, y: 60.8499985, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 407666}
+  m_RootOrder: 1
 --- !u!4 &423562
 Transform:
   m_ObjectHideFlags: 1
@@ -117,6 +147,30 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: .296074331, y: .121497557, z: .221407726}
   m_Center: {x: .00574948918, y: .123088837, z: .00172857346}
+--- !u!65 &6547768
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 139786}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 8.95172119, y: 1, z: 9.28271294}
+  m_Center: {x: .291526794, y: 0, z: -.147185564}
+--- !u!114 &11431212
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 139786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 07900b037cb12c64db98e6ec93df3e63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  carpet: {fileID: 184498}
 --- !u!114 &11464802
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -128,7 +182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 429ec883366882e4abca59d09519738d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  interpolationSpeed: 1
+  interpolationSpeed: 4
   targetMidway: {x: -16.2299995, y: 64.0849991, z: -4.5}
   targetEnd: {x: -16.2299995, y: 68.5, z: -3.5}
 --- !u!1001 &100100000
