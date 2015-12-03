@@ -514,6 +514,7 @@ Transform:
   m_Children:
   - {fileID: 935759272}
   - {fileID: 1664189686}
+  - {fileID: 1495577366}
   m_Father: {fileID: 233262349}
   m_RootOrder: 5
 --- !u!1 &162472582
@@ -1751,6 +1752,59 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f9c8a8efdc9cb2c4e8925e4caa4af508, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1495577365
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1495577366}
+  - 114: {fileID: 1495577367}
+  - 65: {fileID: 1495577368}
+  m_Layer: 0
+  m_Name: Leveltransistion
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1495577366
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1495577365}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -16.3700008, y: 81.6699982, z: 1.20000005}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 147654944}
+  m_RootOrder: 2
+--- !u!114 &1495577367
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1495577365}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf392f29fdd45466ca4596cdebb808bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelIndex: 2
+--- !u!65 &1495577368
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1495577365}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 3.81098461, y: 1, z: 1}
+  m_Center: {x: -.163190842, y: 0, z: 0}
 --- !u!1 &1535573878
 GameObject:
   m_ObjectHideFlags: 0

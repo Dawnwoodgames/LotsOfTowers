@@ -5,8 +5,8 @@ namespace LotsOfTowers.Interaction {
 
 		public int levelIndex;
 
-		public void OnCollisionEnter(Collision coll) {
-			if (coll.gameObject.tag == "Player") {
+		public void OnTriggerEnter(Collider coll) {
+			if (coll.tag == "Player") {
 				GameManager.Instance.LoadLevel(levelIndex, true);
 			}
 		}
