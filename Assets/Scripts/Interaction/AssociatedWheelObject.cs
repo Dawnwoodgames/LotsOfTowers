@@ -5,13 +5,12 @@ namespace LotsOfTowers.Interaction
 {
     public class AssociatedWheelObject : MonoBehaviour
     {
-        public GameObject floor;
-        public GameObject[] cypherWheel;
-        public int rotateAmount;
+        public GameObject[] associatedObjects;
+        public GameObject targetPosition;
 
         private HamsterWheel wheel;
         private bool isSpinning = false;
-        
+
         void Start()
         {
             wheel = GetComponent<HamsterWheel>();
@@ -19,30 +18,22 @@ namespace LotsOfTowers.Interaction
 
         void Update()
         {
-            if (wheel.GetRotateSpeed() >= 18)
-                RotateObject();
+            if (!targetPosition.GetComponent<LotsOfTowers.Interaction.Triggers.DestroyInteraction>().GetObjectHit())
+                if (wheel.GetRotateSpeed() >= 18)
+                    RotateObject();
         }
 
         private void RotateObject()
         {
-            if (!isSpinning)
-            {
-                if (this.gameObject.tag == "Fracture")
-                {
-                    isSpinning = true;
-                    floor.transform.Rotate(Vector3.forward * 15 * Time.deltaTime);
-                } else {
-                    isSpinning = true;
-                    foreach (GameObject cWheel in cypherWheel)
-                        cWheel.transform.Rotate(Vector3.left * 90 * rotateAmount);
-                    StartCoroutine(DelaySpin());
-                }
-            }
+            isSpinning = true;
+            foreach (GameObject assObject in associatedObjects)
+                assObject.transform.Rotate(0, 0, 50 * Time.deltaTime);
+            StartCoroutine(DelaySpin());
         }
 
         private IEnumerator DelaySpin()
         {
-            yield return new WaitForSeconds(1);
+            yield return new WaitForSeconds(.3f);
             isSpinning = false;
         }
     }
