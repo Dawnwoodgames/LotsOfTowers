@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using Assets.Scripts.Framework;
+using LotsOfTowers.Framework;
 using System.Collections.Generic;
 using System.Linq;
 using LotsOfTowers.Actors;
@@ -13,6 +13,7 @@ namespace LotsOfTowers.Interaction.Triggers
 	{
 		public static State state = State.Deactive;
 		public float forcePower = 50;
+		public float forcePowerWithoutOnesie = 150;
 
 		// Declare and initialize a new List of GameObjects called currentCollisions.
 		private List<GameObject> currentCollisions = new List<GameObject>();
@@ -27,7 +28,7 @@ namespace LotsOfTowers.Interaction.Triggers
 			}
 			catch (System.Exception ex)
 			{
-				Logger.Log(ex.Message, LogType.Exception);
+				Logger.Log(ex);
 				throw;
 			}
 		}
@@ -37,17 +38,20 @@ namespace LotsOfTowers.Interaction.Triggers
 			if (state == State.Active)
 			{
 				windParticles.enableEmission = true;
+
+				currentCollisions = currentCollisions.Distinct().ToList();
+
 				if(currentCollisions.Count > 1 && currentCollisions.Any(player => player.tag == "Player"))
 				{
 					try
 					{
-						if (currentCollisions.Single(player => player.name == "Player").GetComponent<Player>().Onesie.isElephant)
+						if (currentCollisions.SingleOrDefault(player => player.name == "Player").GetComponent<Player>().Onesie.isElephant)
 						{
-							currentCollisions.Single(ff => ff.name == "FloatingFloor").GetComponent<Rigidbody>().AddForce(Vector3.up * 50, ForceMode.Acceleration);
-						}
+							currentCollisions.SingleOrDefault(ff => ff.name == "FloatingFloor").GetComponent<Rigidbody>().AddForce(Vector3.up * forcePower, ForceMode.Acceleration);
+                        }
 						else
 						{
-							currentCollisions.Single(ff => ff.name == "FloatingFloor").GetComponent<Rigidbody>().AddForce(Vector3.up * 150, ForceMode.Acceleration);
+							currentCollisions.SingleOrDefault(ff => ff.name == "FloatingFloor").GetComponent<Rigidbody>().AddForce(Vector3.up * forcePowerWithoutOnesie, ForceMode.Acceleration);
 						}
 					}
 					catch (System.Exception)
@@ -59,7 +63,9 @@ namespace LotsOfTowers.Interaction.Triggers
 				{
 					foreach (GameObject item in currentCollisions)
 					{
-						//Add force so the object goes up
+                        //Add force so the object goes up
+                        if (item.tag == "Player" && item.GetComponent<Player>().Onesie.isElephant)
+                            continue;
 						item.GetComponent<Rigidbody>().AddForce(Vector3.up * 50, ForceMode.Acceleration);
 					}
 				}

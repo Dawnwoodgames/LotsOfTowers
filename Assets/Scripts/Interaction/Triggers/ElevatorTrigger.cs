@@ -19,11 +19,15 @@ namespace LotsOfTowers.Interaction.Triggers {
 		public void OnCollisionStay(Collision coll) {
 			GameObject source = coll.gameObject;
 
+			//Tempory disable sleep mode for rigidbody
+			source.GetComponent<Rigidbody>().sleepThreshold = 0;
+
 			if (!hasStarted && source.tag == "Player" && source.GetComponent<Player>().IsElephant) {
                 GameObject.Find("Level").GetComponent<Level.LevelTwo>().ModifySpawnPoint();
 				hasStarted = true;
 				StartCoroutine (Trigger());
-			}
+				source.GetComponent<Rigidbody>().sleepThreshold = 0.14f;
+            }
 		}
 
 		public IEnumerator Trigger ()

@@ -20,7 +20,7 @@ namespace LotsOfTowers.Level
         }
 
         public void ModifySpawnPoint() {
-            GameObject.Find("Spawn Point").transform.position = new Vector3(-1.8f, 5.16f, -2.75f);
+            GameObject.Find("Spawn Point").transform.position = new Vector3(5.82f, 11.63f, 0);
         }
     }
 }

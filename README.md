@@ -1,5 +1,10 @@
-# LotsOfTowers
-First game!
+# NIMBI
 
-This game is a Dawn Wood Games production!
-Yay!
+A game by
+
+Dawn Wood Games
+https://www.facebook.com/dawnwoodgames
+
+This game is currenlty in development!
+ 
+ 

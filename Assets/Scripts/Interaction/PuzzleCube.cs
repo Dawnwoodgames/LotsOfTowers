@@ -32,6 +32,23 @@ namespace LotsOfTowers.Interaction
 			}
 		}
 
+		private void OnCollisionEnter(Collision col)
+		{
+			if(col.gameObject.tag == "Player")
+			{
+				col.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+			}
+		}
+
+		private void OnCollisionExit(Collision col)
+		{
+			if (col.gameObject.tag == "Player")
+			{
+				col.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+			}
+		}
+
+
 		private void ActivateFloatingFloor()
 		{
 			foreach (Transform child in transform)

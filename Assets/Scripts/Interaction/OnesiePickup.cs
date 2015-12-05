@@ -1,6 +1,5 @@
 ﻿using UnityEngine;
 using LotsOfTowers.Actors;
-using LotsOfTowers.ToolTip;
 
 namespace LotsOfTowers.Interaction
 {
@@ -20,12 +19,13 @@ namespace LotsOfTowers.Interaction
 
 		public void OnTriggerEnter(Collider collider) {
 			actor = collider.gameObject.GetComponent<Player>();
-            if (collider.tag == "Player")
-                Tooltip.ShowTooltip(tooltip, "Onesie.Chicken", false, new string[] { "Jump" });
 
-            if (actor.HasFreeSlots && actor.AddOnesieToFirstFreeSlot(Onesie))
+			if (actor != null)
 			{
-				Destroy(gameObject);
+				if (actor.HasFreeSlots && actor.AddOnesieToFirstFreeSlot(Onesie))
+				{
+					Destroy(gameObject);
+				}
 			}
 		}
 

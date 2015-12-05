@@ -51,8 +51,6 @@ public class MirrorScript : MonoBehaviour {
 
     private void CheckVisibility()
     {
-        GameObject cam = Camera.main.gameObject;
-
         //First check if the mirrored player can be seen through the mirror
         RaycastHit[] hits;
         bool mirrorfound = true;

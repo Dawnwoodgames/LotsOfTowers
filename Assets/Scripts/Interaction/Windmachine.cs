@@ -1,4 +1,4 @@
-﻿using Assets.Scripts.Framework;
+﻿using LotsOfTowers.Framework;
 using LotsOfTowers.Actors;
 using LotsOfTowers.Interaction.Triggers;
 using UnityEngine;

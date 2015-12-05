@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using LotsOfTowers.ToolTip;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -25,9 +24,15 @@ namespace LotsOfTowers.Actors
 		public GameObject tooltip;
         public GameObject hudUi;
         public GameObject chargeDisplay;
-		
-		// Properties
-		public bool CanMoveObjects
+
+        public GameObject elephantHead;
+        public GameObject elephantBody;
+
+        private GameObject defaultHead;
+        private GameObject defaultBody;
+
+        // Properties
+        public bool CanMoveObjects
 		{
 			get { return Onesie.canMoveObjects; }
 		}
@@ -110,15 +115,18 @@ namespace LotsOfTowers.Actors
 
 		public void Awake()
 		{
+			Physics.gravity = new Vector3(0, -35, 0);
+
 			DefaultOnesie = Resources.Load("OnesieDefault") as Onesie;
 			MaxOnesies = 3;
-			DontDestroyOnLoad(gameObject);
 			onesies = new Dictionary<int, Onesie>(MaxOnesies);
-		}
+
+            defaultHead = GameObject.Find("Head_Default");
+            defaultBody = GameObject.Find("Body_Default");
+        }
 
 		public void Start()
 		{
-			Tooltip.ShowTooltip(tooltip, "Movement", false, new string[] { "Horizontal", "Vertical" });
             hudUi = GameObject.Find("HUD");
 		}
 
@@ -126,7 +134,24 @@ namespace LotsOfTowers.Actors
 		{
 			if (onesies.ContainsKey(index)) {
 				currentOnesie = onesies[index];
-			}
+
+                if(currentOnesie.name == "OnesieElephant")
+                {
+                    defaultHead.SetActive(false);
+                    defaultBody.SetActive(false);
+
+                    elephantHead.SetActive(true);
+                    elephantBody.SetActive(true);
+                }
+                else
+                {
+                    elephantHead.SetActive(false);
+                    elephantBody.SetActive(false);
+
+                    defaultHead.SetActive(true);
+                    defaultBody.SetActive(true);
+                }
+            }
 		}
 		
 		public void Update()

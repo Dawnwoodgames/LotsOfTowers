@@ -42,6 +42,7 @@ public class MirrorKey : MonoBehaviour {
             currentlyVisible = true;
         }
     }
+
     //Check if the object is on the same side of the mirror as the key
     private bool SameSideAs(GameObject go)
     {
@@ -83,13 +84,17 @@ public class MirrorKey : MonoBehaviour {
         return throughMirror;
     }
 
-    private void OnTriggerEnter(Collider coll)
+    private void OnTriggerStay(Collider coll)
     {
         if (coll.gameObject == mirrorPlayer)
         {
-            this.gameObject.transform.SetParent(mirrorPlayer.transform);
-            this.gameObject.transform.localPosition = new Vector3(0, .08f, 0);
-            pickedUp = true;
+            if(Input.GetButtonDown("Submit"))
+            {
+                this.gameObject.transform.SetParent(mirrorPlayer.transform);
+                this.gameObject.transform.localPosition = new Vector3(0, .08f, 0);
+                pickedUp = true;
+            }
+            
         }
     }
 }

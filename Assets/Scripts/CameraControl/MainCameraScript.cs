@@ -32,6 +32,8 @@ public class MainCameraScript : MonoBehaviour
 			degree -= 90;
 		}
 
+        degree = degree % 360;
+
 		//Set rotation to next degree with a slight lerp
 		centerFocus.rotation = Quaternion.Slerp(centerFocus.rotation, Quaternion.Euler(verticalDegree, degree, 0), Time.deltaTime * 20);
 
