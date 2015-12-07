@@ -2368,7 +2368,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 480464, guid: 9d5ffcffed5dc3a4d843332ad6dd4f66, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -3.51999998
+      value: -2.20000005
       objectReference: {fileID: 0}
     - target: {fileID: 480464, guid: 9d5ffcffed5dc3a4d843332ad6dd4f66, type: 2}
       propertyPath: m_LocalPosition.z
@@ -2398,79 +2398,7 @@ Prefab:
       propertyPath: hudUi
       value: 
       objectReference: {fileID: 402499507}
-    - target: {fileID: 480464, guid: 9d5ffcffed5dc3a4d843332ad6dd4f66, type: 2}
-      propertyPath: m_LocalScale.x
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 480464, guid: 9d5ffcffed5dc3a4d843332ad6dd4f66, type: 2}
-      propertyPath: m_LocalScale.y
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 480464, guid: 9d5ffcffed5dc3a4d843332ad6dd4f66, type: 2}
-      propertyPath: m_LocalScale.z
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 11461438, guid: 9d5ffcffed5dc3a4d843332ad6dd4f66, type: 2}
-      propertyPath: m_Color.r
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 11461438, guid: 9d5ffcffed5dc3a4d843332ad6dd4f66, type: 2}
-      propertyPath: m_Color.g
-      value: .682758331
-      objectReference: {fileID: 0}
-    - target: {fileID: 11461438, guid: 9d5ffcffed5dc3a4d843332ad6dd4f66, type: 2}
-      propertyPath: m_Color.b
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 22494316, guid: 9d5ffcffed5dc3a4d843332ad6dd4f66, type: 2}
-      propertyPath: m_AnchoredPosition.y
-      value: 1.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 6545752, guid: 9d5ffcffed5dc3a4d843332ad6dd4f66, type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 13655554, guid: 9d5ffcffed5dc3a4d843332ad6dd4f66, type: 2}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6545752, guid: 9d5ffcffed5dc3a4d843332ad6dd4f66, type: 2}
-      propertyPath: m_Size.x
-      value: .0323464237
-      objectReference: {fileID: 0}
-    - target: {fileID: 6545752, guid: 9d5ffcffed5dc3a4d843332ad6dd4f66, type: 2}
-      propertyPath: m_Size.z
-      value: .0134145487
-      objectReference: {fileID: 0}
-    - target: {fileID: 6545752, guid: 9d5ffcffed5dc3a4d843332ad6dd4f66, type: 2}
-      propertyPath: m_Center.x
-      value: -2.66076586e-05
-      objectReference: {fileID: 0}
-    - target: {fileID: 6545752, guid: 9d5ffcffed5dc3a4d843332ad6dd4f66, type: 2}
-      propertyPath: m_Center.y
-      value: .00489406008
-      objectReference: {fileID: 0}
-    - target: {fileID: 6545752, guid: 9d5ffcffed5dc3a4d843332ad6dd4f66, type: 2}
-      propertyPath: m_Center.z
-      value: .00125498767
-      objectReference: {fileID: 0}
-    - target: {fileID: 6545752, guid: 9d5ffcffed5dc3a4d843332ad6dd4f66, type: 2}
-      propertyPath: m_Size.y
-      value: .00948606711
-      objectReference: {fileID: 0}
-    - target: {fileID: 22421836, guid: 9d5ffcffed5dc3a4d843332ad6dd4f66, type: 2}
-      propertyPath: m_LocalScale.y
-      value: .0700000003
-      objectReference: {fileID: 0}
-    - target: {fileID: 5409106, guid: 9d5ffcffed5dc3a4d843332ad6dd4f66, type: 2}
-      propertyPath: m_Constraints
-      value: 112
-      objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 6545752, guid: 9d5ffcffed5dc3a4d843332ad6dd4f66, type: 2}
-    - {fileID: 13655554, guid: 9d5ffcffed5dc3a4d843332ad6dd4f66, type: 2}
-    - {fileID: 13606514, guid: 9d5ffcffed5dc3a4d843332ad6dd4f66, type: 2}
-    - {fileID: 13650970, guid: 9d5ffcffed5dc3a4d843332ad6dd4f66, type: 2}
+    m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9d5ffcffed5dc3a4d843332ad6dd4f66, type: 2}
   m_IsPrefabParent: 0
 --- !u!1 &639554597
@@ -5949,6 +5877,7 @@ MonoBehaviour:
   tooltip: {fileID: 134260, guid: f3ae3e65f626c9041bb0b7ec44b1a91c, type: 2}
   hudUi: {fileID: 402499507}
   chargeDisplay: {fileID: 0}
+  chargeParticles: {fileID: 0}
   elephantHead: {fileID: 0}
   elephantBody: {fileID: 0}
 --- !u!1001 &1317781258
@@ -5993,6 +5922,10 @@ Prefab:
     - target: {fileID: 159136, guid: 05229dd8be1d0fe45a6504c022b64e57, type: 2}
       propertyPath: m_Name
       value: Ambient Fire
+      objectReference: {fileID: 0}
+    - target: {fileID: 19853764, guid: 05229dd8be1d0fe45a6504c022b64e57, type: 2}
+      propertyPath: prewarm
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 05229dd8be1d0fe45a6504c022b64e57, type: 2}
