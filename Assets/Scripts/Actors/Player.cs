@@ -165,9 +165,7 @@ namespace LotsOfTowers.Actors
 			{
 				//Discharge static load
 				StaticCharge = 0;
-				Debug.Log(chargeParticles.name);
 				chargeParticles.SetActive(false);
-
 				//Discharge animation here
 			}
 		}
