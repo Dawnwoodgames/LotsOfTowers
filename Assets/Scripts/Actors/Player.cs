@@ -29,34 +29,9 @@ namespace LotsOfTowers.Actors
 		private GameObject defaultBody;
 
 		// Properties
-		public bool CanMoveObjects
-		{
-			get { return Onesie.canMoveObjects; }
-		}
-
 		public bool HasFreeSlots
 		{
 			get { return onesies.Count < MaxOnesies; }
-		}
-
-		public int JumpCount
-		{
-			get { return Onesie.jumpCount; }
-		}
-
-		public float JumpPower
-		{
-			get { return Onesie.jumpPower; }
-		}
-
-		public float MovementSpeed
-		{
-			get { return Onesie.movementSpeed; }
-		}
-
-		public bool IsElephant
-		{
-			get { return Onesie.isElephant; }
 		}
 
 		public float StaticCharge
