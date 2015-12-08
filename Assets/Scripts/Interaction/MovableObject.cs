@@ -18,7 +18,7 @@ namespace LotsOfTowers.Interaction
 		
 		public void Update()
 		{
-			rigidBody.isKinematic = !player.CanMoveObjects;
+			rigidBody.isKinematic = !player.Onesie.canMoveObjects;
 		}
 	}
 }

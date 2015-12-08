@@ -22,7 +22,7 @@ namespace LotsOfTowers.Interaction.Triggers {
 			//Tempory disable sleep mode for rigidbody
 			source.GetComponent<Rigidbody>().sleepThreshold = 0;
 
-			if (!hasStarted && source.tag == "Player" && source.GetComponent<Player>().IsElephant) {
+			if (!hasStarted && source.tag == "Player" && source.GetComponent<Player>().Onesie.isHeavy) {
                 GameObject.Find("Level").GetComponent<Level.LevelTwo>().ModifySpawnPoint();
 				hasStarted = true;
 				StartCoroutine (Trigger());

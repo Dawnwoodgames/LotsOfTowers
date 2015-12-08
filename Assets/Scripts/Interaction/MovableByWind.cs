@@ -13,7 +13,7 @@ namespace LotsOfTowers.Interaction
         {
             if(col.gameObject.tag == "Player")
             {
-                if(col.gameObject.GetComponent<Player>().CanMoveObjects)
+                if(col.gameObject.GetComponent<Player>().Onesie.canMoveObjects)
                 {
                     GetComponent<Rigidbody>().isKinematic = false;
                 }

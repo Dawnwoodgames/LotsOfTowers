@@ -10,7 +10,7 @@ namespace LotsOfTowers.Interaction.Triggers
 
         void OnTriggerStay(Collider coll)
         {
-            if (coll.tag == "Player" && !coll.GetComponent<Player>().Onesie.isElephant)
+            if (coll.tag == "Player" && !coll.GetComponent<Player>().Onesie.isHeavy)
             {
                 libra.GetComponent<LibraTrigger>().playerReadyToLaunch = true;
             }

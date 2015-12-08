@@ -16,7 +16,7 @@ namespace LotsOfTowers.Interaction.Triggers
 
         void Update()
         {
-            if (player != null && player.GetComponent<Player>().Onesie.isElephant && player.GetComponent<Rigidbody>().mass != regularMass)
+            if (player != null && player.GetComponent<Player>().Onesie.type == OnesieType.Elephant && player.GetComponent<Rigidbody>().mass != regularMass)
             {
                 player.GetComponent<Rigidbody>().mass = elephant.GetComponent<Rigidbody>().mass;
                 elephant.GetComponent<ElephantTrigger>().StartMoving();

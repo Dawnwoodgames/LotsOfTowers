@@ -14,12 +14,12 @@ public class CompleteFan : MonoBehaviour {
 
     void OnCollisionStay(Collision other)
     {
-        if (other.gameObject.tag == "Player" && !other.gameObject.GetComponent<Player>().Onesie.isElephant)
+        if (other.gameObject.tag == "Player" && !other.gameObject.GetComponent<Player>().Onesie.isHeavy)
         {
             animator.SetBool("GoingDown", false);
             animator.SetBool("GoingUp", true);
         }
-        else if (other.gameObject.tag == "Player" && other.gameObject.GetComponent<Player>().Onesie.isElephant)
+        else if (other.gameObject.tag == "Player" && other.gameObject.GetComponent<Player>().Onesie.isHeavy)
         {
             animator.SetBool("GoingDown", true);
             animator.SetBool("GoingUp", false);

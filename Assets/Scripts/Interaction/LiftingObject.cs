@@ -47,7 +47,7 @@ namespace LotsOfTowers.Interaction
 		{
 			if (inTrigger)
 			{
-				if (Input.GetButton("Submit") && player.GetComponent<Player>().Onesie.isElephant)
+				if (Input.GetButton("Submit") && player.GetComponent<Player>().Onesie.type == OnesieType.Elephant)
 				{
 					pickedUp = true;
 				}
@@ -64,7 +64,7 @@ namespace LotsOfTowers.Interaction
 					meshColl.isTrigger = true;
 				}
 
-				if (!Input.GetButton("Submit") || !player.GetComponent<Player>().Onesie.isElephant)
+				if (!Input.GetButton("Submit") || player.GetComponent<Player>().Onesie.type != OnesieType.Elephant)
 				{
 					pickedUp = false;
 					rigid.isKinematic = false;
