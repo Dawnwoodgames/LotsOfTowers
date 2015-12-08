@@ -138,21 +138,42 @@ namespace LotsOfTowers.Actors
 			if (onesies.ContainsKey(index)) {
 				currentOnesie = onesies[index];
 
-                if(currentOnesie.name == "OnesieElephant")
+                if(currentOnesie.name == "OnesieElephant" && !elephantHead.activeInHierarchy)
                 {
                     defaultHead.SetActive(false);
                     defaultBody.SetActive(false);
 
                     elephantHead.SetActive(true);
                     elephantBody.SetActive(true);
+                    if(defaultHead.GetComponent<Renderer>().enabled)
+                    {
+                        elephantBody.GetComponent<Renderer>().enabled = true;
+                        elephantHead.GetComponent<Renderer>().enabled = true;
+                    }
+                    else
+                    {
+                        elephantBody.GetComponent<Renderer>().enabled = false;
+                        elephantHead.GetComponent<Renderer>().enabled = false;
+                    }
                 }
-                else
+                else if(currentOnesie.name == "OnesieDefault" && !defaultHead.activeInHierarchy)
                 {
                     elephantHead.SetActive(false);
                     elephantBody.SetActive(false);
 
                     defaultHead.SetActive(true);
                     defaultBody.SetActive(true);
+
+                    if (elephantHead.GetComponent<Renderer>().enabled)
+                    {
+                        defaultHead.GetComponent<Renderer>().enabled = true;
+                        defaultBody.GetComponent<Renderer>().enabled = true;
+                    }
+                    else
+                    {
+                        defaultHead.GetComponent<Renderer>().enabled = false;
+                        defaultBody.GetComponent<Renderer>().enabled = false;
+                    }
                 }
             }
 		}
