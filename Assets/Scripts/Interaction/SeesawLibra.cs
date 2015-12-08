@@ -2,12 +2,12 @@
 using System.Collections;
 using LotsOfTowers.Interaction.Triggers;
 using LotsOfTowers.Actors;
+using System;
 
 namespace LotsOfTowers.Interaction
 {
 	public class SeesawLibra : MonoBehaviour
 	{
-
 		public GameObject board;
 		public GameObject boardStart;
 		public GameObject boardEnd;
@@ -21,14 +21,18 @@ namespace LotsOfTowers.Interaction
 		private PlayerController playerController;
 
 		private bool getOnesiePartFinished = false;
+		private bool puzzleFinished = false;
 
 		//Start values elephant jump lerp
 		private Vector3 elephantStartPosition;
+		private Vector3 elephantSecondPosition;
+
 		private Vector3 elephantJumpTargetPosition;
 		private bool elephantJumpFinished = false;
 		private bool elephantJumpStartValuesSet = false;
 		private float elephantJumpStartDistance;
 		private float elephantJumpStartTime;
+
 
 		// Start values for boardlerprotation
 		private bool boardLerpValuesSet = false;
@@ -40,7 +44,6 @@ namespace LotsOfTowers.Interaction
 		private bool hasElephantOnesie;
 		private bool EvenBoardLerpFinished = false;
 
-
 		void Start()
 		{
 			player = GameObject.FindGameObjectWithTag("Player");
@@ -49,7 +52,9 @@ namespace LotsOfTowers.Interaction
 			boardStartTrigger = boardStart.GetComponent<SeesawLibraBoardTrigger>();
 			boardEndTrigger = boardEnd.GetComponent<SeesawLibraBoardTrigger>();
 
-		}
+			//Nice code bra
+			elephantSecondPosition = new Vector3(GameObject.Find("HelpNimbiFromHere").transform.localPosition.x - 1, GameObject.Find("HelpNimbiFromHere").transform.localPosition.y + 1.65f, GameObject.Find("HelpNimbiFromHere").transform.localPosition.z);
+        }
 
 		void FixedUpdate()
 		{
@@ -97,6 +102,8 @@ namespace LotsOfTowers.Interaction
 					}
 				}
 			}
+			
+			//Check if the player is standing on the begin platform
 			else if(boardStartTrigger.isPlayerOnTrigger())
 			{
 				Debug.Log("We are finished with part one, join us on the next episode on NIMBI!");
@@ -105,14 +112,22 @@ namespace LotsOfTowers.Interaction
 			}
 			else if(boardEndTrigger.isPlayerOnTrigger())
 			{
-				board.GetComponent<Rigidbody>().isKinematic = true;
+				board.GetComponent<Rigidbody>().isKinematic = true;		
 				playerController.DisableMovement();
 
 				if (!player.GetComponent<Player>().Onesie.isElephant)
 				{
 					// Elephant jumps which will launch you to the next platform.
+					if (elephant.transform.localPosition.x > 0.5f)
+					{
+						elephant.transform.localPosition += Vector3.left;
+					}
+					else
+					{
+						StartCoroutine(WaitForPlayerLaunch(0.5f));
+					}
 				}
-				else
+				else if(!puzzleFinished)
 				{
 					Debug.Log("Take off your onesie to continue!!");
 				}
@@ -125,6 +140,30 @@ namespace LotsOfTowers.Interaction
 
 			// Elephant walks of and enables moving for player so he can walk to the other side
 			ElephantWalkOff();
+		}
+
+		IEnumerator WaitForPlayerLaunch(float amount)
+		{
+			yield return new WaitForSeconds(amount);
+
+			// Elephant walks of and enables moving for player so he can walk to the other side
+			LaunchPlayerUp();
+		}
+
+		private void LaunchPlayerUp()
+		{
+			//First turn board
+			if ((int)board.transform.eulerAngles.x != 20)
+			{
+				board.transform.eulerAngles = new Vector3(board.transform.eulerAngles.x + 20 * Time.deltaTime, board.transform.eulerAngles.y, board.transform.eulerAngles.z);
+			}
+			else
+			{
+				Debug.Log("You did it! Enjoy being stuck at this part cause the box is too damn high");
+				puzzleFinished = true;
+				playerController.EnableMovement();
+			}
+
 		}
 
 		//** Onesie related **//
@@ -231,20 +270,22 @@ namespace LotsOfTowers.Interaction
 		private void ElephantWalkOff()
 		{
 			//Let the elephant walk off the board
-			if (elephant.transform.localPosition.x < 2)
+			if (elephant.transform.localPosition != elephantSecondPosition)
 			{
-				//Add smooth walk...... GOD DAMNIT
-				elephant.transform.position = elephant.transform.position + Vector3.right * 0.1f;
+				//Add smooth walk...... GOD DAMNIT NAV MESH U MOTHAFUCKA
+				elephant.transform.localPosition = elephantSecondPosition;
 			}
 
 			if (board.transform.eulerAngles.x < 20)
 			{
+				//Rotate board
 				board.transform.eulerAngles = new Vector3(board.transform.eulerAngles.x + 20 * Time.deltaTime, board.transform.eulerAngles.y, board.transform.eulerAngles.z);
+
+				playerController.EnableMovement();
 			}
 			else
 			{
-				playerController.EnableMovement();
-				board.GetComponent<Rigidbody>().isKinematic = false;		
+				board.GetComponent<Rigidbody>().isKinematic = false;
 			}
 		}
 		#endregion Elephant
