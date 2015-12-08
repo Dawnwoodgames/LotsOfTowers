@@ -101,11 +101,13 @@ namespace LotsOfTowers.Interaction
 			{
 				Debug.Log("We are finished with part one, join us on the next episode on NIMBI!");
 
-				// Elephant walks of and enables moving for player so he can walk to the other side
-				ElephantWalkOff();
+				StartCoroutine(WaitForBalance(0.5f));
 			}
 			else if(boardEndTrigger.isPlayerOnTrigger())
 			{
+				board.GetComponent<Rigidbody>().isKinematic = true;
+				playerController.DisableMovement();
+
 				if (!player.GetComponent<Player>().Onesie.isElephant)
 				{
 					// Elephant jumps which will launch you to the next platform.
@@ -115,6 +117,14 @@ namespace LotsOfTowers.Interaction
 					Debug.Log("Take off your onesie to continue!!");
 				}
 			}
+		}
+
+		IEnumerator WaitForBalance(float amount)
+		{
+			yield return new WaitForSeconds(amount);
+
+			// Elephant walks of and enables moving for player so he can walk to the other side
+			ElephantWalkOff();
 		}
 
 		//** Onesie related **//
