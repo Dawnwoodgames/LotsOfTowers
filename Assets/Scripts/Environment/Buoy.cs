@@ -3,7 +3,7 @@
 namespace LotsOfTowers.Environment {
 	public sealed class Buoy : MonoBehaviour {
 		private float internalClock;
-		private Light light;
+		private new Light light;
 		private float originalY;
 		private float randomness;
 

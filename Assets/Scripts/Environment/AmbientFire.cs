@@ -2,7 +2,7 @@
 
 namespace LotsOfTowers.Environment {
 	public sealed class AmbientFire : MonoBehaviour {
-		private Light light;
+		private new Light light;
 
 		public float maxIntensity = 0.9f;
 		public float minIntensity = 0.7f;
