@@ -17,6 +17,7 @@ namespace LotsOfTowers
 		private Canvas canvas;
 		private Image fader;
 		private bool hasStarted;
+		private PlayerController playerController;
 		private Transform spawnPoint;
 		
 		public static bool Alive { get { return Instance != null; } }
@@ -101,16 +102,23 @@ namespace LotsOfTowers
 		}
 
 		public void LoadLevel(int index, bool forceUnlock) {
-			if (!forceUnlock && PlayerPrefs.GetInt("bIsLevelAvailable" + index, 0) == 0) {
+			if (index == -1) {
+				index = Application.loadedLevel;
+			} else if (!forceUnlock && PlayerPrefs.GetInt("bIsLevelAvailable" + index, 0) == 0) {
 				return;
 			}
 
 			PlayerPrefs.SetInt("bIsLevelAvailable" + index, 1);
+			Time.timeScale = 1;
 			StopAllCoroutines();
 			StartCoroutine(LoadLevelCoroutine(index));
 		}
 
 		private IEnumerator LoadLevelCoroutine(int index) {
+			if (playerController != null) {
+				playerController.enabled = false;
+			}
+
 			while (!hasStarted) {
 				yield return null;
 			}
@@ -127,10 +135,15 @@ namespace LotsOfTowers
 				fader.color = Color.Lerp(fader.color, Color.clear, 0.1f);
 				yield return null;
 			}
+
+			if (playerController != null) {
+				playerController.enabled = true;
+			}
 		}
 		
 		public void OnLevelWasLoaded(int index) {
 			try {
+				playerController = FindObjectOfType<PlayerController>();
 				spawnPoint = GameObject.Find("Level/Spawn Point").transform;
 			} catch (Exception) { }
 		}
