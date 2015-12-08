@@ -12,25 +12,32 @@ namespace LotsOfTowers.Interaction
         public GameObject boardEnd;
         public GameObject elephant;
 
+        public Onesie elephantOnesie;
 
         private SeesawLibraBoardTrigger boardStartTrigger;
         private SeesawLibraBoardTrigger boardEndTrigger;
         private GameObject player;
         private PlayerController playerController;
 
+        private bool getOnesiePartFinished = false;
+
         //Start values elephant jump lerp
         private Vector3 elephantStartPosition;
+        private Vector3 elephantJumpTargetPosition;
         private bool elephantJumpFinished = false;
         private bool elephantJumpStartValuesSet = false;
         private float elephantJumpStartDistance;
         private float elephantJumpStartTime;
-        private Vector3 elephantJumpTargetPosition;
 
         // Start values for boardlerprotation
         private bool boardLerpValuesSet = false;
+        private bool flippingFirstSequenceFinished = false;
         private float lerpBoardStartTime;
         private Vector3 lerpBoardStartRotation;
-        private bool flippingFirstSequenceFinished = false;
+        
+        // Onesie related
+        private bool hasElephantOnesie;
+        private bool EvenBoardLerpFinished = false;
 
 
         void Start()
@@ -45,34 +52,109 @@ namespace LotsOfTowers.Interaction
 
         void FixedUpdate()
         {
-            // First up; the elephant has to jump from the platform.
-            if(!elephantJumpFinished)
+            if(!getOnesiePartFinished)
             {
-                if (boardStartTrigger.isPlayerOnTrigger() && !boardEndTrigger.isElephantOnTrigger())
+                // First up; the elephant has to jump from the platform.
+                if (!elephantJumpFinished)
                 {
-                    ElephantJump(); // This also disables the playerController;
+                    if (boardStartTrigger.isPlayerOnTrigger() && !boardEndTrigger.isElephantOnTrigger())
+                    {
+                        ElephantJump(); // This also disables the playerController;
+                    }
+                }
+                else
+                {
+                    // Now the elephant has jumped from the platform. Its time to flip the board towards the elephant
+                    if (!flippingFirstSequenceFinished)
+                    {
+                        FlipBoardToInvertedRotation();
+                    }
+                    else
+                    {
+                        if (!hasElephantOnesie)
+                        {
+                            GiveElephantOnesie();
+                        }
+                        else
+                        {
+                            if (!player.GetComponent<Player>().Onesie.isElephant)
+                            {
+                                Debug.Log("POPUP: Press 2/(Y) to put on your onesie!");
+                            }
+                            else
+                            {
+                                if (!EvenBoardLerpFinished)
+                                {
+                                    EvenBoard();
+                                }
+                                else
+                                {
+                                    getOnesiePartFinished = true;
+                                }
+                            }
+                        }
+                    }
                 }
             }
             else
             {
-                // Now the elephant has jumped from the platform. Its time to flip the board towards the elephant
-                if (!flippingFirstSequenceFinished)
-                {
-                    FlipBoardToInvertedRotation();
-                }
-                else
-                {
-                    // Ok, now we are here
-                }
+                Debug.Log("We are finished with part one, join us on the next episode on NIMBI!");
+
+                // Elephant walks of
+                // Board flips other way
+                // You walk to the other end
+                // Take off onesie
+                // Elephant jumps which will launch you to the next platform.
+
 
             }
+            
         }
 
+        //** Onesie related **//
+        private void GiveElephantOnesie()
+        {
+            player.GetComponent<Player>().AddOnesieToFirstFreeSlot(elephantOnesie);
+            hasElephantOnesie = true;
+        }
+
+
+
+        //** Board Flipping Start **//
         private void SetBoardLerpStartValues()
         {
             lerpBoardStartTime = Time.time;
             lerpBoardStartRotation = new Vector3(board.transform.rotation.x, board.transform.rotation.y, board.transform.rotation.z);
             boardLerpValuesSet = true;
+        }
+        private void EvenBoard()
+        {
+            if (!boardLerpValuesSet)
+            {
+                SetBoardLerpStartValues();
+            }
+
+            if (!EvenBoardLerpFinished)
+            {
+                Debug.Log(lerpBoardStartRotation);
+
+                Vector3 to = new Vector3(0, lerpBoardStartRotation.y, lerpBoardStartRotation.z);
+                if (Mathf.Round(board.transform.eulerAngles.x) != 0)
+                {
+                    board.transform.eulerAngles = new Vector3(board.transform.eulerAngles.x + 25 * Time.deltaTime, board.transform.eulerAngles.y, board.transform.eulerAngles.z);
+                }
+                else
+                {
+                    board.transform.eulerAngles = to;
+                    EvenBoardLerpFinished = true;
+                    boardLerpValuesSet = false;
+                }
+            }
+
+
+
+
+
         }
         private void FlipBoardToStartRotation()
         {
@@ -100,7 +182,8 @@ namespace LotsOfTowers.Interaction
                 }
             }
         }
-       
+        //** Board Flipping end **//
+
         //** ELEPHANT RELATED START **/
         private void SetElephantJumpStartValues()
         {
@@ -120,7 +203,7 @@ namespace LotsOfTowers.Interaction
 
         private void ElephantJump()
         {
-            playerController.enabled = false; // Disable the player controller. This is a controlled event
+            playerController.DisableMovement(); // Disable the player controller. This is a controlled event
             if (!elephantJumpFinished)
             {
                 if (elephantJumpStartValuesSet)

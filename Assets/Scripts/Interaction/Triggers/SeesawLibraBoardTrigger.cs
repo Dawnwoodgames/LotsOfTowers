@@ -10,7 +10,6 @@ namespace LotsOfTowers.Interaction.Triggers
         
         void OnTriggerEnter(Collider col)
         {
-            Debug.Log(col.name);
             if (col.tag == "Player")
             {
                 playerOnTrigger = true;

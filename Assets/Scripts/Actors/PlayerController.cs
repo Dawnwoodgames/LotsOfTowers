@@ -25,8 +25,10 @@ namespace LotsOfTowers.Actors
 		private float stationaryTurnSpeed = 360;
 		private Vector3 groundNormal;
 
+        private bool canMove = true;
 
-		private void Start()
+
+        private void Start()
 		{
 			player = GetComponent<Player>();
 
@@ -61,9 +63,13 @@ namespace LotsOfTowers.Actors
 				player.SwitchOnesie(onesie1 ? 0 : (onesie2 ? 1 : 2));
 			}
 
-			//Apply movement, jumping and rotation
-			movement = new Vector3(h, 0f, v);
-			Move(movement);
+            if(canMove)
+            {
+                //Apply movement, jumping and rotation
+                movement = new Vector3(h, 0f, v);
+                Move(movement);
+            }
+			
         }
 
 		private void Move(Vector3 movement)
@@ -118,5 +124,21 @@ namespace LotsOfTowers.Actors
                 groundNormal = Vector3.up;
             }
         }
+
+        public void EnableMovement()
+        {
+            if (!canMove)
+            {
+                canMove = true;
+            }
+        }
+        public void DisableMovement()
+        {
+            if(canMove)
+            {
+                canMove = false;
+            }
+        }
+
 	}
 }
