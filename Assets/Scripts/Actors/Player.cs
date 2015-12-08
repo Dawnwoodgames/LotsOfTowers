@@ -24,12 +24,15 @@ namespace LotsOfTowers.Actors
 		public GameObject tooltip;
         public GameObject hudUi;
         public GameObject chargeDisplay;
+        public GameObject chargeParticles;
 
         public GameObject elephantHead;
         public GameObject elephantBody;
 
         private GameObject defaultHead;
         private GameObject defaultBody;
+
+
 
         // Properties
         public bool CanMoveObjects
@@ -159,7 +162,13 @@ namespace LotsOfTowers.Actors
 			if (StaticCharge > 0) {
 				StaticCharge -= ChargeDecayRate * Time.smoothDeltaTime;
                 chargeDisplay.GetComponent<Image>().fillAmount = StaticCharge/100f;
-			}
+
+                if (StaticCharge > 70)
+                    chargeParticles.SetActive(true);
+                else
+                    chargeParticles.SetActive(false);
+            }
+            
 		}
 	}
 }

@@ -53,10 +53,6 @@ namespace LotsOfTowers.Actors
 			bool onesie2 = CrossPlatformInputManager.GetAxis("Onesie 2") > 0;
 			bool onesie3 = CrossPlatformInputManager.GetAxis("Onesie 3") > 0;
 
-			if (CrossPlatformInputManager.GetAxis("Cancel") > 0) {
-				GameManager.Instance.LoadLevel(0, true);
-			}
-
 			if (onesie1 || onesie2 || onesie3)
 			{
 				//Switch to the selected onesie

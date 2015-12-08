@@ -28,6 +28,10 @@ namespace LotsOfTowers.UI {
 				label.font = font;
 				label.text = label.text.Localize();
 			}
+
+			if (eventSystem == null) {
+				eventSystem = new GameObject("Event System", typeof(EventSystem)).GetComponent<EventSystem>();
+			}
 		}
 
 		public void SetActiveMenu(GameObject menu) {
@@ -44,7 +48,9 @@ namespace LotsOfTowers.UI {
 		}
 
 		public void Start() {
-			SetActiveMenu(menus.FirstOrDefault());
+			if (camera != null) {
+				SetActiveMenu(menus.FirstOrDefault());
+			}
 		}
 
 		public void Update() {
