@@ -7,7 +7,7 @@ namespace LotsOfTowers.Interaction {
 		private Player player;
 		private float x, y, z;
 
-		public float ChargeRate = 50; // How much charge the player will get per second
+		public float ChargeRate = 20; // How much charge the player will get per second
 
 		public bool HasPlayerMoved {
 			get {
@@ -22,6 +22,8 @@ namespace LotsOfTowers.Interaction {
 				x = player.transform.position.x;
 				y = player.transform.position.y;
 				z = player.transform.position.z;
+
+                player.GetComponent<Player>().PlayParticles();
 			}
 		}
 

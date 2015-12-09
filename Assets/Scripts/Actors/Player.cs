@@ -155,19 +155,25 @@ namespace LotsOfTowers.Actors
 		{
 			if (StaticCharge > 0)
 			{
-				if (StaticCharge > 70)
-					chargeParticles.SetActive(true);
-				else
-					chargeParticles.SetActive(false);
-			}
+				if (StaticCharge > 90)
+                    chargeParticles.GetComponent<ParticleSystem>().loop = true;
+                else
+                    chargeParticles.GetComponent<ParticleSystem>().loop = false;
+            }
 
 			if (Input.GetButtonUp("Submit"))
 			{
 				//Discharge static load
 				StaticCharge = 0;
-				chargeParticles.SetActive(false);
-				//Discharge animation here
-			}
+                chargeParticles.GetComponent<ParticleSystem>().Stop();
+                //Discharge animation here
+            }
 		}
+
+        public void PlayParticles()
+        {
+            //chargeParticles.GetComponent<ParticleSystem>().Stop();
+            chargeParticles.GetComponent<ParticleSystem>().Play();
+        }
 	}
 }
