@@ -5,8 +5,6 @@ namespace LotsOfTowers.Interaction.Triggers
 {
     public class WheelRotateTrigger : MonoBehaviour
     {
-        public bool isBreakable;
-
         private bool playerRunning = false;
 
         private void OnTriggerStay(Collider coll)
