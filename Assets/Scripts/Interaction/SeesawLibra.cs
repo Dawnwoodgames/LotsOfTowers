@@ -44,7 +44,24 @@ namespace LotsOfTowers.Interaction
 		private bool hasElephantOnesie;
 		private bool EvenBoardLerpFinished = false;
 
-		void Start()
+
+        private Vector3 elephantSecondJumpStartPosition;
+        private Vector3 elephantSecondJumpTargetPosition;
+        private float elephantSecondJumpStartTime;
+        private float elephantSecondJumpStartDistance;
+        private bool elephantJumpFromSecondPlatformStartValuesSet = false;
+        private bool elephantSecondJumpFinished = false;
+        
+        private bool elephantLaunchedNimbi = false;
+
+        private bool playerLaunchedUp = false;
+        private bool playerOnFinishPlatform = false;
+
+        private bool startValuesForLaunchingPlayersSet = false;
+        private float targetJumpHeightForPlayerLaunch;
+
+
+        void Start()
 		{
 			player = GameObject.FindGameObjectWithTag("Player");
 			playerController = player.GetComponent<PlayerController>();
@@ -53,121 +70,158 @@ namespace LotsOfTowers.Interaction
 			boardEndTrigger = boardEnd.GetComponent<SeesawLibraBoardTrigger>();
 
 			//Nice code bra
-			elephantSecondPosition = new Vector3(GameObject.Find("HelpNimbiFromHere").transform.localPosition.x - 1, GameObject.Find("HelpNimbiFromHere").transform.localPosition.y + 1.65f, GameObject.Find("HelpNimbiFromHere").transform.localPosition.z);
+			elephantSecondPosition = new Vector3(GameObject.Find("HelpNimbiFromHere").transform.localPosition.x, GameObject.Find("HelpNimbiFromHere").transform.localPosition.y + 1.65f, GameObject.Find("HelpNimbiFromHere").transform.localPosition.z - 1);
         }
 
 		void FixedUpdate()
 		{
-			if (!getOnesiePartFinished)
-			{
-				// First up; the elephant has to jump from the platform.
-				if (!elephantJumpFinished)
-				{
-					if (boardStartTrigger.isPlayerOnTrigger() && !boardEndTrigger.isElephantOnTrigger())
-					{
-						ElephantJump(); // This also disables the playerController;
-					}
-				}
-				else
-				{
-					// Now the elephant has jumped from the platform. Its time to flip the board towards the elephant
-					if (!flippingFirstSequenceFinished)
-					{
-						FlipBoardToInvertedRotation();
-					}
-					else
-					{
-						if (!hasElephantOnesie)
-						{
-							GiveElephantOnesie();
-						}
-						else
-						{
-							if (!player.GetComponent<Player>().Onesie.isElephant)
-							{
-								Debug.Log("POPUP: Press 2/(Y) to put on your onesie!");
-							}
-							else
-							{
-								if (!EvenBoardLerpFinished)
-								{
-									EvenBoard();
-								}
-								else
-								{
-									getOnesiePartFinished = true;
-								}
-							}
-						}
-					}
-				}
-			}
-			
-			//Check if the player is standing on the begin platform
-			else if(boardStartTrigger.isPlayerOnTrigger())
-			{
-				Debug.Log("We are finished with part one, join us on the next episode on NIMBI!");
+            if (!puzzleFinished)
+            {
+                if (!getOnesiePartFinished)
+                {
+                    // First up; the elephant has to jump from the platform.
+                    if (!elephantJumpFinished)
+                    {
+                        if (boardStartTrigger.isPlayerOnTrigger() && !boardEndTrigger.isElephantOnTrigger())
+                        {
+                            ElephantJump(); // This also disables the playerController;
+                        }
+                    }
+                    else
+                    {
+                        // Now the elephant has jumped from the platform. Its time to flip the board towards the elephant
+                        if (!flippingFirstSequenceFinished)
+                        {
+                            FlipBoardToInvertedRotation();
+                        }
+                        else
+                        {
+                            if (!hasElephantOnesie)
+                            {
+                                GiveElephantOnesie();
+                            }
+                            else
+                            {
+                                if (!player.GetComponent<Player>().Onesie.isElephant)
+                                {
+                                    Debug.Log("POPUP: Press 2/(Y) to put on your onesie!");
+                                }
+                                else
+                                {
+                                    if (!EvenBoardLerpFinished)
+                                    {
+                                        EvenBoard();
+                                    }
+                                    else
+                                    {
+                                        getOnesiePartFinished = true;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
 
-				StartCoroutine(WaitForBalance(0.5f));
-			}
-			else if(boardEndTrigger.isPlayerOnTrigger())
-			{
-				board.GetComponent<Rigidbody>().isKinematic = true;		
-				playerController.DisableMovement();
+                //Check if the player is standing on the begin platform
+                else if (boardStartTrigger.isPlayerOnTrigger())
+                {
+                    StartCoroutine(WaitForBalance(0.5f));
+                }
+                else if (boardEndTrigger.isPlayerOnTrigger())
+                {
+                    board.GetComponent<Rigidbody>().isKinematic = true;
+                    playerController.DisableMovement();
 
-				if (!player.GetComponent<Player>().Onesie.isElephant)
-				{
-					// Elephant jumps which will launch you to the next platform.
-					if (elephant.transform.localPosition.x > 0.5f)
-					{
-						elephant.transform.localPosition += Vector3.left;
-					}
-					else
-					{
-						StartCoroutine(WaitForPlayerLaunch(0.5f));
-					}
-				}
-				else if(!puzzleFinished)
-				{
-					Debug.Log("Take off your onesie to continue!!");
-				}
-			}
+                    if (!player.GetComponent<Player>().Onesie.isElephant)
+                    {
+                        // Elephant jumps which will launch you to the next platform.
+                        if (!elephantSecondJumpFinished)
+                        {
+                            ElephantJumpFromSecondPlatform(); // Needs to fit the scene.
+                        }
+                        else
+                        {
+                            if (!elephantLaunchedNimbi)
+                            {
+                                ElephantSecondJumpFlipBoard();
+                            }
+                            else
+                            {
+                                LaunchPlayerToFinishPlatform();
+                                puzzleFinished = true;
+                            }
+                        }
+                    }
+                }
+            }
+            else
+            {
+                Debug.Log("DONE");
+                playerController.EnableMovement();
+            }
 		}
+        
+        private void LaunchPlayerToFinishPlatform()
+        {
+            player.GetComponent<Rigidbody>().AddForce(Vector3.up * 15, ForceMode.VelocityChange);
+            player.GetComponent<Rigidbody>().AddForce(Vector3.back * 2, ForceMode.VelocityChange);
+            playerOnFinishPlatform = true;
+        }
 
-		IEnumerator WaitForBalance(float amount)
+        private void ElephantJumpFromSecondPlatform()
+        {
+            if (elephantJumpFromSecondPlatformStartValuesSet)
+            {
+                if ((int)elephant.transform.position.z == (int)elephantSecondJumpTargetPosition.z)
+                {
+                    elephantSecondJumpFinished = true;
+                }
+                else
+                {
+                    float distCovered = (Time.time - elephantSecondJumpStartTime) * 1f;
+                    float fracJourney = distCovered / elephantSecondJumpStartDistance;
+                    elephant.transform.position = Vector3.Lerp(elephant.transform.position, elephantSecondJumpTargetPosition, fracJourney);
+                }
+            }
+            else
+            {
+                SetElephantJumpFromSecondPlatformStartValues();
+            }
+        }
+        private void SetElephantJumpFromSecondPlatformStartValues()
+        {
+            elephantSecondJumpStartPosition = elephant.transform.position;
+            elephantSecondJumpStartTime = Time.time;
+            elephantSecondJumpStartDistance = Vector3.Distance(elephant.transform.position, boardStart.transform.position);
+            elephantSecondJumpTargetPosition = new Vector3(elephant.transform.position.x, elephant.transform.position.y, elephant.transform.position.z - elephantSecondJumpStartDistance);
+            elephantJumpFromSecondPlatformStartValuesSet = true;
+        }
+
+        private void ElephantSecondJumpFlipBoard()
+        {
+            Vector3 to = new Vector3(20f, lerpBoardStartRotation.y, lerpBoardStartRotation.z);
+            if (Mathf.Round(board.transform.eulerAngles.x) != 20)
+            {
+                board.transform.eulerAngles = new Vector3(board.transform.eulerAngles.x + 100 * Time.deltaTime, board.transform.eulerAngles.y, board.transform.eulerAngles.z);
+            }
+            else
+            {
+                board.transform.eulerAngles = to;
+                elephantLaunchedNimbi = true;
+            }
+        }
+
+        
+        IEnumerator WaitForBalance(float amount)
 		{
 			yield return new WaitForSeconds(amount);
-
 			// Elephant walks of and enables moving for player so he can walk to the other side
 			ElephantWalkOff();
 		}
-
-		IEnumerator WaitForPlayerLaunch(float amount)
-		{
-			yield return new WaitForSeconds(amount);
-
-			// Elephant walks of and enables moving for player so he can walk to the other side
-			LaunchPlayerUp();
-		}
-
-		private void LaunchPlayerUp()
-		{
-			//First turn board
-			if ((int)board.transform.eulerAngles.x != 20)
-			{
-				board.transform.eulerAngles = new Vector3(board.transform.eulerAngles.x + 20 * Time.deltaTime, board.transform.eulerAngles.y, board.transform.eulerAngles.z);
-			}
-			else
-			{
-				Debug.Log("You did it! Enjoy being stuck at this part cause the box is too damn high");
-				puzzleFinished = true;
-				playerController.EnableMovement();
-			}
-
-		}
-
-		//** Onesie related **//
-		private void GiveElephantOnesie()
+        
+        
+        //** Onesie related **//
+        private void GiveElephantOnesie()
 		{
 			player.GetComponent<Player>().AddOnesieToFirstFreeSlot(elephantOnesie);
 			hasElephantOnesie = true;
@@ -201,10 +255,6 @@ namespace LotsOfTowers.Interaction
 					boardLerpValuesSet = false;
 				}
 			}
-		}
-		private void FlipBoardToStartRotation()
-		{
-
 		}
 		private void FlipBoardToInvertedRotation()
 		{
