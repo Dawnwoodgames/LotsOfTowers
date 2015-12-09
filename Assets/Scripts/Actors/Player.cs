@@ -19,7 +19,7 @@ namespace LotsOfTowers.Actors
 
 		// Public fields
 		public GameObject tooltip;
-		public GameObject hudUi;
+		public Framework.HeadsUpDisplayScript hudUi;
 		public GameObject chargeParticles;
 
 		public GameObject elephantHead;
@@ -61,12 +61,6 @@ namespace LotsOfTowers.Actors
 				currentOnesie = currentOnesie == replacedOnesie ? onesie : currentOnesie;
 				onesies.Add(index, onesie);
 
-				// HUD - place onesie image to corresponding skill slot
-				hudUi.GetComponent<LotsOfTowers.Framework.HeadsUpDisplayScript>().AttachOnesieToSkillSlot(index, onesie.name);
-				// Show HUD - skill
-				hudUi.GetComponent<LotsOfTowers.Framework.HeadsUpDisplayScript>().skillsUi.SetActive(true);
-
-
 				return replacedOnesie;
 			}
 
@@ -102,7 +96,7 @@ namespace LotsOfTowers.Actors
 
 		public void Start()
 		{
-			hudUi = GameObject.Find("HUD");
+			hudUi = GameObject.Find("HUD").GetComponent<Framework.HeadsUpDisplayScript>();
 		}
 
 		public void SwitchOnesie(int index)
@@ -110,6 +104,7 @@ namespace LotsOfTowers.Actors
 			if (onesies.ContainsKey(index))
 			{
 				currentOnesie = onesies[index];
+                hudUi.ShowActiveSkill(index);
 
 				if (currentOnesie.name == "OnesieElephant" && !elephantHead.activeInHierarchy)
 				{
