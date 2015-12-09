@@ -13,8 +13,8 @@ namespace LotsOfTowers.Interaction.Triggers {
 		public GameObject DownwardsObject; // Object that will be moved downwards
 		public float DownwardDistance; // Distance said object will move along Y-axis
 
-		public GameObject UpwardsObject; // Object that will be moved upwards
-		public float UpwardDistance; // Distance said object will move along Y-axis
+		public GameObject RotatingObject; // Object that will be moved 
+		public float rotation; // Distance said object will rotate along Z-axis
 
 		public void OnCollisionStay(Collision coll) {
 			GameObject source = coll.gameObject;
@@ -40,17 +40,17 @@ namespace LotsOfTowers.Interaction.Triggers {
 			}
 
 			y0 = DownwardsObject.transform.position.y;
-			y1 = UpwardsObject.transform.position.y;
 
 			while (t1 < Duration) {
 				t1 += Time.smoothDeltaTime;
 
 				if (t1 >= Duration) {
 					DownwardsObject.transform.position = new Vector3(DownwardsObject.transform.position.x, y0 - DownwardDistance, DownwardsObject.transform.position.z);
-					UpwardsObject.transform.position = new Vector3(UpwardsObject.transform.position.x, y1 + UpwardDistance, UpwardsObject.transform.position.z);
-				} else {
+					RotatingObject.transform.localEulerAngles = new Vector3();
+				}
+				else {
 					DownwardsObject.transform.position = new Vector3(DownwardsObject.transform.position.x, y0 - (DownwardDistance * (t1 / Duration)), DownwardsObject.transform.position.z);
-					UpwardsObject.transform.position = new Vector3(UpwardsObject.transform.position.x, y1+ (UpwardDistance * (t1 / Duration)), UpwardsObject.transform.position.z);
+					RotatingObject.transform.localEulerAngles = RotatingObject.transform.localEulerAngles - (Vector3.forward * 4);
 				}
 
 				yield return null;
