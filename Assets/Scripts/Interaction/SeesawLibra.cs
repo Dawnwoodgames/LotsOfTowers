@@ -70,7 +70,7 @@ namespace LotsOfTowers.Interaction
 			boardEndTrigger = boardEnd.GetComponent<SeesawLibraBoardTrigger>();
 
 			//Nice code bra
-			elephantSecondPosition = new Vector3(GameObject.Find("HelpNimbiFromHere").transform.localPosition.x, GameObject.Find("HelpNimbiFromHere").transform.localPosition.y + 1.65f, GameObject.Find("HelpNimbiFromHere").transform.localPosition.z - 1);
+			elephantSecondPosition = new Vector3(GameObject.Find("HelpNimbiFromHere").transform.localPosition.x, GameObject.Find("HelpNimbiFromHere").transform.localPosition.y + 1f, GameObject.Find("HelpNimbiFromHere").transform.localPosition.z);
         }
 
 		void FixedUpdate()
@@ -93,6 +93,7 @@ namespace LotsOfTowers.Interaction
                         if (!flippingFirstSequenceFinished)
                         {
                             FlipBoardToInvertedRotation();
+
                         }
                         else
                         {
@@ -164,7 +165,7 @@ namespace LotsOfTowers.Interaction
         private void LaunchPlayerToFinishPlatform()
         {
             player.GetComponent<Rigidbody>().AddForce(Vector3.up * 15, ForceMode.VelocityChange);
-            player.GetComponent<Rigidbody>().AddForce(Vector3.back * 2, ForceMode.VelocityChange);
+            player.GetComponent<Rigidbody>().AddForce(Vector3.left * 2, ForceMode.VelocityChange);
             playerOnFinishPlatform = true;
         }
 
@@ -172,7 +173,7 @@ namespace LotsOfTowers.Interaction
         {
             if (elephantJumpFromSecondPlatformStartValuesSet)
             {
-                if ((int)elephant.transform.position.z == (int)elephantSecondJumpTargetPosition.z)
+                if ((int)elephant.transform.position.x == (int)elephantSecondJumpTargetPosition.x)
                 {
                     elephantSecondJumpFinished = true;
                 }
@@ -193,7 +194,7 @@ namespace LotsOfTowers.Interaction
             elephantSecondJumpStartPosition = elephant.transform.position;
             elephantSecondJumpStartTime = Time.time;
             elephantSecondJumpStartDistance = Vector3.Distance(elephant.transform.position, boardStart.transform.position);
-            elephantSecondJumpTargetPosition = new Vector3(elephant.transform.position.x, elephant.transform.position.y, elephant.transform.position.z - elephantSecondJumpStartDistance);
+            elephantSecondJumpTargetPosition = new Vector3(elephant.transform.position.x - (elephantSecondJumpStartDistance * 2), elephant.transform.position.y, elephant.transform.position.z);
             elephantJumpFromSecondPlatformStartValuesSet = true;
         }
 
@@ -206,7 +207,7 @@ namespace LotsOfTowers.Interaction
             }
             else
             {
-                board.transform.eulerAngles = to;
+                //board.transform.eulerAngles = to;
                 elephantLaunchedNimbi = true;
             }
         }
@@ -250,7 +251,7 @@ namespace LotsOfTowers.Interaction
 				}
 				else
 				{
-					board.transform.eulerAngles = to;
+					//board.transform.eulerAngles = to;
 					EvenBoardLerpFinished = true;
 					boardLerpValuesSet = false;
 				}
@@ -265,14 +266,12 @@ namespace LotsOfTowers.Interaction
 
 			if (!flippingFirstSequenceFinished)
 			{
-				Vector3 to = new Vector3(-20f, lerpBoardStartRotation.y, lerpBoardStartRotation.z);
 				if (Mathf.Round(board.transform.eulerAngles.x) != 340)
 				{
 					board.transform.eulerAngles = new Vector3(board.transform.eulerAngles.x - 100 * Time.deltaTime, board.transform.eulerAngles.y, board.transform.eulerAngles.z);
 				}
 				else
 				{
-					board.transform.eulerAngles = to;
 					flippingFirstSequenceFinished = true;
 					boardLerpValuesSet = false;
 				}
@@ -286,7 +285,7 @@ namespace LotsOfTowers.Interaction
 			elephantStartPosition = elephant.transform.position;
 			elephantJumpStartTime = Time.time;
 			elephantJumpStartDistance = Vector3.Distance(elephant.transform.position, boardEnd.transform.position);
-			elephantJumpTargetPosition = new Vector3(elephant.transform.position.x, elephant.transform.position.y, elephant.transform.position.z + elephantJumpStartDistance);
+			elephantJumpTargetPosition = new Vector3(elephant.transform.position.x + (elephantJumpStartDistance * 1.5f), elephant.transform.position.y, elephant.transform.position.z);
 			elephantJumpStartValuesSet = true;
 		}
 
@@ -304,7 +303,7 @@ namespace LotsOfTowers.Interaction
 			{
 				if (elephantJumpStartValuesSet)
 				{
-					if (elephant.transform.position.z == elephantJumpTargetPosition.z)
+					if ((int)elephant.transform.position.x == (int)elephantJumpTargetPosition.x)
 					{
 						elephantJumpFinished = true;
 					}
@@ -320,7 +319,7 @@ namespace LotsOfTowers.Interaction
 		private void ElephantWalkOff()
 		{
 			//Let the elephant walk off the board
-			if (elephant.transform.localPosition != elephantSecondPosition)
+			if ((int)elephant.transform.localPosition.z != (int)elephantSecondPosition.z)
 			{
 				//Add smooth walk...... GOD DAMNIT NAV MESH U MOTHAFUCKA
 				elephant.transform.localPosition = elephantSecondPosition;
