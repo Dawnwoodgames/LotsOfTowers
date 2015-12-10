@@ -4,6 +4,8 @@ namespace LotsOfTowers.CameraControl
 {
 	public class CameraFollowScript : MonoBehaviour
     {
+		public float distanceAwayFromCenter = 1.2f;
+
         private Transform startTransform;
         private GameObject player;
 
@@ -15,7 +17,7 @@ namespace LotsOfTowers.CameraControl
 
 		void Update()
 		{
-            gameObject.transform.position = new Vector3(player.transform.position.x / 1.2f, player.transform.position.y + 0.5f, player.transform.position.z / 1.2f);
+            gameObject.transform.position = new Vector3(player.transform.position.x / distanceAwayFromCenter, player.transform.position.y + 0.5f, player.transform.position.z / distanceAwayFromCenter);
         }
 
         public Transform getStartTransform() { return startTransform; }
