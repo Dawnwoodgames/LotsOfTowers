@@ -103,7 +103,7 @@ namespace LotsOfTowers.Interaction
                             }
                             else
                             {
-                                if (!player.GetComponent<Player>().Onesie.isElephant)
+                                if (player.GetComponent<Player>().Onesie.type != OnesieType.Elephant)
                                 {
                                     Debug.Log("POPUP: Press 2/(Y) to put on your onesie!");
                                 }
@@ -133,7 +133,7 @@ namespace LotsOfTowers.Interaction
                     board.GetComponent<Rigidbody>().isKinematic = true;
                     playerController.DisableMovement();
 
-                    if (!player.GetComponent<Player>().Onesie.isElephant)
+                    if (player.GetComponent<Player>().Onesie.type != OnesieType.Elephant)
                     {
                         // Elephant jumps which will launch you to the next platform.
                         if (!elephantSecondJumpFinished)
