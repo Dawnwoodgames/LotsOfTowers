@@ -42,20 +42,14 @@ namespace LotsOfTowers.Interaction
             {
                 gameObject.AddComponent<Rigidbody>();
                 gameObject.GetComponent<Rigidbody>().useGravity = true;
-                gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY;
                 gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+                gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+
                 gameObject.GetComponent<MeshCollider>().convex = true;
+
                 Destroy(transform.parent.GetChild(1).gameObject);
-                StartCoroutine(FreezePositionTemporarily());
+                Destroy(this);
             }
-        }
-
-        private IEnumerator FreezePositionTemporarily()
-        {
-            yield return new WaitForSeconds(1);
-
-            gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-            Destroy(this);
         }
     }
 }
