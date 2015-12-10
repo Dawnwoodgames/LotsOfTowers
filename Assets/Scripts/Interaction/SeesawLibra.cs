@@ -12,8 +12,9 @@ namespace LotsOfTowers.Interaction
 		public GameObject boardStart;
 		public GameObject boardEnd;
 		public GameObject elephant;
-
 		public Onesie elephantOnesie;
+
+        public GameObject invisBlockWall;
 
 		private SeesawLibraBoardTrigger boardStartTrigger;
 		private SeesawLibraBoardTrigger boardEndTrigger;
@@ -69,8 +70,11 @@ namespace LotsOfTowers.Interaction
 			boardStartTrigger = boardStart.GetComponent<SeesawLibraBoardTrigger>();
 			boardEndTrigger = boardEnd.GetComponent<SeesawLibraBoardTrigger>();
 
-			//Nice code bra
-			elephantSecondPosition = new Vector3(GameObject.Find("HelpNimbiFromHere").transform.localPosition.x, GameObject.Find("HelpNimbiFromHere").transform.localPosition.y + 1f, GameObject.Find("HelpNimbiFromHere").transform.localPosition.z);
+            invisBlockWall.SetActive(false);
+
+            //Nice code bra
+            GameObject nimbiJump = GameObject.Find("HelpNimbiFromHere");
+            elephantSecondPosition = new Vector3(nimbiJump.transform.localPosition.x, nimbiJump.transform.localPosition.y + 1f, nimbiJump.transform.localPosition.z);
         }
 
 		void FixedUpdate()
@@ -93,7 +97,6 @@ namespace LotsOfTowers.Interaction
                         if (!flippingFirstSequenceFinished)
                         {
                             FlipBoardToInvertedRotation();
-
                         }
                         else
                         {
@@ -159,9 +162,18 @@ namespace LotsOfTowers.Interaction
             {
                 Debug.Log("DONE");
                 playerController.EnableMovement();
+                StartCoroutine(WaitForEnablingInvisibleWall(2f));
             }
 		}
         
+        IEnumerator WaitForEnablingInvisibleWall(float amount)
+        {
+            Debug.Log("Start");
+            yield return new WaitForSeconds(amount);
+            Debug.Log("End");
+            invisBlockWall.SetActive(true);
+        }
+
         private void LaunchPlayerToFinishPlatform()
         {
             player.GetComponent<Rigidbody>().AddForce(Vector3.up * 15, ForceMode.VelocityChange);
