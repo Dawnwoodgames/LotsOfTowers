@@ -22,23 +22,40 @@ namespace LotsOfTowers.Interaction
             {
                 damage += 1 * Time.deltaTime;
 
-                if (damage > 3)
+                if (damage > 4)
                 {
-                    transform.Rotate(new Vector3(.5f, 0));
+                    transform.Rotate(new Vector3(.3f, 0));
                     if (damage > 6)
                     {
-                        transform.Rotate(new Vector3(1, 0));
-                        if (player.Onesie.isElephant)
-                            broken = true;
+                        transform.Rotate(new Vector3(.6f, 0));
+                        if (damage > 8)
+                        {
+                            transform.Rotate(new Vector3(1f, 0));
+                            GameObject.Find("Water").GetComponent<WaterHole>().waterRising = false;
+                            if (player.Onesie.isElephant)
+                                broken = true;
+                        }
                     }
                 }
             }
             else if (broken)
             {
                 gameObject.AddComponent<Rigidbody>();
-                gameObject.GetComponent<Rigidbody>().useGravity = false;
-                gameObject.GetComponent<Rigidbody>().isKinematic = true;
+                gameObject.GetComponent<Rigidbody>().useGravity = true;
+                gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezePositionY;
+                gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
+                gameObject.GetComponent<MeshCollider>().convex = true;
+                Destroy(transform.parent.GetChild(1).gameObject);
+                StartCoroutine(FreezePositionTemporarily());
             }
+        }
+
+        private IEnumerator FreezePositionTemporarily()
+        {
+            yield return new WaitForSeconds(1);
+
+            gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
+            Destroy(this);
         }
     }
 }

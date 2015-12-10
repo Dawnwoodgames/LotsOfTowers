@@ -7,7 +7,6 @@ namespace LotsOfTowers.Interaction
     public class HamsterWheel : MonoBehaviour
     {
         public GameObject rotateTrigger;
-        public bool isBreakable;
 
         private WheelRotateTrigger rotateTriggerScript;
         private float rotateSpeed = 0f;
