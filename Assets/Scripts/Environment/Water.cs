@@ -7,11 +7,8 @@ namespace LotsOfTowers.Environment {
 		private Rigidbody playerRigidbody;
 		private float surfaceHeight;
 
-		public float playerHeight = 1; // Can't use player.transform.scale since it's 20 .___.
-		// (which is also why physics don't work properly)
-
 		public void Awake() {
-			this.surfaceHeight = (transform.position.y + transform.localScale.y / 2) - (playerHeight / 2);
+			this.surfaceHeight = (transform.position.y + transform.localScale.y / 2) - 0.75f;
 		}
 
 		public void FixedUpdate() {
@@ -22,7 +19,7 @@ namespace LotsOfTowers.Environment {
 				} else {
 					// Player isn't heavy, drift on surface
 					player.transform.position = Vector3.Lerp(player.transform.position,
-						new Vector3(player.transform.position.x, surfaceHeight, player.transform.position.z), 0.1f);
+						new Vector3(player.transform.position.x, surfaceHeight, player.transform.position.z), 0.05f);
 					playerRigidbody.isKinematic = true;
 				}
 			}
