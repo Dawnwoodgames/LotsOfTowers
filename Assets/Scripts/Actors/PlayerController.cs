@@ -71,6 +71,7 @@ namespace LotsOfTowers.Actors
 
 			if (removeChargeOnNextFrame) {
 				player.StaticCharge = 0;
+				removeChargeOnNextFrame = false;
 			}
 
 			if (submit) {

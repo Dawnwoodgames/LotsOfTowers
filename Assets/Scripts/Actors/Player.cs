@@ -155,12 +155,6 @@ namespace LotsOfTowers.Actors
 
 		public void Update()
 		{
-			try {
-				Debug.Log("0: " + onesies[0].name);
-				Debug.Log("1: " + onesies[1].name);
-				Debug.Log("2: " + onesies[2].name);
-			} catch (Exception) {
-			}
 			if (StaticCharge > 0)
 			{
 				if (StaticCharge > 90)
