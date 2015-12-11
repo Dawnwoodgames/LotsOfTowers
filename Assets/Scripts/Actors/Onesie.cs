@@ -14,10 +14,6 @@ namespace LotsOfTowers.Actors {
 		public float movementSpeed = 5;
 		public float jumpPower = 10;
 		public OnesieType type = OnesieType.Human;
-
-		public static Onesie Load(string name) {
-			return Resources.Load("Onesie" + name) as Onesie;
-		}
 	}
 
 	public enum OnesieType {

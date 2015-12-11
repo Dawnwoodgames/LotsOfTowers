@@ -22,6 +22,7 @@ namespace LotsOfTowers.Actors
 		private float turnAmount;
 		private float forwardAmount;
 		private float movingTurnSpeed = 360;
+		private bool removeChargeOnNextFrame;
 		private float stationaryTurnSpeed = 360;
 		private Vector3 groundNormal;
 
@@ -53,6 +54,8 @@ namespace LotsOfTowers.Actors
 			bool onesie2 = CrossPlatformInputManager.GetAxis("Onesie 2") > 0;
 			bool onesie3 = CrossPlatformInputManager.GetAxis("Onesie 3") > 0;
 
+			bool submit = CrossPlatformInputManager.GetAxis("Submit") > 0;
+
 			if (onesie1 || onesie2 || onesie3)
 			{
 				//Switch to the selected onesie
@@ -65,7 +68,15 @@ namespace LotsOfTowers.Actors
                 movement = new Vector3(h, 0f, v);
                 Move(movement);
             }
-			
+
+			if (removeChargeOnNextFrame) {
+				player.StaticCharge = 0;
+			}
+
+			if (submit) {
+				// Remove charge in next frame to avoid it being removed before it can be used
+				removeChargeOnNextFrame = true;
+			}
         }
 
 		private void Move(Vector3 movement)
