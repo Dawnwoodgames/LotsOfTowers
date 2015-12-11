@@ -44,7 +44,7 @@ namespace LotsOfTowers
 		}
 		
 		public Transform SpawnPoint {
-			get { return spawnPoint; }
+            get; set;
 		}
 		
 		public void Awake()
@@ -144,8 +144,8 @@ namespace LotsOfTowers
 		public void OnLevelWasLoaded(int index) {
 			try {
 				playerController = FindObjectOfType<PlayerController>();
-				spawnPoint = GameObject.Find("Level/Spawn Point").transform;
-			} catch (Exception) { }
+                SpawnPoint = GameObject.Find("Level/Spawn Point").transform;
+            } catch (Exception) { }
 		}
 
 

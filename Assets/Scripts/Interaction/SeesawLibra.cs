@@ -33,8 +33,7 @@ namespace LotsOfTowers.Interaction
 		private bool elephantJumpStartValuesSet = false;
 		private float elephantJumpStartDistance;
 		private float elephantJumpStartTime;
-
-
+        
 		// Start values for boardlerprotation
 		private bool boardLerpValuesSet = false;
 		private bool flippingFirstSequenceFinished = false;
@@ -45,7 +44,6 @@ namespace LotsOfTowers.Interaction
 		private bool hasElephantOnesie;
 		private bool EvenBoardLerpFinished = false;
 
-
         private Vector3 elephantSecondJumpStartPosition;
         private Vector3 elephantSecondJumpTargetPosition;
         private float elephantSecondJumpStartTime;
@@ -54,14 +52,12 @@ namespace LotsOfTowers.Interaction
         private bool elephantSecondJumpFinished = false;
         
         private bool elephantLaunchedNimbi = false;
-
         private bool playerLaunchedUp = false;
         private bool playerOnFinishPlatform = false;
 
         private bool startValuesForLaunchingPlayersSet = false;
         private float targetJumpHeightForPlayerLaunch;
-
-
+        
         void Start()
 		{
 			player = GameObject.FindGameObjectWithTag("Player");
@@ -160,7 +156,6 @@ namespace LotsOfTowers.Interaction
             }
             else
             {
-                Debug.Log("DONE");
                 playerController.EnableMovement();
                 StartCoroutine(WaitForEnablingInvisibleWall(2f));
             }
@@ -168,9 +163,7 @@ namespace LotsOfTowers.Interaction
         
         IEnumerator WaitForEnablingInvisibleWall(float amount)
         {
-            Debug.Log("Start");
             yield return new WaitForSeconds(amount);
-            Debug.Log("End");
             invisBlockWall.SetActive(true);
         }
 
@@ -201,6 +194,7 @@ namespace LotsOfTowers.Interaction
                 SetElephantJumpFromSecondPlatformStartValues();
             }
         }
+
         private void SetElephantJumpFromSecondPlatformStartValues()
         {
             elephantSecondJumpStartPosition = elephant.transform.position;
@@ -223,7 +217,6 @@ namespace LotsOfTowers.Interaction
                 elephantLaunchedNimbi = true;
             }
         }
-
         
         IEnumerator WaitForBalance(float amount)
 		{
@@ -231,7 +224,6 @@ namespace LotsOfTowers.Interaction
 			// Elephant walks of and enables moving for player so he can walk to the other side
 			ElephantWalkOff();
 		}
-        
         
         //** Onesie related **//
         private void GiveElephantOnesie()
@@ -245,8 +237,9 @@ namespace LotsOfTowers.Interaction
 		{
 			lerpBoardStartTime = Time.time;
 			lerpBoardStartRotation = new Vector3(board.transform.rotation.x, board.transform.rotation.y, board.transform.rotation.z);
-			boardLerpValuesSet = true;
+            boardLerpValuesSet = true;
 		}
+
 		private void EvenBoard()
 		{
 			if (!boardLerpValuesSet)
@@ -269,6 +262,7 @@ namespace LotsOfTowers.Interaction
 				}
 			}
 		}
+
 		private void FlipBoardToInvertedRotation()
 		{
 			if (!boardLerpValuesSet)
