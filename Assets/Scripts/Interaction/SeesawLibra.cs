@@ -121,11 +121,25 @@ namespace LotsOfTowers.Interaction
                         }
                     }
                 }
-
                 //Check if the player is standing on the begin platform
                 else if (boardStartTrigger.isPlayerOnTrigger())
                 {
-                    StartCoroutine(WaitForBalance(0.5f));
+                    StartCoroutine(WaitForBalance(1f));
+                }
+                else if(!boardStartTrigger.isPlayerOnTrigger() && !boardEndTrigger.isPlayerOnTrigger() && getOnesiePartFinished)
+                {
+                    if (!board.GetComponent<SeesawBoardCollideCheck>().PlayerOnBoard)
+                    {
+                        if ((int)board.transform.eulerAngles.x < 20 || (int)board.transform.eulerAngles.x > 320)
+                        {
+                            //Rotate board
+                            board.transform.eulerAngles = new Vector3(board.transform.eulerAngles.x + 20 * Time.deltaTime, board.transform.eulerAngles.y, board.transform.eulerAngles.z);
+                        } else
+                        {
+                            board.GetComponent<Rigidbody>().isKinematic = true;
+                            board.GetComponent<Rigidbody>().isKinematic = false;
+                        }
+                    }
                 }
                 else if (boardEndTrigger.isPlayerOnTrigger())
                 {
