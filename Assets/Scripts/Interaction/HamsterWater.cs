@@ -17,7 +17,7 @@ public class HamsterWater : MonoBehaviour {
 
     void Update()
     {
-        if (nearWater && Input.GetButton("Submit"))
+        if (nearWater && Input.GetButton("Submit") && player.GetComponent<Player>().Onesie.isHeavy)
             Spit();
         gameObject.transform.localScale = Vector3.MoveTowards(gameObject.transform.localScale,new Vector3(gameObject.transform.localScale.x, newHeight, gameObject.transform.localScale.z),Time.deltaTime*2);
         gameObject.transform.localPosition = Vector3.MoveTowards(gameObject.transform.localPosition, new Vector3(gameObject.transform.localPosition.x, defaultPosition.y+newHeight, gameObject.transform.localPosition.z), Time.deltaTime * 2);

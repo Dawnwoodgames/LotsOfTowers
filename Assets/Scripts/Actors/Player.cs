@@ -22,6 +22,7 @@ namespace LotsOfTowers.Actors
 		public GameObject elephantBody;
 
         public bool holdingWater;
+        public GameObject waterDisplay;
 
 		private GameObject defaultHead;
 		private GameObject defaultBody;
@@ -157,6 +158,11 @@ namespace LotsOfTowers.Actors
 
 		public void Update()
 		{
+            if (holdingWater)
+                waterDisplay.SetActive(true);
+            else
+                waterDisplay.SetActive(false);
+
 			if (StaticCharge > 0)
 			{
 				if (StaticCharge > 90)

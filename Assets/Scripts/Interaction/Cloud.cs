@@ -9,7 +9,7 @@ public class Cloud : MonoBehaviour {
 
     void Update()
     {
-        if (inCloud && Input.GetButton("Submit"))
+        if (inCloud && Input.GetButton("Submit") && player.GetComponent<Player>().Onesie.isHeavy)
             Slurp();
     }
 
