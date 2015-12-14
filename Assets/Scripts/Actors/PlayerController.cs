@@ -16,6 +16,7 @@ namespace LotsOfTowers.Actors
 		private Transform mainCamera;
 		private CapsuleCollider capsule;
         private BoxCollider box;
+        private Framework.HeadsUpDisplayScript hudUi;
 
 		//Moving variables
 		private Vector3 movement;
@@ -28,10 +29,10 @@ namespace LotsOfTowers.Actors
 
         private bool canMove = true;
 
-
         private void Start()
 		{
 			player = GetComponent<Player>();
+            hudUi = GameObject.Find("HUD").GetComponent<Framework.HeadsUpDisplayScript>();
 
 			//Get camera transform
 			if (Camera.main != null)
@@ -60,7 +61,7 @@ namespace LotsOfTowers.Actors
 			{
 				//Switch to the selected onesie
 				player.SwitchOnesie(onesie1 ? 0 : (onesie2 ? 1 : 2));
-			}
+            }
 
             if(canMove)
             {

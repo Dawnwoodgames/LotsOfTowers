@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using UnityEngine.UI;
@@ -7,22 +8,22 @@ namespace LotsOfTowers.Actors
 {
 	public class Player : MonoBehaviour
 	{
+		// Static fields
+		private static Onesie DefaultOnesie;
+		private static int MaxOnesies;
+
 		// Private fields
 		private float charge;
 		private Onesie currentOnesie;
-		private Onesie defaultOnesie;
-		private Onesie[] onesies;
+		private Dictionary<int, Onesie> onesies;
 
 		// Public fields
 		public GameObject tooltip;
-		public GameObject hudUi;
+		public Framework.HeadsUpDisplayScript hudUi;
 		public GameObject chargeParticles;
 
 		public GameObject elephantHead;
 		public GameObject elephantBody;
-
-        public bool holdingWater;
-        public GameObject waterDisplay;
 
 		private GameObject defaultHead;
 		private GameObject defaultBody;
@@ -30,40 +31,35 @@ namespace LotsOfTowers.Actors
 		// Properties
 		public bool HasFreeSlots
 		{
-			get { return onesies[0] == null || onesies[1] == null || onesies[2] == null; }
+			get { return onesies.Count < MaxOnesies; }
 		}
 
 		public float StaticCharge
 		{
 			get { return charge; }
-			set { charge = Mathf.Max(0, Math.Min(value, 100)); }
+			set { charge = Math.Max(0, Math.Min(value, 100)); }
 		}
 
 		public Onesie Onesie
 		{
-			get { return currentOnesie == null ? defaultOnesie : currentOnesie; }
-			set { currentOnesie = onesies.Contains(value) ? value : currentOnesie; }
+			get { return currentOnesie == null ? DefaultOnesie : currentOnesie; }
+			set { currentOnesie = value; }
 		}
 
 		public Onesie[] Onesies
 		{
-			get { return onesies; }
+			get { return onesies.Values.ToArray(); }
 		}
 
 		// Methods
 		public Onesie AddOnesie(int index, Onesie onesie)
 		{
-			if (index > -1 && index < 3 && onesies.Where(o => o.name == onesie.name).Count() == 0)
+			if (index > -1 && index < MaxOnesies && onesies.Values.Where(o => o.name == onesie.name).Count() == 0)
 			{
-				Onesie replacedOnesie = onesies.ElementAtOrDefault(index);
+				Onesie replacedOnesie = onesies.ElementAtOrDefault(index).Value;
 
 				currentOnesie = currentOnesie == replacedOnesie ? onesie : currentOnesie;
-				onesies[index] = onesie;
-
-				// HUD - place onesie image to corresponding skill slot
-				hudUi.GetComponent<LotsOfTowers.Framework.HeadsUpDisplayScript>().AttachOnesieToSkillSlot(index, onesie.name);
-				// Show HUD - skill
-				hudUi.GetComponent<LotsOfTowers.Framework.HeadsUpDisplayScript>().skillsUi.SetActive(true);
+				onesies.Add(index, onesie);
 
 				return replacedOnesie;
 			}
@@ -73,19 +69,14 @@ namespace LotsOfTowers.Actors
 
 		public bool AddOnesieToFirstFreeSlot(Onesie onesie)
 		{
-			if (onesies[0] == null) {
-				onesies[0] = onesie;
-				return true;
-			}
+			for (int i = 0; i < MaxOnesies; i++)
+			{
+				if (!onesies.ContainsKey(i))
+				{
+					AddOnesie(i, onesie);
 
-			if (onesies[1] == null) {
-				onesies[1] = onesie;
-				return true;
-			}
-
-			if (onesies[2] == null) {
-				onesies[2] = onesie;
-				return true;
+					return true;
+				}
 			}
 
 			return false;
@@ -93,22 +84,27 @@ namespace LotsOfTowers.Actors
 
 		public void Awake()
 		{
-			this.defaultOnesie = Resources.Load("OnesieDefault") as Onesie;
-			this.onesies = new Onesie[3];
+			Physics.gravity = new Vector3(0, -35, 0);
+
+			DefaultOnesie = Resources.Load("OnesieDefault") as Onesie;
+			MaxOnesies = 3;
+			onesies = new Dictionary<int, Onesie>(MaxOnesies);
 
 			defaultHead = GameObject.Find("Head_Default");
 			defaultBody = GameObject.Find("Body_Default");
-			hudUi = GameObject.Find("HUD");
+		}
 
-			// Set up the player
-			Physics.gravity = new Vector3(0, -35, 0);
-			AddOnesieToFirstFreeSlot(defaultOnesie);
+		public void Start()
+		{
+			hudUi = GameObject.Find("HUD").GetComponent<Framework.HeadsUpDisplayScript>();
 		}
 
 		public void SwitchOnesie(int index)
 		{
-			if (index > -1 && index < 3 && onesies[index] != null) {
+			if (onesies.ContainsKey(index))
+			{
 				currentOnesie = onesies[index];
+                hudUi.ShowActiveSkill(index);
 
 				if (currentOnesie.name == "OnesieElephant" && !elephantHead.activeInHierarchy)
 				{
@@ -150,26 +146,29 @@ namespace LotsOfTowers.Actors
 			}
 		}
 
+		public void Update()
+		{
+			if (StaticCharge > 0)
+			{
+				if (StaticCharge > 90)
+                    chargeParticles.GetComponent<ParticleSystem>().loop = true;
+                else
+                    chargeParticles.GetComponent<ParticleSystem>().loop = false;
+            }
+
+			if (Input.GetButtonUp("Submit"))
+			{
+				//Discharge static load
+				StaticCharge = 0;
+                chargeParticles.GetComponent<ParticleSystem>().Stop();
+                //Discharge animation here
+            }
+		}
+
         public void PlayParticles()
         {
             //chargeParticles.GetComponent<ParticleSystem>().Stop();
             chargeParticles.GetComponent<ParticleSystem>().Play();
         }
-
-		public void Update()
-		{
-            if (holdingWater)
-                waterDisplay.SetActive(true);
-            else
-                waterDisplay.SetActive(false);
-
-			if (StaticCharge > 0)
-			{
-				if (StaticCharge > 90)
-					chargeParticles.GetComponent<ParticleSystem>().loop = true;
-				else
-					chargeParticles.GetComponent<ParticleSystem>().loop = false;
-			}
-		}
 	}
 }
