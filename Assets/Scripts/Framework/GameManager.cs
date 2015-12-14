@@ -17,6 +17,8 @@ namespace LotsOfTowers
 		private Canvas canvas;
 		private Image fader;
 		private bool hasStarted;
+		private Image loadingScreen;
+		private Sprite loadingSpriteA, loadingSpriteB;
 		private PlayerController playerController;
 		private Transform spawnPoint;
 		
@@ -62,7 +64,10 @@ namespace LotsOfTowers
 			OnLevelWasLoaded(Application.loadedLevel);
 
 			this.canvas = GetComponent<Canvas>();
-			this.fader = new GameObject ("Transition Fader", typeof(Image)).GetComponent<Image> ();
+			this.fader = new GameObject("Transition Fader", typeof(Image)).GetComponent<Image>();
+			this.loadingScreen = new GameObject("Loading Screen", typeof(Image)).GetComponent<Image>();
+			this.loadingSpriteA = Resources.Load<Sprite>("UI/LoadingScreenLoading");
+			this.loadingSpriteB = Resources.Load<Sprite>("UI/LoadingScreenDone");
 		}
 
 		public void FadeIn() {
@@ -128,8 +133,24 @@ namespace LotsOfTowers
 				yield return null;
 			}
 
+			if (index != 0) {
+				// If the scene to be loaded is NOT the main menu, show the loading screen
+				loadingScreen.sprite = loadingSpriteA;
+				loadingScreen.enabled = true;
+			}
+
 			Application.LoadLevel(index);
 			yield return new WaitForSeconds(1);
+
+			if (index != 0) {
+				loadingScreen.sprite = loadingSpriteB;
+
+				while (Input.GetAxis("Submit") == 0) {
+					yield return null;
+				}
+
+				loadingScreen.enabled = false;
+			}
 			
 			while (fader.color.a > 0.01f) {
 				fader.color = Color.Lerp(fader.color, Color.clear, 0.1f);
@@ -173,7 +194,7 @@ namespace LotsOfTowers
 				UITooltip tooltip = new GameObject ("UITooltip", typeof(UITooltip)).GetComponent<UITooltip> ();
 				tooltip.duration = 5;
 				tooltip.gameObject.transform.SetParent (transform, false);
-				tooltip.GetComponent<Image> ().sprite = Resources.Load<Sprite> ("Textures/" + resourceName);
+				tooltip.GetComponent<Image> ().sprite = Resources.Load<Sprite>("Textures/" + resourceName);
 
 				return tooltip;
 			}
@@ -184,9 +205,21 @@ namespace LotsOfTowers
 		public void Start() {
 			canvas.renderMode = RenderMode.ScreenSpaceOverlay;
 			canvas.sortingOrder = Int16.MaxValue;
+
+			// Transition Fader setup
 			fader.color = Color.clear;
 			fader.rectTransform.sizeDelta = new Vector2(Screen.width, Screen.height);
 			fader.transform.SetParent(transform, false);
+
+			// Loading Screen setup
+			var scale = Mathf.Round(Screen.width / 192) < Mathf.Round(Screen.height / 108) ?
+				Mathf.Round(Screen.width / 192) : Mathf.Round(Screen.height / 108);
+			loadingScreen.enabled = false;
+			loadingScreen.rectTransform.localScale = new Vector3(scale, scale, 1);
+			loadingScreen.rectTransform.sizeDelta = new Vector2(192, 108);
+			loadingScreen.sprite = loadingSpriteA;
+			loadingScreen.transform.SetParent(transform, false);
+
 			hasStarted = true;
 		}
 	}
