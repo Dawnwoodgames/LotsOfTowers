@@ -19,10 +19,10 @@ namespace LotsOfTowers
 		private bool hasStarted;
 		private Image loadingScreen;
 		private Sprite loadingSpriteA, loadingSpriteB;
+		private Player player;
 		private PlayerController playerController;
 		private Transform spawnPoint;
-		
-		public static bool Alive { get { return Instance != null; } }
+
 		public static GameManager Instance {
 			get {
 				if (instance == null) {
@@ -164,11 +164,41 @@ namespace LotsOfTowers
 		
 		public void OnLevelWasLoaded(int index) {
 			try {
+				player = FindObjectOfType<Player>();
 				playerController = FindObjectOfType<PlayerController>();
                 SpawnPoint = GameObject.Find("Level/Spawn Point").transform;
             } catch (Exception) { }
 		}
 
+		public void PlayerPassOutAndRespawn(Transform spawnPoint) {
+			StopAllCoroutines();
+			StartCoroutine(PlayerPassOutAndRespawnCoroutine(spawnPoint));
+		}
+
+		private IEnumerator PlayerPassOutAndRespawnCoroutine(Transform spawnPoint) {
+			if (player != null && playerController != null) {
+				playerController.enabled = false;
+
+				while (!hasStarted) {
+					yield return null;
+				}
+
+				while (fader.color.a < 0.99f) {
+					fader.color = Color.Lerp(fader.color, Color.black, 0.1f);
+					yield return null;
+				}
+
+				player.transform.position = spawnPoint.position;
+				player.transform.rotation = spawnPoint.rotation;
+
+				while (fader.color.a > 0.01f) {
+					fader.color = Color.Lerp(fader.color, Color.clear, 0.1f);
+					yield return null;
+				}
+
+				playerController.enabled = true;
+			}
+		}
 
 		public void Quit() {
 			StopAllCoroutines();
