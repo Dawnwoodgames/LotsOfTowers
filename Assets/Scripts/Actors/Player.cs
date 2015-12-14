@@ -21,6 +21,8 @@ namespace LotsOfTowers.Actors
 		public GameObject elephantHead;
 		public GameObject elephantBody;
 
+        public bool holdingWater;
+
 		private GameObject defaultHead;
 		private GameObject defaultBody;
 
