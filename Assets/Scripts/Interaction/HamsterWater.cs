@@ -8,6 +8,7 @@ public class HamsterWater : MonoBehaviour {
     private GameObject player;
     private float newHeight = 0f;
     private Vector3 defaultPosition;
+    public int spitcount = 0;
 
     void Start()
     {
@@ -44,6 +45,7 @@ public class HamsterWater : MonoBehaviour {
         {
             player.GetComponent<Player>().holdingWater = false;
             newHeight += 0.1f;
+            spitcount++;
         }
     }
 }
