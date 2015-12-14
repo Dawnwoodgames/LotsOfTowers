@@ -6,7 +6,6 @@ public class HamsterWater : MonoBehaviour {
 
     private bool nearWater;
     private GameObject player;
-    private float newHeight = 0f;
     private Vector3 defaultPosition;
     public int spitcount = 0;
 
@@ -20,8 +19,8 @@ public class HamsterWater : MonoBehaviour {
     {
         if (nearWater && Input.GetButton("Submit") && player.GetComponent<Player>().Onesie.isHeavy)
             Spit();
-        gameObject.transform.localScale = Vector3.MoveTowards(gameObject.transform.localScale,new Vector3(gameObject.transform.localScale.x, newHeight, gameObject.transform.localScale.z),Time.deltaTime*2);
-        gameObject.transform.localPosition = Vector3.MoveTowards(gameObject.transform.localPosition, new Vector3(gameObject.transform.localPosition.x, defaultPosition.y+newHeight, gameObject.transform.localPosition.z), Time.deltaTime * 2);
+        gameObject.transform.localScale = Vector3.MoveTowards(gameObject.transform.localScale,new Vector3(gameObject.transform.localScale.x, spitcount*0.1f, gameObject.transform.localScale.z),Time.deltaTime*2);
+        gameObject.transform.localPosition = Vector3.MoveTowards(gameObject.transform.localPosition, new Vector3(gameObject.transform.localPosition.x, defaultPosition.y+spitcount*0.1f, gameObject.transform.localPosition.z), Time.deltaTime * 2);
     }
 
     void OnTriggerEnter(Collider other)
@@ -44,7 +43,6 @@ public class HamsterWater : MonoBehaviour {
         if (player.GetComponent<Player>().holdingWater)
         {
             player.GetComponent<Player>().holdingWater = false;
-            newHeight += 0.1f;
             spitcount++;
         }
     }
