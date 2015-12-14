@@ -17,7 +17,7 @@ namespace LotsOfTowers.Environment {
 
 		public void FixedUpdate() {
 			internalClock += Time.deltaTime;
-			transform.position = new Vector3(transform.position.x, Mathf.Sin(internalClock) + originalY, transform.position.z);
+			transform.position = new Vector3(transform.position.x, Mathf.Sin(internalClock) * 0.25f + originalY, transform.position.z);
 		}
 	}
 }
