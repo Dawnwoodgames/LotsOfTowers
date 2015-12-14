@@ -1,28 +1,23 @@
 ﻿using UnityEngine;
 
 namespace LotsOfTowers.Environment {
+	[RequireComponent(typeof(MeshRenderer))]
 	public sealed class Buoy : MonoBehaviour {
 		private float internalClock;
-		private new Light light;
 		private float originalY;
-		private float randomness;
 
-		public bool Red {
-			get { return light.color.r > 0; }
+		public Color Color {
+			get { return GetComponent<MeshRenderer>().material.color; }
 		}
 
 		public void Awake() {
-			this.internalClock = 0;
-			this.light = GetComponentInChildren<Light>();
-			light.intensity = 1;
-			this.originalY = transform.localPosition.y;
-			this.randomness = Random.Range(0f, 1f);
+			this.internalClock = Random.Range(0f, 1f);
+			this.originalY = transform.position.y;
 		}
 
-		public void Update() {
+		public void FixedUpdate() {
 			internalClock += Time.deltaTime;
-			light.intensity = 0.75f + Mathf.Sin(2 * internalClock) * 0.75f;
-			transform.localPosition = new Vector3(transform.localPosition.x, originalY + Mathf.Sin(randomness + internalClock) * 0.25f, transform.localPosition.z);
+			transform.position = new Vector3(transform.position.x, Mathf.Sin(internalClock) * 0.25f + originalY, transform.position.z);
 		}
 	}
 }
