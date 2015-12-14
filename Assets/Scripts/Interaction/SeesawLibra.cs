@@ -104,7 +104,7 @@ namespace LotsOfTowers.Interaction
                             {
                                 if (player.GetComponent<Player>().Onesie.type != OnesieType.Elephant)
                                 {
-                                    Debug.Log("POPUP: Press 2/(Y) to put on your onesie!");
+									GameManager.Instance.ShowTooltip("OnesieSwitch", "Onesie 2");
                                 }
                                 else
                                 {

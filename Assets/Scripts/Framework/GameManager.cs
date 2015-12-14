@@ -52,7 +52,7 @@ namespace LotsOfTowers
 		public void Awake()
 		{
 			if (FindObjectsOfType<GameManager>().Length > 1) {
-				Destroy (gameObject);
+				Destroy(gameObject);
 			} else {
 				GameManager.instance = this;
 			}
@@ -188,18 +188,15 @@ namespace LotsOfTowers
 			Application.Quit ();
 		}
 
-		public UITooltip ShowTooltip(String resourceName) {
-			if (PlayerPrefs.GetInt ("bTooltipBeenShown" + resourceName) != 1) {
-				PlayerPrefs.SetInt("bTooltipBeenShown" + resourceName, 1);
-				UITooltip tooltip = new GameObject ("UITooltip", typeof(UITooltip)).GetComponent<UITooltip> ();
-				tooltip.duration = 5;
-				tooltip.gameObject.transform.SetParent (transform, false);
-				tooltip.GetComponent<Image> ().sprite = Resources.Load<Sprite>("Textures/" + resourceName);
+		public void ShowTooltip(string resourceName, string axis) {			
+			if (PlayerPrefs.GetInt("UITooltip" + resourceName, 0) == 0) {
+				PlayerPrefs.SetInt("UITooltip" + resourceName, 1);
+				UITooltip tooltip = new GameObject("UITooltip", typeof(UITooltip)).GetComponent<UITooltip>();
 
-				return tooltip;
+				tooltip.gameObject.transform.SetParent(transform, false);
+				tooltip.SetAxis(axis);
+				tooltip.SetSprite(Resources.Load<Sprite>("UI/Tooltip" + resourceName));
 			}
-
-			return null;
 		}
 
 		public void Start() {
