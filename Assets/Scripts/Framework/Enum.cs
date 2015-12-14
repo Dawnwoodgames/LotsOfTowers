@@ -21,4 +21,10 @@ namespace LotsOfTowers.Framework
         Left,
         Right
     }
+
+    public enum TypeCollider
+    {
+        Player,
+        Elephant
+    }
 }

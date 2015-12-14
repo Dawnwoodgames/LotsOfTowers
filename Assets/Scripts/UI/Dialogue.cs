@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
+using LotsOfTowers.Framework;
 
 namespace LotsOfTowers.UI
 {
@@ -10,27 +11,44 @@ namespace LotsOfTowers.UI
         public float showForSeconds = 1f;
         public string dialogueText;
 
+        public TypeCollider type = TypeCollider.Player;
+
         private bool triggered = false;
 
         void Start()
         {
-            clearText();
+            dialogueObject.GetComponent<Text>().text = "";
         }
         
         void OnTriggerEnter(Collider col)
         {
-            if (col.tag == "Player" && !triggered)
+            if(type == TypeCollider.Elephant)
             {
-                dialogueObject.GetComponent<Text>().text = dialogueText;
-                StartCoroutine(hideText());
-                triggered = true;
+                if(col.name == "Elephant")
+                {
+                    dialogueObject.GetComponent<Text>().text = dialogueText;
+                    StartCoroutine(hideText());
+                    triggered = true;
+                }
+            }
+            else if(type == TypeCollider.Player)
+            {
+                if (col.tag == "Player" && !triggered)
+                {
+                    dialogueObject.GetComponent<Text>().text = dialogueText;
+                    StartCoroutine(hideText());
+                    triggered = true;
+                }
             }
         }
 
         private void clearText()
         {
-            dialogueObject.GetComponent<Text>().text = "";
-        }
+            if(dialogueObject.GetComponent<Text>().text == dialogueText)
+            {
+                dialogueObject.GetComponent<Text>().text = "";
+            }
+        } 
 
         IEnumerator hideText()
         {
