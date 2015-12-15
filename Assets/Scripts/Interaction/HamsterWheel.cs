@@ -10,6 +10,8 @@ public class HamsterWheel : MonoBehaviour {
     private bool pumping;
     public float pumpDelay = 1.0f;
     private float nextPump;
+    public GameObject wheel;
+    private GameObject player;
 
     void Start()
     {
@@ -27,12 +29,15 @@ public class HamsterWheel : MonoBehaviour {
         }
         newWater.transform.localScale = Vector3.MoveTowards(newWater.transform.localScale, new Vector3(newWater.transform.localScale.x, newHeight, newWater.transform.localScale.z), Time.deltaTime * 2);
         newWater.transform.localPosition = Vector3.MoveTowards(newWater.transform.localPosition, new Vector3(newWater.transform.localPosition.x, defaultPosition.y + newHeight, newWater.transform.localPosition.z), Time.deltaTime*2);
+        if(pumping)
+            wheel.transform.Rotate(new Vector3(0, 0, 5f*(player.transform.position.z-wheel.transform.position.z >0?1:-1)));
     }
 
     void OnTriggerEnter(Collider other)
     {
         if (other.tag == "Player")
         {
+            player = other.gameObject;
             pumping = true;
         }
     }
