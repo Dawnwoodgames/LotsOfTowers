@@ -97,13 +97,12 @@ namespace LotsOfTowers.Actors
 
 			// Set up the player
 			Physics.gravity = new Vector3(0, -35, 0);
-			AddOnesieToFirstFreeSlot(defaultOnesie);
 		}
 
 		public void SwitchOnesie(int index)
 		{
 			if (index > -1 && index < 3 && onesies[index] != null) {
-				currentOnesie = onesies[index];
+				currentOnesie = (currentOnesie == onesies[index]) ? defaultOnesie : onesies[index];
 
 				if (currentOnesie.name == "OnesieElephant" && !elephantHead.activeInHierarchy)
 				{
