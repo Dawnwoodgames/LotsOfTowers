@@ -36,7 +36,6 @@ namespace LotsOfTowers.Framework
                     if (toMove[obj].transform.position == new Vector3(oldPosition[obj].x, oldPosition[obj].y, oldPosition[obj].z))
                         isActive = false;
 				}
-            Debug.Log(isActive);
 		}
 
 		void OnTriggerEnter(Collider other)
