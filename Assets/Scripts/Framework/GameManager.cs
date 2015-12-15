@@ -218,8 +218,12 @@ namespace LotsOfTowers
 			Application.Quit ();
 		}
 
-		public void ShowTooltip(string resourceName, string axis) {			
-			if (PlayerPrefs.GetInt("UITooltip" + resourceName, 0) == 0) {
+		public void ShowTooltip(string resourceName, string axis) {
+			ShowTooltip(resourceName, axis, false);
+		}
+
+		public void ShowTooltip(string resourceName, string axis, bool useCookie) {			
+			if (!useCookie || PlayerPrefs.GetInt("UITooltip" + resourceName, 0) == 0) {
 				PlayerPrefs.SetInt("UITooltip" + resourceName, 1);
 				UITooltip tooltip = new GameObject("UITooltip", typeof(UITooltip)).GetComponent<UITooltip>();
 
