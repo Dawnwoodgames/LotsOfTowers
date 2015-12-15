@@ -57,7 +57,10 @@ namespace LotsOfTowers.Interaction
 
         private bool startValuesForLaunchingPlayersSet = false;
         private float targetJumpHeightForPlayerLaunch;
-        
+
+        private bool elephantToSecondPosition = false;
+        private bool canElephantSecondJumpFlipBoard = false;
+
         void Start()
 		{
 			player = GameObject.FindGameObjectWithTag("Player");
@@ -104,7 +107,7 @@ namespace LotsOfTowers.Interaction
                             {
                                 if (player.GetComponent<Player>().Onesie.type != OnesieType.Elephant)
                                 {
-									GameManager.Instance.ShowTooltip("OnesieSwitch", "Onesie 2");
+                                    GameManager.Instance.ShowTooltip("OnesieSwitch", "Onesie 2");
                                 }
                                 else
                                 {
@@ -122,7 +125,7 @@ namespace LotsOfTowers.Interaction
                     }
                 }
                 //Check if the player is standing on the begin platform
-                else if (boardStartTrigger.isPlayerOnTrigger())
+                else if (getOnesiePartFinished && !elephantToSecondPosition)
                 {
                     StartCoroutine(WaitForBalance(1f));
                 }
@@ -145,13 +148,25 @@ namespace LotsOfTowers.Interaction
                 {
                     board.GetComponent<Rigidbody>().isKinematic = true;
                     playerController.DisableMovement();
-
+                    
                     if (player.GetComponent<Player>().Onesie.type != OnesieType.Elephant)
                     {
                         // Elephant jumps which will launch you to the next platform.
                         if (!elephantSecondJumpFinished)
                         {
-                            ElephantJumpFromSecondPlatform(); // Needs to fit the scene.
+                            if (Mathf.Round(board.transform.eulerAngles.x) < 341 && Mathf.Round(board.transform.eulerAngles.x) > 339)
+                            {
+                                canElephantSecondJumpFlipBoard = true; // We need to make sure the board is 340x. Otherwize it will fuck up everything
+                            }
+                            else
+                            {
+                                board.transform.eulerAngles = new Vector3(340f, transform.eulerAngles.y, transform.eulerAngles.z);
+                                // move to correct position.
+                            }
+
+                            if (canElephantSecondJumpFlipBoard) { 
+                                ElephantJumpFromSecondPlatform();
+                            }
                         }
                         else
                         {
@@ -170,14 +185,14 @@ namespace LotsOfTowers.Interaction
             }
             else
             {
-                playerController.EnableMovement();
-                StartCoroutine(WaitForEnablingInvisibleWall(2f));
+                StartCoroutine(WaitForEnablingInvisibleWall(1f));
             }
 		}
         
         IEnumerator WaitForEnablingInvisibleWall(float amount)
         {
             yield return new WaitForSeconds(amount);
+            playerController.EnableMovement();
             invisBlockWall.SetActive(true);
         }
 
@@ -194,6 +209,7 @@ namespace LotsOfTowers.Interaction
             {
                 if ((int)elephant.transform.position.x == (int)elephantSecondJumpTargetPosition.x)
                 {
+                    //board.transform.eulerAngles = new Vector3(340f, transform.eulerAngles.y, transform.eulerAngles.z);
                     elephantSecondJumpFinished = true;
                 }
                 else
@@ -220,14 +236,14 @@ namespace LotsOfTowers.Interaction
 
         private void ElephantSecondJumpFlipBoard()
         {
-            Vector3 to = new Vector3(20f, lerpBoardStartRotation.y, lerpBoardStartRotation.z);
+            Vector3 to = new Vector3(20f, board.transform.eulerAngles.y, board.transform.eulerAngles.z);
             if (Mathf.Round(board.transform.eulerAngles.x) != 20)
             {
                 board.transform.eulerAngles = new Vector3(board.transform.eulerAngles.x + 100 * Time.deltaTime, board.transform.eulerAngles.y, board.transform.eulerAngles.z);
             }
             else
             {
-                //board.transform.eulerAngles = to;
+                board.transform.eulerAngles = to;
                 elephantLaunchedNimbi = true;
             }
         }
@@ -237,7 +253,8 @@ namespace LotsOfTowers.Interaction
 			yield return new WaitForSeconds(amount);
 			// Elephant walks of and enables moving for player so he can walk to the other side
 			ElephantWalkOff();
-		}
+            elephantToSecondPosition = true;
+        }
         
         //** Onesie related **//
         private void GiveElephantOnesie()
