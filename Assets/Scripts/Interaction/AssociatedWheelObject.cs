@@ -8,12 +8,12 @@ namespace LotsOfTowers.Interaction
         public GameObject[] associatedObjects;
         public GameObject targetPosition;
 
-        private HamsterWheel wheel;
+        private HamsterCypherWheel wheel;
         private bool isSpinning = false;
 
         void Start()
         {
-            wheel = GetComponent<HamsterWheel>();
+            wheel = GetComponent<HamsterCypherWheel>();
         }
 
         void Update()

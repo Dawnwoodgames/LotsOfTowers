@@ -5,7 +5,7 @@ namespace LotsOfTowers.Interaction
 {
     public class AssociatedWheelWater : MonoBehaviour
     {
-        public HamsterWheel wheel;
+        public HamsterCypherWheel wheel;
         public GameObject water;
         public GameObject nut;
         public ParticleSystem floatingWaterSystem;

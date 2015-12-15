@@ -9,7 +9,7 @@ public class WaterInteraction : MonoBehaviour {
 
     private void OnTriggerStay(Collider coll)
     {
-        if (!coll.GetComponent<LotsOfTowers.Actors.Player>().IsElephant)
+        if (!coll.GetComponent<LotsOfTowers.Actors.Player>().Onesie.isHeavy)
             coll.GetComponent<Rigidbody>().AddForce(Vector3.up, ForceMode.Impulse);
     }
 }

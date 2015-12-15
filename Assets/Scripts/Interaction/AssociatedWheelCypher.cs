@@ -4,17 +4,17 @@ using System;
 
 namespace LotsOfTowers.Interaction
 {
-    public class AssociatedWheelCipher : MonoBehaviour
+    public class AssociatedWheelCypher : MonoBehaviour
     {
-        public GameObject[] associatedCiphers;
+        public GameObject[] associatedCyphers;
         public int rotateAmount;
 
-        private HamsterWheel wheel;
+        private HamsterCypherWheel wheel;
         private bool isSpinning = false;
 
         void Start()
         {
-            wheel = GetComponent<HamsterWheel>();
+            wheel = GetComponent<HamsterCypherWheel>();
         }
 
         void Update()
@@ -28,7 +28,7 @@ namespace LotsOfTowers.Interaction
             if (!isSpinning)
             {
                 isSpinning = true;
-                foreach (GameObject cWheel in associatedCiphers)
+                foreach (GameObject cWheel in associatedCyphers)
                     cWheel.transform.Rotate(Vector3.left * -90 * rotateAmount);
                 StartCoroutine(DelaySpin());
             }
