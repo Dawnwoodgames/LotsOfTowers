@@ -15,7 +15,7 @@ namespace LotsOfTowers.Actors
 
 		// Public fields
 		public GameObject tooltip;
-		public GameObject hudUi;
+		public Framework.HeadsUpDisplayScript hudUi;
 		public GameObject chargeParticles;
 
 		public GameObject elephantHead;
@@ -93,7 +93,7 @@ namespace LotsOfTowers.Actors
 
 			defaultHead = GameObject.Find("Head_Default");
 			defaultBody = GameObject.Find("Body_Default");
-			hudUi = GameObject.Find("HUD");
+			hudUi = GameObject.Find("HUD").GetComponent<Framework.HeadsUpDisplayScript>();
 
 			// Set up the player
 			Physics.gravity = new Vector3(0, -35, 0);
@@ -141,7 +141,10 @@ namespace LotsOfTowers.Actors
 						defaultBody.GetComponent<Renderer>().enabled = false;
 					}
 				}
-			}
+                
+                // Change HUD to represent the active onesie
+                hudUi.ShowActiveSkill(currentOnesie.type.ToString());
+            }
 		}
 
 		public void PlayParticles()

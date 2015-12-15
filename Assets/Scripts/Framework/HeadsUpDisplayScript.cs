@@ -5,24 +5,24 @@ namespace LotsOfTowers.Framework
 {
 	public class HeadsUpDisplayScript : MonoBehaviour
 	{
-		public GameObject skillsUi;
+		private GameObject skillsUi;
 
 		void Awake()
 		{
 			skillsUi = GameObject.Find("Skills");
 		}
 
-        public void ShowActiveSkill(int skillSlot)
+        public void ShowActiveSkill(string _onesie)
         {
-            switch (skillSlot)
+            switch (_onesie)
             {
-                case 0:
-                    skillsUi.GetComponent<Image>().sprite = Resources.Load("HUD/OnesieDragon", typeof(Sprite)) as Sprite;
-                    break;
-                case 1:
+                case "Elephant":
                     skillsUi.GetComponent<Image>().sprite = Resources.Load("HUD/OnesieElephant", typeof(Sprite)) as Sprite;
                     break;
-                case 2:
+                case "Dragon":
+                    skillsUi.GetComponent<Image>().sprite = Resources.Load("HUD/OnesieDragon", typeof(Sprite)) as Sprite;
+                    break;
+                case "Hamster":
                     skillsUi.GetComponent<Image>().sprite = Resources.Load("HUD/OnesieHamster", typeof(Sprite)) as Sprite;
                     break;
                 default:

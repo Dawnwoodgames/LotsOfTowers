@@ -66,7 +66,7 @@ namespace LotsOfTowers.Actors
 			{
 				//Switch to the selected onesie
 				player.SwitchOnesie(onesie1 ? 0 : (onesie2 ? 1 : 2));
-				switchDelay = InputDelay;
+                switchDelay = InputDelay;
             }
 
             if(canMove)
