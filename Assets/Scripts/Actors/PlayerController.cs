@@ -1,22 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using LotsOfTowers.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
 namespace LotsOfTowers.Actors
 {
 	//We need the following components to make the player work
+	[RequireComponent(typeof(Player))]
 	[RequireComponent(typeof(Rigidbody))]
-    [RequireComponent(typeof(Player))]
-
 	public class PlayerController : MonoBehaviour
 	{
+		private static readonly float InputDelay = 0.5f;
 
 		//The actual player with all the movement properties
 		private Player player;
 		private Transform mainCamera;
+		private BoxCollider box;
 		private CapsuleCollider capsule;
-        private BoxCollider box;
-        private Framework.HeadsUpDisplayScript hudUi;
+        private HeadsUpDisplayScript hudUi;
 
 		//Moving variables
 		private Vector3 movement;
@@ -25,6 +26,7 @@ namespace LotsOfTowers.Actors
 		private float movingTurnSpeed = 360;
 		private bool removeChargeOnNextFrame;
 		private float stationaryTurnSpeed = 360;
+		private float switchDelay;
 		private Vector3 groundNormal;
 
         private bool canMove = true;
@@ -51,16 +53,20 @@ namespace LotsOfTowers.Actors
 			float h = CrossPlatformInputManager.GetAxis("Horizontal");
 			float v = CrossPlatformInputManager.GetAxis("Vertical");
 
-			bool onesie1 = CrossPlatformInputManager.GetAxis("Onesie 1") > 0;
-			bool onesie2 = CrossPlatformInputManager.GetAxis("Onesie 2") > 0;
-			bool onesie3 = CrossPlatformInputManager.GetAxis("Onesie 3") > 0;
+			bool onesie1 = CrossPlatformInputManager.GetButton("Onesie 1");
+			bool onesie2 = CrossPlatformInputManager.GetButton("Onesie 2");
+			bool onesie3 = CrossPlatformInputManager.GetButton("Onesie 3");
+			bool submit = CrossPlatformInputManager.GetButton("Submit");
 
-			bool submit = CrossPlatformInputManager.GetAxis("Submit") > 0;
+			if (switchDelay > 0) {
+				switchDelay -= Time.smoothDeltaTime;
+			}
 
-			if (onesie1 || onesie2 || onesie3)
+			if ((onesie1 || onesie2 || onesie3) && switchDelay <= 0)
 			{
 				//Switch to the selected onesie
 				player.SwitchOnesie(onesie1 ? 0 : (onesie2 ? 1 : 2));
+				switchDelay = InputDelay;
             }
 
             if(canMove)
