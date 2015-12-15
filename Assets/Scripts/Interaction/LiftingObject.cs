@@ -56,7 +56,7 @@ namespace LotsOfTowers.Interaction
 			//Move the object with the player if its picked up
 			if (pickedUp)
 			{
-				transform.position = Vector3.Lerp(transform.position, player.transform.position + Vector3.forward * 3 + Vector3.up * 1.2f, Time.deltaTime * smoothLerp);
+				transform.position = Vector3.Lerp(transform.position, player.transform.position + Vector3.forward * 1.5f + Vector3.up * 1.2f, Time.deltaTime * smoothLerp);
 
 				if (!rigid.isKinematic)
 				{

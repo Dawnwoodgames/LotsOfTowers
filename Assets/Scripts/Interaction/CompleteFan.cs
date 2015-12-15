@@ -2,36 +2,32 @@
 using System.Collections;
 using LotsOfTowers.Actors;
 
-[RequireComponent(typeof(Animator))]
-public class CompleteFan : MonoBehaviour {
+public class CompleteFan : MonoBehaviour
+{
+	private Animator animator;
+	void Start()
+	{
+		animator = GetComponentInParent<Animator>();
+	}
 
-    Animator animator;
+	void OnTriggerStay(Collider player)
+	{
+		player.GetComponent<Rigidbody>().sleepThreshold = 0;
+		
+		if (!player.GetComponent<Player>().Onesie.isHeavy)
+		{
+			animator.SetBool("GoingDown", false);
+			animator.SetBool("GoingUp", true);
+		}
+		else if (player.GetComponent<Player>().Onesie.isHeavy)
+		{
+			animator.SetBool("GoingDown", true);
+			animator.SetBool("GoingUp", false);
+		}
+	}
 
-    void Start()
-    {
-        animator = GetComponent<Animator>();
-    }
-
-    void OnCollisionStay(Collision other)
-    {
-        if (other.gameObject.tag == "Player" && !other.gameObject.GetComponent<Player>().Onesie.isHeavy)
-        {
-            animator.SetBool("GoingDown", false);
-            animator.SetBool("GoingUp", true);
-        }
-        else if (other.gameObject.tag == "Player" && other.gameObject.GetComponent<Player>().Onesie.isHeavy)
-        {
-            animator.SetBool("GoingDown", true);
-            animator.SetBool("GoingUp", false);
-        }
-    }
-
-    void OnCollisionExit(Collision other)
-    {
-        if (other.gameObject.tag == "Player")
-        {
-            animator.SetBool("GoingDown", false);
-            animator.SetBool("GoingUp", true);
-        }
-    }
+	void OnTriggerExit(Collider player)
+	{
+		player.GetComponent<Rigidbody>().sleepThreshold = 0.14f;
+	}
 }
