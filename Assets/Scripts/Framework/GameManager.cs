@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace LotsOfTowers
@@ -61,7 +62,7 @@ namespace LotsOfTowers
 			LanguageManager.Instance.ChangeLanguage(Language);
 			LanguageManager.Instance.name = "Language Manager";
 			LanguageManager.Instance.transform.SetParent(transform, false);
-			OnLevelWasLoaded(Application.loadedLevel);
+			OnLevelWasLoaded(SceneManager.GetActiveScene().buildIndex);
 
 			this.canvas = GetComponent<Canvas>();
 			this.fader = new GameObject("Transition Fader", typeof(Image)).GetComponent<Image>();
@@ -108,7 +109,7 @@ namespace LotsOfTowers
 
 		public void LoadLevel(int index, bool forceUnlock) {
 			if (index == -1) {
-				index = Application.loadedLevel;
+				index = SceneManager.GetActiveScene().buildIndex;
 			} else if (!forceUnlock && PlayerPrefs.GetInt("bIsLevelAvailable" + index, 0) == 0) {
 				return;
 			}
@@ -139,7 +140,7 @@ namespace LotsOfTowers
 				loadingScreen.enabled = true;
 			}
 
-			Application.LoadLevel(index);
+            SceneManager.LoadSceneAsync(index);
 			yield return new WaitForSeconds(1);
 
 			if (index != 0) {

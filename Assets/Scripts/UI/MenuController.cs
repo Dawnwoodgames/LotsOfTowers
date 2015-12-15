@@ -2,6 +2,7 @@
 using System.Linq;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace LotsOfTowers.UI {
@@ -62,7 +63,7 @@ namespace LotsOfTowers.UI {
 		// Event handles used by the menu
 		public void ChangeLanguage(string language) {
 			GameManager.Instance.Language = language;
-			GameManager.Instance.LoadLevel(Application.loadedLevel);
+			GameManager.Instance.LoadLevel(SceneManager.GetActiveScene().buildIndex);
 		}
 
 		public void LoadLevel(int index) {
@@ -73,7 +74,7 @@ namespace LotsOfTowers.UI {
 			PlayerPrefs.DeleteAll();
 			PlayerPrefs.Save();
 			GameManager.Instance.Language = "en";
-			GameManager.Instance.LoadLevel(Application.loadedLevel, true);
+			GameManager.Instance.LoadLevel(SceneManager.GetActiveScene().buildIndex, true);
 		}
 
 		public void QuitApplication() {
