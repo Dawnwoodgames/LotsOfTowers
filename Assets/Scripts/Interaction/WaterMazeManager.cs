@@ -28,6 +28,7 @@ namespace LotsOfTowers.Interaction {
 			if (respawnOnNext || gates.Count > 22) {
 				GameManager.Instance.PlayerPassOutAndRespawn(transform);
 				gates.Clear();
+				respawnOnNext = false;
 			}
 		}
 	}

@@ -111,6 +111,10 @@ namespace LotsOfTowers
 			}
 		}
 
+		public void HideFader() {
+			fader.color = Color.clear;
+		}
+
 		public void LoadLevel(int index) {
 			LoadLevel(index, false);
 		}

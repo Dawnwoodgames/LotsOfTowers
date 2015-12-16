@@ -19,6 +19,7 @@ namespace LotsOfTowers.UI {
 
 		public void Enable() {
 			canvas.enabled = true;
+			GameManager.Instance.HideFader();
 			Time.timeScale = 0;
 		}
 
