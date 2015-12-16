@@ -32,7 +32,15 @@ namespace LotsOfTowers
 				return instance;
 			}
 		}
-		
+
+		public bool CursorEnabled {
+			get { return Cursor.lockState == CursorLockMode.None && Cursor.visible; }
+			set {
+				Cursor.lockState = value ? CursorLockMode.None : CursorLockMode.Locked;
+				Cursor.visible = value;
+			}
+		}
+
 		public string Language
 		{ // Default: en
 			get { return PlayerPrefs.HasKey("Language") ? PlayerPrefs.GetString("Language") : "en"; }
@@ -57,7 +65,7 @@ namespace LotsOfTowers
 			} else {
 				GameManager.instance = this;
 			}
-			
+
 			DontDestroyOnLoad(this);
 			LanguageManager.Instance.ChangeLanguage(Language);
 			LanguageManager.Instance.name = "Language Manager";
