@@ -40,6 +40,7 @@ namespace LotsOfTowers.Environment {
 		public void OnTriggerExit(Collider coll) {
 			if (coll.gameObject.tag == "Player") {
 				player = null;
+				playerRigidbody.constraints = sinkConstraints;
 				playerRigidbody.useGravity = true;
 			}
 		}
