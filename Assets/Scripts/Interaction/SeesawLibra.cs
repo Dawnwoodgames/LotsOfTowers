@@ -107,7 +107,7 @@ namespace LotsOfTowers.Interaction
                             {
                                 if (player.GetComponent<Player>().Onesie.type != OnesieType.Elephant)
                                 {
-                                    GameManager.Instance.ShowTooltip("OnesieSwitch", "Onesie 2");
+                                    GameManager.Instance.ShowTooltip("OnesieSwitch", "Onesie 1");
                                 }
                                 else
                                 {
