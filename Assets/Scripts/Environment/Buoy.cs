@@ -10,6 +10,10 @@ namespace LotsOfTowers.Environment {
 			get { return GetComponent<MeshRenderer>().material.color; }
 		}
 
+		public bool Red {
+			get { return Color.r > 0.5f; }
+		}
+
 		public void Awake() {
 			this.internalClock = Random.Range(0f, 1f);
 			this.originalY = transform.position.y;

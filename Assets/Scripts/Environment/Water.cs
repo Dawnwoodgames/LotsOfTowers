@@ -3,11 +3,14 @@ using UnityEngine;
 
 namespace LotsOfTowers.Environment {
 	public sealed class Water : MonoBehaviour {
+		private RigidbodyConstraints driftConstraints, sinkConstraints;
 		private Player player;
 		private Rigidbody playerRigidbody;
 		private float surfaceHeight;
 
 		public void Awake() {
+			this.driftConstraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+			this.sinkConstraints = RigidbodyConstraints.FreezeRotation;
 			this.surfaceHeight = (transform.position.y + transform.localScale.y / 2) - 0.75f;
 		}
 
@@ -15,12 +18,14 @@ namespace LotsOfTowers.Environment {
 			if (player != null) {
 				if (player.Onesie.isHeavy) {
 					// Player is heavy, sink to bottom
-					playerRigidbody.isKinematic = false;
+					playerRigidbody.constraints = sinkConstraints;
+					playerRigidbody.useGravity = true;
 				} else {
 					// Player isn't heavy, drift on surface
 					player.transform.position = Vector3.Lerp(player.transform.position,
 						new Vector3(player.transform.position.x, surfaceHeight, player.transform.position.z), 0.05f);
-					playerRigidbody.isKinematic = true;
+					playerRigidbody.constraints = driftConstraints;
+					playerRigidbody.useGravity = false;
 				}
 			}
 		}
@@ -35,7 +40,7 @@ namespace LotsOfTowers.Environment {
 		public void OnTriggerExit(Collider coll) {
 			if (coll.gameObject.tag == "Player") {
 				player = null;
-				playerRigidbody.isKinematic = false;
+				playerRigidbody.useGravity = true;
 			}
 		}
 	}
