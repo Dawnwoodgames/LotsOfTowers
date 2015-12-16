@@ -14,6 +14,8 @@ namespace LotsOfTowers
 	[RequireComponent(typeof(CanvasRenderer))]
 	public class GameManager : MonoBehaviour
 	{
+		public const float FadeDuration = 0.5f;
+
 		private static GameManager instance;
 		private Canvas canvas;
 		private Image fader;
@@ -90,7 +92,12 @@ namespace LotsOfTowers
 			}
 
 			while (fader.color.a > 0.01f) {
-				fader.color = Color.Lerp(fader.color, Color.clear, 0.1f);
+				fader.color = new Color(
+					fader.color.r,
+					fader.color.g,
+					fader.color.b,
+					fader.color.a - Time.deltaTime / FadeDuration
+				);
 				yield return null;
 			}
 		}
@@ -106,7 +113,12 @@ namespace LotsOfTowers
 			}
 
 			while (fader.color.a < 0.99f) {
-				fader.color = Color.Lerp(fader.color, Color.black, 0.1f);
+				fader.color = new Color(
+					fader.color.r,
+					fader.color.g,
+					fader.color.b,
+					fader.color.a + Time.deltaTime / FadeDuration
+				);
 				yield return null;
 			}
 		}
@@ -142,7 +154,12 @@ namespace LotsOfTowers
 			}
 			
 			while (fader.color.a < 0.99f) {
-				fader.color = Color.Lerp(fader.color, Color.black, 0.1f);
+				fader.color = new Color(
+					fader.color.r,
+					fader.color.g,
+					fader.color.b,
+					fader.color.a + Time.deltaTime / FadeDuration
+				);
 				yield return null;
 			}
 
@@ -166,7 +183,12 @@ namespace LotsOfTowers
 			}
 			
 			while (fader.color.a > 0.01f) {
-				fader.color = Color.Lerp(fader.color, Color.clear, 0.1f);
+				fader.color = new Color(
+					fader.color.r,
+					fader.color.g,
+					fader.color.b,
+					fader.color.a - Time.deltaTime / FadeDuration
+				);
 				yield return null;
 			}
 
@@ -197,7 +219,12 @@ namespace LotsOfTowers
 				}
 
 				while (fader.color.a < 0.99f) {
-					fader.color = Color.Lerp(fader.color, Color.black, 0.1f);
+					fader.color = new Color(
+						fader.color.r,
+						fader.color.g,
+						fader.color.b,
+						fader.color.a + Time.deltaTime / FadeDuration
+					);
 					yield return null;
 				}
 
@@ -205,7 +232,12 @@ namespace LotsOfTowers
 				player.transform.rotation = spawnPoint.rotation;
 
 				while (fader.color.a > 0.01f) {
-					fader.color = Color.Lerp(fader.color, Color.clear, 0.1f);
+					fader.color = new Color(
+						fader.color.r,
+						fader.color.g,
+						fader.color.b,
+						fader.color.a - Time.deltaTime / FadeDuration
+					);
 					yield return null;
 				}
 
@@ -224,7 +256,12 @@ namespace LotsOfTowers
 			}
 				
 			while (fader.color.a < 0.99f) {
-				fader.color = Color.Lerp (fader.color, Color.black, 0.1f);
+				fader.color = new Color(
+					fader.color.r,
+					fader.color.g,
+					fader.color.b,
+					fader.color.a + Time.deltaTime / FadeDuration
+				);
 				yield return null;
 			}
 
