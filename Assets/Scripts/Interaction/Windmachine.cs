@@ -26,16 +26,13 @@ namespace LotsOfTowers.Objects
 			player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 		}
 
-		private void Update()
+		private void FixedUpdate()
 		{
 			//If the player is staticly charged (higher then threshold) and is inside the trigger activating the machine
 			if (inTrigger && (Input.GetAxis("Submit") > 0) && (player.StaticCharge >= ChargeThreshold))
 			{
 				//Then activate the machine + wind
 				ChangeState(State.Active);
-
-				//Release the load of the static charge of the player
-				player.StaticCharge = 0.1f;
 
                 //Set the new battery image
                 batteryImage.GetComponent<Image>().sprite = fullBattery;

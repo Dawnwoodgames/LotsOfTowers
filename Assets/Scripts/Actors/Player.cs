@@ -68,17 +68,20 @@ namespace LotsOfTowers.Actors
 
 		public bool AddOnesieToFirstFreeSlot(Onesie onesie)
 		{
-			if (onesies[0] == null) {
+			if (onesies[0] == null)
+			{
 				onesies[0] = onesie;
 				return true;
 			}
 
-			if (onesies[1] == null) {
+			if (onesies[1] == null)
+			{
 				onesies[1] = onesie;
 				return true;
 			}
 
-			if (onesies[2] == null) {
+			if (onesies[2] == null)
+			{
 				onesies[2] = onesie;
 				return true;
 			}
@@ -101,7 +104,8 @@ namespace LotsOfTowers.Actors
 
 		public void SwitchOnesie(int index)
 		{
-			if (index > -1 && index < 3 && onesies[index] != null) {
+			if (index > -1 && index < 3 && onesies[index] != null)
+			{
 				currentOnesie = (currentOnesie == onesies[index]) ? defaultOnesie : onesies[index];
 
 				if (currentOnesie.name == "OnesieElephant" && !elephantHead.activeInHierarchy)
@@ -141,10 +145,10 @@ namespace LotsOfTowers.Actors
 						defaultBody.GetComponent<Renderer>().enabled = false;
 					}
 				}
-                
-                // Change HUD to represent the active onesie
-                hudUi.ShowActiveSkill(currentOnesie.type.ToString());
-            }
+
+				// Change HUD to represent the active onesie
+				hudUi.ShowActiveSkill(currentOnesie.type.ToString());
+			}
 		}
 
 		public void PlayParticles()
@@ -160,13 +164,10 @@ namespace LotsOfTowers.Actors
 			else
 				waterDisplay.SetActive(false);
 
-			if (StaticCharge > 0)
-			{
-				if (StaticCharge > 90)
-					chargeParticles.GetComponent<ParticleSystem>().loop = true;
-				else
-					chargeParticles.GetComponent<ParticleSystem>().loop = false;
-			}
+			if (StaticCharge > 90)
+				chargeParticles.GetComponent<ParticleSystem>().loop = true;
+			else
+				chargeParticles.GetComponent<ParticleSystem>().loop = false;
 		}
 	}
 }
