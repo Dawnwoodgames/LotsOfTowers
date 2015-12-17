@@ -6,6 +6,7 @@ namespace LotsOfTowers.Interaction
 	public class HamsterCypherWheel : MonoBehaviour
 	{
 		public GameObject rotateTrigger;
+		public float maxRotateSpeed = 10;
 
 		private WheelRotateTrigger rotateTriggerScript;
 		private float rotateSpeed = 0f;
@@ -20,14 +21,18 @@ namespace LotsOfTowers.Interaction
 		void Update()
 		{
 			if (rotateTriggerScript.GetPlayerRunning())
-				if (rotateSpeed < 20)
+				if (rotateSpeed < maxRotateSpeed)
 					rotateSpeed += speedGain;
 
 			if (!rotateTriggerScript.GetPlayerRunning())
 				if (rotateSpeed > 0)
 					rotateSpeed -= speedLoss * Time.deltaTime;
+				else if(rotateSpeed < 1)
+				{
+					rotateSpeed = 0;
+				}
 
-			gameObject.transform.Rotate(Vector3.up * rotateSpeed);
+			gameObject.transform.Rotate(Vector3.left * rotateSpeed);
 		}
 
 		public float GetRotateSpeed() { return rotateSpeed; }
