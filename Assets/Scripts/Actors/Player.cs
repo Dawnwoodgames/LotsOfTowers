@@ -12,6 +12,10 @@ namespace LotsOfTowers.Actors {
 		private List<GameObject> particleSystems;
 		private List<GameObject> skeletons;
 
+		public Animator Animator {
+			get { return currentSkeleton.GetComponent<Animator>(); }
+		}
+
 		public bool HasFreeSlots {
 			get { return onesies[0] == null || onesies[1] == null || onesies[2] == null; }
 		}

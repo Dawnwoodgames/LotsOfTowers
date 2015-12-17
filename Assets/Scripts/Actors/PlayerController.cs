@@ -75,6 +75,8 @@ namespace LotsOfTowers.Actors
 				// Remove charge in next frame to avoid it being removed before it can be used
 				removeChargeOnNextFrame = true;
 			}
+
+			player.Animator.SetBool("Moving", h != 0 || v != 0);
         }
 
 		private void Move(Vector3 movement)
