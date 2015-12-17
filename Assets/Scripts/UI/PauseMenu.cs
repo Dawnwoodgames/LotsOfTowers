@@ -7,7 +7,8 @@ namespace LotsOfTowers.UI {
 		private bool wasCancelPressed;
 
 		public void Awake() {
-			GameManager.Instance.CursorEnabled = false;
+            if(!Application.isEditor)
+			    GameManager.Instance.CursorEnabled = false;
 			this.canvas = GetComponent<Canvas>();
 			this.wasCancelPressed = false;
 		}
@@ -28,10 +29,12 @@ namespace LotsOfTowers.UI {
 				// Key up
 				if (canvas.enabled) {
 					Disable();
-					GameManager.Instance.CursorEnabled = false;
+                    if (!Application.isEditor)
+                        GameManager.Instance.CursorEnabled = false;
 				} else {
 					Enable();
-					GameManager.Instance.CursorEnabled = true;
+                    if (!Application.isEditor)
+                        GameManager.Instance.CursorEnabled = true;
 				}
 				wasCancelPressed = false;
 			} else if (Input.GetButton("Cancel")) {
