@@ -40,9 +40,9 @@ public class HamsterWater : MonoBehaviour {
 
     void Spit()
     {
-        if (player.GetComponent<Player>().holdingWater)
+        if (player.GetComponent<Player>().HoldingWater)
         {
-            player.GetComponent<Player>().holdingWater = false;
+            player.GetComponent<Player>().HoldingWater = false;
             spitcount++;
         }
     }

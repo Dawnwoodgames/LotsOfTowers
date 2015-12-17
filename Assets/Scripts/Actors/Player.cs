@@ -1,60 +1,42 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 
-namespace LotsOfTowers.Actors
-{
-	public class Player : MonoBehaviour
-	{
-		// Private fields
+namespace LotsOfTowers.Actors {
+	public sealed class Player : MonoBehaviour {
 		private float charge;
 		private Onesie currentOnesie;
+		private GameObject currentSkeleton;
 		private Onesie defaultOnesie;
 		private Onesie[] onesies;
+		private List<GameObject> particleSystems;
+		private List<GameObject> skeletons;
 
-		// Public fields
-		public GameObject tooltip;
-		public Framework.HeadsUpDisplayScript hudUi;
-		public GameObject chargeParticles;
-
-		public GameObject elephantHead;
-		public GameObject elephantBody;
-
-		public bool holdingWater;
-		public GameObject waterDisplay;
-
-		private GameObject defaultHead;
-		private GameObject defaultBody;
-
-		// Properties
-		public bool HasFreeSlots
-		{
+		public bool HasFreeSlots {
 			get { return onesies[0] == null || onesies[1] == null || onesies[2] == null; }
 		}
 
-		public float StaticCharge
-		{
-			get { return charge; }
-			set { charge = Mathf.Max(0, Math.Min(value, 100)); }
+		public bool HoldingWater {
+			get;
+			set;
 		}
 
-		public Onesie Onesie
-		{
+		public Onesie Onesie {
 			get { return currentOnesie == null ? defaultOnesie : currentOnesie; }
 			set { currentOnesie = onesies.Contains(value) ? value : currentOnesie; }
 		}
 
-		public Onesie[] Onesies
-		{
+		public Onesie[] Onesies {
 			get { return onesies; }
 		}
 
-		// Methods
-		public Onesie AddOnesie(int index, Onesie onesie)
-		{
-			if (index > -1 && index < 3 && onesies.Where(o => o.name == onesie.name).Count() == 0)
-			{
+		public float StaticCharge {
+			get { return charge; }
+			set { charge = Mathf.Max(0, Mathf.Min(value, 100)); }
+		}
+
+		public Onesie AddOnesie(int index, Onesie onesie) {
+			if (index > -1 && index < 3 && onesies.Where(o => o.name == onesie.name).Count() == 0) {
 				Onesie replacedOnesie = onesies.ElementAtOrDefault(index);
 
 				currentOnesie = currentOnesie == replacedOnesie ? onesie : currentOnesie;
@@ -66,108 +48,50 @@ namespace LotsOfTowers.Actors
 			return null;
 		}
 
-		public bool AddOnesieToFirstFreeSlot(Onesie onesie)
-		{
-			if (onesies[0] == null)
-			{
-				onesies[0] = onesie;
-				return true;
-			}
+		public bool AddOnesieToFirstFreeSlot(Onesie onesie) {
+			for (int i = 0; i < onesies.Length; i++) {
+				if (onesies[i] != null) {
+					continue;
+				}
+				onesies[i] = onesie;
 
-			if (onesies[1] == null)
-			{
-				onesies[1] = onesie;
-				return true;
-			}
-
-			if (onesies[2] == null)
-			{
-				onesies[2] = onesie;
 				return true;
 			}
 
 			return false;
 		}
 
-		public void Awake()
-		{
-			this.defaultOnesie = Resources.Load("OnesieDefault") as Onesie;
+		public void Awake() {
+			this.defaultOnesie = Resources.Load<Onesie>("OnesieDefault");
 			this.onesies = new Onesie[3];
+			this.particleSystems = GameObject.Find("Nimbi/SFX").transform.Cast<Transform>()
+				.Where(t => t.GetComponent<ParticleSystem>() != null)
+				.Select(t => t.gameObject).ToList();
+			this.skeletons = transform.Cast<Transform>()
+				.Where(t => t.GetComponent<Animator>() != null)
+				.Select(t => t.gameObject).ToList();
 
-			defaultHead = GameObject.Find("Head_Default");
-			defaultBody = GameObject.Find("Body_Default");
-			hudUi = GameObject.Find("HUD").GetComponent<Framework.HeadsUpDisplayScript>();
-
-			// Set up the player
 			Physics.gravity = new Vector3(0, -35, 0);
+			SetSkeleton("Default");
 		}
 
-		public void SwitchOnesie(int index)
-		{
-			if (index > -1 && index < 3 && onesies[index] != null)
-			{
+		public void SetEffectActive(string name, bool active) {
+			particleSystems.Single(g => g.name == name).SetActive(active);
+		}
+
+		private void SetSkeleton(string name) {
+			currentSkeleton = skeletons.Single(g => g.name == name);
+		}
+
+		public void SwitchOnesie(int index) {
+			if (index > -1 && index < 3 && onesies[index] != null) {
 				currentOnesie = (currentOnesie == onesies[index]) ? defaultOnesie : onesies[index];
-
-				if (currentOnesie.name == "OnesieElephant" && !elephantHead.activeInHierarchy)
-				{
-					defaultHead.SetActive(false);
-					defaultBody.SetActive(false);
-
-					elephantHead.SetActive(true);
-					elephantBody.SetActive(true);
-					if (defaultHead.GetComponent<Renderer>().enabled)
-					{
-						elephantBody.GetComponent<Renderer>().enabled = true;
-						elephantHead.GetComponent<Renderer>().enabled = true;
-					}
-					else
-					{
-						elephantBody.GetComponent<Renderer>().enabled = false;
-						elephantHead.GetComponent<Renderer>().enabled = false;
-					}
-				}
-				else if (currentOnesie.name == "OnesieDefault" && !defaultHead.activeInHierarchy)
-				{
-					elephantHead.SetActive(false);
-					elephantBody.SetActive(false);
-
-					defaultHead.SetActive(true);
-					defaultBody.SetActive(true);
-
-					if (elephantHead.GetComponent<Renderer>().enabled)
-					{
-						defaultHead.GetComponent<Renderer>().enabled = true;
-						defaultBody.GetComponent<Renderer>().enabled = true;
-					}
-					else
-					{
-						defaultHead.GetComponent<Renderer>().enabled = false;
-						defaultBody.GetComponent<Renderer>().enabled = false;
-					}
-				}
-
-				// Change HUD to represent the active onesie
-				hudUi.ShowActiveSkill(currentOnesie.type.ToString());
 			}
 		}
 
-		public void PlayParticles()
-		{
-			//chargeParticles.GetComponent<ParticleSystem>().Stop();
-			chargeParticles.GetComponent<ParticleSystem>().Play();
-		}
-
-		public void Update()
-		{
-			if (holdingWater)
-				waterDisplay.SetActive(true);
-			else
-				waterDisplay.SetActive(false);
-
-			if (StaticCharge > 90)
-				chargeParticles.GetComponent<ParticleSystem>().loop = true;
-			else
-				chargeParticles.GetComponent<ParticleSystem>().loop = false;
+		public void Update() {
+			SetEffectActive("Drops", HoldingWater);
+			SetEffectActive("Sparks", StaticCharge > 90);
 		}
 	}
 }

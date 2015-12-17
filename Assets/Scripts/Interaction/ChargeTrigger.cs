@@ -22,8 +22,6 @@ namespace LotsOfTowers.Interaction {
 				x = player.transform.position.x;
 				y = player.transform.position.y;
 				z = player.transform.position.z;
-
-                player.GetComponent<Player>().PlayParticles();
 			}
 		}
 
