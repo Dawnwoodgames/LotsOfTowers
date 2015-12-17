@@ -112,8 +112,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 28506630}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.25, z: 0}
-  m_LocalScale: {x: 9.5, y: 1, z: 9.5}
+  m_LocalPosition: {x: 0, y: -0.5, z: 0}
+  m_LocalScale: {x: 9.5, y: 2.5, z: 9.5}
   m_Children: []
   m_Father: {fileID: 1536061079}
   m_RootOrder: 5
@@ -311,8 +311,8 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 329944150}
-  m_LocalRotation: {x: 0, y: 0, z: 0.25881907, w: 0.9659258}
-  m_LocalPosition: {x: 3.93, y: 0.18, z: 4.24}
+  m_LocalRotation: {x: 0, y: 0, z: 0.17364822, w: 0.9848078}
+  m_LocalPosition: {x: 3.84, y: 0.31, z: 4.24}
   m_LocalScale: {x: 2, y: 0.2, z: 1}
   m_Children: []
   m_Father: {fileID: 1984677888}
@@ -349,7 +349,7 @@ BoxCollider:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 329944150}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: e52fb17f9b1e7fd48b8955f1391d3688, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -544,7 +544,7 @@ GameObject:
   - 198: {fileID: 662850958}
   - 199: {fileID: 662850957}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: Waterfall
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2144,6 +2144,7 @@ GameObject:
   - 65: {fileID: 807616297}
   - 23: {fileID: 807616296}
   - 114: {fileID: 807616299}
+  - 65: {fileID: 807616300}
   m_Layer: 0
   m_Name: Faucet
   m_TagString: Untagged
@@ -2221,7 +2222,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   waveObject: {fileID: 142132, guid: 51dc11a0b029c3c43b82782241d31161, type: 2}
-  endMarker: {fileID: 0}
+  waterfall: {fileID: 1751224971}
+  faucetWater: {fileID: 1434089551}
+--- !u!65 &807616300
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 807616294}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 1, y: -0.5, z: 1}
 --- !u!1001 &989788724
 Prefab:
   m_ObjectHideFlags: 0
@@ -2682,7 +2696,7 @@ GameObject:
   - 198: {fileID: 1434089551}
   - 199: {fileID: 1434089550}
   m_Layer: 0
-  m_Name: Particle System
+  m_Name: FaucetWater
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
