@@ -8,7 +8,6 @@ namespace LotsOfTowers.Interaction
 		// Private variables
 		private Player actor;
 		private float y;
-        public GameObject tooltip;
 
         // Public variables
         public Onesie Onesie;

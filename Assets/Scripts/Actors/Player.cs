@@ -79,17 +79,24 @@ namespace LotsOfTowers.Actors {
 			SetSkeleton("Default");
 		}
 
+		private void DisableInactiveSkeletons() {
+			skeletons.Where(g => g != currentSkeleton).ToList().ForEach(g => g.SetActive(false));
+		}
+
 		public void SetEffectActive(string name, bool active) {
 			particleSystems.Single(g => g.name == name).SetActive(active);
 		}
 
 		private void SetSkeleton(string name) {
 			currentSkeleton = skeletons.Single(g => g.name == name);
+			currentSkeleton.SetActive(true);
+			DisableInactiveSkeletons();
 		}
 
 		public void SwitchOnesie(int index) {
 			if (index > -1 && index < 3 && onesies[index] != null) {
 				currentOnesie = (currentOnesie == onesies[index]) ? defaultOnesie : onesies[index];
+				SetSkeleton(currentOnesie.name.Replace("Onesie", ""));
 			}
 		}
 
