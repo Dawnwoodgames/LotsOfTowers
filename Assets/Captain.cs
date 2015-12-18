@@ -3,7 +3,7 @@ using System.Collections;
 
 public class Captain : MonoBehaviour {
 
-    private Nut nut;
+    private GameObject nut;
     private bool nutDelivered = false;
     private Vector3 endMarker;
     private float speed = 1f;
@@ -12,7 +12,7 @@ public class Captain : MonoBehaviour {
 
 	void Start () {
         endMarker = new Vector3(transform.position.x + 2f, transform.position.y, transform.position.z);
-        nut = GameObject.Find("Nut").GetComponent<Nut>();
+        nut = GameObject.Find("Nut");
         journeyLength = Vector3.Distance(transform.position, endMarker);
 	}
 	
@@ -30,9 +30,10 @@ public class Captain : MonoBehaviour {
     {
         if (coll.tag == "Player" && Input.GetButtonDown("Submit"))
         {
-            if (nut.pickedUp)
+            if (nut.GetComponent<Nut>().pickedUp)
             {
                 nutDelivered = true;
+                Destroy(nut);
                 startTime = Time.time;
             }
         }
