@@ -8,7 +8,7 @@ namespace LotsOfTowers.Framework
 	public enum State
 	{
 		Active,
-		Deactive,
+		Inactive,
 		Deleted,
 		Invisible,
 		Charging

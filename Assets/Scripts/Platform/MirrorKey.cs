@@ -41,14 +41,16 @@ public class MirrorKey : MonoBehaviour {
         if (!CameraThroughMirror() && currentlyVisible)
         {
             GetComponent<Renderer>().enabled = false;
-			GetComponent<ParticleSystem>().enableEmission = false;
-			currentlyVisible = false;
+            ParticleSystem.EmissionModule em = GetComponent<ParticleSystem>().emission;
+            em.enabled = false;
+            currentlyVisible = false;
         }
         else if (CameraThroughMirror() && !currentlyVisible)
         {
             GetComponent<Renderer>().enabled = true;
-			GetComponent<ParticleSystem>().enableEmission = true;
-			currentlyVisible = true;
+            ParticleSystem.EmissionModule em = GetComponent<ParticleSystem>().emission;
+            em.enabled = false;
+            currentlyVisible = true;
         }
     }
 

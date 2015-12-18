@@ -21,7 +21,7 @@ namespace LotsOfTowers.Objects
 		private void Start()
 		{
 			//Default state is deactive for the machine
-			currentState = State.Deactive;
+			currentState = State.Inactive;
 			inTrigger = false;
 			player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 		}

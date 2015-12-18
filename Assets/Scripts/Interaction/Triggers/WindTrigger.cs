@@ -11,7 +11,7 @@ namespace LotsOfTowers.Interaction.Triggers
 
 	public class WindTrigger : MonoBehaviour
 	{
-		public static State state = State.Deactive;
+		public static State state = State.Inactive;
 		public float forcePower = 50;
 		public float forcePowerWithoutOnesie = 150;
 
@@ -37,7 +37,8 @@ namespace LotsOfTowers.Interaction.Triggers
 		{
 			if (state == State.Active)
 			{
-				windParticles.enableEmission = true;
+                ParticleSystem.EmissionModule em = windParticles.emission;
+                em.enabled = true;
 
 				currentCollisions = currentCollisions.Distinct().ToList();
 
@@ -70,10 +71,11 @@ namespace LotsOfTowers.Interaction.Triggers
 					}
 				}
 			}
-			else if (state == State.Deactive)
+			else if (state == State.Inactive)
 			{
-				windParticles.enableEmission = false;
-			}
+                ParticleSystem.EmissionModule em = windParticles.emission;
+                em.enabled = false;
+            }
 		}
 
 		//Check which object collide with the wind capsule

@@ -106,7 +106,7 @@ namespace LotsOfTowers.Actors
 			TurnRotation();
 
 			//Translate the current position, based on the movementspeed / time to move the player
-			transform.Translate(movement * player.Onesie.movementSpeed * Time.deltaTime);
+			GetComponent<Rigidbody>().MovePosition(transform.position + transform.TransformDirection(movement * player.Onesie.movementSpeed * Time.deltaTime));
 		}
 
 		private void TurnRotation()
