@@ -36,7 +36,7 @@ namespace LotsOfTowers.Interaction
 		{
 			if(col.gameObject.tag == "Player")
 			{
-				col.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation | RigidbodyConstraints.FreezePositionX | RigidbodyConstraints.FreezePositionZ;
+				col.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
 			}
 		}
 
