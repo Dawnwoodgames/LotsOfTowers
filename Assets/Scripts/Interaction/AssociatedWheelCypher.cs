@@ -19,7 +19,7 @@ namespace LotsOfTowers.Interaction
 
         void Update()
         {
-            if (wheel.GetRotateSpeed() >= 18)
+            if (wheel.GetRotateSpeed() >= 10)
                 RotateObject();
         }
 
@@ -29,7 +29,7 @@ namespace LotsOfTowers.Interaction
             {
                 isSpinning = true;
                 foreach (GameObject cWheel in associatedCyphers)
-                    cWheel.transform.Rotate(Vector3.left * -90 * rotateAmount);
+                    cWheel.transform.Rotate(Vector3.left * 90 * rotateAmount);
                 StartCoroutine(DelaySpin());
             }
         }

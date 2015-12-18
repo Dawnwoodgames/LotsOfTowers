@@ -7,9 +7,11 @@ namespace LotsOfTowers.Interaction {
 	public sealed class WaterMazeManager : MonoBehaviour {
 		private List<BuoyGateTrigger> gates;
 		private bool respawnOnNext;
+        private BookcaseDoor door;
 
 		public void Awake() {
 			this.gates = new List<BuoyGateTrigger>();
+            door = GameObject.Find("BookcaseDoor").GetComponent<BookcaseDoor>();
 		}
 
 		public void GateOpened(BuoyGateTrigger gate, bool hasRedBuoy) {
@@ -30,6 +32,12 @@ namespace LotsOfTowers.Interaction {
 				gates.Clear();
 				respawnOnNext = false;
 			}
+
+            if (gates.Count == 22)
+            {
+                
+                FindObjectsOfType<Buoy>().ToList().ForEach(b => Destroy(b));
+            }
 		}
 	}
 }
