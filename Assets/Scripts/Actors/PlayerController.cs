@@ -30,21 +30,11 @@ namespace LotsOfTowers.Actors
 		private Vector3 groundNormal;
 
         private bool canMove = true;
+		private bool moving;
 
-        private void Start()
-		{
-			player = GetComponent<Player>();
-            hudUi = GameObject.Find("HUD").GetComponent<Framework.HeadsUpDisplayScript>();
-
-			//Get camera transform
-			if (Camera.main != null)
-			{
-				mainCamera = Camera.main.transform;
-			}
-			else
-			{
-				Debug.LogWarning("No \"Main Camera\" found! Tag a camera as main");
-			}
+		private void Awake() {
+			this.mainCamera = Camera.main.transform;
+			this.player = GetComponent<Player>();
         }
 
 		private void FixedUpdate()
@@ -85,6 +75,8 @@ namespace LotsOfTowers.Actors
 				// Remove charge in next frame to avoid it being removed before it can be used
 				removeChargeOnNextFrame = true;
 			}
+
+			player.Animator.SetBool("Moving", h != 0 || v != 0);
         }
 
 		private void Move(Vector3 movement)

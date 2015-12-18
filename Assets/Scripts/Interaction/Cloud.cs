@@ -30,9 +30,9 @@ public class Cloud : MonoBehaviour {
 
     void Slurp()
     {
-        if (!player.GetComponent<Player>().holdingWater)
+        if (!player.GetComponent<Player>().HoldingWater)
         {
-            player.GetComponent<Player>().holdingWater = true;
+            player.GetComponent<Player>().HoldingWater = true;
             Destroy(gameObject);
         }
     }
