@@ -46,7 +46,7 @@ namespace LotsOfTowers.Interaction.Triggers
 				{
 					try
 					{
-						if (currentCollisions.SingleOrDefault(player => player.name == "Player").GetComponent<Player>().Onesie.isHeavy)
+						if (currentCollisions.SingleOrDefault(player => player.tag == "Player").GetComponent<Player>().Onesie.isHeavy)
 						{
 							currentCollisions.SingleOrDefault(ff => ff.name == "FloatingFloor").GetComponent<Rigidbody>().AddForce(Vector3.up * forcePower, ForceMode.Acceleration);
                         }
