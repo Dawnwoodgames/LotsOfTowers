@@ -36,13 +36,6 @@ namespace LotsOfTowers.Audio
 
         void Update()
         {
-            //if(playOnStart)
-            //{
-            //    playRandomSong();
-            //    playOnStart = false;
-            //}
-
-
             if (!playing)
             {
                 StartCoroutine(PlayMusic());
