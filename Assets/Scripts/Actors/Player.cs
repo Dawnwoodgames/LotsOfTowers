@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
@@ -6,11 +7,11 @@ namespace LotsOfTowers.Actors {
 	public sealed class Player : MonoBehaviour {
 		private float charge;
 		private Onesie currentOnesie;
-		private GameObject currentSkeleton;
+		private Skeleton currentSkeleton;
 		private Onesie defaultOnesie;
 		private Onesie[] onesies;
 		private List<GameObject> particleSystems;
-		private List<GameObject> skeletons;
+		private List<Skeleton> skeletons;
 
 		public Animator Animator {
 			get { return currentSkeleton.GetComponent<Animator>(); }
@@ -71,16 +72,10 @@ namespace LotsOfTowers.Actors {
 			this.particleSystems = GameObject.Find("Nimbi/SFX").transform.Cast<Transform>()
 				.Where(t => t.GetComponent<ParticleSystem>() != null)
 				.Select(t => t.gameObject).ToList();
-			this.skeletons = transform.Cast<Transform>()
-				.Where(t => t.GetComponent<Animator>() != null)
-				.Select(t => t.gameObject).ToList();
+			this.skeletons = GetComponentsInChildren<Skeleton>().ToList();
 
 			Physics.gravity = new Vector3(0, -35, 0);
 			SetSkeleton("Default");
-		}
-
-		private void DisableInactiveSkeletons() {
-			skeletons.Where(g => g != currentSkeleton).ToList().ForEach(g => g.SetActive(false));
 		}
 
 		public void SetEffectActive(string name, bool active) {
@@ -88,15 +83,17 @@ namespace LotsOfTowers.Actors {
 		}
 
 		private void SetSkeleton(string name) {
-			currentSkeleton = skeletons.Single(g => g.name == name);
-			currentSkeleton.SetActive(true);
-			DisableInactiveSkeletons();
+			currentSkeleton = skeletons.Single(s => s.name == name);
+			currentSkeleton.Renderer.enabled = true;
+			skeletons.Where(s => s != currentSkeleton).ToList().ForEach(s => s.Renderer.enabled = false);
 		}
 
 		public void SwitchOnesie(int index) {
 			if (index > -1 && index < 3 && onesies[index] != null) {
-				currentOnesie = (currentOnesie == onesies[index]) ? defaultOnesie : onesies[index];
-				SetSkeleton(currentOnesie.name.Replace("Onesie", ""));
+				try {
+					currentOnesie = (currentOnesie == onesies[index]) ? defaultOnesie : onesies[index];
+					SetSkeleton(currentOnesie.name.Replace("Onesie", ""));
+				} catch (Exception) { SetSkeleton("Default"); }
 			}
 		}
 
