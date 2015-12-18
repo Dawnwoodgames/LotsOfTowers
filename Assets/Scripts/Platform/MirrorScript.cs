@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using LotsOfTowers.Actors;
 
 public class MirrorScript : MonoBehaviour {
 
@@ -120,7 +121,7 @@ public class MirrorScript : MonoBehaviour {
                 mirrorfound = throughmirror;
             }
 
-        if (mirrorfound && playerCurrentlyVisible)
+        if (mirrorfound)
         {
             Renderer[] rs = player.GetComponentsInChildren<Renderer>();
             foreach (Renderer r in rs)
@@ -130,9 +131,7 @@ public class MirrorScript : MonoBehaviour {
         }
         else if (!mirrorfound && !playerCurrentlyVisible)
         {
-            Renderer[] rs = player.GetComponentsInChildren<Renderer>();
-            foreach (Renderer r in rs)
-                r.enabled = true;
+            player.GetComponent<Player>().ResetRenderers();
 
             playerCurrentlyVisible = true;
         }
