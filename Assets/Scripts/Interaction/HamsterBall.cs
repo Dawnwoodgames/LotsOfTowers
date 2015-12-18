@@ -30,7 +30,7 @@ namespace LotsOfTowers.Interaction
 				hMove = Input.GetAxis("Horizontal");
 				vMove = Input.GetAxis("Vertical");
 				player.transform.position = new Vector3(ball.transform.position.x, ball.transform.position.y, ball.transform.position.z);
-				player.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+				player.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
 				focusView.GetComponent<CameraFollowScript>().SetCameraFocus(ball);
 
 				Vector3 movement = new Vector3(hMove, 0f, vMove);
@@ -63,7 +63,7 @@ namespace LotsOfTowers.Interaction
 		private void ExitHamsterBall()
 		{
 			player.transform.position = new Vector3(ball.transform.position.x, ball.transform.position.y + 1.5f, ball.transform.position.z);
-            player.transform.localScale = new Vector3(20f, 20f, 20f);
+            player.transform.localScale = new Vector3(1, 1, 1);
             focusView.GetComponent<CameraFollowScript>().SetCameraFocus(player);
 			playerInside = false;
 			ball.GetComponent<Rigidbody>().isKinematic = true;
