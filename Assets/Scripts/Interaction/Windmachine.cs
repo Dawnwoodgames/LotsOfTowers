@@ -2,6 +2,7 @@
 using LotsOfTowers.Actors;
 using LotsOfTowers.Interaction.Triggers;
 using UnityEngine;
+using UnityEngine.UI;
 
 namespace LotsOfTowers.Objects
 {
@@ -12,16 +13,20 @@ namespace LotsOfTowers.Objects
 		private Player player;
 
 		public float ChargeThreshold = 80; // Charge needed to activate the machine
-
+        public GameObject batteryLight;
+        public GameObject batteryImage;
+        public Sprite emptyBattery;
+        public Sprite fullBattery;
+        
 		private void Start()
 		{
 			//Default state is deactive for the machine
-			currentState = State.Deactive;
+			currentState = State.Inactive;
 			inTrigger = false;
 			player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 		}
 
-		private void Update()
+		private void FixedUpdate()
 		{
 			//If the player is staticly charged (higher then threshold) and is inside the trigger activating the machine
 			if (inTrigger && (Input.GetAxis("Submit") > 0) && (player.StaticCharge >= ChargeThreshold))
@@ -29,8 +34,11 @@ namespace LotsOfTowers.Objects
 				//Then activate the machine + wind
 				ChangeState(State.Active);
 
-				//Release the load of the static charge of the player
-				player.StaticCharge = 0.1f;
+                //Set the new battery image
+                batteryImage.GetComponent<Image>().sprite = fullBattery;
+
+                //Set the new battery light color
+                batteryLight.GetComponent<Light>().color = Color.green;
 			}
 
 			//Set state from trigger to state of machine

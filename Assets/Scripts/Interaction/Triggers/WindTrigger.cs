@@ -11,7 +11,7 @@ namespace LotsOfTowers.Interaction.Triggers
 
 	public class WindTrigger : MonoBehaviour
 	{
-		public static State state = State.Deactive;
+		public static State state = State.Inactive;
 		public float forcePower = 50;
 		public float forcePowerWithoutOnesie = 150;
 
@@ -37,7 +37,8 @@ namespace LotsOfTowers.Interaction.Triggers
 		{
 			if (state == State.Active)
 			{
-				windParticles.enableEmission = true;
+                ParticleSystem.EmissionModule em = windParticles.emission;
+                em.enabled = true;
 
 				currentCollisions = currentCollisions.Distinct().ToList();
 
@@ -45,7 +46,7 @@ namespace LotsOfTowers.Interaction.Triggers
 				{
 					try
 					{
-						if (currentCollisions.SingleOrDefault(player => player.name == "Player").GetComponent<Player>().Onesie.isElephant)
+						if (currentCollisions.SingleOrDefault(player => player.tag == "Player").GetComponent<Player>().Onesie.isHeavy)
 						{
 							currentCollisions.SingleOrDefault(ff => ff.name == "FloatingFloor").GetComponent<Rigidbody>().AddForce(Vector3.up * forcePower, ForceMode.Acceleration);
                         }
@@ -64,16 +65,17 @@ namespace LotsOfTowers.Interaction.Triggers
 					foreach (GameObject item in currentCollisions)
 					{
                         //Add force so the object goes up
-                        if (item.tag == "Player" && item.GetComponent<Player>().Onesie.isElephant)
+                        if (item.tag == "Player" && item.GetComponent<Player>().Onesie.isHeavy)
                             continue;
 						item.GetComponent<Rigidbody>().AddForce(Vector3.up * 50, ForceMode.Acceleration);
 					}
 				}
 			}
-			else if (state == State.Deactive)
+			else if (state == State.Inactive)
 			{
-				windParticles.enableEmission = false;
-			}
+                ParticleSystem.EmissionModule em = windParticles.emission;
+                em.enabled = false;
+            }
 		}
 
 		//Check which object collide with the wind capsule

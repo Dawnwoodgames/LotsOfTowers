@@ -2,164 +2,129 @@
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
-using UnityEngine.UI;
 
-namespace LotsOfTowers.Actors
-{
-	public class Player : MonoBehaviour
-	{
+using LotsOfTowers.Audio;
 
-        public static readonly float ChargeDecayRate = 2; // How much charge is lost per second
+using LotsOfTowers.Framework;
 
-		// Static fields
-		private static Onesie DefaultOnesie;
-		private static int MaxOnesies;
+namespace LotsOfTowers.Actors {
+	public sealed class Player : MonoBehaviour {
+		private float charge;
+		private Onesie currentOnesie;
+		private Skeleton currentSkeleton;
+		private Onesie defaultOnesie;
+		private Onesie[] onesies;
+		private List<GameObject> particleSystems;
+		private List<Skeleton> skeletons;
 
-        // Private fields
-        private float charge;
-        private Onesie currentOnesie;
-		private Dictionary<int, Onesie> onesies;
-		
-		// Public fields
-		public GameObject tooltip;
-        public GameObject hudUi;
-        public GameObject chargeDisplay;
+        private AudioManager audioManager;
 
-        public GameObject elephantHead;
-        public GameObject elephantBody;
-
-        private GameObject defaultHead;
-        private GameObject defaultBody;
-
-        // Properties
-        public bool CanMoveObjects
-		{
-			get { return Onesie.canMoveObjects; }
+		public Animator Animator {
+			get { return currentSkeleton.GetComponent<Animator>(); }
 		}
 
 		public bool HasFreeSlots {
-			get { return onesies.Count < MaxOnesies; }
+			get { return onesies[0] == null || onesies[1] == null || onesies[2] == null; }
 		}
-		
-		public int JumpCount
-		{
-			get { return Onesie.jumpCount; }
-		}
-		
-		public float JumpPower
-		{
-			get { return Onesie.jumpPower; }
-		}
-		
-		public float MovementSpeed
-		{
-			get { return Onesie.movementSpeed; }
-		}
-        
-        public bool IsElephant
-        {
-            get { return Onesie.isElephant; }
-        }
 
-        public float StaticCharge
-        {
+		public bool HoldingWater {
+			get;
+			set;
+		}
+
+		public Onesie Onesie {
+			get { return currentOnesie == null ? defaultOnesie : currentOnesie; }
+			set { currentOnesie = onesies.Contains(value) ? value : currentOnesie; }
+		}
+
+		public Onesie[] Onesies {
+			get { return onesies; }
+		}
+
+		public float StaticCharge {
 			get { return charge; }
-			set { charge = Math.Max(0, Math.Min(value, 100)); }
+			set { charge = Mathf.Max(0, Mathf.Min(value, 100)); }
 		}
 
-        public Onesie Onesie
-		{
-			get { return currentOnesie == null ? DefaultOnesie : currentOnesie; }
-            set { currentOnesie = value; }
-		}
-		
-		public Onesie[] Onesies
-		{
-			get { return onesies.Values.ToArray(); }
-		}
-		
-		// Methods
-		public Onesie AddOnesie(int index, Onesie onesie)
-		{
-			if (index > -1 && index < MaxOnesies && onesies.Values.Where(o => o.name == onesie.name).Count() == 0) {
-				Onesie replacedOnesie = onesies.ElementAtOrDefault(index).Value;
+		public Onesie AddOnesie(int index, Onesie onesie) {
+			if (index > -1 && index < 3 && onesies.Where(o => o.name == onesie.name).Count() == 0) {
+				Onesie replacedOnesie = onesies.ElementAtOrDefault(index);
 
 				currentOnesie = currentOnesie == replacedOnesie ? onesie : currentOnesie;
-				onesies.Add(index, onesie);
-                
-                // HUD - place onesie image to corresponding skill slot
-                hudUi.GetComponent<LotsOfTowers.Framework.HeadsUpDisplayScript>().AttachOnesieToSkillSlot(index, onesie.name);
-                // Show HUD - skill
-                hudUi.GetComponent<LotsOfTowers.Framework.HeadsUpDisplayScript>().skillsUi.SetActive(true);
+				onesies[index] = onesie;
 
-
-                return replacedOnesie;
+				return replacedOnesie;
 			}
 
 			return null;
 		}
 
-		public bool AddOnesieToFirstFreeSlot(Onesie onesie)
-		{
-			for (int i = 0; i < MaxOnesies; i++)
-			{
-				if (!onesies.ContainsKey(i)) {
-					AddOnesie(i, onesie);
-
-                    return true;
+		public bool AddOnesieToFirstFreeSlot(Onesie onesie) {
+			for (int i = 0; i < onesies.Length; i++) {
+				if (onesies[i] != null) {
+					continue;
 				}
+				onesies[i] = onesie;
+
+				return true;
 			}
 
 			return false;
 		}
 
-		public void Awake()
-		{
+		public void Awake() {
+			this.defaultOnesie = Resources.Load<Onesie>("OnesieDefault");
+			this.onesies = new Onesie[3];
+			this.particleSystems = GameObject.Find("Nimbi/VFX").transform.Cast<Transform>()
+				.Where(t => t.GetComponent<ParticleSystem>() != null)
+				.Select(t => t.gameObject).ToList();
+			this.skeletons = GetComponentsInChildren<Skeleton>().ToList();
+            audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
+		}
+
+		public void ResetRenderers() {
+			currentSkeleton.Renderer.enabled = true;
+			skeletons.Where(s => s != currentSkeleton).ToList().ForEach(s => s.Renderer.enabled = false);
+		}
+
+		public void SetEffectActive(string name, bool active) {
+			particleSystems.Single(g => g.name == name).SetActive(active);
+		}
+
+		private void SetSkeleton(string name) {
+			currentSkeleton = skeletons.Single(s => s.name == name);
+			currentSkeleton.Renderer.enabled = true;
+			skeletons.Where(s => s != currentSkeleton).ToList().ForEach(s => s.Renderer.enabled = false);
+		}
+
+		public void Start() {
 			Physics.gravity = new Vector3(0, -35, 0);
-
-			DefaultOnesie = Resources.Load("OnesieDefault") as Onesie;
-			MaxOnesies = 3;
-			onesies = new Dictionary<int, Onesie>(MaxOnesies);
-
-            defaultHead = GameObject.Find("Head_Default");
-            defaultBody = GameObject.Find("Body_Default");
-        }
-
-		public void Start()
-		{
-            hudUi = GameObject.Find("HUD");
+			SetSkeleton("Default");
 		}
 
-		public void SwitchOnesie(int index)
-		{
-			if (onesies.ContainsKey(index)) {
-				currentOnesie = onesies[index];
+		public void SwitchOnesie(int index) {
+			if (index > -1 && index < 3 && onesies[index] != null) {
+				try {
+					currentOnesie = (currentOnesie == onesies[index]) ? defaultOnesie : onesies[index];
+                    SetSkeleton(currentOnesie.name.Replace("Onesie", ""));
 
-                if(currentOnesie.name == "OnesieElephant")
-                {
-                    defaultHead.SetActive(false);
-                    defaultBody.SetActive(false);
+                    // Ugly ass code, fix soon. (c) Axel
+                    if (currentOnesie.name.Replace("Onesie", "") == "Elephant")
+                    {
+                        audioManager.PlaySoundeffect(audioManager.onesieSwitchElephantSound);
+                    }
+                    else
+                    {
+                        audioManager.PlaySoundeffect(audioManager.onesieSwitchDefaultSound);
+                    }
 
-                    elephantHead.SetActive(true);
-                    elephantBody.SetActive(true);
-                }
-                else
-                {
-                    elephantHead.SetActive(false);
-                    elephantBody.SetActive(false);
-
-                    defaultHead.SetActive(true);
-                    defaultBody.SetActive(true);
-                }
-            }
-		}
-		
-		public void Update()
-		{
-			if (StaticCharge > 0) {
-				StaticCharge -= ChargeDecayRate * Time.smoothDeltaTime;
-                chargeDisplay.GetComponent<Image>().fillAmount = StaticCharge/100f;
+				} catch (Exception) { SetSkeleton("Default"); }
 			}
+		}
+
+		public void Update() {
+			SetEffectActive("Drops", HoldingWater);
+			SetEffectActive("Sparks", StaticCharge > 90);
 		}
 	}
 }

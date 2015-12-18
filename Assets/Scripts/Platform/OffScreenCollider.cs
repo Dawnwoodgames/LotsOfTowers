@@ -12,7 +12,7 @@ namespace LotsOfTowers.Platform
 				try
 				{
 					//Player fell off the stage, reset him to the spawn point
-					collision.gameObject.transform.position = GameManager.Instance.SpawnPoint.position;
+					GameManager.Instance.PlayerPassOutAndRespawn(GameManager.Instance.SpawnPoint);
                 }
 				catch (System.Exception)
 				{

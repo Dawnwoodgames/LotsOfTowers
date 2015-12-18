@@ -7,7 +7,7 @@ namespace LotsOfTowers.Interaction {
 		private Player player;
 		private float x, y, z;
 
-		public float ChargeRate = 15; // How much charge the player will get per second
+		public float ChargeRate = 20; // How much charge the player will get per second
 
 		public bool HasPlayerMoved {
 			get {
@@ -18,7 +18,7 @@ namespace LotsOfTowers.Interaction {
 		
 		public void FixedUpdate() {
 			if (connected && HasPlayerMoved) {
-				player.StaticCharge += (ChargeRate + Player.ChargeDecayRate) * Time.smoothDeltaTime;
+				player.StaticCharge += ChargeRate * Time.smoothDeltaTime;
 				x = player.transform.position.x;
 				y = player.transform.position.y;
 				z = player.transform.position.z;

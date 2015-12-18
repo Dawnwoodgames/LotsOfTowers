@@ -5,6 +5,7 @@ using System;
 using System.Collections;
 using System.Linq;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 namespace LotsOfTowers
@@ -13,13 +14,18 @@ namespace LotsOfTowers
 	[RequireComponent(typeof(CanvasRenderer))]
 	public class GameManager : MonoBehaviour
 	{
+		public const float FadeDuration = 0.5f;
+
 		private static GameManager instance;
 		private Canvas canvas;
 		private Image fader;
 		private bool hasStarted;
+		private Image loadingScreen;
+		private Sprite loadingSpriteA, loadingSpriteB;
+		private Player player;
+		private PlayerController playerController;
 		private Transform spawnPoint;
-		
-		public static bool Alive { get { return Instance != null; } }
+
 		public static GameManager Instance {
 			get {
 				if (instance == null) {
@@ -28,7 +34,15 @@ namespace LotsOfTowers
 				return instance;
 			}
 		}
-		
+
+		public bool CursorEnabled {
+			get { return Cursor.lockState == CursorLockMode.None && Cursor.visible; }
+			set {
+				Cursor.lockState = value ? CursorLockMode.None : CursorLockMode.Locked;
+				Cursor.visible = value;
+			}
+		}
+
 		public string Language
 		{ // Default: en
 			get { return PlayerPrefs.HasKey("Language") ? PlayerPrefs.GetString("Language") : "en"; }
@@ -43,25 +57,28 @@ namespace LotsOfTowers
 		}
 		
 		public Transform SpawnPoint {
-			get { return spawnPoint; }
+            get; set;
 		}
 		
 		public void Awake()
 		{
 			if (FindObjectsOfType<GameManager>().Length > 1) {
-				Destroy (gameObject);
+				Destroy(gameObject);
 			} else {
 				GameManager.instance = this;
 			}
-			
+
 			DontDestroyOnLoad(this);
 			LanguageManager.Instance.ChangeLanguage(Language);
 			LanguageManager.Instance.name = "Language Manager";
 			LanguageManager.Instance.transform.SetParent(transform, false);
-			OnLevelWasLoaded(Application.loadedLevel);
+			OnLevelWasLoaded(SceneManager.GetActiveScene().buildIndex);
 
 			this.canvas = GetComponent<Canvas>();
-			this.fader = new GameObject ("Transition Fader", typeof(Image)).GetComponent<Image> ();
+			this.fader = new GameObject("Transition Fader", typeof(Image)).GetComponent<Image>();
+			this.loadingScreen = new GameObject("Loading Screen", typeof(Image)).GetComponent<Image>();
+			this.loadingSpriteA = Resources.Load<Sprite>("UI/LoadingScreenLoading");
+			this.loadingSpriteB = Resources.Load<Sprite>("UI/LoadingScreenDone");
 		}
 
 		public void FadeIn() {
@@ -75,7 +92,12 @@ namespace LotsOfTowers
 			}
 
 			while (fader.color.a > 0.01f) {
-				fader.color = Color.Lerp(fader.color, Color.clear, 0.1f);
+				fader.color = new Color(
+					fader.color.r,
+					fader.color.g,
+					fader.color.b,
+					fader.color.a - Time.deltaTime / FadeDuration
+				);
 				yield return null;
 			}
 		}
@@ -91,9 +113,18 @@ namespace LotsOfTowers
 			}
 
 			while (fader.color.a < 0.99f) {
-				fader.color = Color.Lerp(fader.color, Color.black, 0.1f);
+				fader.color = new Color(
+					fader.color.r,
+					fader.color.g,
+					fader.color.b,
+					fader.color.a + Time.deltaTime / FadeDuration
+				);
 				yield return null;
 			}
+		}
+
+		public void HideFader() {
+			fader.color = Color.clear;
 		}
 
 		public void LoadLevel(int index) {
@@ -101,40 +132,118 @@ namespace LotsOfTowers
 		}
 
 		public void LoadLevel(int index, bool forceUnlock) {
-			if (!forceUnlock && PlayerPrefs.GetInt("bIsLevelAvailable" + index, 0) == 0) {
+			if (index == -1) {
+				index = SceneManager.GetActiveScene().buildIndex;
+			} else if (!forceUnlock && PlayerPrefs.GetInt("bIsLevelAvailable" + index, 0) == 0) {
 				return;
 			}
 
 			PlayerPrefs.SetInt("bIsLevelAvailable" + index, 1);
+			Time.timeScale = 1;
 			StopAllCoroutines();
 			StartCoroutine(LoadLevelCoroutine(index));
 		}
 
 		private IEnumerator LoadLevelCoroutine(int index) {
+			if (playerController != null) {
+				playerController.enabled = false;
+			}
+
 			while (!hasStarted) {
 				yield return null;
 			}
 			
 			while (fader.color.a < 0.99f) {
-				fader.color = Color.Lerp(fader.color, Color.black, 0.1f);
+				fader.color = new Color(
+					fader.color.r,
+					fader.color.g,
+					fader.color.b,
+					fader.color.a + Time.deltaTime / FadeDuration
+				);
 				yield return null;
 			}
 
-			Application.LoadLevel(index);
+			if (index != 0) {
+				// If the scene to be loaded is NOT the main menu, show the loading screen
+				loadingScreen.sprite = loadingSpriteA;
+				loadingScreen.enabled = true;
+			}
+
+            SceneManager.LoadSceneAsync(index);
 			yield return new WaitForSeconds(1);
+
+			if (index != 0) {
+				loadingScreen.sprite = loadingSpriteB;
+
+				while (Input.GetAxis("Submit") == 0) {
+					yield return null;
+				}
+
+				loadingScreen.enabled = false;
+			}
 			
 			while (fader.color.a > 0.01f) {
-				fader.color = Color.Lerp(fader.color, Color.clear, 0.1f);
+				fader.color = new Color(
+					fader.color.r,
+					fader.color.g,
+					fader.color.b,
+					fader.color.a - Time.deltaTime / FadeDuration
+				);
 				yield return null;
+			}
+
+			if (playerController != null) {
+				playerController.enabled = true;
 			}
 		}
 		
 		public void OnLevelWasLoaded(int index) {
 			try {
-				spawnPoint = GameObject.Find("Level/Spawn Point").transform;
-			} catch (Exception) { }
+				player = FindObjectOfType<Player>();
+				playerController = FindObjectOfType<PlayerController>();
+                SpawnPoint = GameObject.Find("Level/Spawn Point").transform;
+            } catch (Exception) { }
 		}
 
+		public void PlayerPassOutAndRespawn(Transform spawnPoint) {
+			StopAllCoroutines();
+			StartCoroutine(PlayerPassOutAndRespawnCoroutine(spawnPoint));
+		}
+
+		private IEnumerator PlayerPassOutAndRespawnCoroutine(Transform spawnPoint) {
+			if (player != null && playerController != null) {
+				playerController.enabled = false;
+
+				while (!hasStarted) {
+					yield return null;
+				}
+
+				while (fader.color.a < 0.99f) {
+					fader.color = new Color(
+						fader.color.r,
+						fader.color.g,
+						fader.color.b,
+						fader.color.a + Time.deltaTime / FadeDuration
+					);
+					yield return null;
+				}
+
+				player.transform.position = spawnPoint.position;
+				player.transform.rotation = spawnPoint.rotation;
+
+				while (fader.color.a > 0.01f) {
+					fader.color = new Color(
+						fader.color.r,
+						fader.color.g,
+						fader.color.b,
+						fader.color.a - Time.deltaTime / FadeDuration
+					);
+					yield return null;
+				}
+
+				playerController.enabled = true;
+			}
+		}
 
 		public void Quit() {
 			StopAllCoroutines();
@@ -147,33 +256,51 @@ namespace LotsOfTowers
 			}
 				
 			while (fader.color.a < 0.99f) {
-				fader.color = Color.Lerp (fader.color, Color.black, 0.1f);
+				fader.color = new Color(
+					fader.color.r,
+					fader.color.g,
+					fader.color.b,
+					fader.color.a + Time.deltaTime / FadeDuration
+				);
 				yield return null;
 			}
 
 			Application.Quit ();
 		}
 
-		public UITooltip ShowTooltip(String resourceName) {
-			if (PlayerPrefs.GetInt ("bTooltipBeenShown" + resourceName) != 1) {
-				PlayerPrefs.SetInt("bTooltipBeenShown" + resourceName, 1);
-				UITooltip tooltip = new GameObject ("UITooltip", typeof(UITooltip)).GetComponent<UITooltip> ();
-				tooltip.duration = 5;
-				tooltip.gameObject.transform.SetParent (transform, false);
-				tooltip.GetComponent<Image> ().sprite = Resources.Load<Sprite> ("Textures/" + resourceName);
+		public void ShowTooltip(string resourceName, string axis) {
+			ShowTooltip(resourceName, axis, false);
+		}
 
-				return tooltip;
+		public void ShowTooltip(string resourceName, string axis, bool useCookie) {			
+			if (!useCookie || PlayerPrefs.GetInt("UITooltip" + resourceName, 0) == 0) {
+				PlayerPrefs.SetInt("UITooltip" + resourceName, 1);
+				UITooltip tooltip = new GameObject("UITooltip", typeof(UITooltip)).GetComponent<UITooltip>();
+
+				tooltip.gameObject.transform.SetParent(transform, false);
+				tooltip.SetAxis(axis);
+				tooltip.SetSprite(Resources.Load<Sprite>("UI/Tooltip" + resourceName));
 			}
-
-			return null;
 		}
 
 		public void Start() {
 			canvas.renderMode = RenderMode.ScreenSpaceOverlay;
 			canvas.sortingOrder = Int16.MaxValue;
+
+			// Transition Fader setup
 			fader.color = Color.clear;
-			fader.rectTransform.sizeDelta = new Vector2(Screen.width, Screen.height);
+			fader.rectTransform.sizeDelta = new Vector2(Screen.currentResolution.width, Screen.currentResolution.height);
 			fader.transform.SetParent(transform, false);
+
+			// Loading Screen setup
+			var scale = Mathf.Round(Screen.width / 192) < Mathf.Round(Screen.height / 108) ?
+				Mathf.Round(Screen.width / 192) : Mathf.Round(Screen.height / 108);
+			loadingScreen.enabled = false;
+			loadingScreen.rectTransform.localScale = new Vector3(scale, scale, 1);
+			loadingScreen.rectTransform.sizeDelta = new Vector2(192, 108);
+			loadingScreen.sprite = loadingSpriteA;
+			loadingScreen.transform.SetParent(transform, false);
+
 			hasStarted = true;
 		}
 	}

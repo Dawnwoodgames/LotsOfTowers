@@ -8,7 +8,7 @@ namespace LotsOfTowers.Framework
 	public enum State
 	{
 		Active,
-		Deactive,
+		Inactive,
 		Deleted,
 		Invisible,
 		Charging
@@ -20,5 +20,11 @@ namespace LotsOfTowers.Framework
         Backward,
         Left,
         Right
+    }
+
+    public enum TypeCollider
+    {
+        Player,
+        Elephant
     }
 }

@@ -31,19 +31,19 @@ namespace LotsOfTowers.Interaction
 				if (state == 0)
                 {
 					transform.localPosition = Vector3.MoveTowards(transform.localPosition, targetMidway, interpolationSpeed * Time.deltaTime);
-					player.transform.position = transform.position + playerDistance;
+					player.transform.position = transform.position;
 				}
                 else if (state == 1)
                 {
 					transform.localPosition = Vector3.MoveTowards(transform.localPosition, targetEnd, interpolationSpeed * Time.deltaTime);
-					player.transform.position = transform.position + playerDistance;
+					player.transform.position = transform.position;
 				}
                 else if (state == 2)
                 {
 					state = 3;
 					transform.localPosition = targetEnd;
-					player.transform.position = transform.position + playerDistance;
-					playerController.enabled = true;
+					player.transform.position = transform.position;
+					playerController.EnableMovement();
                     finishedFlight = true;
 				}
 			}
@@ -52,13 +52,13 @@ namespace LotsOfTowers.Interaction
 		public void OnTriggerEnter(Collider coll) {
 			if (coll.gameObject.tag == "Player" && state == 0)
             {
-				playerController.enabled = false;
+				playerController.DisableMovement();
 				playerDistance = new Vector3 (
 				    transform.position.x - player.transform.position.x,
 				    transform.position.y - player.transform.position.y,
 				    transform.position.z - player.transform.position.z
 				);
-				triggered = true;
+                triggered = true;
 			}
 		}
 

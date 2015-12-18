@@ -11,7 +11,14 @@ public class MirrorKey : MonoBehaviour {
     private bool currentlyVisible = true;
 
 	void Update () {
-        if (pickedUp)
+
+		//Slowely go up and down
+		transform.position = new Vector3(
+			transform.position.x,
+			transform.position.y + Mathf.Sin(Time.timeSinceLevelLoad) / 200,
+			transform.position.z
+		);
+		if (pickedUp)
             return;
 	    if(!SameSideAs(mirrorPlayer))
         {
@@ -34,11 +41,15 @@ public class MirrorKey : MonoBehaviour {
         if (!CameraThroughMirror() && currentlyVisible)
         {
             GetComponent<Renderer>().enabled = false;
+            ParticleSystem.EmissionModule em = GetComponent<ParticleSystem>().emission;
+            em.enabled = false;
             currentlyVisible = false;
         }
         else if (CameraThroughMirror() && !currentlyVisible)
         {
             GetComponent<Renderer>().enabled = true;
+            ParticleSystem.EmissionModule em = GetComponent<ParticleSystem>().emission;
+            em.enabled = false;
             currentlyVisible = true;
         }
     }

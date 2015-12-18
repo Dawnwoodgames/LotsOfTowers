@@ -1,44 +1,40 @@
-﻿using System.Collections.Generic;
+﻿using LotsOfTowers.Framework;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
 namespace LotsOfTowers.Actors
 {
 	//We need the following components to make the player work
+	[RequireComponent(typeof(Player))]
 	[RequireComponent(typeof(Rigidbody))]
-    [RequireComponent(typeof(Player))]
-
 	public class PlayerController : MonoBehaviour
 	{
+		private static readonly float InputDelay = 0.5f;
 
 		//The actual player with all the movement properties
 		private Player player;
 		private Transform mainCamera;
+		private BoxCollider box;
 		private CapsuleCollider capsule;
-        private BoxCollider box;
+        private HeadsUpDisplayScript hudUi;
 
 		//Moving variables
 		private Vector3 movement;
 		private float turnAmount;
 		private float forwardAmount;
 		private float movingTurnSpeed = 360;
+		private bool removeChargeOnNextFrame;
 		private float stationaryTurnSpeed = 360;
+		private float switchDelay;
 		private Vector3 groundNormal;
 
+        private bool canMove = true;
+		private bool moving;
 
-		private void Start()
-		{
-			player = GetComponent<Player>();
-
-			//Get camera transform
-			if (Camera.main != null)
-			{
-				mainCamera = Camera.main.transform;
-			}
-			else
-			{
-				Debug.LogWarning("No \"Main Camera\" found! Tag a camera as main");
-			}
+		private void Awake() {
+			this.mainCamera = Camera.main.transform;
+			this.player = GetComponent<Player>();
         }
 
 		private void FixedUpdate()
@@ -47,23 +43,40 @@ namespace LotsOfTowers.Actors
 			float h = CrossPlatformInputManager.GetAxis("Horizontal");
 			float v = CrossPlatformInputManager.GetAxis("Vertical");
 
-			bool onesie1 = CrossPlatformInputManager.GetAxis("Onesie 1") > 0;
-			bool onesie2 = CrossPlatformInputManager.GetAxis("Onesie 2") > 0;
-			bool onesie3 = CrossPlatformInputManager.GetAxis("Onesie 3") > 0;
+			bool onesie1 = CrossPlatformInputManager.GetButton("Onesie 1");
+			bool onesie2 = CrossPlatformInputManager.GetButton("Onesie 2");
+			bool onesie3 = CrossPlatformInputManager.GetButton("Onesie 3");
+			bool submit = CrossPlatformInputManager.GetButton("Submit");
 
-			if (CrossPlatformInputManager.GetAxis("Cancel") > 0) {
-				GameManager.Instance.LoadLevel(0, true);
+			if (switchDelay > 0) {
+				switchDelay -= Time.smoothDeltaTime;
 			}
 
-			if (onesie1 || onesie2 || onesie3)
+			if ((onesie1 || onesie2 || onesie3) && switchDelay <= 0)
 			{
 				//Switch to the selected onesie
 				player.SwitchOnesie(onesie1 ? 0 : (onesie2 ? 1 : 2));
+                switchDelay = InputDelay;
+            }
+
+            if(canMove)
+            {
+                //Apply movement, jumping and rotation
+                movement = new Vector3(h, 0f, v);
+                Move(movement);
+            }
+
+			if (removeChargeOnNextFrame) {
+				player.StaticCharge = 0;
+				removeChargeOnNextFrame = false;
 			}
 
-			//Apply movement, jumping and rotation
-			movement = new Vector3(h, 0f, v);
-			Move(movement);
+			if (submit) {
+				// Remove charge in next frame to avoid it being removed before it can be used
+				removeChargeOnNextFrame = true;
+			}
+
+			player.Animator.SetBool("Moving", h != 0 || v != 0);
         }
 
 		private void Move(Vector3 movement)
@@ -93,7 +106,7 @@ namespace LotsOfTowers.Actors
 			TurnRotation();
 
 			//Translate the current position, based on the movementspeed / time to move the player
-			transform.Translate(movement * player.MovementSpeed * Time.deltaTime);
+			GetComponent<Rigidbody>().MovePosition(transform.position + transform.TransformDirection(movement * player.Onesie.movementSpeed * Time.deltaTime));
 		}
 
 		private void TurnRotation()
@@ -118,5 +131,21 @@ namespace LotsOfTowers.Actors
                 groundNormal = Vector3.up;
             }
         }
+
+        public void EnableMovement()
+        {
+            if (!canMove)
+            {
+                canMove = true;
+            }
+        }
+        public void DisableMovement()
+        {
+            if(canMove)
+            {
+                canMove = false;
+            }
+        }
+
 	}
 }

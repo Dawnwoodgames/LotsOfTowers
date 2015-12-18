@@ -9,40 +9,35 @@ namespace LotsOfTowers.Framework
 		public float increaseBy;
         public float speed = 1f;
 		private bool moveUp = false;
-        private bool isActive = false;
+        private bool[] isActive;
 
 		void Start()
 		{
 			oldPosition = new Vector3[toMove.Length];
+            isActive = new bool[toMove.Length];
 			for (int i = 0; i < toMove.Length; i++)
 				oldPosition[i] = toMove[i].transform.position;
 		}
 
 		void Update()
 		{
-            if (!isActive)
-                return;
 			if (moveUp)
 				for (int obj = 0; obj < toMove.Length; obj++)
 				{
-                    if (toMove[obj].transform.position.y < oldPosition[obj].y + increaseBy)
-                        toMove[obj].transform.position = toMove[obj].transform.position + new Vector3(0, increaseBy * Time.deltaTime * speed, 0);
-                    else
-                    {
-                        toMove[obj].transform.position = new Vector3(toMove[obj].transform.position.x, oldPosition[obj].y + increaseBy, toMove[obj].transform.position.z);
-                        isActive = false;
-                    }
-				}
+                    if (!isActive[obj])
+                        continue;
+                    toMove[obj].transform.position = Vector3.MoveTowards(toMove[obj].transform.position, new Vector3(oldPosition[obj].x, oldPosition[obj].y+increaseBy, oldPosition[obj].z), Time.deltaTime * speed);
+                    if (toMove[obj].transform.position == new Vector3(oldPosition[obj].x, oldPosition[obj].y+increaseBy, oldPosition[obj].z))
+                        isActive[obj] = false;
+                }
 			else
 				for (int obj = 0; obj < toMove.Length; obj++)
 				{
-                    if (toMove[obj].transform.position.y > oldPosition[obj].y)
-                        toMove[obj].transform.position = toMove[obj].transform.position + new Vector3(0, -increaseBy * Time.deltaTime * speed, 0);
-                    else
-                    {
-                        toMove[obj].transform.position = oldPosition[obj];
-                        isActive = false;
-                    }
+                    if (!isActive[obj])
+                        continue;
+                    toMove[obj].transform.position = Vector3.MoveTowards(toMove[obj].transform.position, new Vector3(oldPosition[obj].x, oldPosition[obj].y, oldPosition[obj].z), Time.deltaTime * speed);
+                    if (toMove[obj].transform.position == new Vector3(oldPosition[obj].x, oldPosition[obj].y, oldPosition[obj].z))
+                        isActive[obj] = false;
 				}
 		}
 
@@ -51,16 +46,18 @@ namespace LotsOfTowers.Framework
 			if (other.tag == "Player")
 			{
 				moveUp = true;
-                isActive = true;
-			}
+                for (int i = 0; i < toMove.Length; i++)
+                    isActive[i] = true;
+            }
 		}
 		void OnTriggerExit(Collider other)
 		{
 			if (other.tag == "Player")
 			{
 				moveUp = false;
-                isActive = true;
-			}
+                for (int i = 0; i < toMove.Length; i++)
+                    isActive[i] = true;
+            }
 		}
 	}
 }

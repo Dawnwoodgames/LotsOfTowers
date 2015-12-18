@@ -4,26 +4,32 @@ using UnityEngine.UI;
 namespace LotsOfTowers.UI {
 	[RequireComponent(typeof(Image))]
 	public sealed class UITooltip : MonoBehaviour {
-		public static readonly int FadeSpeed = 4;
-		public static readonly int TooltipHeight = (int)(Screen.height * 0.2f); // 20% of screen height
-		public static readonly int TooltipWidth = (int)(Screen.width * 0.8f); // 80% of screen width
-
+		private string axis;
 		private Image image;
 
 		public float duration;
 
 		public void Awake() {
+			this.axis = string.Empty;
 			this.image = GetComponent<Image>();
+			this.image.enabled = false;
+		}
 
-			image.rectTransform.sizeDelta = new Vector2(TooltipWidth, TooltipHeight);
-			image.rectTransform.position = new Vector3(0, Screen.height / 2 - TooltipHeight, 0);
+		public void SetAxis(string axis) {
+			this.axis = axis;
+		}
+
+		public void SetSprite(Sprite sprite) {
+			image.GetComponent<RectTransform>().localPosition =
+				new Vector3(0, Screen.height / -2 + sprite.rect.size.y, 0);
+			image.GetComponent<RectTransform>().sizeDelta =
+				new Vector2(sprite.rect.size.x, sprite.rect.size.y);
+			image.sprite = sprite;
+			image.enabled = true;
 		}
 
 		public void Update() {
-			duration -= Time.smoothDeltaTime;
-			image.color = new Color(image.color.r, image.color.g, image.color.b, 0.25f * Mathf.Sin (FadeSpeed * duration) + 0.75f);
-
-			if (duration < 0) {
+			if (axis != string.Empty && Input.GetAxis(axis) != 0) {
 				Destroy(gameObject);
 			}
 		}

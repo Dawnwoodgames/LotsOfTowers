@@ -47,7 +47,7 @@ namespace LotsOfTowers.Interaction
 		{
 			if (inTrigger)
 			{
-				if (Input.GetButton("Submit") && player.GetComponent<Player>().Onesie.isElephant)
+				if (Input.GetButton("Submit") && player.GetComponent<Player>().Onesie.type == OnesieType.Elephant)
 				{
 					pickedUp = true;
 				}
@@ -56,7 +56,7 @@ namespace LotsOfTowers.Interaction
 			//Move the object with the player if its picked up
 			if (pickedUp)
 			{
-				transform.position = Vector3.Lerp(transform.position, player.transform.position + Vector3.forward * 3 + Vector3.up * 1.2f, Time.deltaTime * smoothLerp);
+				transform.position = Vector3.Lerp(transform.position, player.transform.position + Vector3.forward * 1.5f + Vector3.up * 1.2f, Time.deltaTime * smoothLerp);
 
 				if (!rigid.isKinematic)
 				{
@@ -64,7 +64,7 @@ namespace LotsOfTowers.Interaction
 					meshColl.isTrigger = true;
 				}
 
-				if (!Input.GetButton("Submit") || !player.GetComponent<Player>().Onesie.isElephant)
+				if (!Input.GetButton("Submit") || player.GetComponent<Player>().Onesie.type != OnesieType.Elephant)
 				{
 					pickedUp = false;
 					rigid.isKinematic = false;
