@@ -16,6 +16,8 @@ namespace LotsOfTowers.Interaction
 
         public GameObject invisBlockWall;
 
+        public GameObject[] invisLibraWalls;
+
 		private SeesawLibraBoardTrigger boardStartTrigger;
 		private SeesawLibraBoardTrigger boardEndTrigger;
 		private GameObject player;
@@ -74,6 +76,16 @@ namespace LotsOfTowers.Interaction
             //Nice code bra
             GameObject nimbiJump = GameObject.Find("HelpNimbiFromHere");
             elephantSecondPosition = new Vector3(nimbiJump.transform.localPosition.x, nimbiJump.transform.localPosition.y + 1f, nimbiJump.transform.localPosition.z);
+
+            SetInviswallsVisibility(false);
+        }
+
+        private void SetInviswallsVisibility(bool yesno)
+        {
+            foreach (GameObject invisWall in invisLibraWalls)
+            {
+                invisWall.SetActive(yesno);
+            }
         }
 
 		void FixedUpdate()
@@ -88,6 +100,7 @@ namespace LotsOfTowers.Interaction
                         if (boardStartTrigger.isPlayerOnTrigger() && !boardEndTrigger.isElephantOnTrigger())
                         {
                             ElephantJump(); // This also disables the playerController;
+                            SetInviswallsVisibility(true);
                         }
                     }
                     else
@@ -137,12 +150,13 @@ namespace LotsOfTowers.Interaction
                         {
                             //Rotate board
                             board.transform.eulerAngles = new Vector3(board.transform.eulerAngles.x + 20 * Time.deltaTime, board.transform.eulerAngles.y, board.transform.eulerAngles.z);
-                        } else
+                        }
+                        else
                         {
                             board.GetComponent<Rigidbody>().isKinematic = true;
                             board.GetComponent<Rigidbody>().isKinematic = false;
                         }
-                    }
+                    } 
                 }
                 else if (boardEndTrigger.isPlayerOnTrigger())
                 {

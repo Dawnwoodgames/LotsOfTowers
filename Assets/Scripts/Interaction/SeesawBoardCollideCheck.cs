@@ -16,6 +16,13 @@ namespace LotsOfTowers.Interaction
                 PlayerOnBoard = true;
             }
         }
+        void OnCollisionEnter(Collision col)
+        {
+            if (col.gameObject.tag == "Player")
+            {
+                PlayerOnBoard = true;
+            }
+        }
         void OnCollisionExit(Collision col)
         {
             if (col.gameObject.tag == "Player")
