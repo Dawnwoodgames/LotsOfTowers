@@ -3,6 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
+using LotsOfTowers.Audio;
+
+using LotsOfTowers.Framework;
+
 namespace LotsOfTowers.Actors {
 	public sealed class Player : MonoBehaviour {
 		private float charge;
@@ -12,6 +16,8 @@ namespace LotsOfTowers.Actors {
 		private Onesie[] onesies;
 		private List<GameObject> particleSystems;
 		private List<Skeleton> skeletons;
+
+        private AudioManager audioManager;
 
 		public Animator Animator {
 			get { return currentSkeleton.GetComponent<Animator>(); }
@@ -73,6 +79,7 @@ namespace LotsOfTowers.Actors {
 				.Where(t => t.GetComponent<ParticleSystem>() != null)
 				.Select(t => t.gameObject).ToList();
 			this.skeletons = GetComponentsInChildren<Skeleton>().ToList();
+            audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
 		}
 
 		public void ResetRenderers() {
@@ -91,8 +98,6 @@ namespace LotsOfTowers.Actors {
 		}
 
 		public void Start() {
-
-
 			Physics.gravity = new Vector3(0, -35, 0);
 			SetSkeleton("Default");
 		}
@@ -101,7 +106,18 @@ namespace LotsOfTowers.Actors {
 			if (index > -1 && index < 3 && onesies[index] != null) {
 				try {
 					currentOnesie = (currentOnesie == onesies[index]) ? defaultOnesie : onesies[index];
-					SetSkeleton(currentOnesie.name.Replace("Onesie", ""));
+                    SetSkeleton(currentOnesie.name.Replace("Onesie", ""));
+
+                    // Ugly ass code, fix soon. (c) Axel
+                    if (currentOnesie.name.Replace("Onesie", "") == "Elephant")
+                    {
+                        audioManager.PlaySoundeffect(audioManager.onesieSwitchElephantSound);
+                    }
+                    else
+                    {
+                        audioManager.PlaySoundeffect(audioManager.onesieSwitchDefaultSound);
+                    }
+
 				} catch (Exception) { SetSkeleton("Default"); }
 			}
 		}
