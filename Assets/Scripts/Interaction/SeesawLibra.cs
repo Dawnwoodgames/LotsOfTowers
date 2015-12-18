@@ -335,7 +335,6 @@ namespace LotsOfTowers.Interaction
 
 		private void ElephantJump()
 		{
-			playerController.DisableMovement(); // Disable the player controller. This is a controlled event
 			if (!elephantJumpFinished)
 			{
 				if (elephantJumpStartValuesSet)
@@ -348,8 +347,12 @@ namespace LotsOfTowers.Interaction
 				}
 				else
 				{
-					SetElephantJumpStartValues();
-				}
+                    if(boardStartTrigger.isPlayerOnTrigger() && !boardEndTrigger.isElephantOnTrigger())
+                    {
+                        SetElephantJumpStartValues();
+                        playerController.DisableMovement(); // Disable the player controller. This is a controlled event
+                    }
+                }
 			}
 		}
 
