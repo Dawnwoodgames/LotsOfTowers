@@ -24,21 +24,20 @@ namespace LotsOfTowers.Interaction
 		// Update is called once per frame
 		void Update()
 		{
-			if (isDisplayed && imageTransform.rect.width < Screen.width)
-				imageTransform.sizeDelta = new Vector2(imageTransform.rect.width + Screen.width / 2f * Time.deltaTime, imageTransform.rect.height + Screen.width / 2f * Time.deltaTime);
+            if (isDisplayed && (imageTransform.rect.width < Screen.width || imageTransform.rect.height < Screen.height))
+            {
+                imageTransform.sizeDelta = new Vector2(imageTransform.rect.width + Screen.width / 2f * Time.deltaTime, imageTransform.rect.height + Screen.width / 2f * Time.deltaTime);
+            }
 
-		}
+        }
 
-		void OnTriggerStay(Collider coll)
+		void OnTriggerEnter(Collider coll)
 		{
-			if (CrossPlatformInputManager.GetButton("Submit") && coll.tag == "Player")
-			{
 				isDisplayed = true;
 				levelPreview.gameObject.SetActive(true);
 				coll.GetComponent<PlayerController>().enabled = false;
-			}
 		}
-		void OnTriggerExit(Collider coll)
+		/*void OnTriggerExit(Collider coll)
 		{
 			if (coll.tag == "Player")
 			{
@@ -46,6 +45,6 @@ namespace LotsOfTowers.Interaction
 				imageTransform.sizeDelta = startSize;
 				levelPreview.gameObject.SetActive(false);
 			}
-		}
+		}*/
 	}
 }
