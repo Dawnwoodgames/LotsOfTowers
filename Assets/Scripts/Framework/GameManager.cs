@@ -12,6 +12,7 @@ namespace LotsOfTowers
 {
 	[RequireComponent(typeof(Canvas))]
 	[RequireComponent(typeof(CanvasRenderer))]
+	[RequireComponent(typeof(CanvasScaler))]
 	public class GameManager : MonoBehaviour
 	{
 		public const float FadeDuration = 0.5f;
@@ -69,6 +70,7 @@ namespace LotsOfTowers
 			}
 
 			DontDestroyOnLoad(this);
+			GetComponent<CanvasScaler>().uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
 			LanguageManager.Instance.ChangeLanguage(Language);
 			LanguageManager.Instance.name = "Language Manager";
 			LanguageManager.Instance.transform.SetParent(transform, false);
@@ -289,7 +291,7 @@ namespace LotsOfTowers
 
 			// Transition Fader setup
 			fader.color = Color.clear;
-			fader.rectTransform.sizeDelta = new Vector2(Screen.width, Screen.height);
+			fader.rectTransform.sizeDelta = new Vector2(Screen.currentResolution.width, Screen.currentResolution.height);
 			fader.transform.SetParent(transform, false);
 
 			// Loading Screen setup
