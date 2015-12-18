@@ -23,7 +23,7 @@ namespace LotsOfTowers.Interaction {
 		}
 
 		public void OnGUI() {
-			GUI.Label(new Rect(0, 0, Screen.width, Screen.height), "Maze progress: " + gates.Count + " / 22");
+			GUI.Label(new Rect(0, 0, Screen.width, Screen.height), "Maze progress: " + gates.Count + " / 22 - (THIS LEVEL IS STILL IN EARLY PHASES OF DEVELOPMENT AND CONTAINS SOME BUGS!!!)");
 		}
 
 		public void Update() {
