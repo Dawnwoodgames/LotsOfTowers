@@ -43,7 +43,7 @@ namespace LotsOfTowers.Interaction
 					state = 3;
 					transform.localPosition = targetEnd;
 					player.transform.position = transform.position;
-					playerController.enabled = true;
+					playerController.EnableMovement();
                     finishedFlight = true;
 				}
 			}
@@ -52,7 +52,7 @@ namespace LotsOfTowers.Interaction
 		public void OnTriggerEnter(Collider coll) {
 			if (coll.gameObject.tag == "Player" && state == 0)
             {
-				playerController.enabled = false;
+				playerController.DisableMovement();
 				playerDistance = new Vector3 (
 				    transform.position.x - player.transform.position.x,
 				    transform.position.y - player.transform.position.y,
