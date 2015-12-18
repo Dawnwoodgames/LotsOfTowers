@@ -69,13 +69,10 @@ namespace LotsOfTowers.Actors {
 		public void Awake() {
 			this.defaultOnesie = Resources.Load<Onesie>("OnesieDefault");
 			this.onesies = new Onesie[3];
-			this.particleSystems = GameObject.Find("Nimbi/SFX").transform.Cast<Transform>()
+			this.particleSystems = GameObject.Find("Nimbi/VFX").transform.Cast<Transform>()
 				.Where(t => t.GetComponent<ParticleSystem>() != null)
 				.Select(t => t.gameObject).ToList();
 			this.skeletons = GetComponentsInChildren<Skeleton>().ToList();
-
-			Physics.gravity = new Vector3(0, -35, 0);
-			SetSkeleton("Default");
 		}
 
 		public void ResetRenderers() {
@@ -91,6 +88,13 @@ namespace LotsOfTowers.Actors {
 			currentSkeleton = skeletons.Single(s => s.name == name);
 			currentSkeleton.Renderer.enabled = true;
 			skeletons.Where(s => s != currentSkeleton).ToList().ForEach(s => s.Renderer.enabled = false);
+		}
+
+		public void Start() {
+
+
+			Physics.gravity = new Vector3(0, -35, 0);
+			SetSkeleton("Default");
 		}
 
 		public void SwitchOnesie(int index) {
