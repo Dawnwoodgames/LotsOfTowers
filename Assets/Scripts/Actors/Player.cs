@@ -78,6 +78,11 @@ namespace LotsOfTowers.Actors {
 			SetSkeleton("Default");
 		}
 
+		public void ResetRenderers() {
+			currentSkeleton.Renderer.enabled = true;
+			skeletons.Where(s => s != currentSkeleton).ToList().ForEach(s => s.Renderer.enabled = false);
+		}
+
 		public void SetEffectActive(string name, bool active) {
 			particleSystems.Single(g => g.name == name).SetActive(active);
 		}
