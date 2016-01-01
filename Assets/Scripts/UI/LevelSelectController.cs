@@ -4,7 +4,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
 namespace LotsOfTowers.UI {
-	public sealed class LevelSelectController : MonoBehaviour {
+	public class LevelSelectController : MonoBehaviour {
 		private new CameraController camera;
 		private GameObject currentSelectedInput;
 		private GameObject[] chapters;

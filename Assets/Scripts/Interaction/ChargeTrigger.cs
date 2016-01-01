@@ -2,7 +2,7 @@
 using UnityEngine;
 
 namespace LotsOfTowers.Interaction {
-	public sealed class ChargeTrigger : MonoBehaviour {
+	public class ChargeTrigger : MonoBehaviour {
 		private bool connected;
 		private Player player;
 		private float x, y, z;

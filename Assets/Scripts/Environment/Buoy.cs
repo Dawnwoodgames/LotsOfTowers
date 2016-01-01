@@ -2,7 +2,7 @@
 
 namespace LotsOfTowers.Environment {
 	[RequireComponent(typeof(MeshRenderer))]
-	public sealed class Buoy : MonoBehaviour {
+	public class Buoy : MonoBehaviour {
 		private float internalClock;
 		private float originalY;
 

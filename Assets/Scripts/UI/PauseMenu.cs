@@ -2,7 +2,7 @@
 
 namespace LotsOfTowers.UI {
 	[RequireComponent(typeof(Canvas))]
-	public sealed class PauseMenu : MonoBehaviour {
+	public class PauseMenu : MonoBehaviour {
 		private Canvas canvas;
 		private bool wasCancelPressed;
 

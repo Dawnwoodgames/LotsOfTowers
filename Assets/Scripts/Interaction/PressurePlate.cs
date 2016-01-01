@@ -2,7 +2,7 @@
 
 namespace LotsOfTowers.Interaction {
 	[RequireComponent(typeof(Collider))]
-	public sealed class PressurePlate : MonoBehaviour {
+	public class PressurePlate : MonoBehaviour {
 		private bool colliding;
 
 		public void OnCollisionEnter(Collision collision) {

@@ -4,7 +4,7 @@ using LotsOfTowers.Actors;
 namespace LotsOfTowers.Interaction
 {
 	[RequireComponent(typeof(Rigidbody))]
-	public sealed class MovableObject : MonoBehaviour
+	public class MovableObject : MonoBehaviour
 	{
 		private Player player;
 		private Rigidbody rigidBody;

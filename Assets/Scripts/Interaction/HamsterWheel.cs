@@ -13,8 +13,7 @@ namespace LotsOfTowers.Interaction
 		public float pumpDelay = 1.0f;
 		private float nextPump;
 		public GameObject wheel;
-		private GameObject player;
-        private GameObject nut;
+		private GameObject nut;
 
 		void Start()
 		{
@@ -48,7 +47,6 @@ namespace LotsOfTowers.Interaction
 		{
 			if (other.tag == "Player")
 			{
-				player = other.gameObject;
 				pumping = true;
 			}
 		}

@@ -8,7 +8,7 @@ using LotsOfTowers.Audio;
 using LotsOfTowers.Framework;
 
 namespace LotsOfTowers.Actors {
-	public sealed class Player : MonoBehaviour {
+	public class Player : MonoBehaviour {
 		private float charge;
 		private Onesie currentOnesie;
 		private Skeleton currentSkeleton;

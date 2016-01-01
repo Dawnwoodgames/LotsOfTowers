@@ -3,7 +3,7 @@ using UnityEditor;
 using UnityEngine;
 
 namespace LotsOfTowers.Unity {
-	[CustomEditor(typeof(Player))] public sealed class ActorHelper : Editor {
+	[CustomEditor(typeof(Player))] public class ActorHelper : Editor {
 
 		public override void OnInspectorGUI()
 		{

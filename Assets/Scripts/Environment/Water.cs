@@ -2,7 +2,7 @@
 using UnityEngine;
 
 namespace LotsOfTowers.Environment {
-	public sealed class Water : MonoBehaviour {
+	public class Water : MonoBehaviour {
 		private RigidbodyConstraints driftConstraints, sinkConstraints;
 		private Player player;
 		private Rigidbody playerRigidbody;

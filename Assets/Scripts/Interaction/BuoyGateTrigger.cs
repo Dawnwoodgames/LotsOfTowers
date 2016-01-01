@@ -3,7 +3,7 @@ using UnityEngine;
 
 namespace LotsOfTowers.Interaction {
 	[RequireComponent(typeof(BoxCollider))]
-	public sealed class BuoyGateTrigger : MonoBehaviour {
+	public class BuoyGateTrigger : MonoBehaviour {
 		private WaterMazeManager manager;
 		private Buoy leftBuoy, rightBuoy;
 		private float timer;

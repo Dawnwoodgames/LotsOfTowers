@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace LotsOfTowers.UI {
 	[RequireComponent(typeof(Slider))]
-	public sealed class AudioSlider : MonoBehaviour {
+	public class AudioSlider : MonoBehaviour {
 		private Slider slider;
 
 		public void Awake() {

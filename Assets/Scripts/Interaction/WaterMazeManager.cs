@@ -4,7 +4,7 @@ using System.Linq;
 using UnityEngine;
 
 namespace LotsOfTowers.Interaction {
-	public sealed class WaterMazeManager : MonoBehaviour {
+	public class WaterMazeManager : MonoBehaviour {
 		private List<BuoyGateTrigger> gates;
 		private bool respawnOnNext;
         private BookcaseDoor door;

@@ -14,8 +14,7 @@ namespace LotsOfTowers.Interaction
 
         private Vector3 dir;
         private List<GameObject> collisions = new List<GameObject>();
-
-        private bool hasPlayer;
+		
         private bool hasBlock;
         private bool active;
 
@@ -35,7 +34,6 @@ namespace LotsOfTowers.Interaction
         
         void FixedUpdate()
         {
-            hasPlayer = false;
             hasBlock = false;
             checkCollisions();
             Wind();
@@ -46,10 +44,6 @@ namespace LotsOfTowers.Interaction
         {
             foreach (GameObject collision in collisions)
             {
-                if(collision.tag == "Player")
-                {
-                    hasPlayer = true;
-                }
                 if(collision.tag == "MovableByWind")
                 {
                     hasBlock = true;

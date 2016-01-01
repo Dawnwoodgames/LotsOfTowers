@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 namespace LotsOfTowers.UI
 {
-	public sealed class MenuController : MonoBehaviour
+	public class MenuController : MonoBehaviour
 	{
 		private new CameraController camera;
 		private GameObject currentMenu;

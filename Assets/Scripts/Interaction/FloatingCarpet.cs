@@ -8,7 +8,6 @@ namespace LotsOfTowers.Interaction
 
 		private GameObject player;
 		private PlayerController playerController;
-		private Vector3 playerDistance;
 		
 		private bool triggered;
 
@@ -53,11 +52,6 @@ namespace LotsOfTowers.Interaction
 			if (coll.gameObject.tag == "Player" && state == 0)
             {
 				playerController.DisableMovement();
-				playerDistance = new Vector3 (
-				    transform.position.x - player.transform.position.x,
-				    transform.position.y - player.transform.position.y,
-				    transform.position.z - player.transform.position.z
-				);
                 triggered = true;
 			}
 		}

@@ -2,7 +2,7 @@
 
 namespace LotsOfTowers.Actors {
 	[RequireComponent(typeof(Animator))]
-	public sealed class Skeleton : MonoBehaviour {
+	public class Skeleton : MonoBehaviour {
 		private Animator animator;
 		private SkinnedMeshRenderer renderer;
 
@@ -15,8 +15,8 @@ namespace LotsOfTowers.Actors {
 		}
 
 		public void Awake() {
-			this.animator = GetComponent<Animator>();
-			this.renderer = GetComponentInChildren<SkinnedMeshRenderer>();
+			animator = GetComponent<Animator>();
+			renderer = GetComponentInChildren<SkinnedMeshRenderer>();
 		}
 	}
 }
