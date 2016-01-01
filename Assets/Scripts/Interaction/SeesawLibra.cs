@@ -153,7 +153,6 @@ namespace LotsOfTowers.Interaction
                         }
                         else
                         {
-                            board.GetComponent<Rigidbody>().isKinematic = true;
                             board.GetComponent<Rigidbody>().isKinematic = false;
                         }
                     } 
@@ -195,7 +194,11 @@ namespace LotsOfTowers.Interaction
                             }
                         }
                     }
-                }
+					else if (player.GetComponent<Player>().Onesie.type == OnesieType.Elephant)
+					{
+						GameManager.Instance.ShowTooltip("OnesieSwitch", "Onesie 1");
+					}
+				}
             }
             else
             {
