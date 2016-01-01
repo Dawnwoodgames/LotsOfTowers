@@ -55,7 +55,7 @@ namespace LotsOfTowers.UI {
 		}
 
 		public void Update() {
-			if (currentMenu != null && eventSystem.currentSelectedGameObject == null) {
+			if (currentMenu.name != "Preferences" && eventSystem.currentSelectedGameObject == null) {
 				SetActiveMenu(menus.FirstOrDefault());
 			}
 		}
