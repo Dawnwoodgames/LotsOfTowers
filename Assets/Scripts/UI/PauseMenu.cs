@@ -1,20 +1,24 @@
 ﻿using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace LotsOfTowers.UI {
 	[RequireComponent(typeof(Canvas))]
 	public class PauseMenu : MonoBehaviour {
 		private Canvas canvas;
+		private EventSystem eventSystem;
 		private bool wasCancelPressed;
 
 		public void Awake() {
             if(!Application.isEditor)
 			    GameManager.Instance.CursorEnabled = false;
 			this.canvas = GetComponent<Canvas>();
+			this.eventSystem = FindObjectOfType<EventSystem>();
 			this.wasCancelPressed = false;
 		}
 		
 		public void Disable() {
 			canvas.enabled = false;
+			eventSystem.SetSelectedGameObject(null);
 			Time.timeScale = 1;
 		}
 
