@@ -8,9 +8,6 @@ public class MainCameraScript : MonoBehaviour
 	public float verticalDegree;
 	public float cameraSpeed = 6;
 
-	private float maxPeekLeftPosition = 25f;
-	private float maxPeekRightPosition = 25f;
-
 
 	// Use this for initialization
 	void Start()
@@ -19,72 +16,19 @@ public class MainCameraScript : MonoBehaviour
 		verticalDegree = 30;
 	}
 
-	// Update is called once per frame
-	void Update()
-	{
-		CameraInput();
-	}
-
-	private void CameraInput()
+	public void Update()
 	{
 		// Rotate controls
-		if (Input.GetButtonDown("LeftBumper") && !Input.GetKey(KeyCode.LeftShift))
-		{
-			degree += 90;
+		if (Input.GetButtonDown("LeftBumper")) {
+			degree = Mathf.Round(degree / 90) * 90 + 90;
+		} else if (Input.GetButtonDown("RightBumper")) {
+			degree = Mathf.Round(degree / 90) * 90 - 90;
+		} else if (Input.GetMouseButton(1)) {
+			degree += Input.GetAxis("Mouse X");
 		}
-		if (Input.GetButtonDown("RightBumper") && !Input.GetKey(KeyCode.LeftShift))
-		{
-			degree -= 90;
-		}
-
-		// Quick corner looks (Shift-Q) to look Left
-		if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && Input.GetKey(KeyCode.Q))
-		{
-			//Max look position
-			if (maxPeekLeftPosition != 0f)
-			{
-				degree += 1;
-				maxPeekLeftPosition -= 1;
-			}
-		}
-		else
-		{
-			if (maxPeekLeftPosition != 25f)
-			{
-				degree -= 1;
-				maxPeekLeftPosition += 1;
-			}
-
-		}
-
-		// Quick corner looks (Shift-E) to look right
-		if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && Input.GetKey(KeyCode.E))
-		{
-			//Max look position
-			if (maxPeekRightPosition != 0f)
-			{
-				degree -= 1;
-				maxPeekRightPosition -= 1;
-			}
-		}
-		else
-		{
-			if (maxPeekRightPosition != 25f)
-			{
-				degree += 1;
-				maxPeekRightPosition += 1;
-			}
-
-		}
-
 		degree = degree % 360;
 
 		//Set rotation to next degree with a slight lerp
 		centerFocus.rotation = Quaternion.Slerp(centerFocus.rotation, Quaternion.Euler(verticalDegree, degree, 0), Time.deltaTime * cameraSpeed);
-
-		//if (Input.GetKeyDown(KeyCode.K))
-		//	verticalDegree = 10f;
-		//else if (Input.GetKeyUp(KeyCode.K))
-		//	verticalDegree = 30f;
 	}
 }
