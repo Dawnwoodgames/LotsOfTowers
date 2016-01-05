@@ -48,24 +48,6 @@ namespace LotsOfTowers.Interaction
 				playerInside = true;
 				rb.isKinematic = false;
 				playerIsNear = false;
-
-				ChangeTags();
-			}
-		}
-
-		private void ChangeTags()
-		{
-			//Switch ball tags
-			switch (ball.tag)
-			{
-				case "Player" :
-					ball.tag = "HamsterBall";
-					break;
-				case "HamsterBall":
-					ball.tag = "Player";
-					break;
-				default:
-					break;
 			}
 		}
 
