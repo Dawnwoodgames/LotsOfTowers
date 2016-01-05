@@ -20,11 +20,14 @@ public class MainCameraScript : MonoBehaviour
 	{
 		// Rotate controls
 		if (Input.GetButtonDown("LeftBumper")) {
-			degree = Mathf.Round(degree / 90) * 90 + 90;
+			//degree = Mathf.Round(degree / 90) * 90 + 90;
 		} else if (Input.GetButtonDown("RightBumper")) {
-			degree = Mathf.Round(degree / 90) * 90 - 90;
-		} else if (Input.GetMouseButton(1)) {
-			degree += Input.GetAxis("Mouse X");
+			//degree = Mathf.Round(degree / 90) * 90 - 90;
+		} else
+		{
+			// *2 should be :
+			// *mouseSensitivity
+			degree += Input.GetAxis("Mouse X") * 2;
 		}
 		degree = degree % 360;
 

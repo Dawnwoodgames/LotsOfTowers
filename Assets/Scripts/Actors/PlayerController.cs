@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
+using LotsOfTowers.Animations;
 
 namespace LotsOfTowers.Actors
 {
@@ -51,9 +52,17 @@ namespace LotsOfTowers.Actors
 			if (switchDelay > 0) {
 				switchDelay -= Time.smoothDeltaTime;
 			}
+			else
+			{
+				//Stop switch animation
+				OnesieSwitchAnimation.Stop();
+			}
 
 			if ((onesie1 || onesie2 || onesie3) && switchDelay <= 0)
 			{
+				//Play switch animation
+				OnesieSwitchAnimation.Play();
+
 				//Switch to the selected onesie
 				player.SwitchOnesie(onesie1 ? 0 : (onesie2 ? 1 : 2));
                 switchDelay = InputDelay;
