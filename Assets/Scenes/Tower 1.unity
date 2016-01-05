@@ -778,6 +778,11 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 10.803209, y: 1, z: 10.3686285}
   m_Center: {x: 0.501915, y: 0, z: -0.75843287}
+--- !u!198 &167761019 stripped
+ParticleSystem:
+  m_PrefabParentObject: {fileID: 19874066, guid: de11e14af6e909445b64bc6b41b1b81c,
+    type: 2}
+  m_PrefabInternal: {fileID: 1888704357}
 --- !u!1001 &179154567
 Prefab:
   m_ObjectHideFlags: 0
@@ -1938,6 +1943,14 @@ Prefab:
       propertyPath: EmissionModule.cntmax0
       value: 10
       objectReference: {fileID: 0}
+    - target: {fileID: 11443172, guid: ac87e5f8ede23f444aab8b0521c038c9, type: 2}
+      propertyPath: interval
+      value: 7
+      objectReference: {fileID: 0}
+    - target: {fileID: 11443172, guid: ac87e5f8ede23f444aab8b0521c038c9, type: 2}
+      propertyPath: windParticles
+      value: 
+      objectReference: {fileID: 1223927763}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ac87e5f8ede23f444aab8b0521c038c9, type: 2}
   m_IsPrefabParent: 0
@@ -5184,6 +5197,11 @@ Prefab:
 Transform:
   m_PrefabParentObject: {fileID: 447390, guid: e1902c15317a5e64eb2c5b3af69c90f1, type: 2}
   m_PrefabInternal: {fileID: 1175850340}
+--- !u!198 &1223927763 stripped
+ParticleSystem:
+  m_PrefabParentObject: {fileID: 19848932, guid: ac87e5f8ede23f444aab8b0521c038c9,
+    type: 2}
+  m_PrefabInternal: {fileID: 402991275}
 --- !u!1 &1226021010
 GameObject:
   m_ObjectHideFlags: 0
@@ -5467,15 +5485,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 409022, guid: 4d5d69b59f39a4e43a381b37bc52cfa1, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -3.88
+      value: 0.35
       objectReference: {fileID: 0}
     - target: {fileID: 409022, guid: 4d5d69b59f39a4e43a381b37bc52cfa1, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 1.02
+      value: 28.11
       objectReference: {fileID: 0}
     - target: {fileID: 409022, guid: 4d5d69b59f39a4e43a381b37bc52cfa1, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 2.36
+      value: -7.09
       objectReference: {fileID: 0}
     - target: {fileID: 409022, guid: 4d5d69b59f39a4e43a381b37bc52cfa1, type: 2}
       propertyPath: m_LocalRotation.x
@@ -8294,6 +8312,14 @@ Prefab:
     - target: {fileID: 19923572, guid: de11e14af6e909445b64bc6b41b1b81c, type: 2}
       propertyPath: m_VelocityScale
       value: 0.1
+      objectReference: {fileID: 0}
+    - target: {fileID: 11434974, guid: de11e14af6e909445b64bc6b41b1b81c, type: 2}
+      propertyPath: windParticles
+      value: 
+      objectReference: {fileID: 167761019}
+    - target: {fileID: 11434974, guid: de11e14af6e909445b64bc6b41b1b81c, type: 2}
+      propertyPath: interval
+      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: de11e14af6e909445b64bc6b41b1b81c, type: 2}
