@@ -26,8 +26,8 @@ namespace LotsOfTowers.Environment {
 				} else {
 					// Player isn't heavy, drift on surface
 					ballRigidBody.useGravity = false;
-					ball.transform.position = Vector3.Lerp(player.transform.position,
-						new Vector3(player.transform.position.x, surfaceHeight, player.transform.position.z), 0.05f);
+					ball.transform.position = Vector3.Lerp(ball.transform.position,
+						new Vector3(ball.transform.position.x, surfaceHeight, ball.transform.position.z), 0.05f);
 					player.transform.position = Vector3.Lerp(player.transform.position,
 						new Vector3(player.transform.position.x, surfaceHeight, player.transform.position.z), 0.05f);
 					playerRigidbody.constraints = driftConstraints;
