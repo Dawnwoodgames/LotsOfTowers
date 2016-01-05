@@ -1,37 +1,37 @@
 ﻿using UnityEngine;
 using System.Collections;
+using LotsOfTowers.Actors;
 
 namespace LotsOfTowers.Interaction
 {
     public class BrokenHamsterwheel : MonoBehaviour
     {
         private HamsterWheel wheel;
-        private Actors.Player player;
+        private Player player;
         private float damage = 0;
         private bool broken = false;
         
         void Start()
         {
             wheel = GetComponent<HamsterWheel>();
-            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Actors.Player>();
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         }
 
-        void Update()
+        void FixedUpdate()
         {
-            if (wheel.GetRotateSpeed() > 4 && !broken)
+            if (wheel.GetRotateSpeed() > 4 && wheel.GetIsPlayerRunning() &&!broken)
             {
                 damage += 1 * Time.deltaTime;
-
                 if (damage > 4)
                 {
                     transform.Rotate(new Vector3(.3f, 0));
-                    if (damage > 6)
+                    if (damage > 5)
                     {
                         transform.Rotate(new Vector3(.6f, 0));
-                        if (damage > 8)
+                        if (damage > 6.5)
                         {
-                            transform.Rotate(new Vector3(1f, 0));
                             GameObject.Find("Water").GetComponent<WaterHole>().waterRising = false;
+                            transform.Rotate(new Vector3(1f, 0));
                             if (player.Onesie.isElephant)
                                 broken = true;
                         }

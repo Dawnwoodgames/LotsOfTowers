@@ -13,18 +13,22 @@ namespace LotsOfTowers.Interaction
         private int speedGain = 1;
         private int speedLoss = 3;
 
+        private bool isPlayerRunning;
+
         void Start()
         {
             rotateTriggerScript = rotateTrigger.GetComponent<WheelRotateTrigger>();
         }
 
-        void Update()
+        void FixedUpdate()
         {
-            if (rotateTriggerScript.GetPlayerRunning())
+            isPlayerRunning = rotateTriggerScript.GetPlayerRunning();
+
+            if (isPlayerRunning)
                 if (rotateSpeed < 15)
                     rotateSpeed += speedGain;
 
-            if (!rotateTriggerScript.GetPlayerRunning())
+            if (!isPlayerRunning)
                 if (rotateSpeed > 0)
                     rotateSpeed -= speedLoss * Time.deltaTime;
 
@@ -33,5 +37,6 @@ namespace LotsOfTowers.Interaction
         }
 
         public float GetRotateSpeed() { return rotateSpeed; }
+        public bool GetIsPlayerRunning() { return isPlayerRunning; }
     }
 }
