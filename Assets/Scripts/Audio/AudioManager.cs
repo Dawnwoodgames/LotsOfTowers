@@ -5,6 +5,8 @@ namespace LotsOfTowers.Audio
 {
     public class AudioManager : MonoBehaviour {
 
+        private static AudioManager instance;
+
         public GameObject soundEffects;
         public GameObject backgroundSounds;
 
@@ -22,6 +24,32 @@ namespace LotsOfTowers.Audio
 
         private int lastrnd;
         private bool playing = false;
+
+        public static AudioManager Instance
+        {
+            get
+            {
+                if (instance == null)
+                {
+                    instance = (AudioManager)Instantiate(Resources.Load("Prefabs/AudioManager"));
+                }
+                return instance;
+            }
+        }
+
+        public void Awake()
+        {
+            if (FindObjectsOfType<AudioManager>().Length > 1)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                AudioManager.instance = this;
+            }
+
+            DontDestroyOnLoad(this);
+        }
 
         void Start()
         {
