@@ -30,7 +30,7 @@ public class Captain : MonoBehaviour {
     {
         if (coll.tag == "Player" && Input.GetButtonDown("Submit"))
         {
-            if (nut.GetComponent<Nut>().pickedUp)
+            if (nut != null && nut.GetComponent<Nut>().pickedUp)
             {
                 nutDelivered = true;
                 Destroy(nut);
