@@ -264,7 +264,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f63ed8f34a869514c835ec6ab0a840eb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spitcount: 4
+  spitcount: 0
 --- !u!1 &28769304
 GameObject:
   m_ObjectHideFlags: 0
@@ -2386,6 +2386,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   waterToPump: {fileID: 22625397}
   newWater: {fileID: 1980995222}
+  waterHeight: 0.315
   pumpDelay: 1
   wheel: {fileID: 520032040}
 --- !u!54 &311795599
@@ -5147,7 +5148,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ac02dda35cd19a84890eff2266f2fe34, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 42.413
+      value: 42.096
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: ac02dda35cd19a84890eff2266f2fe34, type: 3}
       propertyPath: m_LocalPosition.z
@@ -5189,7 +5190,8 @@ Prefab:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 9500000, guid: ac02dda35cd19a84890eff2266f2fe34, type: 3}
   m_ParentPrefab: {fileID: 100100000, guid: ac02dda35cd19a84890eff2266f2fe34, type: 3}
   m_IsPrefabParent: 0
 --- !u!1 &657857406
