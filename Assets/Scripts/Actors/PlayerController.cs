@@ -1,8 +1,6 @@
 ﻿using LotsOfTowers.Framework;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
-using LotsOfTowers.Animations;
 
 namespace LotsOfTowers.Actors
 {
@@ -14,14 +12,15 @@ namespace LotsOfTowers.Actors
 		private static readonly float InputDelay = 0.5f;
 
 		//The actual player with all the movement properties
-		private Player player;
-		private Transform mainCamera;
 		private BoxCollider box;
 		private CapsuleCollider capsule;
         private HeadsUpDisplayScript hudUi;
+        private Transform mainCamera;
+        private OnesieSwitchController onesieSwitchAnimation;
+        private Player player;
 
-		//Moving variables
-		private Vector3 movement;
+        //Moving variables
+        private Vector3 movement;
 		private float turnAmount;
 		private float forwardAmount;
 		private float movingTurnSpeed = 360;
@@ -35,6 +34,7 @@ namespace LotsOfTowers.Actors
 
 		private void Awake() {
 			this.mainCamera = Camera.main.transform;
+            this.onesieSwitchAnimation = GetComponentInChildren<OnesieSwitchController>();
 			this.player = GetComponent<Player>();
         }
 
@@ -52,18 +52,11 @@ namespace LotsOfTowers.Actors
 			if (switchDelay > 0) {
 				switchDelay -= Time.smoothDeltaTime;
 			}
-			else
-			{
-				//Stop switch animation
-				OnesieSwitchAnimation.Stop();
-			}
 
 			if ((onesie1 || onesie2 || onesie3) && switchDelay <= 0)
 			{
-				//Play switch animation
-				OnesieSwitchAnimation.Play();
-
-				//Switch to the selected onesie
+                //Switch to the selected onesie
+                onesieSwitchAnimation.Trigger();
 				player.SwitchOnesie(onesie1 ? 0 : (onesie2 ? 1 : 2));
                 switchDelay = InputDelay;
             }
