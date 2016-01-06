@@ -6,20 +6,21 @@ using LotsOfTowers.Audio;
 namespace LotsOfTowers.Framework
 {
 	public class HeadsUpDisplayScript : MonoBehaviour
-	{
-		private GameObject skillsUi;
+    {
+        private Sprite[] sprites;
         private Player player;
-        private AudioManager audioManager;
+        private GameObject skillsUi;
 
-		void Awake()
+		public void Awake()
 		{
-			skillsUi = GameObject.Find("Skills");
-            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-        }
-
-        void FixedUpdate()
-        {
-            ShowActiveSkill(player.Onesie.name);
+			this.skillsUi = GameObject.Find("Skills");
+            this.sprites = new Sprite[] {
+                Resources.Load<Sprite>("HUD/OnesieIdle"),
+                Resources.Load<Sprite>("HUD/OnesieElephant"),
+                Resources.Load<Sprite>("HUD/OnesieHamster"),
+                Resources.Load<Sprite>("HUD/OnesieDragon")
+            };
+            this.player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         }
 
         public void ShowActiveSkill(string _onesie)
@@ -27,18 +28,23 @@ namespace LotsOfTowers.Framework
             switch (_onesie)
             {
                 case "OnesieElephant":
-                    skillsUi.GetComponent<Image>().sprite = Resources.Load("HUD/OnesieElephant", typeof(Sprite)) as Sprite;
+                    skillsUi.GetComponent<Image>().sprite = sprites[1];
                     break;
                 case "OnesieDragon":
-                    skillsUi.GetComponent<Image>().sprite = Resources.Load("HUD/OnesieDragon", typeof(Sprite)) as Sprite;
+                    skillsUi.GetComponent<Image>().sprite = sprites[3];
                     break;
                 case "OnesieHamster":
-                    skillsUi.GetComponent<Image>().sprite = Resources.Load("HUD/OnesieHamster", typeof(Sprite)) as Sprite;
+                    skillsUi.GetComponent<Image>().sprite = sprites[2];
                     break;
                 default:
-                    skillsUi.GetComponent<Image>().sprite = Resources.Load("HUD/" + "OnesieIdle", typeof(Sprite)) as Sprite;
+                    skillsUi.GetComponent<Image>().sprite = sprites[0];
                     break;
             }
         }
-	}
+
+        public void Update()
+        {
+            ShowActiveSkill(player.Onesie.name);
+        }
+    }
 }
