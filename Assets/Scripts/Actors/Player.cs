@@ -104,17 +104,6 @@ namespace LotsOfTowers.Actors {
 				try {
 					currentOnesie = (currentOnesie == onesies[index]) ? defaultOnesie : onesies[index];
                     SetSkeleton(currentOnesie.name.Replace("Onesie", ""));
-
-                    // Ugly ass code, fix soon. (c) Axel
-                    if (currentOnesie.name.Replace("Onesie", "") == "Elephant")
-                    {
-                        AudioManager.Instance.PlaySoundeffect(AudioManager.Instance.onesieSwitchElephantSound);
-                    }
-                    else
-                    {
-                        AudioManager.Instance.PlaySoundeffect(AudioManager.Instance.onesieSwitchDefaultSound);
-                    }
-
 				} catch (Exception) { SetSkeleton("Default"); }
 			}
 		}

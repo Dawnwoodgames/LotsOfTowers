@@ -12,15 +12,15 @@ namespace LotsOfTowers.Framework
         private GameObject skillsUi;
 
 		public void Awake()
-		{
-			this.skillsUi = GameObject.Find("Skills");
+        {
+            this.player = FindObjectOfType<Player>();
+            this.skillsUi = GameObject.Find("HUD/Skills");
             this.sprites = new Sprite[] {
                 Resources.Load<Sprite>("HUD/OnesieIdle"),
                 Resources.Load<Sprite>("HUD/OnesieElephant"),
                 Resources.Load<Sprite>("HUD/OnesieHamster"),
                 Resources.Load<Sprite>("HUD/OnesieDragon")
             };
-            this.player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         }
 
         public void ShowActiveSkill(string _onesie)
