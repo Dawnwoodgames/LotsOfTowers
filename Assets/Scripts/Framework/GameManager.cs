@@ -79,7 +79,8 @@ namespace LotsOfTowers
 			this.loadingScreen = new GameObject("Loading Screen", typeof(Image)).GetComponent<Image>();
 			this.loadingSpriteA = Resources.Load<Sprite>("UI/LoadingScreenLoading");
 			this.loadingSpriteB = Resources.Load<Sprite>("UI/LoadingScreenDone");
-		}
+            Instantiate(Resources.Load("Prefabs/AudioManager"));
+        }
 
 		public void FadeIn() {
 			StopAllCoroutines();

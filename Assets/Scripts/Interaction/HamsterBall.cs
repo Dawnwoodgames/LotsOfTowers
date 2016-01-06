@@ -42,30 +42,13 @@ namespace LotsOfTowers.Interaction
 			}
 			else if (playerIsNear && Input.GetButtonDown("Submit"))
 			{
+                ball.tag = "HamsterBall";
 				player.transform.parent = transform;
 				player.GetComponent<CapsuleCollider>().enabled = false;
 				player.GetComponent<Rigidbody>().useGravity = false;
 				playerInside = true;
 				rb.isKinematic = false;
 				playerIsNear = false;
-
-				ChangeTags();
-			}
-		}
-
-		private void ChangeTags()
-		{
-			//Switch ball tags
-			switch (ball.tag)
-			{
-				case "Player" :
-					ball.tag = "HamsterBall";
-					break;
-				case "HamsterBall":
-					ball.tag = "Player";
-					break;
-				default:
-					break;
 			}
 		}
 
@@ -81,7 +64,8 @@ namespace LotsOfTowers.Interaction
 
 		private void ExitHamsterBall()
 		{
-			player.transform.position = new Vector3(ball.transform.position.x, ball.transform.position.y + 1.5f, ball.transform.position.z);
+            ball.tag = "Untagged";
+            player.transform.position = new Vector3(ball.transform.position.x, ball.transform.position.y + 1.5f, ball.transform.position.z);
             player.transform.localScale = new Vector3(1, 1, 1);
             focusView.GetComponent<CameraFollowScript>().SetCameraFocus(player);
 			playerInside = false;

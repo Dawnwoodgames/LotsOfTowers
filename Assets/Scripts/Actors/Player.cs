@@ -16,9 +16,7 @@ namespace LotsOfTowers.Actors {
 		private Onesie[] onesies;
 		private List<GameObject> particleSystems;
 		private List<Skeleton> skeletons;
-
-        private AudioManager audioManager;
-
+        
 		public Animator Animator {
 			get { return currentSkeleton.GetComponent<Animator>(); }
 		}
@@ -79,7 +77,6 @@ namespace LotsOfTowers.Actors {
 				.Where(t => t.GetComponent<ParticleSystem>() != null)
 				.Select(t => t.gameObject).ToList();
 			this.skeletons = GetComponentsInChildren<Skeleton>().ToList();
-            audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
 		}
 
 		public void ResetRenderers() {
@@ -107,17 +104,6 @@ namespace LotsOfTowers.Actors {
 				try {
 					currentOnesie = (currentOnesie == onesies[index]) ? defaultOnesie : onesies[index];
                     SetSkeleton(currentOnesie.name.Replace("Onesie", ""));
-
-                    // Ugly ass code, fix soon. (c) Axel
-                    if (currentOnesie.name.Replace("Onesie", "") == "Elephant")
-                    {
-                        audioManager.PlaySoundeffect(audioManager.onesieSwitchElephantSound);
-                    }
-                    else
-                    {
-                        audioManager.PlaySoundeffect(audioManager.onesieSwitchDefaultSound);
-                    }
-
 				} catch (Exception) { SetSkeleton("Default"); }
 			}
 		}

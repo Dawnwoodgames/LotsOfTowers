@@ -26,7 +26,7 @@ namespace LotsOfTowers.UI
             {
                 if(col.name == "Elephant")
                 {
-                    dialogueObject.GetComponent<Text>().text = dialogueText;
+                    dialogueObject.GetComponent<Text>().text = dialogueText.Localize();
                     StartCoroutine(hideText());
                     triggered = true;
                 }
@@ -35,7 +35,7 @@ namespace LotsOfTowers.UI
             {
                 if (col.tag == "Player" && !triggered)
                 {
-                    dialogueObject.GetComponent<Text>().text = dialogueText;
+                    dialogueObject.GetComponent<Text>().text = dialogueText.Localize();
                     StartCoroutine(hideText());
                     triggered = true;
                 }
@@ -44,7 +44,7 @@ namespace LotsOfTowers.UI
 
         private void clearText()
         {
-            if(dialogueObject.GetComponent<Text>().text == dialogueText)
+            if(dialogueObject.GetComponent<Text>().text == dialogueText.Localize())
             {
                 dialogueObject.GetComponent<Text>().text = "";
             }

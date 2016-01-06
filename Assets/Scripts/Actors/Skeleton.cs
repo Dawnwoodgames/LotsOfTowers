@@ -4,7 +4,7 @@ namespace LotsOfTowers.Actors {
 	[RequireComponent(typeof(Animator))]
 	public class Skeleton : MonoBehaviour {
 		private Animator animator;
-		private SkinnedMeshRenderer renderer;
+		private new SkinnedMeshRenderer renderer;
 
 		public Animator Animator {
 			get { return animator; }

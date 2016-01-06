@@ -9,6 +9,7 @@ namespace LotsOfTowers.Interaction
 {
     public class BlowWind : MonoBehaviour
     {
+        public float interval = 0f;
         public float force = 50f;
         public Direction direction = Direction.Forward;
 
@@ -20,13 +21,15 @@ namespace LotsOfTowers.Interaction
 
         private GameObject block;
         private GameObject player;
+        private bool isBlowing = true;
+        private float nextBlow;
 
-        private ParticleSystem windParticles; // We can use this to maybe stop the windparticles at the block?
+        public ParticleSystem windParticles; // We can use this to maybe stop the windparticles at the block?
 
         void Start()
         {
             DetermineDirection();
-
+            nextBlow = Time.time;
             block = GameObject.FindGameObjectWithTag("MovableByWind");
             player = GameObject.FindGameObjectWithTag("Player");
 
@@ -34,9 +37,25 @@ namespace LotsOfTowers.Interaction
         
         void FixedUpdate()
         {
+            CheckBlowing();
             hasBlock = false;
             checkCollisions();
             Wind();
+        }
+
+        private void CheckBlowing()
+        {
+            if (interval > 0)
+            {
+                if (Time.time > nextBlow)
+                {
+                    isBlowing = !isBlowing;
+                    windParticles.loop = isBlowing;
+                    if (isBlowing)
+                        windParticles.Play();
+                    nextBlow = Time.time + interval;
+                }
+            }
         }
 
         //
@@ -53,7 +72,7 @@ namespace LotsOfTowers.Interaction
 
         private void Wind()
         {
-            if (active)
+            if (active && isBlowing)
             {
                 block.GetComponent<Rigidbody>().AddForce(dir * force, ForceMode.Acceleration);
                 if (!hasBlock)

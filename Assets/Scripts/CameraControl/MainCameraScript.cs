@@ -3,6 +3,7 @@ using System.Collections;
 
 public class MainCameraScript : MonoBehaviour
 {
+    private float cameraSensitivity;
 	private Transform centerFocus;
 	public float degree;
 	public float verticalDegree;
@@ -10,8 +11,9 @@ public class MainCameraScript : MonoBehaviour
 
 
 	// Use this for initialization
-	void Start()
+	public void Start()
 	{
+        cameraSensitivity = PlayerPrefs.GetFloat("CameraSensitivity", 2f);
 		centerFocus = GameObject.Find("CenterFocus").transform;
 		verticalDegree = 30;
 	}
@@ -20,12 +22,16 @@ public class MainCameraScript : MonoBehaviour
 	{
 		// Rotate controls
 		if (Input.GetButtonDown("LeftBumper")) {
-			degree = Mathf.Round(degree / 90) * 90 + 90;
+			//degree = Mathf.Round(degree / 90) * 90 + 90;
 		} else if (Input.GetButtonDown("RightBumper")) {
-			degree = Mathf.Round(degree / 90) * 90 - 90;
-		} else if (Input.GetMouseButton(1)) {
-			degree += Input.GetAxis("Mouse X");
-		}
+			//degree = Mathf.Round(degree / 90) * 90 - 90;
+		} else if (Input.GetMouseButton(0)) {
+			degree += Input.GetAxis("Mouse X") * cameraSensitivity * 1.2f;
+		} else if (Input.GetAxis("RightJoystick") != 0) {
+            degree += Input.GetAxis("RightJoystick") * cameraSensitivity;
+        }
+
+
 		degree = degree % 360;
 
 		//Set rotation to next degree with a slight lerp
