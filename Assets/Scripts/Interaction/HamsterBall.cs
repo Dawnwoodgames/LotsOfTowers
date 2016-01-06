@@ -65,16 +65,20 @@ namespace LotsOfTowers.Interaction
 		private void ExitHamsterBall()
 		{
             ball.tag = "Untagged";
-            player.transform.position = new Vector3(ball.transform.position.x, ball.transform.position.y + 1.5f, ball.transform.position.z);
+            playerInside = false;
+
+            player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 2f, player.transform.position.z);
             player.transform.localScale = new Vector3(1, 1, 1);
             focusView.GetComponent<CameraFollowScript>().SetCameraFocus(player);
-			playerInside = false;
+			
 			ball.GetComponent<Rigidbody>().isKinematic = true;
+
 			player.transform.parent = null;
 			player.GetComponent<Rigidbody>().useGravity = true;
 			player.GetComponent<CapsuleCollider>().enabled = true;
+
 			transform.position = ball.transform.position;
-			ball.transform.position = transform.position;
+        	ball.transform.position = transform.position;
 		}
 
 		private void OnTriggerStay(Collider coll)
