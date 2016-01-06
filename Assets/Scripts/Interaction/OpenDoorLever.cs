@@ -9,6 +9,7 @@ namespace LotsOfTowers.Interaction
     public class OpenDoorLever : MonoBehaviour
     {
         public GameObject targetDoor;
+        public GameObject wind;
 
         public float targetX;
         public float targetY;
@@ -60,6 +61,7 @@ namespace LotsOfTowers.Interaction
         {
             targetDoor.transform.localPosition = new Vector3(targetX, targetY, targetZ); // Move position
             targetDoor.transform.Rotate(new Vector3(0, 90, 0)); // Rotate, so it `opens`
+            wind.transform.position = new Vector3(transform.position.x, transform.position.y, 26);
             doorOpen = true;
         }
 
@@ -67,6 +69,7 @@ namespace LotsOfTowers.Interaction
         {
             targetDoor.transform.position = new Vector3(defaultX, defaultY, defaultZ); // Move position
             targetDoor.transform.Rotate(new Vector3(0, 90, 0)); // Rotate, so it `closes`
+            wind.transform.position = new Vector3(transform.position.x, transform.position.y, 11.75f);
             doorOpen = false;
         }
 
