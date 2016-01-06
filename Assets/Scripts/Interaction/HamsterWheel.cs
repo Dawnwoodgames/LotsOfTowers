@@ -7,6 +7,7 @@ namespace LotsOfTowers.Interaction
 	{
 		public GameObject waterToPump;
 		public GameObject newWater;
+		public float waterHeight = 0.315f;
 		private float newHeight = 0f;
 		private Vector3 defaultPosition;
 		private bool pumping;
@@ -26,11 +27,11 @@ namespace LotsOfTowers.Interaction
 		{
 			if (nextPump < Time.time && pumping && waterToPump.GetComponent<HamsterWater>().spitcount > 0)
 			{
-				newHeight += 0.63f;
+				newHeight += waterHeight;
 				nextPump = Time.time + pumpDelay;
 				waterToPump.GetComponent<HamsterWater>().spitcount -= 1;
 
-                nut.transform.position = new Vector3(nut.transform.position.x, nut.transform.position.y + 1.29f, nut.transform.position.z);
+                nut.transform.position = new Vector3(nut.transform.position.x, nut.transform.position.y + 0.645f, nut.transform.position.z);
                 if (waterToPump.GetComponent<HamsterWater>().spitcount <= 0)
                 {
                     nut.GetComponent<Rigidbody>().useGravity = true;
