@@ -1,6 +1,5 @@
 ﻿using LotsOfTowers.Framework;
 using SmartLocalization;
-using UnityEngine;
 
 namespace LotsOfTowers
 {
@@ -14,9 +13,9 @@ namespace LotsOfTowers
 		}
 
 		/// <summary>
-        /// Localizes a string, ex: string.to.localize.Localize()
+        /// Localizes a string by its key, e.g.: "string.to.localize".Localize()
         /// </summary>
-        /// <param name="str">string to localize</param>
+        /// <param name="str">key of the string to localize</param>
         /// <returns>localized string</returns>
 		public static string Localize(this string str)
 		{
