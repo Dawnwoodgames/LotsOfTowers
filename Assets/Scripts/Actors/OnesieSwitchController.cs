@@ -7,10 +7,12 @@ namespace LotsOfTowers.Actors
     public sealed class OnesieSwitchController : MonoBehaviour
     {
         private new GameObject camera;
+		private GameObject player;
 
         public void Awake()
         {
             this.camera = GameObject.Find("CenterFocus");
+			player = GameObject.FindGameObjectWithTag("Player");
         }
 
         public void Trigger()
@@ -20,7 +22,10 @@ namespace LotsOfTowers.Actors
 
         public void Update()
         {
-            this.transform.rotation = camera.transform.rotation;
+			//float cameraDistance = Vector3.Distance(Camera.main.transform.position, player.transform.position);
+			transform.parent.transform.rotation = camera.transform.localRotation;
+
+            transform.rotation = camera.transform.rotation;
         }
     }
 }
