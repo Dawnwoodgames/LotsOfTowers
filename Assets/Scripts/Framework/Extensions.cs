@@ -1,5 +1,6 @@
 ﻿using LotsOfTowers.Framework;
 using SmartLocalization;
+using UnityEngine;
 
 namespace LotsOfTowers
 {
@@ -12,13 +13,15 @@ namespace LotsOfTowers
 			GameManager.Instance.Language = GameManager.Instance.Language;
 		}
 
-		// Usage:
-		// string s = "tooltips.jump.title";
-		// s.Localize();
+		/// <summary>
+        /// Localizes a string, ex: string.to.localize.Localize()
+        /// </summary>
+        /// <param name="str">string to localize</param>
+        /// <returns>localized string</returns>
 		public static string Localize(this string str)
 		{
 			string localized = LanguageManager.Instance.GetTextValue(str);
-			return localized == null ? str : localized;
+			return localized == null || localized == "" ? str : localized;
 		}
 	}
 }
