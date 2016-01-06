@@ -29,10 +29,10 @@ namespace LotsOfTowers.Framework
                 case "OnesieElephant":
                     skillsUi.GetComponent<Image>().sprite = Resources.Load("HUD/OnesieElephant", typeof(Sprite)) as Sprite;
                     break;
-                case "Dragon":
+                case "OnesieDragon":
                     skillsUi.GetComponent<Image>().sprite = Resources.Load("HUD/OnesieDragon", typeof(Sprite)) as Sprite;
                     break;
-                case "Hamster":
+                case "OnesieHamster":
                     skillsUi.GetComponent<Image>().sprite = Resources.Load("HUD/OnesieHamster", typeof(Sprite)) as Sprite;
                     break;
                 default:
