@@ -6,9 +6,12 @@ namespace LotsOfTowers.Interaction
 {
     public class BrokenHamsterwheel : MonoBehaviour
     {
+        public float maxDamage = 6.5f;
+
         private HamsterWheel wheel;
         private Player player;
         private float damage = 0;
+        
         private bool broken = false;
         
         void Start()
@@ -19,16 +22,16 @@ namespace LotsOfTowers.Interaction
 
         void FixedUpdate()
         {
-            if (wheel.GetRotateSpeed() > 4 && wheel.GetIsPlayerRunning() &&!broken)
+            if (wheel.GetRotateSpeed() > (maxDamage / 2) && wheel.GetIsPlayerRunning() &&!broken)
             {
                 damage += 1 * Time.deltaTime;
-                if (damage > 4)
+                if (damage > (maxDamage / 2))
                 {
                     transform.Rotate(new Vector3(.3f, 0));
-                    if (damage > 5)
+                    if (damage > (maxDamage / 4))
                     {
                         transform.Rotate(new Vector3(.6f, 0));
-                        if (damage > 6.5)
+                        if (damage > maxDamage)
                         {
                             GameObject.Find("Water").GetComponent<WaterHole>().waterRising = false;
                             transform.Rotate(new Vector3(1f, 0));
