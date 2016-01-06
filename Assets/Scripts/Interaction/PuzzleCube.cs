@@ -47,8 +47,7 @@ namespace LotsOfTowers.Interaction
 				col.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
 			}
 		}
-
-
+        
 		private void ActivateFloatingFloor()
 		{
 			foreach (Transform child in transform)
