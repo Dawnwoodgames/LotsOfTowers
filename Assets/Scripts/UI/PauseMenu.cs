@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 namespace LotsOfTowers.UI {
 	[RequireComponent(typeof(Canvas))]
@@ -24,6 +25,7 @@ namespace LotsOfTowers.UI {
 
 		public void Enable() {
 			canvas.enabled = true;
+            eventSystem.SetSelectedGameObject(GetComponentInChildren<Button>().gameObject);
 			GameManager.Instance.HideFader();
 			Time.timeScale = 0;
 		}
