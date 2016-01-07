@@ -55,9 +55,18 @@ namespace LotsOfTowers.Actors
 
 			if ((onesie1 || onesie2 || onesie3) && switchDelay <= 0)
 			{
+                int input = onesie1 ? 0 : (onesie2 ? 1 : 2);
+
+                if ((input == 0 && !player.HasOnesie(OnesieType.Elephant)) ||
+                    (input == 1 && !player.HasOnesie(OnesieType.Dragon)) ||
+                    (input == 2 && !player.HasOnesie(OnesieType.Hamster))) {
+                    // Player doesn't have onesie he/she is trying to switch to
+                    return;
+                }
+
                 //Switch to the selected onesie
                 onesieSwitchAnimation.Trigger();
-				player.SwitchOnesie(onesie1 ? 0 : (onesie2 ? 1 : 2));
+				player.SwitchOnesie(input);
                 switchDelay = InputDelay;
             }
 

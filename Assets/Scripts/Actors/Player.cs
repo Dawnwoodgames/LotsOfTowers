@@ -79,6 +79,19 @@ namespace LotsOfTowers.Actors {
 			this.skeletons = GetComponentsInChildren<Skeleton>().ToList();
 		}
 
+        public bool HasOnesie(OnesieType type)
+        {
+            foreach (Onesie onesie in onesies)
+            {
+                if (onesie != null && onesie.type == type)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
 		public void ResetRenderers() {
 			currentSkeleton.Renderer.enabled = true;
 			skeletons.Where(s => s != currentSkeleton).ToList().ForEach(s => s.Renderer.enabled = false);
