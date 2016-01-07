@@ -369,16 +369,16 @@ namespace LotsOfTowers.Interaction
 				elephant.transform.localPosition = elephantSecondPosition;
 			}
 
-			if (board.transform.eulerAngles.x < 20)
-			{
-				//Rotate board
-				board.transform.eulerAngles = new Vector3(board.transform.eulerAngles.x + 20 * Time.deltaTime, board.transform.eulerAngles.y, board.transform.eulerAngles.z);
-			}
-			else
-			{
+			//if (board.transform.eulerAngles.x < 20)
+			//{
+			//	//Rotate board
+			//	board.transform.eulerAngles = new Vector3(board.transform.eulerAngles.x + 20 * Time.deltaTime, board.transform.eulerAngles.y, board.transform.eulerAngles.z);
+			//}
+			//else
+			//{
 				board.GetComponent<Rigidbody>().isKinematic = false;
                 playerController.EnableMovement();
-            }
+            //}
 		}
 		#endregion Elephant
 
