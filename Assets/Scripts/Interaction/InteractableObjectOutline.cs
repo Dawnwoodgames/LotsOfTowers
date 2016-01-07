@@ -40,8 +40,8 @@ namespace LotsOfTowers.Interaction
         private void HighlightArea()
         {
             color = rend.material.color;
-            color.b = Mathf.Sin(Time.realtimeSinceStartup) / 2 + .5f;
-            color.g = Mathf.Sin(Time.realtimeSinceStartup) / 2 + .5f;
+            color.b = Mathf.Sin(Time.realtimeSinceStartup * 2) / 2 + .5f;
+            color.g = Mathf.Sin(Time.realtimeSinceStartup * 2) / 2 + .5f;
             rend.material.color = color;
         }
     }
