@@ -14,7 +14,8 @@ namespace LotsOfTowers.Interaction
 		private Rigidbody rb;
 		private float hMove, vMove;
 		private float movementSpeed = 8f;
-		private bool playerIsNear, playerInside = false;
+		private bool playerIsNear = false;
+		public bool playerInside = false;
 
 		void Start()
 		{
@@ -36,9 +37,6 @@ namespace LotsOfTowers.Interaction
 
 				Vector3 movement = new Vector3(hMove, 0f, vMove);
 				Move(movement);
-
-				if (Input.GetButtonDown("Submit"))
-					ExitHamsterBall();
 			}
 			else if (playerIsNear && Input.GetButtonDown("Submit"))
 			{
@@ -60,27 +58,6 @@ namespace LotsOfTowers.Interaction
 			movement = transform.InverseTransformDirection(movement);
 
 			rb.AddForce(movement * movementSpeed);
-		}
-
-		private void ExitHamsterBall()
-		{
-            ball.tag = "Untagged";
-            playerInside = false;
-
-            Debug.Log(player.transform.position);
-
-            player.transform.position = new Vector3(ball.transform.position.x, ball.transform.position.y + 2.5f, ball.transform.position.z);
-            player.transform.localScale = new Vector3(1, 1, 1);
-            focusView.GetComponent<CameraFollowScript>().SetCameraFocus(player);
-			
-			ball.GetComponent<Rigidbody>().isKinematic = true;
-
-			player.transform.parent = null;
-			player.GetComponent<Rigidbody>().useGravity = true;
-			player.GetComponent<CapsuleCollider>().enabled = true;
-
-			transform.position = ball.transform.position;
-        	ball.transform.position = transform.position;
 		}
 
 		private void OnTriggerStay(Collider coll)
