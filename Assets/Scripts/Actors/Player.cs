@@ -116,6 +116,7 @@ namespace LotsOfTowers.Actors {
 			if (index > -1 && index < 3 && onesies[index] != null) {
 				try {
 					currentOnesie = (currentOnesie == onesies[index]) ? defaultOnesie : onesies[index];
+                    AudioManager.Instance.PlaySoundeffect(AudioManager.Instance.GetOnesieSwitchSound(currentOnesie.name));
                     SetSkeleton(currentOnesie.name.Replace("Onesie", ""));
 				} catch (Exception) { SetSkeleton("Default"); }
 			}
