@@ -373,13 +373,12 @@ namespace LotsOfTowers.Interaction
 			{
 				//Rotate board
 				board.transform.eulerAngles = new Vector3(board.transform.eulerAngles.x + 20 * Time.deltaTime, board.transform.eulerAngles.y, board.transform.eulerAngles.z);
-
-				playerController.EnableMovement();
 			}
 			else
 			{
 				board.GetComponent<Rigidbody>().isKinematic = false;
-			}
+                playerController.EnableMovement();
+            }
 		}
 		#endregion Elephant
 
