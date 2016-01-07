@@ -347,13 +347,14 @@ namespace LotsOfTowers.Interaction
 						elephantJumpFinished = true;
 					}
 					ElephantJumpLerp();
-				}
+                    playerController.DisableMovement(); // Disable the player controller. This is a controlled event
+                }
 				else
 				{
 					if (boardStartTrigger.isPlayerOnTrigger() && !boardEndTrigger.isElephantOnTrigger())
 					{
 						SetElephantJumpStartValues();
-						playerController.DisableMovement(); // Disable the player controller. This is a controlled event
+						
 					}
 				}
 			}
