@@ -19,6 +19,7 @@ namespace LotsOfTowers.Actors {
 	public enum OnesieType {
 		Human,
 
+        Dragon,
 		Elephant,
 		Hamster
 	}

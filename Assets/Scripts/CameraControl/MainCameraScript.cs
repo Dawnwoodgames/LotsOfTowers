@@ -21,11 +21,7 @@ public class MainCameraScript : MonoBehaviour
 	public void Update()
 	{
 		// Rotate controls
-		if (Input.GetButtonDown("LeftBumper")) {
-			//degree = Mathf.Round(degree / 90) * 90 + 90;
-		} else if (Input.GetButtonDown("RightBumper")) {
-			//degree = Mathf.Round(degree / 90) * 90 - 90;
-		} else if (Input.GetMouseButton(0)) {
+		if (Input.GetMouseButton(0) || Input.GetMouseButton(1)) {
 			degree += Input.GetAxis("Mouse X") * cameraSensitivity * 1.2f;
 		} else if (Input.GetAxis("RightJoystick") != 0) {
             degree += Input.GetAxis("RightJoystick") * cameraSensitivity;
