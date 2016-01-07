@@ -67,7 +67,9 @@ namespace LotsOfTowers.Interaction
             ball.tag = "Untagged";
             playerInside = false;
 
-            player.transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 2f, player.transform.position.z);
+            Debug.Log(player.transform.position);
+
+            player.transform.position = new Vector3(ball.transform.position.x, ball.transform.position.y + 2.5f, ball.transform.position.z);
             player.transform.localScale = new Vector3(1, 1, 1);
             focusView.GetComponent<CameraFollowScript>().SetCameraFocus(player);
 			

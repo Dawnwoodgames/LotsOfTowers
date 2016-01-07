@@ -1,13 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 using LotsOfTowers.Actors;
+using LotsOfTowers.Interaction.Triggers;
 
 namespace LotsOfTowers.Interaction
 {
     public class BrokenHamsterwheel : MonoBehaviour
     {
+        public GameObject rotateTrigger;
         public float maxDamage = 6.5f;
 
+        private WheelRotateTrigger rotateTriggerScript;
         private HamsterWheel wheel;
         private Player player;
         private float damage = 0;
@@ -17,12 +20,13 @@ namespace LotsOfTowers.Interaction
         void Start()
         {
             wheel = GetComponent<HamsterWheel>();
+            rotateTriggerScript = rotateTrigger.GetComponent<WheelRotateTrigger>();
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         }
 
         void FixedUpdate()
         {
-            if (wheel.GetRotateSpeed() > (maxDamage / 2) && wheel.GetIsPlayerRunning() &&!broken)
+            if (rotateTriggerScript.GetPlayerRunning() && !broken)
             {
                 damage += 1 * Time.deltaTime;
                 if (damage > (maxDamage / 2))
@@ -35,7 +39,7 @@ namespace LotsOfTowers.Interaction
                         {
                             GameObject.Find("Water").GetComponent<WaterHole>().waterRising = false;
                             transform.Rotate(new Vector3(1f, 0));
-                            if (player.Onesie.isElephant)
+                            if (player.Onesie.isHeavy)
                                 broken = true;
                         }
                     }

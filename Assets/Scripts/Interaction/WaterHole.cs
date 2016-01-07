@@ -1,21 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
+using LotsOfTowers.Interaction.Triggers;
 
 namespace LotsOfTowers.Interaction
 {
     public class WaterHole : MonoBehaviour
     {
+        public GameObject rotateTrigger;
         public HamsterWheel wheel;
         public GameObject bridge;
         public float raiseAmount = 240;
         public bool waterRising = true;
+
+        private WheelRotateTrigger rotateTriggerScript;
         private int raised = 0;
 
         private bool raiseWaterFromHamsterWheel = false;
 
         void FixedUpdate()
         {
-            if (wheel.GetIsPlayerRunning() && waterRising)
+            if (rotateTriggerScript.GetPlayerRunning() && waterRising)
                 transform.localScale += new Vector3(0, 1 * Time.deltaTime, 0);
 
             if (bridge.transform.position.y < (transform.position.y + (transform.localScale.y / 2)))
