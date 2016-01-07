@@ -38,6 +38,7 @@ namespace LotsOfTowers.Interaction.Triggers
 			float t0 = 0;
 			float t1 = 0;
 			float y0 = DownwardsObject.transform.position.y;
+            Vector3 startRotation = RotatingObject.transform.localEulerAngles;
 
 			while (t0 < Delay)
 			{
@@ -48,7 +49,7 @@ namespace LotsOfTowers.Interaction.Triggers
 
 			while (t1 < Duration)
 			{
-				t1 += Time.smoothDeltaTime;
+                t1 += Time.smoothDeltaTime;
 
 				if (t1 >= Duration)
 				{
@@ -58,7 +59,7 @@ namespace LotsOfTowers.Interaction.Triggers
 				else
 				{
 					DownwardsObject.transform.position = new Vector3(DownwardsObject.transform.position.x, y0 - (DownwardDistance * (t1 / Duration)), DownwardsObject.transform.position.z);
-					RotatingObject.transform.localEulerAngles = RotatingObject.transform.localEulerAngles - (Vector3.forward * 2);
+					RotatingObject.transform.localEulerAngles = RotatingObject.transform.localEulerAngles - (Vector3.forward * startRotation.z/Duration*Time.smoothDeltaTime);
 				}
 
 				yield return null;

@@ -79,6 +79,19 @@ namespace LotsOfTowers.Actors {
 			this.skeletons = GetComponentsInChildren<Skeleton>().ToList();
 		}
 
+        public bool HasOnesie(OnesieType type)
+        {
+            foreach (Onesie onesie in onesies)
+            {
+                if (onesie != null && onesie.type == type)
+                {
+                    return true;
+                }
+            }
+
+            return false;
+        }
+
 		public void ResetRenderers() {
 			currentSkeleton.Renderer.enabled = true;
 			skeletons.Where(s => s != currentSkeleton).ToList().ForEach(s => s.Renderer.enabled = false);
@@ -103,6 +116,7 @@ namespace LotsOfTowers.Actors {
 			if (index > -1 && index < 3 && onesies[index] != null) {
 				try {
 					currentOnesie = (currentOnesie == onesies[index]) ? defaultOnesie : onesies[index];
+                    AudioManager.Instance.PlaySoundeffect(AudioManager.Instance.GetOnesieSwitchSound(currentOnesie.name));
                     SetSkeleton(currentOnesie.name.Replace("Onesie", ""));
 				} catch (Exception) { SetSkeleton("Default"); }
 			}

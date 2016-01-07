@@ -97,6 +97,22 @@ namespace LotsOfTowers.Audio
             playing = false;
         }
 
+        public AudioClip GetOnesieSwitchSound(string onesieString)
+        {
+            if(onesieString.Contains("Elephant"))
+            {
+                return onesieSwitchElephantSound;
+            }
+            else if(onesieString.Contains("Hamster"))
+            {
+                return onesieSwitchHamsterSound;
+            }
+            else
+            {
+                return onesieSwitchDefaultSound;
+            }
+        }
+
         public void PlaySoundeffect(AudioClip sound)
         {
             soundEffects.GetComponent<AudioSource>().clip = sound;
