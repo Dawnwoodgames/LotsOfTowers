@@ -58,8 +58,8 @@ namespace LotsOfTowers.Actors
                 int input = onesie1 ? 0 : (onesie2 ? 1 : 2);
 
                 if ((input == 0 && !player.HasOnesie(OnesieType.Elephant)) ||
-                    (input == 1 && !player.HasOnesie(OnesieType.Dragon)) ||
-                    (input == 2 && !player.HasOnesie(OnesieType.Hamster))) {
+                    (input == 1 && !player.HasOnesie(OnesieType.Hamster)) ||
+                    (input == 2 && !player.HasOnesie(OnesieType.Dragon))) {
                     // Player doesn't have onesie he/she is trying to switch to
                     return;
                 }
