@@ -13,7 +13,7 @@ public class Nut : MonoBehaviour {
             {
                 Destroy(GetComponent<Rigidbody>());
                 this.gameObject.transform.SetParent(coll.transform);
-                this.gameObject.transform.localPosition = new Vector3(0, .08f, 0);
+                this.gameObject.transform.localPosition = new Vector3(0, 1.5f, 0);
                 pickedUp = true;
             }
 
