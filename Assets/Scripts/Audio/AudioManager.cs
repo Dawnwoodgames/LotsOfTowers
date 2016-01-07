@@ -116,7 +116,6 @@ namespace LotsOfTowers.Audio
         public void PlaySoundeffect(AudioClip sound)
         {
             soundEffects.GetComponent<AudioSource>().clip = sound;
-            Debug.Log(sound);
             soundEffects.GetComponent<AudioSource>().Play();
         }
     }
