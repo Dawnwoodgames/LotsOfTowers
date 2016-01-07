@@ -1775,6 +1775,7 @@ GameObject:
   - 23: {fileID: 362571682}
   - 54: {fileID: 362571681}
   - 114: {fileID: 362571685}
+  - 114: {fileID: 362571686}
   m_Layer: 0
   m_Name: Fracture3
   m_TagString: Fracture
@@ -1871,6 +1872,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resetPosition: {x: 3, y: 21, z: 1}
   resetIfBelow: -0.1
+--- !u!114 &362571686
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 362571679}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 056cbcc2bdd3b43458966477ad4a1cc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineWidth: 0.005
+  material: {fileID: 2100000, guid: d59dec74fb6da4b43a23f1458539675f, type: 2}
 --- !u!1 &362870001
 GameObject:
   m_ObjectHideFlags: 0
@@ -7873,11 +7887,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 409022, guid: 4d5d69b59f39a4e43a381b37bc52cfa1, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -2.24
+      value: -3.21
       objectReference: {fileID: 0}
     - target: {fileID: 409022, guid: 4d5d69b59f39a4e43a381b37bc52cfa1, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -11.25
+      value: -11.13
       objectReference: {fileID: 0}
     - target: {fileID: 409022, guid: 4d5d69b59f39a4e43a381b37bc52cfa1, type: 2}
       propertyPath: m_LocalRotation.x
@@ -8037,6 +8051,7 @@ GameObject:
   - 23: {fileID: 1007419045}
   - 54: {fileID: 1007419044}
   - 114: {fileID: 1007419048}
+  - 114: {fileID: 1007419049}
   m_Layer: 0
   m_Name: Fracture4
   m_TagString: Fracture
@@ -8133,6 +8148,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resetPosition: {x: 1, y: 21, z: 3}
   resetIfBelow: -0.1
+--- !u!114 &1007419049
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1007419042}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 056cbcc2bdd3b43458966477ad4a1cc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineWidth: 0.005
+  material: {fileID: 2100000, guid: d59dec74fb6da4b43a23f1458539675f, type: 2}
 --- !u!1 &1010177019
 GameObject:
   m_ObjectHideFlags: 0
@@ -8898,6 +8926,7 @@ GameObject:
   - 33: {fileID: 1201964493}
   - 23: {fileID: 1201964492}
   - 64: {fileID: 1201964491}
+  - 114: {fileID: 1201964494}
   m_Layer: 0
   m_Name: DuplicateDoor
   m_TagString: Untagged
@@ -8967,6 +8996,19 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1201964489}
   m_Mesh: {fileID: 4300000, guid: 43de5b24fd5605349bcff3259d84c3a3, type: 3}
+--- !u!114 &1201964494
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1201964489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 056cbcc2bdd3b43458966477ad4a1cc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineWidth: 0.01
+  material: {fileID: 2100000, guid: d59dec74fb6da4b43a23f1458539675f, type: 2}
 --- !u!1 &1209600932
 GameObject:
   m_ObjectHideFlags: 0
@@ -11350,6 +11392,7 @@ GameObject:
   - 23: {fileID: 1767387499}
   - 54: {fileID: 1767387498}
   - 114: {fileID: 1767387502}
+  - 114: {fileID: 1767387503}
   m_Layer: 0
   m_Name: Fracture1
   m_TagString: Fracture
@@ -11446,6 +11489,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resetPosition: {x: 2, y: 21, z: 1}
   resetIfBelow: -0.1
+--- !u!114 &1767387503
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1767387496}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 056cbcc2bdd3b43458966477ad4a1cc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineWidth: 0.005
+  material: {fileID: 2100000, guid: d59dec74fb6da4b43a23f1458539675f, type: 2}
 --- !u!1 &1778430631
 GameObject:
   m_ObjectHideFlags: 0
@@ -12764,6 +12820,7 @@ GameObject:
   - 23: {fileID: 2056295761}
   - 54: {fileID: 2056295760}
   - 114: {fileID: 2056295764}
+  - 114: {fileID: 2056295765}
   m_Layer: 0
   m_Name: Fracture2
   m_TagString: Fracture
@@ -12860,6 +12917,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   resetPosition: {x: 1, y: 21, z: 2}
   resetIfBelow: -0.1
+--- !u!114 &2056295765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2056295758}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 056cbcc2bdd3b43458966477ad4a1cc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineWidth: 0.005
+  material: {fileID: 2100000, guid: d59dec74fb6da4b43a23f1458539675f, type: 2}
 --- !u!1 &2068956655
 GameObject:
   m_ObjectHideFlags: 0
