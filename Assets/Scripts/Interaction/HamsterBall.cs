@@ -37,7 +37,6 @@ namespace LotsOfTowers.Interaction
 				hMove = Input.GetAxis("Horizontal");
 				vMove = Input.GetAxis("Vertical");
 				player.transform.position = new Vector3(ball.transform.position.x, ball.transform.position.y, ball.transform.position.z);
-				player.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
 				focusView.GetComponent<CameraFollowScript>().SetCameraFocus(ball);
 
 				Vector3 movement = new Vector3(hMove, 0f, vMove);
@@ -49,7 +48,9 @@ namespace LotsOfTowers.Interaction
 				player.transform.parent = transform;
 				player.GetComponent<CapsuleCollider>().enabled = false;
 				player.GetComponent<Rigidbody>().useGravity = false;
-				playerInside = true;
+                player.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
+                Destroy(GameObject.Find("TemporaryBlock"));
+                playerInside = true;
 				rb.isKinematic = false;
 				playerIsNear = false;
 			}
