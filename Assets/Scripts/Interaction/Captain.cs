@@ -20,7 +20,7 @@ namespace LotsOfTowers.Interaction
         void Start()
         {
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-            endMarker = new Vector3(transform.position.x + 2f, transform.position.y, transform.position.z);
+            endMarker = new Vector3(transform.position.x + 2f, transform.position.y, transform.position.z + 1f);
             nut = GameObject.Find("Nut");
             journeyLength = Vector3.Distance(transform.position, endMarker);
         }

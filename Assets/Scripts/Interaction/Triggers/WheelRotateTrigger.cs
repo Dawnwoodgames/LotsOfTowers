@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using LotsOfTowers.Actors;
 using System.Collections;
 
 namespace LotsOfTowers.Interaction.Triggers
@@ -10,7 +11,8 @@ namespace LotsOfTowers.Interaction.Triggers
 
         private void OnTriggerStay(Collider coll)
         {
-            playerRunning = true;
+            if (coll.tag == "Player" && coll.GetComponent<Player>().Onesie.type == OnesieType.Hamster)
+                playerRunning = true;
         }
 
         private void OnTriggerExit()

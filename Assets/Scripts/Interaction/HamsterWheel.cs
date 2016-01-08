@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using LotsOfTowers.Actors;
 using System.Collections;
 
 namespace LotsOfTowers.Interaction
@@ -46,17 +47,17 @@ namespace LotsOfTowers.Interaction
 				wheel.transform.Rotate(new Vector3(5f,0,0));
 		}
 
-		void OnTriggerEnter(Collider other)
+		void OnTriggerEnter(Collider coll)
 		{
-			if (other.tag == "Player")
+			if (coll.tag == "Player" && coll.GetComponent<Player>().Onesie.type == OnesieType.Hamster)
 			{
 				pumping = true;
 			}
 		}
 
-		void OnTriggerExit(Collider other)
+		void OnTriggerExit(Collider coll)
 		{
-			if (other.tag == "Player")
+			if (coll.tag == "Player")
 				pumping = false;
 		}
 	}
