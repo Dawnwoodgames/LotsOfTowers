@@ -3886,10 +3886,10 @@ BoxCollider:
   m_GameObject: {fileID: 467563073}
   m_Material: {fileID: 0}
   m_IsTrigger: 0
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 2
-  m_Size: {x: 1.5, y: 1, z: 1}
-  m_Center: {x: -1.2, y: 1, z: 1}
+  m_Size: {x: 2, y: 1, z: 1}
+  m_Center: {x: -1.4, y: 1, z: 1}
 --- !u!114 &467563076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9993,54 +9993,6 @@ Transform:
   - {fileID: 917869208}
   m_Father: {fileID: 1753346321}
   m_RootOrder: 1
---- !u!1 &1110097389
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1110097390}
-  - 33: {fileID: 1110097392}
-  - 65: {fileID: 1110097391}
-  m_Layer: 0
-  m_Name: placementTrigger
-  m_TagString: Teleport
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1110097390
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1110097389}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.51, y: -2.34, z: 8.52}
-  m_LocalScale: {x: 0.16676992, y: 0.23241727, z: 0.20974009}
-  m_Children: []
-  m_Father: {fileID: 1443085982}
-  m_RootOrder: 7
---- !u!65 &1110097391
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1110097389}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 0.99999994, y: 1, z: 1}
-  m_Center: {x: 0, y: 0.0000076293945, z: 0}
---- !u!33 &1110097392
-MeshFilter:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1110097389}
-  m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
 --- !u!1 &1123079342
 GameObject:
   m_ObjectHideFlags: 0
@@ -12007,7 +11959,6 @@ Transform:
   - {fileID: 1753346321}
   - {fileID: 659080813}
   - {fileID: 847823354}
-  - {fileID: 1110097390}
   m_Father: {fileID: 283884691}
   m_RootOrder: 3
 --- !u!1 &1444085720
