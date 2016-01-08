@@ -13,6 +13,8 @@ namespace LotsOfTowers.Interaction
         private Rigidbody rigid;
         private MeshCollider meshColl;
 
+        private bool onPickupObject = false;
+
         void Start()
         {
             try
@@ -27,17 +29,33 @@ namespace LotsOfTowers.Interaction
                 throw;
             }
         }
+
         private void OnCollisionEnter(Collision col)
         {
+            if(col.gameObject.tag == "Player")
+            {
+                onPickupObject = true;
+            }
+        }
+        private void OnCollisionExit(Collision col)
+        {
             if (col.gameObject.tag == "Player")
+            {
+                onPickupObject = false;
+            }
+        }
+
+        private void OnTriggerEnter(Collider col)
+        {
+            if (col.tag == "Player")
             {
                 inTrigger = true;
             }
         }
 
-        private void OnCollisionExit(Collision col)
+        private void OnTriggerExit(Collider col)
         {
-            if (col.gameObject.tag == "Player")
+            if (col.tag == "Player")
             {
                 inTrigger = false;
             }
@@ -45,7 +63,7 @@ namespace LotsOfTowers.Interaction
 
         void Update()
         {
-            if (inTrigger)
+            if (inTrigger && !onPickupObject)
             {
                 if (Input.GetButton("Submit") && player.GetComponent<Player>().Onesie.type == OnesieType.Elephant)
                 {
@@ -56,7 +74,7 @@ namespace LotsOfTowers.Interaction
             //Move the object with the player if its picked up
             if (pickedUp)
             {
-                transform.position = Vector3.Lerp(transform.position, player.transform.position + Vector3.forward * 2.5f + Vector3.up * 0.5f, Time.deltaTime * smoothLerp);
+                transform.position = Vector3.Lerp(transform.position, player.transform.position + Vector3.up * 2.5f, Time.deltaTime * smoothLerp);
 
                 if (!rigid.isKinematic)
                 {
