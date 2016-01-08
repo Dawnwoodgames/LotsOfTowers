@@ -18,7 +18,6 @@ namespace LotsOfTowers.Interaction.Triggers
 			player = GameObject.FindGameObjectWithTag("Player");
 			ball = GameObject.Find("HamsterBall");
 			focusView = GameObject.Find("CenterFocus");
-			teleport = GameObject.FindGameObjectWithTag("Teleport");
 		}
 
 		void OnTriggerEnter(Collider coll)
