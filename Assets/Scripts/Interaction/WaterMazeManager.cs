@@ -8,6 +8,7 @@ namespace LotsOfTowers.Interaction {
 	public class WaterMazeManager : MonoBehaviour {
 		private GameObject exit;
 		private List<BuoyGateTrigger> gates;
+        private bool puzzleCompleted;
 		private bool respawnOnNext;
 
 		public bool testMode;
@@ -25,12 +26,39 @@ namespace LotsOfTowers.Interaction {
 			gates.Add(gate);
 		}
 
-		private IEnumerator OpenExit() {
-			while (exit.transform.rotation.eulerAngles.y > 100) {
-				exit.transform.Rotate(new Vector3(0, 10 * Time.smoothDeltaTime, 0));
-				yield return null;
-			}
-		}
+        private IEnumerator PuzzleClearedCoroutine()
+        {
+            List<GameObject> buoys = new List<GameObject>();
+            float t = 0;
+            GameObject water = GameObject.Find("WATERBAK_MID_FLOOR");
+            float waterHeight = water.transform.position.y;
+            float waterSize = water.transform.localScale.y;
+
+            // Destroy all Buoy scripts & BuoyGateTrigger GameObjects
+            FindObjectsOfType<Buoy>().ToList().ForEach( b => { buoys.Add(b.gameObject); Destroy(b); });
+            FindObjectsOfType<BuoyGateTrigger>().ToList().ForEach(b => Destroy(b.gameObject));
+
+            Vector3 buoySize = buoys.FirstOrDefault().transform.localScale;
+
+            while (t < 3)
+            {
+                t += Time.smoothDeltaTime;
+                if (t >= 3)
+                {
+                    buoys.ForEach(b => Destroy(b));
+                    Destroy(water);
+                }
+                else
+                {
+                    buoys.ForEach(b => b.transform.localScale = buoySize - (buoySize * t / 3));
+                    water.transform.localScale = new Vector3(water.transform.localScale.x, waterSize - (t / 3 * waterSize), water.transform.localScale.z);
+                    water.transform.position = new Vector3(water.transform.position.x, waterHeight - (t / 6 * waterSize), water.transform.position.z);
+                    yield return null;
+                }
+            }
+
+            Destroy(gameObject);
+        }
 
 		public void OnGUI() {
 			GUI.Label(new Rect(0, 0, Screen.width, Screen.height), "Maze progress: " + gates.Count + " / " + (testMode ? "1 - Watermaze test mode is enabled; only 1 gate needs to be cleared" : "22"));
@@ -45,9 +73,11 @@ namespace LotsOfTowers.Interaction {
 
 			if ((testMode && gates.Count > 0) || (!testMode && gates.Count == 22))
             {
-				FindObjectsOfType<Buoy>().ToList().ForEach(b => Destroy(b.gameObject));
-				FindObjectsOfType<BuoyGateTrigger>().ToList().ForEach(b => Destroy(b.gameObject));
-				StartCoroutine(OpenExit());
+                if (!puzzleCompleted)
+                {
+                    puzzleCompleted = true;
+                    StartCoroutine(PuzzleClearedCoroutine());
+                }
             }
 		}
 	}
