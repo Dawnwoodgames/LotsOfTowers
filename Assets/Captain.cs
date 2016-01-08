@@ -1,40 +1,64 @@
 ﻿using UnityEngine;
+using LotsOfTowers.Actors;
 using System.Collections;
 
-public class Captain : MonoBehaviour {
-
-    private GameObject nut;
-    private bool nutDelivered = false;
-    private Vector3 endMarker;
-    private float speed = 1f;
-    private float startTime;
-    private float journeyLength;
-
-	void Start () {
-        endMarker = new Vector3(transform.position.x + 2f, transform.position.y, transform.position.z);
-        nut = GameObject.Find("Nut");
-        journeyLength = Vector3.Distance(transform.position, endMarker);
-	}
-	
-	void Update () {
-        if (nutDelivered)
-        {
-            float distCovered = (Time.time - startTime) * speed;
-            float fracJourney = distCovered / journeyLength;
-            transform.position = Vector3.Lerp(transform.position, endMarker, fracJourney);
-        }
-	
-	}
-
-    private void OnTriggerStay(Collider coll)
+namespace LotsOfTowers.Interaction
+{
+    public class Captain : MonoBehaviour
     {
-        if (coll.tag == "Player" && Input.GetButtonDown("Submit"))
+        public Onesie hamsterOnesie;
+
+        private Player player;
+        private GameObject nut;
+        private bool nutDelivered = false;
+        private Vector3 endMarker;
+        private float speed = 1f;
+        private float startTime;
+        private float journeyLength;
+        private bool firstInteraction = true;
+
+        void Start()
         {
-            if (nut != null && nut.GetComponent<Nut>().pickedUp)
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+            endMarker = new Vector3(transform.position.x + 2f, transform.position.y, transform.position.z);
+            nut = GameObject.Find("Nut");
+            journeyLength = Vector3.Distance(transform.position, endMarker);
+        }
+
+        void Update()
+        {
+            if (nutDelivered)
             {
-                nutDelivered = true;
-                Destroy(nut);
-                startTime = Time.time;
+                float distCovered = (Time.time - startTime) * speed;
+                float fracJourney = distCovered / journeyLength;
+                transform.position = Vector3.Lerp(transform.position, endMarker, fracJourney);
+            }
+        }
+
+        private void OnTriggerStay(Collider coll)
+        {
+            /*
+            First interaction with the Captain
+            Gives Hamster Onesie
+            */
+            if (coll.tag == "Player" && Input.GetButtonDown("Submit") && firstInteraction)
+            {
+                player.GetComponent<Player>().AddOnesieToFirstFreeSlot(hamsterOnesie);
+                firstInteraction = false;
+            }
+
+            /*
+            Second interaction with the Captain
+            If nut is equipped, Captain will move aside
+            */
+            if (coll.tag == "Player" && Input.GetButtonDown("Submit") && !firstInteraction)
+            {
+                if (nut != null && nut.GetComponent<Nut>().pickedUp)
+                {
+                    nutDelivered = true;
+                    Destroy(nut);
+                    startTime = Time.time;
+                }
             }
         }
     }
