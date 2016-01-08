@@ -1,4 +1,5 @@
 ﻿using LotsOfTowers.Actors;
+using LotsOfTowers.Interaction;
 using LotsOfTowers.UI;
 using SmartLocalization;
 using System;
@@ -212,7 +213,12 @@ namespace LotsOfTowers
 		}
 
 		private IEnumerator PlayerPassOutAndRespawnCoroutine(Transform spawnPoint) {
+            HamsterBall ball = FindObjectOfType<HamsterBall>();
+
 			if (player != null && playerController != null) {
+                if (ball != null || ball.playerInside) {
+                    ball.enabled = false;
+                }
 				playerController.enabled = false;
 
 				while (!hasStarted) {
@@ -229,7 +235,12 @@ namespace LotsOfTowers
 					yield return null;
 				}
 
-				player.transform.position = spawnPoint.position;
+                if (ball != null || ball.playerInside)
+                {
+                    ball.Ball.transform.position = spawnPoint.position;
+                    ball.Ball.transform.rotation = spawnPoint.rotation;
+                }
+                player.transform.position = spawnPoint.position;
 				player.transform.rotation = spawnPoint.rotation;
 
 				while (fader.color.a > 0.01f) {
@@ -243,7 +254,11 @@ namespace LotsOfTowers
 				}
 
 				playerController.enabled = true;
-			}
+                if (ball != null || ball.playerInside)
+                {
+                    ball.enabled = true;
+                }
+            }
 		}
 
 		public void Quit() {

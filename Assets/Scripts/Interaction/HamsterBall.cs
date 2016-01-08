@@ -17,6 +17,11 @@ namespace LotsOfTowers.Interaction
 		private bool playerIsNear = false;
 		public bool playerInside = false;
 
+        public GameObject Ball
+        {
+            get { return ball; }
+        }
+
 		void Start()
 		{
 			player = GameObject.FindGameObjectWithTag("Player");
