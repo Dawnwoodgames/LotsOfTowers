@@ -11,7 +11,7 @@ namespace LotsOfTowers.Interaction
         public float maxDamage = 6.5f;
 
         private WheelRotateTrigger rotateTriggerScript;
-        private HamsterWheel wheel;
+        //private HamsterWheel wheel;
         private Player player;
         private float damage = 0;
         
@@ -19,7 +19,7 @@ namespace LotsOfTowers.Interaction
         
         void Start()
         {
-            wheel = GetComponent<HamsterWheel>();
+            //wheel = GetComponent<HamsterWheel>();
             rotateTriggerScript = rotateTrigger.GetComponent<WheelRotateTrigger>();
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
         }

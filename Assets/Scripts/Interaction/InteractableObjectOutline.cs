@@ -13,8 +13,8 @@ namespace LotsOfTowers.Interaction
         private Material newMaterial;
         private Color color;
         private float distance;
-        private float duration = 1f;
-        private float amplitude = 1f;
+        //private float duration = 1f;
+        //private float amplitude = 1f;
 
         void Awake()
         {

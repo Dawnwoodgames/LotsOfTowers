@@ -12,7 +12,7 @@ namespace LotsOfTowers.Interaction
         public float raiseAmount = 240;
         public bool waterRising = true;
 
-        private WheelRotateTrigger rotateTriggerScript;
+        public WheelRotateTrigger rotateTriggerScript;
         private int raised = 0;
 
         private bool raiseWaterFromHamsterWheel = false;
