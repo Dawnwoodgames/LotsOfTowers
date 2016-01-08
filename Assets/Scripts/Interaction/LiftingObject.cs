@@ -4,73 +4,91 @@ using LotsOfTowers.Actors;
 
 namespace LotsOfTowers.Interaction
 {
-	public class LiftingObject : MonoBehaviour
-	{
-		private bool pickedUp;
-		private bool inTrigger = false;
-		private Transform player;
-		private float smoothLerp = 5;
-		private Rigidbody rigid;
-		private MeshCollider meshColl;
+    public class LiftingObject : MonoBehaviour
+    {
+        private bool pickedUp;
+        private bool inTrigger = false;
+        private Transform player;
+        private float smoothLerp = 5;
+        private Rigidbody rigid;
+        private MeshCollider meshColl;
 
-		void Start()
-		{
-			try
-			{
-				player = GameObject.FindGameObjectWithTag("Player").transform;
-				rigid = GetComponent<Rigidbody>();
-				meshColl = GetComponent<MeshCollider>();
-			}
-			catch (System.Exception ex)
-			{
-				Logger.Log(ex);
-				throw;
-			}
-		}
-		private void OnCollisionEnter(Collision col)
-		{
-			if (col.gameObject.tag == "Player")
-			{
-				inTrigger = true;
-			}
-		}
+        private bool onPickupObject = false;
 
-		private void OnCollisionExit(Collision col)
-		{
-			if (col.gameObject.tag == "Player")
-			{
-				inTrigger = false;
-			}
-		}
+        void Start()
+        {
+            try
+            {
+                player = GameObject.FindGameObjectWithTag("Player").transform;
+                rigid = GetComponent<Rigidbody>();
+                meshColl = GetComponent<MeshCollider>();
+            }
+            catch (System.Exception ex)
+            {
+                Logger.Log(ex);
+                throw;
+            }
+        }
 
-		void Update()
-		{
-			if (inTrigger)
-			{
-				if (Input.GetButton("Submit") && player.GetComponent<Player>().Onesie.type == OnesieType.Elephant)
-				{
-					pickedUp = true;
-				}
-			}
+        private void OnCollisionEnter(Collision col)
+        {
+            if(col.gameObject.tag == "Player")
+            {
+                onPickupObject = true;
+            }
+        }
+        private void OnCollisionExit(Collision col)
+        {
+            if (col.gameObject.tag == "Player")
+            {
+                onPickupObject = false;
+            }
+        }
 
-			//Move the object with the player if its picked up
-			if (pickedUp)
-			{
-				transform.position = Vector3.Lerp(transform.position, player.transform.position + Vector3.up * 2.2f, Time.deltaTime * smoothLerp);
+        private void OnTriggerEnter(Collider col)
+        {
+            if (col.tag == "Player")
+            {
+                inTrigger = true;
+            }
+        }
 
-				if (!rigid.isKinematic)
-				{
-					rigid.isKinematic = true;
-					meshColl.isTrigger = true;
-				}
+        private void OnTriggerExit(Collider col)
+        {
+            if (col.tag == "Player")
+            {
+                inTrigger = false;
+            }
+        }
 
-				if (!Input.GetButton("Submit") || player.GetComponent<Player>().Onesie.type != OnesieType.Elephant)
-				{
-					pickedUp = false;
-					rigid.isKinematic = false;
-					meshColl.isTrigger = false;
-				}
-			}
-		}
-	}
+        void Update()
+        {
+            if (inTrigger && !onPickupObject)
+            {
+                if (Input.GetButton("Submit") && player.GetComponent<Player>().Onesie.type == OnesieType.Elephant)
+                {
+                    pickedUp = true;
+                }
+            }
+
+            //Move the object with the player if its picked up
+            if (pickedUp)
+            {
+                transform.position = Vector3.Lerp(transform.position, player.transform.position + Vector3.up * 2.5f, Time.deltaTime * smoothLerp);
+
+                if (!rigid.isKinematic)
+                {
+                    rigid.isKinematic = true;
+                    meshColl.isTrigger = true;
+                }
+
+                if (!Input.GetButton("Submit") || player.GetComponent<Player>().Onesie.type != OnesieType.Elephant)
+                {
+                    pickedUp = false;
+                    rigid.isKinematic = false;
+                    meshColl.isTrigger = false;
+                }
+            }
+        }
+    }
 }
