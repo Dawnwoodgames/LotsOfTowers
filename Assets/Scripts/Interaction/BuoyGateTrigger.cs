@@ -29,7 +29,14 @@ namespace LotsOfTowers.Interaction {
 			if (timer > 0) {
 				return;
 			}
-			manager.GateOpened (this, leftBuoy.Red || rightBuoy.Red);
+            try
+            {
+                manager.GateOpened(this, leftBuoy.Red || rightBuoy.Red);
+            }
+            catch (System.Exception)
+            {
+                manager.GateOpened(this, true);
+            }
 		}
 
 		public void OnTriggerExit(Collider coll) {
