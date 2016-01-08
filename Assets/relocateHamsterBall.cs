@@ -4,7 +4,7 @@ using System;
 using LotsOfTowers.CameraControl;
 using LotsOfTowers.Interaction;
 
-namespace LotsOfTower.Interaction.Triggers
+namespace LotsOfTowers.Interaction.Triggers
 {
 	public class relocateHamsterBall : MonoBehaviour
 	{
