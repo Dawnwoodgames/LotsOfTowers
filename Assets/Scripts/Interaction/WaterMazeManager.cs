@@ -47,6 +47,7 @@ namespace LotsOfTowers.Interaction {
                 {
                     buoys.ForEach(b => Destroy(b));
                     Destroy(water);
+                    yield return null;
                 }
                 else
                 {
@@ -55,6 +56,21 @@ namespace LotsOfTowers.Interaction {
                     water.transform.position = new Vector3(water.transform.position.x, waterHeight - (t / 6 * waterSize), water.transform.position.z);
                     yield return null;
                 }
+            }
+
+            t = 0;
+            
+            while (t < 2)
+            {
+                t += Time.smoothDeltaTime;
+                if (t >= 2)
+                {
+                    exit.transform.localRotation = Quaternion.Euler(new Vector3(exit.transform.localRotation.eulerAngles.x, -50, exit.transform.localRotation.eulerAngles.z));
+                } else
+                {
+                    exit.transform.localRotation = Quaternion.Euler(new Vector3(exit.transform.localRotation.eulerAngles.x, 0 - 25 * t, exit.transform.localRotation.eulerAngles.z));
+                }
+                yield return null;
             }
 
             Destroy(gameObject);
