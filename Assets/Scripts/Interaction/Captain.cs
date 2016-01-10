@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
-using LotsOfTowers.Actors;
+using Nimbi.Actors;
 using System.Collections;
 
-namespace LotsOfTowers.Interaction
+namespace Nimbi.Interaction
 {
     public class Captain : MonoBehaviour
     {

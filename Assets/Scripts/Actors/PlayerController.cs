@@ -1,8 +1,8 @@
-﻿using LotsOfTowers.Framework;
+﻿using Nimbi.Framework;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
-namespace LotsOfTowers.Actors
+namespace Nimbi.Actors
 {
 	//We need the following components to make the player work
 	[RequireComponent(typeof(Player))]

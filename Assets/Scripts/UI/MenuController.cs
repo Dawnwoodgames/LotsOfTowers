@@ -5,7 +5,7 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace LotsOfTowers.UI
+namespace Nimbi.UI
 {
 	public class MenuController : MonoBehaviour
 	{

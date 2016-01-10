@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
 
-namespace LotsOfTowers.Interaction
+namespace Nimbi.Interaction
 {
     public class PuzzleCube : MonoBehaviour
     {

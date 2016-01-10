@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace LotsOfTowers.Interaction {
+namespace Nimbi.Interaction {
 	[RequireComponent(typeof(Collider))]
 	public class PressurePlate : MonoBehaviour {
 		private bool colliding;

@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
-using LotsOfTowers.Interaction.Triggers;
-using LotsOfTowers.Actors;
+using Nimbi.Interaction.Triggers;
+using Nimbi.Actors;
 using System;
 
-namespace LotsOfTowers.Interaction
+namespace Nimbi.Interaction
 {
 	public class SeesawLibra : MonoBehaviour
 	{

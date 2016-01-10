@@ -2,7 +2,7 @@
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace LotsOfTowers.UI {
+namespace Nimbi.UI {
 	[RequireComponent(typeof(Canvas))]
 	public class PauseMenu : MonoBehaviour {
 		private Canvas canvas;

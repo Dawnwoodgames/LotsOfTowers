@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace LotsOfTowers
+namespace Nimbi
 {
     public class CypherPuzzleChecker : MonoBehaviour
     {

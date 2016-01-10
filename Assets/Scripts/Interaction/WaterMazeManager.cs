@@ -1,10 +1,10 @@
-﻿using LotsOfTowers.Environment;
+﻿using Nimbi.Environment;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using System.Collections;
 
-namespace LotsOfTowers.Interaction {
+namespace Nimbi.Interaction {
 	public class WaterMazeManager : MonoBehaviour {
 		private GameObject exit;
 		private List<BuoyGateTrigger> gates;

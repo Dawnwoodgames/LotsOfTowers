@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using LotsOfTowers.Framework;
+using Nimbi.Framework;
 
-namespace LotsOfTowers.Platform
+namespace Nimbi.Platform
 {
 	public class OffScreenCollider : MonoBehaviour
 	{

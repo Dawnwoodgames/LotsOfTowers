@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace LotsOfTowers.Actors {
+namespace Nimbi.Actors {
 	public class Onesie : ScriptableObject {
 
 		/*

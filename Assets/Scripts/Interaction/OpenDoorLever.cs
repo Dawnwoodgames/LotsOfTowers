@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-using LotsOfTowers.Framework;
+using Nimbi.Framework;
 
-namespace LotsOfTowers.Interaction
+namespace Nimbi.Interaction
 {
 
     public class OpenDoorLever : MonoBehaviour

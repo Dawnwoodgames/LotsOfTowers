@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using LotsOfTowers.Actors;
-using LotsOfTowers.Framework;
+using Nimbi.Actors;
+using Nimbi.Framework;
 
 
-namespace LotsOfTowers.Interaction
+namespace Nimbi.Interaction
 {
     public class BlowWind : MonoBehaviour
     {

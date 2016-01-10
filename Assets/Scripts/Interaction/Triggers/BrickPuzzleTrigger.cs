@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace LotsOfTowers.Interaction.Triggers
+namespace Nimbi.Interaction.Triggers
 {
 	public class BrickPuzzleTrigger : MonoBehaviour
 	{

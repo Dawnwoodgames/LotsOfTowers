@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace LotsOfTowers.Audio
+namespace Nimbi.Audio
 {
     public class AudioManager : MonoBehaviour {
 

@@ -1,7 +1,7 @@
 ﻿using System;
 using UnityEngine;
 
-namespace LotsOfTowers.UI {
+namespace Nimbi.UI {
 	[RequireComponent(typeof(Camera))]
 	public class CameraController : MonoBehaviour {
 

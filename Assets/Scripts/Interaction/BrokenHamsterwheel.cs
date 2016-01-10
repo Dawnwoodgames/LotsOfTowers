@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
-using LotsOfTowers.Actors;
-using LotsOfTowers.Interaction.Triggers;
+using Nimbi.Actors;
+using Nimbi.Interaction.Triggers;
 
-namespace LotsOfTowers.Interaction
+namespace Nimbi.Interaction
 {
     public class BrokenHamsterwheel : MonoBehaviour
     {

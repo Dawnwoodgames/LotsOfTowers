@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace LotsOfTowers.Interaction
+namespace Nimbi.Interaction
 {
     public class AssociatedWheelObject : MonoBehaviour
     {
@@ -18,7 +18,7 @@ namespace LotsOfTowers.Interaction
 
         void Update()
         {
-            if (!targetPosition.GetComponent<LotsOfTowers.Interaction.Triggers.DestroyInteraction>().GetObjectHit())
+            if (!targetPosition.GetComponent<Nimbi.Interaction.Triggers.DestroyInteraction>().GetObjectHit())
                 if (wheel.GetRotateSpeed() >= 18)
                     RotateObject();
         }

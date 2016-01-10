@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
-using LotsOfTowers.Interaction.Triggers;
+using Nimbi.Interaction.Triggers;
 
-namespace LotsOfTowers.Interaction
+namespace Nimbi.Interaction
 {
     public class WaterHole : MonoBehaviour
     {

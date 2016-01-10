@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-using LotsOfTowers.Framework;
+using Nimbi.Framework;
 
-namespace LotsOfTowers.UI
+namespace Nimbi.UI
 {
     public class Dialogue : MonoBehaviour
     {

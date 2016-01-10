@@ -1,7 +1,7 @@
-﻿using LotsOfTowers.Actors;
+﻿using Nimbi.Actors;
 using UnityEngine;
 
-namespace LotsOfTowers.Environment {
+namespace Nimbi.Environment {
 	public class Water : MonoBehaviour {
 		private GameObject ball;
 		private Rigidbody ballRigidBody;

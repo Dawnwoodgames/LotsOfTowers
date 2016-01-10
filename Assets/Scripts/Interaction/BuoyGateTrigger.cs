@@ -1,7 +1,7 @@
-﻿using LotsOfTowers.Environment;
+﻿using Nimbi.Environment;
 using UnityEngine;
 
-namespace LotsOfTowers.Interaction {
+namespace Nimbi.Interaction {
 	[RequireComponent(typeof(BoxCollider))]
 	public class BuoyGateTrigger : MonoBehaviour {
 		private WaterMazeManager manager;

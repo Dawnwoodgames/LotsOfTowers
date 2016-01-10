@@ -1,6 +1,6 @@
-﻿using LotsOfTowers.Actors;
-using LotsOfTowers.Interaction;
-using LotsOfTowers.UI;
+﻿using Nimbi.Actors;
+using Nimbi.Interaction;
+using Nimbi.UI;
 using SmartLocalization;
 using System;
 using System.Collections;
@@ -9,7 +9,7 @@ using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace LotsOfTowers
+namespace Nimbi
 {
 	[RequireComponent(typeof(Canvas))]
 	[RequireComponent(typeof(CanvasRenderer))]

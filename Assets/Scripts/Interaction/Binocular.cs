@@ -2,9 +2,9 @@
 using UnityEngine.UI;
 using System.Collections;
 using UnityStandardAssets.CrossPlatformInput;
-using LotsOfTowers.Actors;
+using Nimbi.Actors;
 
-namespace LotsOfTowers.Interaction
+namespace Nimbi.Interaction
 {
 	public class Binocular : MonoBehaviour
 	{

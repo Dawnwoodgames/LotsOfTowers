@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace LotsOfTowers.Actors
+namespace Nimbi.Actors
 {
     [RequireComponent(typeof(Animator))]
     [RequireComponent(typeof(SpriteRenderer))]

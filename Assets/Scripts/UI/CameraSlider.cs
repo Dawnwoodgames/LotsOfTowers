@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace LotsOfTowers.UI
+namespace Nimbi.UI
 {
     [RequireComponent(typeof(Slider))]
     public class CameraSlider : MonoBehaviour

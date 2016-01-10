@@ -1,7 +1,7 @@
-﻿using LotsOfTowers.Framework;
+﻿using Nimbi.Framework;
 using SmartLocalization;
 
-namespace LotsOfTowers
+namespace Nimbi
 {
 	// This class is in the root namespace on purpose!
 	// Do not change

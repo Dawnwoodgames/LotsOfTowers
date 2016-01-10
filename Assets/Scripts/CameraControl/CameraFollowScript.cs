@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace LotsOfTowers.CameraControl
+namespace Nimbi.CameraControl
 {
 	public class CameraFollowScript : MonoBehaviour
     {

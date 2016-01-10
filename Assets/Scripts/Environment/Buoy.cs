@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace LotsOfTowers.Environment {
+namespace Nimbi.Environment {
 	[RequireComponent(typeof(MeshRenderer))]
 	public class Buoy : MonoBehaviour {
 		private float internalClock;

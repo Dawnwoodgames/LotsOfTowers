@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace LotsOfTowers.Actors {
+namespace Nimbi.Actors {
 	[RequireComponent(typeof(Animator))]
 	public class Skeleton : MonoBehaviour {
 		private Animator animator;

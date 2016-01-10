@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
-using LotsOfTowers.Actors;
+using Nimbi.Actors;
 
-namespace LotsOfTowers.Interaction
+namespace Nimbi.Interaction
 {
     public class FloatingCarpet : MonoBehaviour {
 

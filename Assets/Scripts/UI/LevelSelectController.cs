@@ -3,7 +3,7 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace LotsOfTowers.UI {
+namespace Nimbi.UI {
 	public class LevelSelectController : MonoBehaviour {
 		private new CameraController camera;
 		private GameObject currentSelectedInput;

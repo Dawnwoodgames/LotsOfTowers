@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using LotsOfTowers.Interaction.Triggers;
+using Nimbi.Interaction.Triggers;
 
-namespace LotsOfTowers.Interaction
+namespace Nimbi.Interaction
 {
 	public class HamsterCypherWheel : MonoBehaviour
 	{

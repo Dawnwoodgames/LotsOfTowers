@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
-using LotsOfTowers.Actors;
-using LotsOfTowers.Audio;
+using Nimbi.Actors;
+using Nimbi.Audio;
 
-namespace LotsOfTowers.Framework
+namespace Nimbi.Framework
 {
 	public class HeadsUpDisplayScript : MonoBehaviour
     {

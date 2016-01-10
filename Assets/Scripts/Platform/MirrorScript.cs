@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using LotsOfTowers.Actors;
+using Nimbi.Actors;
 
 public class MirrorScript : MonoBehaviour {
 

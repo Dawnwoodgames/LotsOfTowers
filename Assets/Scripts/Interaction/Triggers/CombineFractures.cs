@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace LotsOfTowers.Interaction.Triggers
+namespace Nimbi.Interaction.Triggers
 {
 	public class CombineFractures : MonoBehaviour
 	{

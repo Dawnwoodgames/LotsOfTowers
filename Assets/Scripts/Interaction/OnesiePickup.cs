@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using LotsOfTowers.Actors;
+using Nimbi.Actors;
 
-namespace LotsOfTowers.Interaction
+namespace Nimbi.Interaction
 {
 	public class OnesiePickup : MonoBehaviour
 	{

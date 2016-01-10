@@ -3,11 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-using LotsOfTowers.Audio;
+using Nimbi.Audio;
 
-using LotsOfTowers.Framework;
+using Nimbi.Framework;
 
-namespace LotsOfTowers.Actors {
+namespace Nimbi.Actors {
 	public class Player : MonoBehaviour {
 		private float charge;
 		private Onesie currentOnesie;

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace LotsOfTowers.Environment {
+namespace Nimbi.Environment {
 	public class AmbientFire : MonoBehaviour {
 		private new Light light;
 

@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
-using LotsOfTowers.CameraControl;
+using Nimbi.CameraControl;
 using System.Linq;
 using System;
 
-namespace LotsOfTowers.Interaction
+namespace Nimbi.Interaction
 {
 	public class HamsterBall : MonoBehaviour
 	{

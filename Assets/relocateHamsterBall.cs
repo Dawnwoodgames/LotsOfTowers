@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System;
-using LotsOfTowers.CameraControl;
-using LotsOfTowers.Interaction;
+using Nimbi.CameraControl;
+using Nimbi.Interaction;
 
-namespace LotsOfTowers.Interaction.Triggers
+namespace Nimbi.Interaction.Triggers
 {
 	public class relocateHamsterBall : MonoBehaviour
 	{

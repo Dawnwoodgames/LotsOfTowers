@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
-using LotsOfTowers.Actors;
+using Nimbi.Actors;
 
-namespace LotsOfTowers.Interaction.Triggers
+namespace Nimbi.Interaction.Triggers
 {
 	public class ElevatorTrigger : MonoBehaviour
 	{

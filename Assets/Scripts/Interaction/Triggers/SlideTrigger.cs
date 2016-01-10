@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace LotsOfTowers.Interaction.Triggers {
+namespace Nimbi.Interaction.Triggers {
 	public class SlideTrigger : MonoBehaviour {
 		private bool colliding;
 		private float origin;

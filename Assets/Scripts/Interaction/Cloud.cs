@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
-using LotsOfTowers.Actors;
+using Nimbi.Actors;
 
 public class Cloud : MonoBehaviour {
 

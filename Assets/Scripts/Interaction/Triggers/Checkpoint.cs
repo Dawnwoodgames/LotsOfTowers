@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
-using LotsOfTowers;
+using Nimbi;
 
-namespace LotsOfTowers.Interaction.Triggers
+namespace Nimbi.Interaction.Triggers
 {
     public class Checkpoint : MonoBehaviour
     {
