@@ -27,4 +27,10 @@ namespace Nimbi.Framework
         Player,
         Elephant
     }
+
+	public enum TriggerType
+	{
+		Start,
+		End
+	}
 }
