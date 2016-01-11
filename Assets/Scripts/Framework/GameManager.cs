@@ -46,7 +46,7 @@ namespace Nimbi
 
         public bool JoystickConnected
         {
-            get { return Input.GetJoystickNames().Length > 0; }
+            get { return Input.GetJoystickNames().Length > 0 && Input.GetJoystickNames().Where(s => s != String.Empty).Count() > 0; }
         }
 
 		public string Language
