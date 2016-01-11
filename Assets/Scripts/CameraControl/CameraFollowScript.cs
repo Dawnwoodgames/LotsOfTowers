@@ -15,7 +15,7 @@ namespace Nimbi.CameraControl
 
 		void Update()
 		{
-            gameObject.transform.position = new Vector3(focus.transform.position.x / 1.2f, focus.transform.position.y + 0.5f, focus.transform.position.z / 1.2f);
+            gameObject.transform.position = new Vector3(focus.transform.position.x, focus.transform.position.y + 0.5f, focus.transform.position.z);
         }
 
         public Transform getStartTransform() { return startTransform; }
