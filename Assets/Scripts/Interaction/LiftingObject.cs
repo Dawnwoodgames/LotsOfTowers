@@ -25,7 +25,7 @@ namespace Nimbi.Interaction
             }
             catch (System.Exception ex)
             {
-                Logger.Log(ex);
+                Nimbi.Framework.Logger.Log(ex);
                 throw;
             }
         }
