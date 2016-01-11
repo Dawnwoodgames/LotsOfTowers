@@ -9,7 +9,7 @@ namespace Nimbi.Environment
         private static readonly int STATE_GOING_DOWN = 1;
         private static readonly int STATE_GOING_UP = 2;
 
-        private GameObject collider;
+        private new GameObject collider;
         private Player player;
         private int state;
 
