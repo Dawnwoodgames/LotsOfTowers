@@ -30,7 +30,7 @@ namespace Nimbi.Interaction {
         {
             List<GameObject> buoys = new List<GameObject>();
             float t = 0;
-            GameObject water = GameObject.Find("WATERBAK_MID_FLOOR");
+            GameObject water = GameObject.Find("Segment 2/Water");
             float waterHeight = water.transform.position.y;
             float waterSize = water.transform.localScale.y;
 
