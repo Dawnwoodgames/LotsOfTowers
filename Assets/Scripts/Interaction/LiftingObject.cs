@@ -6,14 +6,14 @@ namespace Nimbi.Interaction
 {
     public class LiftingObject : MonoBehaviour
     {
-        private bool pickedUp;
         private bool inTrigger = false;
         private Transform player;
         private float smoothLerp = 5;
         private Rigidbody rigid;
         private MeshCollider meshColl;
-
         private bool onPickupObject = false;
+
+        public bool pickedUp { get; set; }
 
         void Start()
         {
@@ -70,19 +70,31 @@ namespace Nimbi.Interaction
                     pickedUp = true;
                 }
             }
-
+            
             //Move the object with the player if its picked up
             if (pickedUp)
             {
-                transform.position = Vector3.Lerp(transform.position, player.transform.position + Vector3.up * 2.5f, Time.deltaTime * smoothLerp);
-
-                if (!rigid.isKinematic)
+                bool canPickup = true;
+                LiftingObject[] lobj = FindObjectsOfType<LiftingObject>();
+                foreach(LiftingObject l in lobj)
                 {
-                    rigid.isKinematic = true;
-                    meshColl.isTrigger = true;
+                    if(l.pickedUp && l.GetInstanceID() != this.GetInstanceID())
+                    {
+                        canPickup = false;
+                    }
+                }
+                
+                if (canPickup)
+                {
+                    transform.position = Vector3.Lerp(transform.position, player.transform.position + Vector3.up * 2.5f, Time.deltaTime * smoothLerp);
+                    if (!rigid.isKinematic)
+                    {
+                        rigid.isKinematic = true;
+                        meshColl.isTrigger = true;
+                    }
                 }
 
-                if (!Input.GetButton("Submit") || player.GetComponent<Player>().Onesie.type != OnesieType.Elephant)
+                if (!canPickup || !Input.GetButton("Submit") || player.GetComponent<Player>().Onesie.type != OnesieType.Elephant)
                 {
                     pickedUp = false;
                     rigid.isKinematic = false;
