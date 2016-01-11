@@ -1,13 +1,23 @@
 ﻿using UnityEngine;
 using Nimbi.Framework;
 using System.Linq;
+using System.Collections.Generic;
 
 namespace Nimbi.Platform
 {
 	public class OffScreenCollider : MonoBehaviour
 	{
-		public GameObject[] resetObjects; 
-		
+		public Transform[] resetObjects;
+		Dictionary<int, Vector3> startPositions = new Dictionary<int, Vector3>();
+
+		void STart()
+		{
+			foreach (Transform go in resetObjects)
+			{
+				startPositions.Add(go.GetInstanceID(), go.localPosition);
+			}
+		}
+
 		void OnCollisionEnter(Collision collision)
 		{
 			if (collision.gameObject.tag == "Player")
@@ -25,7 +35,8 @@ namespace Nimbi.Platform
 
 			else
 			{
-				collision.transform.localPosition = resetObjects.FirstOrDefault(go => go.GetInstanceID() == collision.gameObject.GetInstanceID()).transform.localPosition;
+				collision.transform.localPosition = startPositions[collision.gameObject.GetInstanceID()];
+                    //resetObjects.FirstOrDefault(go => go.GetInstanceID() == collision.gameObject.GetInstanceID()).transform.localPosition;
 			}
 		}
 	}

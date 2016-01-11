@@ -221,7 +221,7 @@ namespace Nimbi
             HamsterBall ball = FindObjectOfType<HamsterBall>();
 
 			if (player != null && playerController != null) {
-                if (ball != null || ball.playerInside) {
+                if (ball != null && ball.playerInside) {
                     ball.enabled = false;
                 }
 				playerController.enabled = false;
@@ -240,7 +240,7 @@ namespace Nimbi
 					yield return null;
 				}
 
-                if (ball != null || ball.playerInside)
+                if (ball != null && ball.playerInside)
                 {
                     ball.Ball.transform.position = spawnPoint.position;
                     ball.Ball.transform.rotation = spawnPoint.rotation;
@@ -259,7 +259,7 @@ namespace Nimbi
 				}
 
 				playerController.enabled = true;
-                if (ball != null || ball.playerInside)
+                if (ball != null && ball.playerInside)
                 {
                     ball.enabled = true;
                 }

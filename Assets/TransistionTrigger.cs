@@ -7,8 +7,8 @@ namespace Nimbi.Interaction.Triggers
 	public class TransistionTrigger : MonoBehaviour
 	{
 		public TriggerType triggerType;
-		public static bool insideStartTrigger = false;
-		public static bool insideEndTrigger = false;
+		public bool insideStartTrigger = false;
+		public bool insideEndTrigger = false;
 
 		void OnTriggerStay(Collider coll)
 		{
@@ -20,7 +20,7 @@ namespace Nimbi.Interaction.Triggers
 						insideStartTrigger = true;
                         break;
 					case TriggerType.End:
-						insideEndTrigger = false;
+						insideEndTrigger = true;
                         break;
 					default:
 						break;
