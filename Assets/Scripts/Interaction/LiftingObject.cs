@@ -96,9 +96,9 @@ namespace Nimbi.Interaction
 
                 if (!canPickup || !Input.GetButton("Submit") || player.GetComponent<Player>().Onesie.type != OnesieType.Elephant)
                 {
-                    pickedUp = false;
-                    rigid.isKinematic = false;
                     meshColl.isTrigger = false;
+                    rigid.isKinematic = false;
+                    pickedUp = false;
                 }
             }
         }
