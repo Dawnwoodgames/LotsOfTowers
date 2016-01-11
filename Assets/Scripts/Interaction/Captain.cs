@@ -31,7 +31,11 @@ namespace Nimbi.Interaction
             {
                 float distCovered = (Time.time - startTime) * speed;
                 float fracJourney = distCovered / journeyLength;
-                transform.position = Vector3.Lerp(transform.position, endMarker, fracJourney);
+                transform.position = Vector3.MoveTowards(transform.position, endMarker, fracJourney);
+            }
+            if (transform.position == endMarker)
+            {
+                Destroy(this);
             }
         }
 
