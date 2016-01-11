@@ -61,7 +61,7 @@ namespace Nimbi.Interaction
             }
         }
 
-        void Update()
+        void FixedUpdate()
         {
             if (inTrigger && !onPickupObject)
             {
