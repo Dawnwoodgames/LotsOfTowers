@@ -44,6 +44,11 @@ namespace Nimbi
 			}
 		}
 
+        public bool JoystickConnected
+        {
+            get { return Input.GetJoystickNames().Length > 0; }
+        }
+
 		public string Language
 		{ // Default: en
 			get { return PlayerPrefs.HasKey("Language") ? PlayerPrefs.GetString("Language") : "en"; }
