@@ -157,5 +157,9 @@ namespace Nimbi.Actors
             }
         }
 
+        public bool GetMovement()
+        {
+            return canMove;
+        }
 	}
 }
