@@ -30,7 +30,7 @@ namespace Nimbi.UI {
         }
 
         public void Update() {
-            if (wasCancelPressed && !Input.GetButton("Cancel")) {
+            if (wasCancelPressed && !Input.GetButton("Cancel") && !GameManager.Instance.LoadingScreenVisible) {
                 // Key up
                 if (canvas.enabled) {
                     Disable();

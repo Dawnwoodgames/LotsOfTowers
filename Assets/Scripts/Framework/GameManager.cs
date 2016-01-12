@@ -58,6 +58,10 @@ namespace Nimbi {
             }
         }
 
+        public bool LoadingScreenVisible {
+            get { return loadingScreen != null && loadingScreen.enabled == true; }
+        }
+
         public Transform SpawnPoint {
             get; set;
         }
