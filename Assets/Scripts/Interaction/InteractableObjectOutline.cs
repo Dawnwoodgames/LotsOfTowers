@@ -32,7 +32,7 @@ namespace Nimbi.Interaction
         void FixedUpdate()
         {
             distance = Vector3.Distance(gameObject.transform.position, player.transform.position);
-            Debug.Log(distance);
+            
             if (distance < 3)
             {
                 HighlightArea();
