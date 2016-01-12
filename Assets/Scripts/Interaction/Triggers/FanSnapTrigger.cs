@@ -19,6 +19,12 @@ namespace Nimbi.Interaction.Triggers
 					coll.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 					coll.GetComponent<LiftingObject>().enabled = false;
 					isPlaced = true;
+
+                    // Remove that outlining shitzz
+                    if(coll.GetComponent<InteractableObjectOutline>())
+                    {
+                        Destroy(coll.GetComponent<InteractableObjectOutline>());
+                    }
                 }
 				catch (System.Exception)
 				{

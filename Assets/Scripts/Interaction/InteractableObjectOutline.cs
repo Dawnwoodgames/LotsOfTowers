@@ -13,13 +13,14 @@ namespace Nimbi.Interaction
         private Material newMaterial;
         private Color color;
         private float distance;
-        //private float duration = 1f;
-        //private float amplitude = 1f;
+
+        private Color defaultColor;
 
         void Awake()
         {
             player = GameObject.FindGameObjectWithTag("Player");
             rend = GetComponent<Renderer>();
+            defaultColor = rend.material.color;
         }
 
         void Start()
@@ -31,10 +32,15 @@ namespace Nimbi.Interaction
         void FixedUpdate()
         {
             distance = Vector3.Distance(gameObject.transform.position, player.transform.position);
+            Debug.Log(distance);
             if (distance < 3)
+            {
                 HighlightArea();
+            }
             else
-                rend.material = material;
+            {
+                rend.material.color = defaultColor;
+            }
         }
 
         private void HighlightArea()
