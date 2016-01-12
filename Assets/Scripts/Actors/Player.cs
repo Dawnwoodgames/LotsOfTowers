@@ -17,6 +17,10 @@ namespace Nimbi.Actors {
         private List<GameObject> particleSystems;
         private List<Skeleton> skeletons;
 
+        public bool hasDragonOnesie;
+        public bool hasElephantOnesie;
+        public bool hasHamsterOnesie;
+
         public Animator Animator {
             get { return currentSkeleton.GetComponent<Animator>(); }
         }
@@ -96,6 +100,16 @@ namespace Nimbi.Actors {
         public void Start() {
             Physics.gravity = new Vector3(0, -35, 0);
             SetSkeleton("Default");
+
+            if (hasDragonOnesie) {
+                AddOnesie(Resources.Load<Onesie>("OnesieDragon"));
+            }
+            if (hasElephantOnesie) {
+                AddOnesie(Resources.Load<Onesie>("OnesieElephant"));
+            }
+            if (hasHamsterOnesie) {
+                AddOnesie(Resources.Load<Onesie>("OnesieHamster"));
+            }
         }
 
         public void SwitchOnesie(int index) {
