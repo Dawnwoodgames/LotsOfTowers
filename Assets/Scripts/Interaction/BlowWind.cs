@@ -12,12 +12,14 @@ namespace Nimbi.Interaction
         public float interval = 0f;
         public float force = 50f;
         public Direction direction = Direction.Forward;
+		public bool hasIceBlock = false;
 
-        private Vector3 dir;
+		private Vector3 dir;
         private List<GameObject> collisions = new List<GameObject>();
 		
-        private bool hasBlock;
-        private bool active;
+        private bool hasBlock = false;
+		private bool hasPlayer = false;
+		private bool active;
 
         private GameObject block;
         private GameObject player;
@@ -26,7 +28,7 @@ namespace Nimbi.Interaction
 
         public ParticleSystem windParticles; // We can use this to maybe stop the windparticles at the block?
 
-        void Start()
+		void Start()
         {
             DetermineDirection();
             nextBlow = Time.time;
@@ -39,6 +41,8 @@ namespace Nimbi.Interaction
         {
             CheckBlowing();
             hasBlock = false;
+			hasPlayer = false;
+			hasIceBlock = false;
             checkCollisions();
             Wind();
         }
@@ -51,9 +55,17 @@ namespace Nimbi.Interaction
                 {
                     isBlowing = !isBlowing;
                     windParticles.loop = isBlowing;
-                    if (isBlowing)
-                        windParticles.Play();
-                    nextBlow = Time.time + interval;
+					if (isBlowing && !hasIceBlock)
+					{
+						windParticles.Play();
+					}
+					else if (hasIceBlock)
+					{
+						active = false;
+						windParticles.loop = false;
+						windParticles.Stop();
+                    }
+					nextBlow = Time.time + interval;
                 }
             }
         }
@@ -67,19 +79,29 @@ namespace Nimbi.Interaction
                 {
                     hasBlock = true;
                 }
+
+				if (collision.tag == "IceBlock")
+				{
+					hasIceBlock = true;
+				}
+
+				if (collision.tag == "Player")
+				{
+					hasPlayer = true;
+				}
             }
         }
 
         private void Wind()
         {
-            if (active && isBlowing)
+            if (active && isBlowing && !hasIceBlock)
             {
 				if (block != null)
 				{
 					block.GetComponent<Rigidbody>().AddForce(dir * force, ForceMode.Acceleration);
 				}
 
-                if (!hasBlock)
+                if (!hasBlock && hasPlayer)
                 {
                     if (!player.GetComponent<Player>().Onesie.isHeavy)
                     {
@@ -93,10 +115,13 @@ namespace Nimbi.Interaction
         void OnTriggerStay(Collider col)
         {
             active = true;
-            if (!col.GetComponent<Rigidbody>().isKinematic)
+            if (!col.GetComponent<Rigidbody>().isKinematic || col.tag == "IceBlock")
             {
-                collisions.Add(col.gameObject);
-            }
+				if(!collisions.Contains(col.gameObject))
+				{
+					collisions.Add(col.gameObject);
+				}
+			}
         }
 
         void OnTriggerExit(Collider col)
@@ -104,10 +129,12 @@ namespace Nimbi.Interaction
             active = false;
             if (!col.GetComponent<Rigidbody>().isKinematic)
             {
-                collisions.Remove(col.gameObject);
+				if (collisions.Contains(col.gameObject))
+				{
+					collisions.Remove(col.gameObject);
+				}
             }
         }
-
 
         // Sets the direction the wind is blowing
         private void DetermineDirection()
@@ -136,10 +163,7 @@ namespace Nimbi.Interaction
                     dir = Vector3.forward;
                     break;
             }
-
-            
         }
-        
     }
 }
 

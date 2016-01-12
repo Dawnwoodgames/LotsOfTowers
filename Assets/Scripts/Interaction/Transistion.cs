@@ -21,12 +21,12 @@ namespace Nimbi.Interaction
 		void Start()
 		{
 			player = GameObject.FindGameObjectWithTag("Player");
-        }
+		}
 		// Update is called once per frame
 		void Update()
 		{
-			if(startTrigger.insideStartTrigger && Input.GetButtonDown("Submit"))
-            {
+			if (startTrigger.insideStartTrigger && Input.GetButtonDown("Submit"))
+			{
 				player.transform.parent = transport;
 				player.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
 				player.GetComponent<Rigidbody>().isKinematic = true;
@@ -45,30 +45,30 @@ namespace Nimbi.Interaction
 
 		void FixedUpdate()
 		{
-			if(insideStartTrigger)
+			if (insideStartTrigger)
 			{
 				if (!raisingUp && transport.localPosition.y > -25)
 				{
 					transport.localPosition = Vector3.MoveTowards(transport.localPosition, transport.localPosition - (Vector3.up * 20), Time.deltaTime * 20);
 				}
-				else if(!raisingUp && transport.localPosition.y < -25)
+				else if (!raisingUp && transport.localPosition.y < -25)
 				{
 					transport.localPosition = end.localPosition - (Vector3.up * 20);
 					raisingUp = true;
 				}
-				else if(raisingUp && transport.localPosition != end.localPosition)
+				else if (raisingUp && transport.localPosition != end.localPosition)
 				{
 					transport.localPosition = Vector3.MoveTowards(transport.localPosition, end.localPosition, Time.deltaTime * 20);
 				}
 				else
 				{
 					player.transform.parent = null;
-					player.transform.localScale = new Vector3(1,1,1);
+					player.transform.localScale = new Vector3(1, 1, 1);
 					player.GetComponent<Rigidbody>().isKinematic = false;
 					player.GetComponent<PlayerController>().enabled = true;
 					insideStartTrigger = false;
 					raisingUp = false;
-                }
+				}
 			}
 			else if (insideEndTrigger)
 			{
@@ -93,7 +93,7 @@ namespace Nimbi.Interaction
 					player.GetComponent<PlayerController>().enabled = true;
 					insideEndTrigger = false;
 					raisingUp = false;
-                }
+				}
 			}
 		}
 	}
