@@ -12,16 +12,16 @@ namespace Nimbi.Interaction.Triggers
 
 		void OnTriggerStay(Collider coll)
 		{
-			if(coll.tag == "Player")
+			if (coll.tag == "Player")
 			{
 				switch (triggerType)
 				{
 					case TriggerType.Start:
 						insideStartTrigger = true;
-                        break;
+						break;
 					case TriggerType.End:
 						insideEndTrigger = true;
-                        break;
+						break;
 					default:
 						break;
 				}
