@@ -31,7 +31,7 @@ namespace Nimbi.Audio
             {
                 if (instance == null)
                 {
-                    instance = (AudioManager)Instantiate(Resources.Load("Prefabs/AudioManager"));
+                    instance = (Instantiate(Resources.Load("Prefabs/AudioManager")) as GameObject).GetComponent<AudioManager>();
                 }
                 return instance;
             }

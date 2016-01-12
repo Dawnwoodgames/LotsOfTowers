@@ -47,7 +47,7 @@ namespace Nimbi.Interaction
             */
             if (coll.tag == "Player" && Input.GetButtonDown("Submit") && firstInteraction)
             {
-                player.GetComponent<Player>().AddOnesieToFirstFreeSlot(hamsterOnesie);
+                player.GetComponent<Player>().AddOnesie(hamsterOnesie);
                 firstInteraction = false;
             }
 

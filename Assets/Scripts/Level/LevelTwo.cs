@@ -11,7 +11,7 @@ namespace Nimbi.Level
 		}
 
 		public void Start() {
-			FindObjectOfType<Player>().AddOnesieToFirstFreeSlot(Resources.Load("OnesieElephant") as Onesie);
+			FindObjectOfType<Player>().AddOnesie(Resources.Load("OnesieElephant") as Onesie);
 		}
     }
 }

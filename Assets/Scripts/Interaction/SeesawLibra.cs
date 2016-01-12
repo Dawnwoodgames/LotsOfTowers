@@ -266,7 +266,7 @@ namespace Nimbi.Interaction
 		//** Onesie related **//
 		private void GiveElephantOnesie()
 		{
-			player.GetComponent<Player>().AddOnesieToFirstFreeSlot(elephantOnesie);
+			player.GetComponent<Player>().AddOnesie(elephantOnesie);
 			hasElephantOnesie = true;
 		}
 
