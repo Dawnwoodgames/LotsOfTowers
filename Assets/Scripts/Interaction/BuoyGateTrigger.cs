@@ -26,7 +26,7 @@ namespace Nimbi.Interaction {
 		}
 
 		public void OnTriggerEnter(Collider coll) {
-			if (timer > 0) {
+			if (timer > 0 || coll.gameObject.tag != "HamsterBall") {
 				return;
 			}
             try
