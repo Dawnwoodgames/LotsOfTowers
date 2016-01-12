@@ -10,34 +10,67 @@ namespace Nimbi.UI
         public GameObject dialogueObject;
         public float showForSeconds = 1f;
         public string dialogueText;
-
         public TypeCollider type = TypeCollider.Player;
 
-        private bool triggered = false;
+        public bool IsActive { get; set; }
 
+        private bool canShow = true;
+      
         void Start()
         {
             dialogueObject.GetComponent<Text>().text = "";
+            IsActive = false;
         }
         
-        void OnTriggerEnter(Collider col)
+        void Update()
         {
-            if(type == TypeCollider.Elephant)
+            canShow = true;
+            Dialogue[] dialogues = FindObjectsOfType<Dialogue>();
+            foreach(Dialogue d in dialogues)
             {
-                if(col.name == "Elephant")
+                if(d.IsActive && d.GetInstanceID() != this.GetInstanceID())
                 {
-                    dialogueObject.GetComponent<Text>().text = dialogueText.Localize();
-                    StartCoroutine(hideText());
-                    triggered = true;
+                    canShow = false;
                 }
             }
-            else if(type == TypeCollider.Player)
+        }
+
+        void OnTriggerEnter(Collider col)
+        {
+            if(canShow)
             {
-                if (col.tag == "Player" && !triggered)
+                showText(col);
+            }
+            else
+            {
+                StartCoroutine(tryAgainInTwoSeconds(col));
+            }
+        }
+
+        IEnumerator tryAgainInTwoSeconds(Collider col)
+        {
+            yield return new WaitForSeconds(1f);
+            showText(col);
+        }
+
+        private void showText(Collider col)
+        {
+            if (type == TypeCollider.Elephant)
+            {
+                if (col.name == "Elephant")
                 {
                     dialogueObject.GetComponent<Text>().text = dialogueText.Localize();
                     StartCoroutine(hideText());
-                    triggered = true;
+                    IsActive = true;
+                }
+            }
+            else if (type == TypeCollider.Player)
+            {
+                if (col.tag == "Player" && !IsActive)
+                {
+                    dialogueObject.GetComponent<Text>().text = dialogueText.Localize();
+                    StartCoroutine(hideText());
+                    IsActive = true;
                 }
             }
         }
@@ -47,6 +80,7 @@ namespace Nimbi.UI
             if(dialogueObject.GetComponent<Text>().text == dialogueText.Localize())
             {
                 dialogueObject.GetComponent<Text>().text = "";
+                Destroy(this);
             }
         } 
 
