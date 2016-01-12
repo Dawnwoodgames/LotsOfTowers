@@ -17,7 +17,6 @@ namespace Nimbi.CameraControl
 
 		void Update()
 		{
-            Debug.Log(cameraObject.transform.localPosition.z);
             if (Input.GetAxis("Mouse Wheel") != 0) {
                 cameraObject.transform.localPosition = new Vector3(0, 0, Mathf.Max(-15,
                     Mathf.Min(cameraObject.transform.localPosition.z + Input.GetAxis("Mouse Wheel"), -5)));

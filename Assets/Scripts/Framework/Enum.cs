@@ -19,7 +19,9 @@ namespace Nimbi.Framework
         Forward,
         Backward,
         Left,
-        Right
+        Right,
+		Up,
+		Down
     }
 
     public enum TypeCollider

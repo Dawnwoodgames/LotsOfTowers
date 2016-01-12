@@ -74,7 +74,11 @@ namespace Nimbi.Interaction
         {
             if (active && isBlowing)
             {
-                block.GetComponent<Rigidbody>().AddForce(dir * force, ForceMode.Acceleration);
+				if (block != null)
+				{
+					block.GetComponent<Rigidbody>().AddForce(dir * force, ForceMode.Acceleration);
+				}
+
                 if (!hasBlock)
                 {
                     if (!player.GetComponent<Player>().Onesie.isHeavy)
@@ -122,6 +126,12 @@ namespace Nimbi.Interaction
                 case Direction.Right:
                     dir = Vector3.right;
                     break;
+				case Direction.Up:
+					dir = Vector3.up;
+					break;
+				case Direction.Down:
+					dir = Vector3.down;
+					break;
                 default:
                     dir = Vector3.forward;
                     break;
