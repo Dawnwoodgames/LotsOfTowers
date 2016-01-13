@@ -4,33 +4,49 @@ using Nimbi.Actors;
 
 namespace Nimbi.Interaction
 {
-    public class CompleteFan : MonoBehaviour
-    {
-        private Animator animator;
-        void Start()
-        {
-            animator = GetComponentInParent<Animator>();
-        }
+	public class CompleteFan : MonoBehaviour
+	{
+		private Animator animator;
+		private bool inTrigger = false;
+		private bool isHeavy = false;
+		private Player player;
 
-        void OnTriggerStay(Collider player)
-        {
-            player.GetComponent<Rigidbody>().sleepThreshold = 0;
+		void Start()
+		{
+			animator = GetComponentInParent<Animator>();
+			player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+		}
 
-            if (!player.GetComponent<Player>().Onesie.isHeavy)
-            {
-                animator.SetBool("GoingDown", false);
-                animator.SetBool("GoingUp", true);
-            }
-            else if (player.GetComponent<Player>().Onesie.isHeavy)
-            {
-                animator.SetBool("GoingDown", true);
-                animator.SetBool("GoingUp", false);
-            }
-        }
+		void OnTriggerStay(Collider coll)
+		{
+			if (coll.tag == "Player")
+			{
+				inTrigger = true;
+			}
+		}
 
-        void OnTriggerExit(Collider player)
-        {
-            player.GetComponent<Rigidbody>().sleepThreshold = 0.14f;
-        }
-    }
+		void OnTriggerExit(Collider coll)
+		{
+			if (coll.tag == "Player")
+			{
+				inTrigger = false;
+			}
+		}
+
+		void Update()
+		{
+			isHeavy = player.Onesie.isHeavy;
+
+			if (inTrigger && isHeavy)
+			{
+				animator.SetBool("GoingDown", true);
+				animator.SetBool("GoingUp", false);
+			}
+			else
+			{
+				animator.SetBool("GoingDown", false);
+				animator.SetBool("GoingUp", true);
+			}
+		}
+	}
 }

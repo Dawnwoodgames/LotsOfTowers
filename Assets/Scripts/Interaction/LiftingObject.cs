@@ -30,24 +30,9 @@ namespace Nimbi.Interaction
             }
         }
 
-        private void OnCollisionEnter(Collision col)
+        private void OnTriggerStay(Collider col)
         {
-            if(col.gameObject.tag == "Player")
-            {
-                onPickupObject = true;
-            }
-        }
-        private void OnCollisionExit(Collision col)
-        {
-            if (col.gameObject.tag == "Player")
-            {
-                onPickupObject = false;
-            }
-        }
-
-        private void OnTriggerEnter(Collider col)
-        {
-            if (col.tag == "Player")
+            if (col.tag == "Player" && Input.GetButton("Submit"))
             {
                 inTrigger = true;
             }
@@ -63,9 +48,9 @@ namespace Nimbi.Interaction
 
         void FixedUpdate()
         {
-            if (inTrigger && !onPickupObject)
+            if (inTrigger)
             {
-                if (Input.GetButton("Submit") && player.GetComponent<Player>().Onesie.type == OnesieType.Elephant)
+                if (player.GetComponent<Player>().Onesie.type == OnesieType.Elephant)
                 {
                     pickedUp = true;
                 }
@@ -86,7 +71,8 @@ namespace Nimbi.Interaction
                 
                 if (canPickup)
                 {
-                    transform.position = Vector3.Lerp(transform.position, player.transform.position + Vector3.up * 2.5f, Time.deltaTime * smoothLerp);
+					GetComponent<MeshCollider>().enabled = false;
+                    transform.position = Vector3.MoveTowards(transform.position, player.transform.position + Vector3.up * 2.5f, Time.deltaTime * smoothLerp);
                     if (!rigid.isKinematic)
                     {
                         rigid.isKinematic = true;
@@ -94,9 +80,10 @@ namespace Nimbi.Interaction
                     }
                 }
 
-                if (!canPickup || !Input.GetButton("Submit") || player.GetComponent<Player>().Onesie.type != OnesieType.Elephant)
+                if (!canPickup || Input.GetButton("Submit") || player.GetComponent<Player>().Onesie.type != OnesieType.Elephant)
                 {
-                    meshColl.isTrigger = false;
+					GetComponent<MeshCollider>().enabled = true;
+					meshColl.isTrigger = false;
                     rigid.isKinematic = false;
                     pickedUp = false;
                 }
