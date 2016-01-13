@@ -31,6 +31,7 @@ namespace Nimbi.Actors
 
         private bool canMove = true;
 		private bool moving;
+        private float abilityCooldown;
 
 		private void Awake() {
 			this.mainCamera = Camera.main.transform;
@@ -82,10 +83,16 @@ namespace Nimbi.Actors
 			}
 
 			if (submit) {
-				// Remove charge in next frame to avoid it being removed before it can be used
+                // Remove charge in next frame to avoid it being removed before it can be used
+                // Use onesie special ability if it has one
+                if (abilityCooldown <= 0) {
+                    abilityCooldown = 0.65f;
+                    player.UseOnesieSpecialAbility();
+                }
 				removeChargeOnNextFrame = true;
 			}
 
+            abilityCooldown -= Time.deltaTime;
 			player.Animator.SetBool("Moving", h != 0 || v != 0);
         }
 

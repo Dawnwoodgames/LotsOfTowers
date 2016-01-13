@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
@@ -91,6 +92,24 @@ namespace Nimbi.Actors {
             particleSystems.Single(g => g.name == name).SetActive(active);
         }
 
+        public IEnumerator SetEffectActiveForDuration(string name, float duration) {
+            ParticleSystem effect = particleSystems.Single(g => g.name == name).GetComponent<ParticleSystem>();
+            float t = 0;
+
+            effect.gameObject.SetActive(true);
+            effect.loop = true;
+            effect.Play();
+
+            while (t < duration) {
+                t += Time.deltaTime;
+                yield return null;
+            }
+
+            effect.gameObject.SetActive(false);
+            effect.loop = false;
+            effect.Stop();
+        }
+
         private void SetSkeleton(string name) {
             currentSkeleton = skeletons.Single(s => s.name == name);
             currentSkeleton.GetComponent<Animator>().SetTrigger("To_" + name);
@@ -129,6 +148,12 @@ namespace Nimbi.Actors {
         public void Update() {
             SetEffectActive("Drops", HoldingWater);
             SetEffectActive("Sparks", StaticCharge > 90);
+        }
+
+        public void UseOnesieSpecialAbility() {
+            if (Onesie.type == OnesieType.Dragon) {
+                StartCoroutine(SetEffectActiveForDuration("Flame Breath", 0.5f));
+            }
         }
     }
 }
