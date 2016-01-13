@@ -8,5 +8,7 @@ public class SafeZoneTrigger : MonoBehaviour {
     {
         if (!coll.GetComponent<PlayerController>().GetMovement())
             coll.GetComponent<PlayerController>().EnableMovement();
+
+        coll.GetComponent<Rigidbody>().velocity = Vector3.zero;
     }
 }

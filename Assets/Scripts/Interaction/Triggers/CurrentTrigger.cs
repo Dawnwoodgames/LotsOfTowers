@@ -11,20 +11,16 @@ public class CurrentTrigger : MonoBehaviour {
         rb = GameObject.FindGameObjectWithTag("Player").GetComponent<Rigidbody>();
     }
 
-    private void OnTriggerStay(Collider coll)
-    {
-        if (coll.tag == "Player")
-        {
-            /*rb.isKinematic = true;
-            rb.isKinematic = false;*/
-
-            if (rb.velocity.magnitude < 5)
-                rb.AddForce(transform.forward * 1f, ForceMode.Impulse);
-        }
-    }
-
     private void OnTriggerExit(Collider coll)
     {
-        rb.velocity = Vector3.one;
+        rb.velocity = rb.velocity / 10;
+    }
+
+    private void OnTriggerStay(Collider coll)
+    {
+        coll.GetComponent<PlayerController>().DisableMovement();
+        if (coll.tag == "Player")
+            if (rb.velocity.magnitude < 5)
+                rb.AddForce(transform.forward * 1f, ForceMode.Impulse);
     }
 }
