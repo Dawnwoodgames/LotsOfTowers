@@ -7,16 +7,14 @@ namespace Nimbi.VFX {
 
         public new Light light;
 
-        public void Awake() {
-            this.system = GetComponent<ParticleSystem>();
-        }
-
         public void Update() {
+            system = GetComponent<ParticleSystem>();
             particles = new ParticleSystem.Particle[system.particleCount];
             system.GetParticles(particles);
 
             for (int i = 0; i < particles.Length; i++) {
-                Instantiate(light, particles[i].position, Quaternion.identity);
+                Debug.Log(particles[i].position);
+                Instantiate(light, system.transform.position + particles[i].position, Quaternion.identity);
             }
 
             system.SetParticles(particles, system.particleCount);
