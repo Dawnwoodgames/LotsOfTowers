@@ -13,8 +13,9 @@ namespace Nimbi.VFX {
             system.GetParticles(particles);
 
             for (int i = 0; i < particles.Length; i++) {
-                Debug.Log(particles[i].position);
-                Instantiate(light, system.transform.position + particles[i].position, Quaternion.identity);
+                if (i % 2 == 0) {
+                    Instantiate(light, system.transform.position + particles[i].position, Quaternion.identity);
+                }
             }
 
             system.SetParticles(particles, system.particleCount);
