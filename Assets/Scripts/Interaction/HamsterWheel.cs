@@ -38,7 +38,8 @@ namespace Nimbi.Interaction
                 if (waterAmount == 4)
                 {
                     nut.GetComponent<Rigidbody>().useGravity = true;
-                    nut.GetComponent<Rigidbody>().AddForce(new Vector3(-1,0,-.5f) * 4f, ForceMode.Impulse);
+					nut.GetComponent<Rigidbody>().isKinematic = false;
+					nut.GetComponent<Rigidbody>().AddForce(new Vector3(-1,0,-.5f) * 4f, ForceMode.Impulse);
                 }
 			}
 			newWater.transform.localScale = Vector3.MoveTowards(newWater.transform.localScale, new Vector3(newWater.transform.localScale.x, newHeight, newWater.transform.localScale.z), Time.deltaTime * 2);
