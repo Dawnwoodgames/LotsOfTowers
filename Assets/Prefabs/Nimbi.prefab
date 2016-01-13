@@ -5091,7 +5091,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 169298}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.11, y: 53.7, z: 4.851}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 405768}
@@ -8797,7 +8797,7 @@ Animator:
   m_GameObject: {fileID: 142940}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 183148068cc12458280c391e68f78c73, type: 3}
-  m_Controller: {fileID: 9100000, guid: 5e993e89cbed6409c92297d0e30a4ef2, type: 2}
+  m_Controller: {fileID: 9100000, guid: 869ea4c3463a5954e87b75914849c133, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -8814,7 +8814,7 @@ Animator:
   m_GameObject: {fileID: 137776}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: d6ad1136a3a6c4cbd9d50f41b21b0b63, type: 3}
-  m_Controller: {fileID: 9100000, guid: e7400804d932a47298c2a376c2744708, type: 2}
+  m_Controller: {fileID: 9100000, guid: 869ea4c3463a5954e87b75914849c133, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -8831,7 +8831,7 @@ Animator:
   m_GameObject: {fileID: 167220}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: fb8608d0177c240e68cc9e887c6bb8af, type: 3}
-  m_Controller: {fileID: 9100000, guid: b755fd56d0d5846779700fa579c455a1, type: 2}
+  m_Controller: {fileID: 9100000, guid: 869ea4c3463a5954e87b75914849c133, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -8861,6 +8861,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5ed2bdb234214e35b042b7ca17f8947, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hasDragonOnesie: 0
+  hasElephantOnesie: 0
+  hasHamsterOnesie: 0
 --- !u!114 &11455284
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -12205,7 +12208,19 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 169298}
