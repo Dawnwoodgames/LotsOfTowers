@@ -4348,13 +4348,14 @@ GameObject:
   - 4: {fileID: 488830}
   - 198: {fileID: 19813890}
   - 199: {fileID: 19965316}
+  - 114: {fileID: 11415412}
   m_Layer: 0
   m_Name: Flame Breath
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &193386
 GameObject:
   m_ObjectHideFlags: 1
@@ -5108,7 +5109,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 169298}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
+  m_LocalPosition: {x: 0, y: 12.5, z: -15}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 405768}
@@ -8869,6 +8870,18 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &11415412
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 192966}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba89627cd307c764693b3e4d6b962a25, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  light: {fileID: 10808514, guid: 122cd3f9a8e04944790f196a94b0b1c2, type: 2}
 --- !u!114 &11420410
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -8891,9 +8904,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e5ed2bdb234214e35b042b7ca17f8947, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  hasDragonOnesie: 0
-  hasElephantOnesie: 0
-  hasHamsterOnesie: 0
+  hasDragonOnesie: 1
+  hasElephantOnesie: 1
+  hasHamsterOnesie: 1
 --- !u!114 &11455284
 MonoBehaviour:
   m_ObjectHideFlags: 1
