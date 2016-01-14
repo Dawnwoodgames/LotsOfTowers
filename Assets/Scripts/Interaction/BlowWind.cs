@@ -95,14 +95,7 @@ namespace Nimbi.Interaction
             }
         }
 
-        void OnTriggerExit(Collider col)
-        {
-            active = false;
-            if (!col.GetComponent<Rigidbody>().isKinematic)
-            {
-                collisions.Remove(col.gameObject);
-            }
-        }
+
 
 
         // Sets the direction the wind is blowing
