@@ -12,7 +12,7 @@ namespace Nimbi.Interaction
         public ScaryStatue scaryStatue;
         private bool isPushed;
 
-        public float pushBackRate;
+        public float pushBackRate = 10;
 
 
         // Use this for initialization
@@ -20,7 +20,7 @@ namespace Nimbi.Interaction
         {
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
             inTrigger = false;
-            pushBackRate = 10f;
+
             
         }
 
@@ -30,10 +30,11 @@ namespace Nimbi.Interaction
             if (inTrigger && scaryStatue.isScary)
             {
                 isPushed = true;
-                    player.GetComponent<Rigidbody>().AddForce(Vector3.left * pushBackRate, ForceMode.Acceleration);
+                    player.GetComponent<Rigidbody>().AddForce(Vector3.left * pushBackRate, ForceMode.VelocityChange);
             }
         }
 
+        //If Nimbi is going to Touch the Invisible Wall
         private void OnTriggerStay(Collider coll)
         {
             if (coll.attachedRigidbody)
@@ -42,6 +43,8 @@ namespace Nimbi.Interaction
             }
         }
 
+
+        //If Nimbi gets Pushed back!
         private void OnTriggerExit()
         {
             inTrigger = false;
