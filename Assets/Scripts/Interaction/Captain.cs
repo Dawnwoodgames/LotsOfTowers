@@ -8,6 +8,11 @@ namespace Nimbi.Interaction
     {
         public Onesie hamsterOnesie;
 
+        public GameObject lostNutDialog;
+        public GameObject landlobberDialog;
+        public GameObject finishNutDialog;
+        public GameObject fixBoatDialog;
+
         private Player player;
         private GameObject nut;
         private bool nutDelivered = false;
@@ -49,6 +54,8 @@ namespace Nimbi.Interaction
             {
                 player.GetComponent<Player>().AddOnesie(hamsterOnesie);
                 firstInteraction = false;
+                lostNutDialog.SetActive(true);
+                landlobberDialog.SetActive(true);
             }
 
             /*
@@ -62,6 +69,9 @@ namespace Nimbi.Interaction
                     nutDelivered = true;
                     Destroy(nut);
                     startTime = Time.time;
+                    finishNutDialog.SetActive(true);
+                    fixBoatDialog.SetActive(true);
+
                 }
             }
         }
