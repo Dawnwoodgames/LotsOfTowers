@@ -6,12 +6,13 @@ namespace Nimbi
     public class CypherPuzzleChecker : MonoBehaviour
     {
         public GameObject oven, furnaceDoor;
+        public bool cheat = false;
 
         private bool slotOneComplete, slotTwoComplete, slotThreeComplete = false;
 
         void Update()
         {
-            if (slotOneComplete && slotTwoComplete && slotThreeComplete)
+            if ((slotOneComplete && slotTwoComplete && slotThreeComplete) || cheat)
             {
                 oven.GetComponent<ParticleSystem>().Play();
                 furnaceDoor.GetComponent<Interaction.Triggers.FurnaceDoor>().cypherComplete = true;
