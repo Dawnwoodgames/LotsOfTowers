@@ -11,6 +11,7 @@ public class IntroSceneScript : MonoBehaviour {
 	public int IntroState = 1;
 	public Sprite[] introSprites;
 
+
 	void Awake(){
 
 	}
@@ -51,27 +52,23 @@ public class IntroSceneScript : MonoBehaviour {
 			GameObject.Find("ImageIntroScreen").GetComponent<Image>().sprite = introSprites[3];
 			break;
 		case 5:
-
 			IntroText.GetComponent<Text>().text = "Determined to find him, I dove through the clouds";
 			GameObject.Find("ImageIntroScreen").GetComponent<Image>().sprite = introSprites[4];
 			break;
 		case 6:
-
 			IntroText.GetComponent<Text>().text = "But instead of finding my friend, I found something completely different...";
 			GameObject.Find("ImageIntroScreen").GetComponent<Image>().sprite = introSprites[5];
 			break;
 		case 7:
-
 			IntroText.GetComponent<Text>().text = "Towers as far as I could see";
 			GameObject.Find("ImageIntroScreen").GetComponent<Image>().sprite = introSprites[6];
 			break;
 		case 8:
-
 			IntroText.GetComponent<Text>().text = "Would my friend be (up) there?";
 			GameObject.Find("ImageIntroScreen").GetComponent<Image>().sprite = introSprites[7];
 			break;
 			case 9:
-			GameManager.Instance.LoadLevel(1, true);
+			GameManager.Instance.LoadLevel(2, true);
 			break;
 		}
 	}
