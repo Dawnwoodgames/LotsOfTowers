@@ -8,14 +8,15 @@ namespace Nimbi.Interaction.Triggers
 
         private ScaryStatue scaryStatue;
         private bool inTrigger;
-        private Vector3 jumpSpeed;
+        private Vector3 moveSpeed;
 
         // Use this for initialization
         void Start() {
   
             scaryStatue = GameObject.Find("Scary-Statue").GetComponent<ScaryStatue>();
             inTrigger = false;
-            jumpSpeed = new Vector3(transform.position.x + 2f, transform.position.y + 2f, transform.position.z + 1f);
+            moveSpeed = new Vector3(transform.position.x + 2f, transform.position.y + 2f, transform.position.z + 1f);
+
         }
 
         // Update is called once per frame
@@ -28,7 +29,7 @@ namespace Nimbi.Interaction.Triggers
             if (!scaryStatue.isScary)
             {
                 //Check if Statue is still scary!
-                transform.position = Vector3.Lerp(transform.position, jumpSpeed, 2);
+                transform.position = Vector3.Lerp(transform.position, moveSpeed, 2);
             }
         }
 

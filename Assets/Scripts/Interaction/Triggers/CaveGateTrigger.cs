@@ -11,6 +11,9 @@ namespace Nimbi.Interaction
         private bool inTrigger;
         private ScaryStatue scaryStatue;
 
+        public float force = 0.1f;
+        public float pushBackRate;
+
 
         // Use this for initialization
         void Start()
@@ -18,6 +21,7 @@ namespace Nimbi.Interaction
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
             inTrigger = false;
             scaryStatue = GameObject.Find("Scary-Statue").GetComponent<ScaryStatue>();
+            
         }
 
         // Update is called once per frame
@@ -25,8 +29,9 @@ namespace Nimbi.Interaction
         {
             if (inTrigger && scaryStatue.isScary)
             {
-                player.transform.position = new Vector3(10f, 0.88f, 15f);
-            }
+                    player.GetComponent<Rigidbody>().AddForce(Vector3.left * force, ForceMode.Acceleration);
+   
+    }
         }
 
         private void OnTriggerStay(Collider coll)
