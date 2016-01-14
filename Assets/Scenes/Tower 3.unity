@@ -2025,7 +2025,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 193150, guid: 80aa4f9c40e8f24459e04680720d3d25, type: 2}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 11473766, guid: 80aa4f9c40e8f24459e04680720d3d25, type: 2}
       propertyPath: fire
@@ -2051,6 +2051,18 @@ Prefab:
       propertyPath: boat.Array.data[4]
       value: 
       objectReference: {fileID: 884564439}
+    - target: {fileID: 11473766, guid: 80aa4f9c40e8f24459e04680720d3d25, type: 2}
+      propertyPath: tower
+      value: 
+      objectReference: {fileID: 620114408}
+    - target: {fileID: 11473766, guid: 80aa4f9c40e8f24459e04680720d3d25, type: 2}
+      propertyPath: slider
+      value: 
+      objectReference: {fileID: 489154089}
+    - target: {fileID: 11473766, guid: 80aa4f9c40e8f24459e04680720d3d25, type: 2}
+      propertyPath: completed
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 6456362, guid: 80aa4f9c40e8f24459e04680720d3d25, type: 2}
   m_ParentPrefab: {fileID: 100100000, guid: 80aa4f9c40e8f24459e04680720d3d25, type: 2}
@@ -2961,8 +2973,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1.5995656, y: 2.227969, z: 3.5335262}
-  m_Center: {x: 0.00000035413882, y: 1.4236044, z: -1.7630527}
+  m_Size: {x: 1.1527287, y: 2.6783931, z: 1.6549199}
+  m_Center: {x: -0.048711795, y: 4.0243297, z: -2.7024732}
 --- !u!1 &351321924
 GameObject:
   m_ObjectHideFlags: 0
@@ -5095,7 +5107,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 620114408}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 2.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 323504747}
@@ -7038,7 +7050,7 @@ Light:
   serializedVersion: 6
   m_Type: 1
   m_Color: {r: 1, g: 0.71308315, b: 0.09558821, a: 1}
-  m_Intensity: 2
+  m_Intensity: 2.5
   m_Range: 10
   m_SpotAngle: 30
   m_CookieSize: 10
@@ -8068,7 +8080,7 @@ Light:
   m_Type: 2
   m_Color: {r: 0.841, g: 0.389, b: 0.166, a: 1}
   m_Intensity: 8
-  m_Range: 28.928888
+  m_Range: 35
   m_SpotAngle: 30
   m_CookieSize: 10
   m_Shadows:
@@ -8086,7 +8098,7 @@ Light:
     serializedVersion: 2
     m_Bits: 4294967295
   m_Lightmapping: 4
-  m_BounceIntensity: 2.5
+  m_BounceIntensity: 0
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
@@ -13924,7 +13936,7 @@ Transform:
   - {fileID: 587387031}
   - {fileID: 283884691}
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 3
 --- !u!1 &1713224754
 GameObject:
   m_ObjectHideFlags: 0
@@ -14555,7 +14567,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 409022, guid: 4d5d69b59f39a4e43a381b37bc52cfa1, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 51.38
+      value: 39.42
       objectReference: {fileID: 0}
     - target: {fileID: 409022, guid: 4d5d69b59f39a4e43a381b37bc52cfa1, type: 2}
       propertyPath: m_LocalPosition.z
@@ -15287,19 +15299,19 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 484586, guid: 07e7a2ad4c8131443b190b37e9e4dc33, type: 2}
       propertyPath: m_LocalRotation.x
-      value: .199964136
+      value: 0.19996414
       objectReference: {fileID: 0}
     - target: {fileID: 484586, guid: 07e7a2ad4c8131443b190b37e9e4dc33, type: 2}
       propertyPath: m_LocalRotation.y
-      value: .373612344
+      value: 0.37361234
       objectReference: {fileID: 0}
     - target: {fileID: 484586, guid: 07e7a2ad4c8131443b190b37e9e4dc33, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -.0828278661
+      value: -0.082827866
       objectReference: {fileID: 0}
     - target: {fileID: 484586, guid: 07e7a2ad4c8131443b190b37e9e4dc33, type: 2}
       propertyPath: m_LocalRotation.w
-      value: .901979864
+      value: 0.90197986
       objectReference: {fileID: 0}
     - target: {fileID: 484586, guid: 07e7a2ad4c8131443b190b37e9e4dc33, type: 2}
       propertyPath: m_RootOrder
