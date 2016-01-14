@@ -14,6 +14,8 @@ namespace Nimbi.Interaction
         private int blowCount;
         private bool currentlyDown = false;
         public ParticleSystem fire;
+        public GameObject[] boat;
+        private bool moveBoat;
 
 		void Start()
 		{
@@ -41,6 +43,14 @@ namespace Nimbi.Interaction
 		{
 			isHeavy = player.Onesie.isHeavy;
 
+            if (moveBoat)
+            {
+                foreach (GameObject g in boat)
+                    g.transform.position = new Vector3(g.transform.position.x, g.transform.position.y, g.transform.position.z + Time.deltaTime * 3);
+
+                player.transform.parent = transform.parent.transform.parent.transform.parent;
+            }
+
 			if (inTrigger && isHeavy)
 			{
 				animator.SetBool("GoingDown", true);
@@ -53,6 +63,8 @@ namespace Nimbi.Interaction
                     so.FindProperty("ShapeModule.boxX").floatValue += 0.4f;
                     so.ApplyModifiedProperties();
                 }
+                if (blowCount >= 3)
+                    moveBoat = true;
                 currentlyDown = true;
                 
 			}
