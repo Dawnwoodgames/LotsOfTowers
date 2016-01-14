@@ -35,4 +35,11 @@ namespace Nimbi.Framework
 		Start,
 		End
 	}
+
+    public enum StartOnTrigger
+    {
+        Enter,
+        Exit
+    }
+
 }
