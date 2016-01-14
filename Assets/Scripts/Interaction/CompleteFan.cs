@@ -15,7 +15,7 @@ namespace Nimbi.Interaction
         private bool currentlyDown = false;
         public ParticleSystem fire;
         public GameObject[] boat;
-        private bool moveBoat;
+        public bool completed;
 
 		void Start()
 		{
@@ -43,7 +43,7 @@ namespace Nimbi.Interaction
 		{
 			isHeavy = player.Onesie.isHeavy;
 
-            if (moveBoat)
+            if (completed)
             {
                 foreach (GameObject g in boat)
                     g.transform.position = new Vector3(g.transform.position.x, g.transform.position.y, g.transform.position.z + Time.deltaTime * 3);
@@ -64,7 +64,7 @@ namespace Nimbi.Interaction
                     so.ApplyModifiedProperties();
                 }
                 if (blowCount >= 3)
-                    moveBoat = true;
+                    completed = true;
                 currentlyDown = true;
                 
 			}
