@@ -11,6 +11,7 @@ namespace Nimbi.UI
         public float showForSeconds = 1f;
         public string dialogueText;
         public TypeCollider type = TypeCollider.Player;
+        public StartOnTrigger onTrigger = StartOnTrigger.Enter;
 
         public bool IsActive { get; set; }
 
@@ -37,13 +38,31 @@ namespace Nimbi.UI
 
         void OnTriggerEnter(Collider col)
         {
-            if(canShow)
+            if(onTrigger == StartOnTrigger.Enter)
             {
-                showText(col);
+                if (canShow)
+                {
+                    showText(col);
+                }
+                else
+                {
+                    StartCoroutine(tryAgainInTwoSeconds(col));
+                }
             }
-            else
+        }
+
+        void OnTriggerExit(Collider col)
+        {
+            if (onTrigger == StartOnTrigger.Exit)
             {
-                StartCoroutine(tryAgainInTwoSeconds(col));
+                if (canShow)
+                {
+                    showText(col);
+                }
+                else
+                {
+                    StartCoroutine(tryAgainInTwoSeconds(col));
+                }
             }
         }
 

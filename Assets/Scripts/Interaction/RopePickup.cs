@@ -9,12 +9,19 @@ namespace Nimbi.Interaction
         private bool inTrigger;
         private bool pickedUp;
         public GameObject player;
+        public bool connected;
 
         void OnTriggerEnter(Collider coll)
         {
             if(coll.tag == "Player")
             {
                 inTrigger = true;
+            }
+            else if(!connected && coll.gameObject.GetComponent<RopeAnchor>() != null)
+            {
+                transform.parent = coll.transform.parent;
+                transform.position = coll.transform.position;
+                connected = true;
             }
         }
 
@@ -31,6 +38,7 @@ namespace Nimbi.Interaction
             if(inTrigger && Input.GetButton("Submit"))
             {
                 transform.parent = player.transform;
+                transform.localPosition = new Vector3(0,0.5f,0);
             }
         }
     }
