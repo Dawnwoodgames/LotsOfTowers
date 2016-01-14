@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Nimbi.Actors;
 
 namespace Nimbi.Interaction.Triggers
 {

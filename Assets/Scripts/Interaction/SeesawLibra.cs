@@ -64,7 +64,6 @@ namespace Nimbi.Interaction
 
 			invisBlockWall.SetActive(false);
 
-			//Nice code bra
 			GameObject nimbiJump = GameObject.Find("HelpNimbiFromHere");
 			elephantSecondPosition = new Vector3(nimbiJump.transform.localPosition.x, nimbiJump.transform.localPosition.y + 1f, nimbiJump.transform.localPosition.z);
 
@@ -217,7 +216,6 @@ namespace Nimbi.Interaction
 			{
 				if ((int)elephant.transform.position.x == (int)elephantSecondJumpTargetPosition.x)
 				{
-					//board.transform.eulerAngles = new Vector3(340f, transform.eulerAngles.y, transform.eulerAngles.z);
 					elephantSecondJumpFinished = true;
 				}
 				else
@@ -354,8 +352,11 @@ namespace Nimbi.Interaction
 					if (boardStartTrigger.isPlayerOnTrigger() && !boardEndTrigger.isElephantOnTrigger())
 					{
 						SetElephantJumpStartValues();
-						
-					}
+					} 
+                    else
+                    {
+                        playerController.EnableMovement(); // Player not on trigger? enable the controlls....
+                    }
 				}
 			}
 		}
