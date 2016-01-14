@@ -5,7 +5,12 @@ namespace Nimbi.Interaction
 {
 	public class PlaceIceBlock : MonoBehaviour
 	{
+		//Iceblock variables
 		public GameObject iceBlock;
+		public Vector3 iceBlockScale = new Vector3(1.1f, 1.1f, 1.1f);
+		public float iceBlockScaleSpeed = 0.05f;
+
+		[HideInInspector]
 		public bool complete = false;
 
 		private bool waterGiven = false;
@@ -26,10 +31,10 @@ namespace Nimbi.Interaction
 		{
 			if (waterGiven)
 			{
-				if (iceBlock.transform.localScale != new Vector3(1.1f, 1.1f, 1.1f))
+				if (iceBlock.transform.localScale != iceBlockScale)
 				{
-					iceBlock.transform.localScale += new Vector3(0.05f, 0.05f, 0.05f);
-				}
+					iceBlock.transform.localScale += new Vector3(iceBlockScaleSpeed, iceBlockScaleSpeed, iceBlockScaleSpeed);
+                }
 				else
 				{
 					iceBlock.tag = "IceBlock";
