@@ -6,21 +6,27 @@ namespace Nimbi.Interaction.Triggers
 {
     public class DragonTrigger : MonoBehaviour {
 
+        public float horizonSpeed;
+        public float verticalSpeed;
+        public float aplitude;
+        private Vector3 flyPosition;
+
+        //Fields for Scary Statue
         private ScaryStatue scaryStatue;
         private bool inTrigger;
-        private Vector3 moveSpeed;
+
 
         // Use this for initialization
         void Start() {
   
             scaryStatue = GameObject.Find("Scary-Statue").GetComponent<ScaryStatue>();
             inTrigger = false;
-            moveSpeed = new Vector3(transform.position.x + 2f, transform.position.y + 2f, transform.position.z + 1f);
+            flyPosition = transform.position;
 
         }
 
         // Update is called once per frame
-        void Update() {
+        void FixedUpdate() {
             BraveDragon();
         }
 
@@ -29,7 +35,9 @@ namespace Nimbi.Interaction.Triggers
             if (!scaryStatue.isScary)
             {
                 //Check if Statue is still scary!
-                transform.position = Vector3.Lerp(transform.position, moveSpeed, 2);
+                flyPosition.x += horizonSpeed;
+                flyPosition.y = Mathf.Sin(Time.realtimeSinceStartup * verticalSpeed) * aplitude;
+                transform.position = flyPosition;
             }
         }
 
