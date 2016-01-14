@@ -270,7 +270,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 62933325}
   m_LocalRotation: {x: 0, y: 0, z: 0.09549748, w: 0.9954297}
-  m_LocalPosition: {x: 5.612, y: 8.975, z: -14.67}
+  m_LocalPosition: {x: 5.59, y: 9.11, z: -14.67}
   m_LocalScale: {x: 1.2883233, y: 0.7106941, z: 1.2883241}
   m_Children:
   - {fileID: 442355360}
@@ -9239,6 +9239,7 @@ GameObject:
   - 4: {fileID: 1216004806}
   - 65: {fileID: 1216004808}
   - 114: {fileID: 1216004807}
+  - 114: {fileID: 1216004809}
   m_Layer: 0
   m_Name: WheelTrigger
   m_TagString: Untagged
@@ -9275,6 +9276,7 @@ MonoBehaviour:
   z: 0
   negative: 0
   speed: 3
+  totalRotation: {x: 0, y: 0, z: 0}
 --- !u!65 &1216004808
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9287,6 +9289,20 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &1216004809
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1216004805}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99de1796c9b1cdd4abb0923046681c8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  stopje: {fileID: 62933325}
+  heightIncrease: 1
+  rope: {fileID: 1543964429}
 --- !u!1 &1231922803
 GameObject:
   m_ObjectHideFlags: 0
