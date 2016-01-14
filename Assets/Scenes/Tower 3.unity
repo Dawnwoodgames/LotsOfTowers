@@ -186,6 +186,7 @@ GameObject:
   - 4: {fileID: 14887028}
   - 33: {fileID: 14887030}
   - 23: {fileID: 14887029}
+  - 64: {fileID: 14887031}
   m_Layer: 0
   m_Name: basemodel
   m_TagString: Untagged
@@ -249,6 +250,18 @@ MeshFilter:
     type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 14887027}
+  m_Mesh: {fileID: 4300000, guid: 11815e14ddec0c8448360095c5ffcbb0, type: 3}
+--- !u!64 &14887031
+MeshCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 14887027}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Convex: 1
   m_Mesh: {fileID: 4300000, guid: 11815e14ddec0c8448360095c5ffcbb0, type: 3}
 --- !u!1 &22625397
 GameObject:
@@ -4049,6 +4062,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineWidth: 0.5
   material: {fileID: 2100000, guid: e266cc694a1f44e4d864c9e2043cb544, type: 2}
+  shittyWorldPlacement: 0
 --- !u!1 &432433729
 GameObject:
   m_ObjectHideFlags: 0
@@ -4247,7 +4261,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 467563073}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.334, y: 49.7, z: -11}
+  m_LocalPosition: {x: -0.334, y: 49.7, z: -10.33}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 601567926}
@@ -4266,8 +4280,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.0886788, y: 2.0973244, z: 0.8326334}
-  m_Center: {x: -1.1574433, y: 1.1110725, z: 0.916317}
+  m_Size: {x: 2.6656978, y: 2.0973244, z: 0.93091524}
+  m_Center: {x: -1.6855427, y: 1.1110725, z: 0.050167084}
 --- !u!114 &467563076
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4648,6 +4662,8 @@ GameObject:
   - 23: {fileID: 502193403}
   - 64: {fileID: 502193402}
   - 114: {fileID: 502193401}
+  - 114: {fileID: 502193406}
+  - 135: {fileID: 502193405}
   m_Layer: 0
   m_Name: WaterCloud (2)
   m_TagString: Untagged
@@ -4725,6 +4741,32 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 502193399}
   m_Mesh: {fileID: 4300000, guid: 87665c4244ca43d4bbc06f49fffcde1c, type: 3}
+--- !u!135 &502193405
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 502193399}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 4
+  m_Center: {x: 3.7633507, y: 5.263366, z: -13.003212}
+--- !u!114 &502193406
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 502193399}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 056cbcc2bdd3b43458966477ad4a1cc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineWidth: 0.5
+  material: {fileID: 2100000, guid: 17d443febf5020a49a3a141c8c5da8c7, type: 2}
+  shittyWorldPlacement: 1
 --- !u!1 &518471856
 GameObject:
   m_ObjectHideFlags: 0
@@ -5793,6 +5835,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineWidth: 0.5
   material: {fileID: 2100000, guid: e266cc694a1f44e4d864c9e2043cb544, type: 2}
+  shittyWorldPlacement: 0
 --- !u!1001 &640893498
 Prefab:
   m_ObjectHideFlags: 0
@@ -12683,6 +12726,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineWidth: 0.5
   material: {fileID: 2100000, guid: e266cc694a1f44e4d864c9e2043cb544, type: 2}
+  shittyWorldPlacement: 0
 --- !u!1 &1410578951
 GameObject:
   m_ObjectHideFlags: 0
@@ -14440,6 +14484,7 @@ GameObject:
   - 64: {fileID: 1570625449}
   - 114: {fileID: 1570625448}
   - 114: {fileID: 1570625452}
+  - 135: {fileID: 1570625453}
   m_Layer: 0
   m_Name: WaterCloud
   m_TagString: Untagged
@@ -14529,7 +14574,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineWidth: 0.5
-  material: {fileID: 2100000, guid: e266cc694a1f44e4d864c9e2043cb544, type: 2}
+  material: {fileID: 2100000, guid: 17d443febf5020a49a3a141c8c5da8c7, type: 2}
+  shittyWorldPlacement: 1
+--- !u!135 &1570625453
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1570625446}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 4
+  m_Center: {x: 3.7633507, y: 5.263366, z: -13.003212}
 --- !u!4 &1571041080 stripped
 Transform:
   m_PrefabParentObject: {fileID: 410054, guid: 7250d0e9e32a9a64ca76310d5242b589, type: 2}
@@ -17007,6 +17065,8 @@ GameObject:
   - 23: {fileID: 1924482232}
   - 64: {fileID: 1924482231}
   - 114: {fileID: 1924482230}
+  - 114: {fileID: 1924482235}
+  - 135: {fileID: 1924482234}
   m_Layer: 0
   m_Name: WaterCloud (1)
   m_TagString: Untagged
@@ -17084,6 +17144,32 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1924482228}
   m_Mesh: {fileID: 4300000, guid: 87665c4244ca43d4bbc06f49fffcde1c, type: 3}
+--- !u!135 &1924482234
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1924482228}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 4
+  m_Center: {x: 3.7633507, y: 5.263366, z: -13.003212}
+--- !u!114 &1924482235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1924482228}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 056cbcc2bdd3b43458966477ad4a1cc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineWidth: 0.5
+  material: {fileID: 2100000, guid: 17d443febf5020a49a3a141c8c5da8c7, type: 2}
+  shittyWorldPlacement: 1
 --- !u!1 &1937476872
 GameObject:
   m_ObjectHideFlags: 0
@@ -18108,6 +18194,8 @@ GameObject:
   - 23: {fileID: 2018907357}
   - 64: {fileID: 2018907356}
   - 114: {fileID: 2018907355}
+  - 114: {fileID: 2018907360}
+  - 135: {fileID: 2018907359}
   m_Layer: 0
   m_Name: WaterCloud (3)
   m_TagString: Untagged
@@ -18185,6 +18273,32 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2018907353}
   m_Mesh: {fileID: 4300000, guid: 87665c4244ca43d4bbc06f49fffcde1c, type: 3}
+--- !u!135 &2018907359
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2018907353}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 4
+  m_Center: {x: 3.7633507, y: 5.263366, z: -13.003212}
+--- !u!114 &2018907360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2018907353}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 056cbcc2bdd3b43458966477ad4a1cc2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  outlineWidth: 0.5
+  material: {fileID: 2100000, guid: 17d443febf5020a49a3a141c8c5da8c7, type: 2}
+  shittyWorldPlacement: 1
 --- !u!1 &2022448939
 GameObject:
   m_ObjectHideFlags: 0
@@ -18284,6 +18398,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   outlineWidth: 0.5
   material: {fileID: 2100000, guid: e266cc694a1f44e4d864c9e2043cb544, type: 2}
+  shittyWorldPlacement: 0
 --- !u!1 &2035104683
 GameObject:
   m_ObjectHideFlags: 0
