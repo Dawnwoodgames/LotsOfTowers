@@ -9,9 +9,9 @@ namespace Nimbi.Interaction
     {
         private Player player;
         private bool inTrigger;
-        private ScaryStatue scaryStatue;
+        public ScaryStatue scaryStatue;
+        private bool isPushed;
 
-        public float force = 0.1f;
         public float pushBackRate;
 
 
@@ -20,7 +20,7 @@ namespace Nimbi.Interaction
         {
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
             inTrigger = false;
-            scaryStatue = GameObject.Find("Scary-Statue").GetComponent<ScaryStatue>();
+            pushBackRate = 10f;
             
         }
 
@@ -29,9 +29,9 @@ namespace Nimbi.Interaction
         {
             if (inTrigger && scaryStatue.isScary)
             {
-                    player.GetComponent<Rigidbody>().AddForce(Vector3.left * force, ForceMode.Acceleration);
-   
-    }
+                isPushed = true;
+                    player.GetComponent<Rigidbody>().AddForce(Vector3.left * pushBackRate, ForceMode.Acceleration);
+            }
         }
 
         private void OnTriggerStay(Collider coll)
@@ -41,5 +41,12 @@ namespace Nimbi.Interaction
                 inTrigger = true;
             }
         }
+
+        private void OnTriggerExit()
+        {
+            inTrigger = false;
+        }
+
+
     }
 }
