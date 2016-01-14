@@ -23,8 +23,6 @@ namespace Nimbi.Interaction
             player = GameObject.FindGameObjectWithTag("Player");
             rend = GetComponent<Renderer>();
             defaultColor = rend.material.color;
-
-            
         }
 
         void Start()
@@ -63,7 +61,8 @@ namespace Nimbi.Interaction
             }
             else
             {
-                distance = Vector3.Distance(transform.localPosition, player.transform.position);
+                distance = Vector3.Distance(gameObject.transform.position, player.transform.position);
+                Debug.Log(distance);
                 if (distance < 3)
                 {
                     HighlightArea();
