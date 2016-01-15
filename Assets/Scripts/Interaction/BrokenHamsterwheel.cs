@@ -51,6 +51,7 @@ namespace Nimbi.Interaction
 
                 gameObject.GetComponent<MeshCollider>().convex = true;
 
+                Destroy(rotateTrigger.gameObject);
                 Destroy(transform.parent.GetChild(1).gameObject);
                 Destroy(this);
             }
