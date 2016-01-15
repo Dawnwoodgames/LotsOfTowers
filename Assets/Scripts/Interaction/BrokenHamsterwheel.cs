@@ -43,11 +43,13 @@ namespace Nimbi.Interaction
             }
             else if (broken)
             {
+                player.gameObject.GetComponent<Rigidbody>().AddForce(Vector3.left * 20f, ForceMode.Impulse);
+
                 gameObject.AddComponent<Rigidbody>();
                 gameObject.GetComponent<Rigidbody>().useGravity = true;
                 gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
                 gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.None;
-
+                
                 gameObject.GetComponent<MeshCollider>().convex = true;
 
                 Destroy(rotateTrigger.gameObject);

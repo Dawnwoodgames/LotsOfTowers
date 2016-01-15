@@ -20,15 +20,22 @@ namespace Nimbi.Interaction
         void FixedUpdate()
         {
             if (rotateTriggerScript.GetPlayerRunning() && waterRising)
+            {
                 transform.localScale += new Vector3(0, 1 * Time.deltaTime / 5, 0);
+            }
+                
 
             if(transform.localScale.y >= growToScale)
             {
                 waterRising = false;
             }
 
-            //if (bridge.transform.position.y < (transform.position.y + (transform.localScale.y / 2)))
-            //    bridge.transform.Translate(new Vector3(0, 1f * Time.deltaTime));
+
+            if (bridge.transform.position.y < (transform.position.y + (transform.localScale.y / 2)))
+            {
+                bridge.transform.Translate(new Vector3(0, 1 * Time.deltaTime / 5, 0));
+            }
+               
             
             if(raiseWaterFromHamsterWheel)
             {
@@ -38,7 +45,7 @@ namespace Nimbi.Interaction
                     transform.Translate(new Vector3(0, .1f * Time.deltaTime));
                 }
 
-                if (raised >= raiseAmount /*&& bridge.transform.position.y >= (transform.localPosition.y + (transform.localScale.y / 2))*/)
+                if (raised >= raiseAmount && bridge.transform.position.y >= (transform.localPosition.y + (transform.localScale.y / 2)))
                 {
                     Destroy(this);
                     raiseWaterFromHamsterWheel = false;
