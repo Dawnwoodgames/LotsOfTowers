@@ -26,9 +26,7 @@ namespace Nimbi.Interaction
         private bool dialogueFinished = false;
 
         private Vector3 endMarker;
-        private float speed = 1f;
-        private float startTime;
-        private float journeyLength;
+        private float speed = 15f;
 
         void Start()
 		{
@@ -36,7 +34,6 @@ namespace Nimbi.Interaction
 			player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 
             endMarker = new Vector3(slider.transform.position.x, slider.transform.position.y - 15f, slider.transform.position.z + 1f);
-            journeyLength = Vector3.Distance(slider.transform.position, endMarker);
         }
 
 		void OnTriggerStay(Collider coll)
@@ -103,9 +100,7 @@ namespace Nimbi.Interaction
         // This is needed to close the ship :-).
         private void MoveLevelSliderDown()
         {
-            float distCovered = (Time.time - startTime) * speed;
-            float fracJourney = distCovered / journeyLength;
-            slider.transform.position = Vector3.MoveTowards(slider.transform.position, endMarker, fracJourney);
+            slider.transform.position = Vector3.MoveTowards(slider.transform.position, endMarker, Time.deltaTime * speed);
         }
 
         IEnumerator ActivateSecondDialogue()
