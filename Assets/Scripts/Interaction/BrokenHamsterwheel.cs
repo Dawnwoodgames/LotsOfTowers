@@ -24,7 +24,6 @@ namespace Nimbi.Interaction
         {
             if (rotateTrigger.GetPlayerRunning() && !broken)
             {
-                Debug.Log(damage);
                 damage += 1 * Time.deltaTime;
                 if (damage > (maxDamage / 4))
                 {
