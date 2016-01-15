@@ -19,5 +19,10 @@ namespace Nimbi.Interaction.Triggers
                 transform.localRotation = Quaternion.Slerp(transform.localRotation, target, Time.deltaTime * smooth);
             }
         }
+
+        public bool isDoorOpen()
+        {
+            return cypherComplete;
+        }
     }
 }
