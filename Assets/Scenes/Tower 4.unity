@@ -343,6 +343,20 @@ MeshCollider:
   serializedVersion: 2
   m_Convex: 0
   m_Mesh: {fileID: 4300000, guid: 10198bfc30a91ab4fb34a058c039b298, type: 3}
+--- !u!114 &70892133
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 70892130}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3949bfb8ddb1139409e404620dff908a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateTrigger: {fileID: 1664277339}
+  waterHole: {fileID: 1457918471}
+  maxDamage: 6.5
 --- !u!1 &79602672
 GameObject:
   m_ObjectHideFlags: 0
@@ -2470,7 +2484,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 10198bfc30a91ab4fb34a058c039b298, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 4.77
+      value: 4.74
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 10198bfc30a91ab4fb34a058c039b298, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2494,7 +2508,23 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 10198bfc30a91ab4fb34a058c039b298, type: 3}
       propertyPath: m_RootOrder
-      value: 7
+      value: 6
+      objectReference: {fileID: 0}
+    - target: {fileID: 100000, guid: 10198bfc30a91ab4fb34a058c039b298, type: 3}
+      propertyPath: m_Name
+      value: hamsterwheel
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 10198bfc30a91ab4fb34a058c039b298, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 10198bfc30a91ab4fb34a058c039b298, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0.75
+      objectReference: {fileID: 0}
+    - target: {fileID: 400000, guid: 10198bfc30a91ab4fb34a058c039b298, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0.75
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 9500000, guid: 10198bfc30a91ab4fb34a058c039b298, type: 3}
@@ -10135,8 +10165,9 @@ GameObject:
   - 4: {fileID: 1457918468}
   - 33: {fileID: 1457918470}
   - 23: {fileID: 1457918469}
+  - 114: {fileID: 1457918471}
   m_Layer: 0
-  m_Name: Water8
+  m_Name: Water
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -10189,6 +10220,23 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1457918467}
   m_Mesh: {fileID: 4300042, guid: 50fce15867a8434459f07eac616242dd, type: 3}
+--- !u!114 &1457918471
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1457918467}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca948b1d6dd2f02408131abb4c7464cb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotateTrigger: {fileID: 1664277337}
+  bridge: {fileID: 0}
+  raiseAmount: 240
+  waterRising: 1
+  growToScale: 2.3
+  rotateTriggerScript: {fileID: 1664277339}
 --- !u!1 &1479099730
 GameObject:
   m_ObjectHideFlags: 0
@@ -10780,7 +10828,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1664277337}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.464, y: 3.78, z: -16.91}
+  m_LocalPosition: {x: 0.464, y: 3.78, z: -16.7}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1594064361}
@@ -10801,7 +10849,7 @@ MonoBehaviour:
   y: 0
   z: 0
   negative: 0
-  speed: 5
+  speed: 10
 --- !u!65 &1664277340
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10812,8 +10860,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 2.3014293, y: 0.96973944, z: 0.7430172}
-  m_Center: {x: -0.14073658, y: -0.30791116, z: -0.12849236}
+  m_Size: {x: 2.3014293, y: 1.4122486, z: 1.2394745}
+  m_Center: {x: -0.14073658, y: -0.08665681, z: -0.6365738}
 --- !u!1001 &1691611786
 Prefab:
   m_ObjectHideFlags: 0
