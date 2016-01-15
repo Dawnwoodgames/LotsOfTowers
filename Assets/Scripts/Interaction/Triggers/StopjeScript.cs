@@ -12,6 +12,7 @@ namespace Nimbi.Interaction.Triggers
         private Vector3 startPosition;
         private HamsterWheelTrigger trigger;
         public RopePickup rope;
+        public GameObject waterval;
 
         void Start()
         {
@@ -25,6 +26,7 @@ namespace Nimbi.Interaction.Triggers
             {
                 trigger.Stop();
                 active = true;
+                waterval.SetActive(true);
             }
             else if (active && heightIncrease + startPosition.y > stopje.transform.position.y)
             {
