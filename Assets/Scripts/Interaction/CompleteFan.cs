@@ -24,12 +24,20 @@ namespace Nimbi.Interaction
         private int blowCount;
         private bool currentlyDown = false;
         private bool dialogueFinished = false;
-        
-		void Start()
+
+        private Vector3 endMarker;
+        private float speed = 1f;
+        private float startTime;
+        private float journeyLength;
+
+        void Start()
 		{
 			animator = GetComponentInParent<Animator>();
 			player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-		}
+
+            endMarker = new Vector3(slider.transform.position.x, slider.transform.position.y - 15f, slider.transform.position.z + 1f);
+            journeyLength = Vector3.Distance(slider.transform.position, endMarker);
+        }
 
 		void OnTriggerStay(Collider coll)
 		{
@@ -54,9 +62,10 @@ namespace Nimbi.Interaction
             if (completed)
             {
                 tower.transform.position = new Vector3(tower.transform.position.x, tower.transform.position.y, tower.transform.position.z - Time.deltaTime * 3);
-                slider.GetComponent<BoxCollider>().enabled = false;
 				Camera.main.transform.localPosition = new Vector3(Camera.main.transform.localPosition.x, Camera.main.transform.localPosition.y + Time.deltaTime, Camera.main.transform.localPosition.z - Time.deltaTime * 3);
 				player.GetComponent<PlayerController>().enabled = false;
+
+                MoveLevelSliderDown();
 
                 if(!dialogueFinished)
                 {
@@ -90,6 +99,14 @@ namespace Nimbi.Interaction
                 currentlyDown = false;
 			}
 		}
+        
+        // This is needed to close the ship :-).
+        private void MoveLevelSliderDown()
+        {
+            float distCovered = (Time.time - startTime) * speed;
+            float fracJourney = distCovered / journeyLength;
+            slider.transform.position = Vector3.MoveTowards(slider.transform.position, endMarker, fracJourney);
+        }
 
         IEnumerator ActivateSecondDialogue()
         {
