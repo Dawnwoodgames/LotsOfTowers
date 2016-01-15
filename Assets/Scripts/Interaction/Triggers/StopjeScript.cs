@@ -10,14 +10,14 @@ namespace Nimbi.Interaction.Triggers
         public float heightIncrease;
         private bool active;
         private Vector3 startPosition;
-        private HamsterWheelTrigger trigger;
+        private RotateTrigger trigger;
         public RopePickup rope;
         public GameObject waterval;
 
         void Start()
         {
             startPosition = stopje.transform.position;
-            trigger = GetComponent<HamsterWheelTrigger>();
+            trigger = GetComponent<RotateTrigger>();
         }
 
         void Update()

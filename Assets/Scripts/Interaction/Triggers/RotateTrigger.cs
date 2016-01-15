@@ -1,9 +1,10 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Nimbi.Actors;
 
 namespace Nimbi.Interaction.Triggers
 {
-    public class HamsterWheelTrigger : MonoBehaviour
+    public class RotateTrigger : MonoBehaviour
     {
 
         public GameObject wheel;
@@ -12,8 +13,9 @@ namespace Nimbi.Interaction.Triggers
         private Vector3 rotation;
         public Vector3 totalRotation;
         private bool stopped;
+        public bool hamsterRequired;
 
-        private bool playerRunning = false;
+        private bool inTrigger = false;
 
         void Start()
         {
@@ -23,7 +25,7 @@ namespace Nimbi.Interaction.Triggers
 
         void Update()
         {
-            if (playerRunning && !stopped)
+            if (inTrigger && !stopped)
             {
                 rotation = new Vector3(speed * (x ? 1 : 0), speed * (y ? 1 : 0), speed * (z ? 1 : 0))*(negative?-1:1);
                 totalRotation += rotation;
@@ -34,16 +36,24 @@ namespace Nimbi.Interaction.Triggers
         private void OnTriggerStay(Collider coll)
         {
             if (coll.tag == "Player")
-                playerRunning = true;
+            {
+                if (hamsterRequired && coll.gameObject.GetComponent<Player>().Onesie.type == OnesieType.Hamster)
+                    inTrigger = true;
+                else if (!hamsterRequired)
+                    inTrigger = true;
+                else
+                    inTrigger = false;
+            }
         }
 
         private void OnTriggerExit(Collider coll)
         {
             if (coll.tag == "Player")
-                playerRunning = false;
+                inTrigger = false;
         }
 
-        public bool GetPlayerRunning() { return playerRunning; }
+        public bool GetPlayerRunning() { return inTrigger; }
+        public bool InTrigger() { return inTrigger; }
 
         public void Stop()
         {
