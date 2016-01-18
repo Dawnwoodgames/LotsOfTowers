@@ -256,19 +256,19 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 564685510}
     m_Modifications:
     - target: {fileID: 400008, guid: 5d77db3a08751ec4784b5bf3c0a5f352, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 46.3
+      value: 75.7816
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 5d77db3a08751ec4784b5bf3c0a5f352, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 47.2
+      value: 46.70487
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 5d77db3a08751ec4784b5bf3c0a5f352, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -16
+      value: -68.841515
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 5d77db3a08751ec4784b5bf3c0a5f352, type: 3}
       propertyPath: m_LocalRotation.x
@@ -288,7 +288,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 5d77db3a08751ec4784b5bf3c0a5f352, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2300002, guid: 5d77db3a08751ec4784b5bf3c0a5f352, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -325,6 +325,10 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5d77db3a08751ec4784b5bf3c0a5f352, type: 3}
   m_IsPrefabParent: 0
+--- !u!4 &52100796 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400008, guid: 5d77db3a08751ec4784b5bf3c0a5f352, type: 3}
+  m_PrefabInternal: {fileID: 52100795}
 --- !u!1 &62933325
 GameObject:
   m_ObjectHideFlags: 0
@@ -434,7 +438,7 @@ Transform:
   - {fileID: 313160214}
   - {fileID: 150141421}
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
 --- !u!1 &79602672
 GameObject:
   m_ObjectHideFlags: 0
@@ -1885,6 +1889,37 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!1 &564685509
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 564685510}
+  m_Layer: 0
+  m_Name: Clouds
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &564685510
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 564685509}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -29.4816, y: 0.49513388, z: 52.841515}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 52100796}
+  - {fileID: 1494896085}
+  - {fileID: 1625530084}
+  - {fileID: 1517866304}
+  m_Father: {fileID: 0}
+  m_RootOrder: 8
 --- !u!1 &600769201
 GameObject:
   m_ObjectHideFlags: 0
@@ -1942,7 +1977,7 @@ RectTransform:
   - {fileID: 520582197}
   - {fileID: 1750542089}
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -11949,7 +11984,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 409022, guid: 4d5d69b59f39a4e43a381b37bc52cfa1, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -15.04
+      value: -6.67
       objectReference: {fileID: 0}
     - target: {fileID: 409022, guid: 4d5d69b59f39a4e43a381b37bc52cfa1, type: 2}
       propertyPath: m_LocalPosition.y
@@ -11957,7 +11992,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 409022, guid: 4d5d69b59f39a4e43a381b37bc52cfa1, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 3.41
+      value: -19.71
       objectReference: {fileID: 0}
     - target: {fileID: 409022, guid: 4d5d69b59f39a4e43a381b37bc52cfa1, type: 2}
       propertyPath: m_LocalRotation.x
@@ -12248,19 +12283,19 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 564685510}
     m_Modifications:
     - target: {fileID: 400008, guid: 5d77db3a08751ec4784b5bf3c0a5f352, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -14.5
+      value: 14.9816
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 5d77db3a08751ec4784b5bf3c0a5f352, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 35
+      value: 34.504868
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 5d77db3a08751ec4784b5bf3c0a5f352, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 29.7
+      value: -23.141514
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 5d77db3a08751ec4784b5bf3c0a5f352, type: 3}
       propertyPath: m_LocalRotation.x
@@ -12280,7 +12315,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 5d77db3a08751ec4784b5bf3c0a5f352, type: 3}
       propertyPath: m_RootOrder
-      value: 10
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 100008, guid: 5d77db3a08751ec4784b5bf3c0a5f352, type: 3}
       propertyPath: m_Name
@@ -12793,14 +12828,14 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1494896083}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000016292068}
-  m_LocalPosition: {x: -25.5, y: 34.2, z: 43.3}
+  m_LocalPosition: {x: 3.9815998, y: 33.70487, z: -9.541515}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1805394584}
   - {fileID: 1269786295}
   - {fileID: 1239500846}
-  m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_Father: {fileID: 564685510}
+  m_RootOrder: 1
 --- !u!1 &1497292656 stripped
 GameObject:
   m_PrefabParentObject: {fileID: 169298, guid: 4d5d69b59f39a4e43a381b37bc52cfa1, type: 2}
@@ -12810,19 +12845,19 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 0}
+    m_TransformParent: {fileID: 564685510}
     m_Modifications:
     - target: {fileID: 400008, guid: 5d77db3a08751ec4784b5bf3c0a5f352, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -50.9
+      value: -21.418402
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 5d77db3a08751ec4784b5bf3c0a5f352, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 19.7
+      value: 19.204866
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 5d77db3a08751ec4784b5bf3c0a5f352, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 143
+      value: 90.158485
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 5d77db3a08751ec4784b5bf3c0a5f352, type: 3}
       propertyPath: m_LocalRotation.x
@@ -12842,7 +12877,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400008, guid: 5d77db3a08751ec4784b5bf3c0a5f352, type: 3}
       propertyPath: m_RootOrder
-      value: 11
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 100008, guid: 5d77db3a08751ec4784b5bf3c0a5f352, type: 3}
       propertyPath: m_Name
@@ -12937,6 +12972,10 @@ Prefab:
     - target: {fileID: 11402192, guid: cd0394506c107b747961cff4cbcca927, type: 2}
       propertyPath: hasPumpAnimation
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 9514226, guid: cd0394506c107b747961cff4cbcca927, type: 2}
+      propertyPath: m_ApplyRootMotion
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: cd0394506c107b747961cff4cbcca927, type: 2}
@@ -13654,7 +13693,7 @@ GameObject:
   - 54: {fileID: 1958690934}
   m_Layer: 0
   m_Name: Draai_Spiegel_4
-  m_TagString: Untagged
+  m_TagString: Mirror
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13674,7 +13713,7 @@ GameObject:
   - 54: {fileID: 1958690935}
   m_Layer: 0
   m_Name: Draai_Spiegel_3
-  m_TagString: Untagged
+  m_TagString: Mirror
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13694,7 +13733,7 @@ GameObject:
   - 54: {fileID: 1958690936}
   m_Layer: 0
   m_Name: Draai_Spiegel_2
-  m_TagString: Untagged
+  m_TagString: Mirror
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -13714,7 +13753,7 @@ GameObject:
   - 54: {fileID: 1958690937}
   m_Layer: 0
   m_Name: Draai_Spiegel_1
-  m_TagString: Untagged
+  m_TagString: Mirror
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
