@@ -8,11 +8,7 @@ public class SunshineRenderer : MonoBehaviour
 {
     private LineRenderer line;
     private Ray ray;
-    private RaycastHit hit;
-    private Vector3 inDirection, origin;
 
-    private string input;
-    private int nPoints;
     List<Vector3> linePositions;
 
     void Awake()
@@ -23,12 +19,8 @@ public class SunshineRenderer : MonoBehaviour
     void Update()
     {
         linePositions = new List<Vector3>();
-        origin = transform.position;
-        ray = new Ray(origin, transform.forward);
-
-        Debug.DrawRay(origin, transform.forward * 100, Color.magenta);
         
-        linePositions.Add(origin);
+        linePositions.Add(transform.position);
 
         AddRay(transform.position, transform.forward);
         line.SetVertexCount(linePositions.Count);
