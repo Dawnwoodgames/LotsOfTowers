@@ -4,6 +4,7 @@ using Nimbi.Actors;
 
 namespace Nimbi.UI {
     public class HeadsUpDisplayScript : MonoBehaviour {
+        private bool isUsingController;
         private Onesie onesie;
         private Player player;
         private Sprite[] sprites;
@@ -42,7 +43,8 @@ namespace Nimbi.UI {
         }
 
         public void Update() {
-            if (onesie != player.Onesie) {
+            if (isUsingController != GameManager.Instance.JoystickConnected || onesie != player.Onesie) {
+                isUsingController = GameManager.Instance.JoystickConnected;
                 onesie = player.Onesie;
                 ShowActiveSkill(player.Onesie.name);
             }
