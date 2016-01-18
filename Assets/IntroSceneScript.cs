@@ -48,7 +48,7 @@ public class IntroSceneScript : MonoBehaviour {
 			GameObject.Find("ImageIntroScreen").GetComponent<Image>().sprite = introSprites[2];
 			break;
 		case 4:
-			IntroText.GetComponent<Text>().text = "When all of a sudden, my friend fell and disapeared between the clouds";
+			IntroText.GetComponent<Text>().text = "When all of a sudden, my friend fell and disappeared between the clouds";
 			GameObject.Find("ImageIntroScreen").GetComponent<Image>().sprite = introSprites[3];
 			break;
 		case 5:
