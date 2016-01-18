@@ -7,12 +7,12 @@ namespace Nimbi.Interaction
     public class WaterHole : MonoBehaviour
     {
         public GameObject rotateTrigger;
-        public HamsterWheel wheel;
         public GameObject bridge;
         public float raiseAmount = 240;
         public bool waterRising = true;
+        public float growToScale = 2.3f;
 
-        public WheelRotateTrigger rotateTriggerScript;
+        public HamsterWheelTrigger rotateTriggerScript;
         private int raised = 0;
 
         private bool raiseWaterFromHamsterWheel = false;
@@ -20,11 +20,23 @@ namespace Nimbi.Interaction
         void FixedUpdate()
         {
             if (rotateTriggerScript.GetPlayerRunning() && waterRising)
-                transform.localScale += new Vector3(0, 1 * Time.deltaTime, 0);
+            {
+                transform.localScale += new Vector3(0, 1 * Time.deltaTime / 5, 0);
+            }
+                
+
+            if(transform.localScale.y >= growToScale)
+            {
+                waterRising = false;
+            }
+
 
             if (bridge.transform.position.y < (transform.position.y + (transform.localScale.y / 2)))
-                bridge.transform.Translate(new Vector3(0, 1f * Time.deltaTime));
-
+            {
+                bridge.transform.Translate(new Vector3(0, 1 * Time.deltaTime / 5, 0));
+            }
+               
+            
             if(raiseWaterFromHamsterWheel)
             {
                 if (raised < raiseAmount)
