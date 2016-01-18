@@ -53,7 +53,7 @@ namespace Nimbi.Interaction
 					case 0:
 						if (transport.localPosition.y >= 1.3f)
 						{
-							transport.localPosition = Vector3.MoveTowards(transport.localPosition, transport.localPosition - Vector3.up, Time.deltaTime * 20);
+							transport.localPosition = Vector3.MoveTowards(transport.localPosition, transport.localPosition - Vector3.up, Time.deltaTime * 10);
 						}
 						else
 						{
@@ -63,7 +63,7 @@ namespace Nimbi.Interaction
 					case 1:
 						if (transport.localPosition.x >= -19.75f)
 						{
-							transport.localPosition = Vector3.MoveTowards(transport.localPosition, transport.localPosition + Vector3.left, Time.deltaTime * 20);
+							transport.localPosition = Vector3.MoveTowards(transport.localPosition, transport.localPosition + Vector3.left, Time.deltaTime * 10);
 						}
 						else
 						{
@@ -93,7 +93,7 @@ namespace Nimbi.Interaction
 					case 4:
 						if (transport.localPosition.y <= 3f)
 						{
-							transport.localPosition = Vector3.MoveTowards(transport.localPosition, transport.localPosition + Vector3.up, Time.deltaTime * 20);
+							transport.localPosition = Vector3.MoveTowards(transport.localPosition, transport.localPosition + Vector3.up, Time.deltaTime * 10);
 						}
 						else
 						{
@@ -119,9 +119,9 @@ namespace Nimbi.Interaction
 				switch (phase)
 				{
 					case 0:
-						if (transport.localPosition.y >= 3f)
+						if (transport.localPosition.y >= 1.43f)
 						{
-							transport.localPosition = Vector3.MoveTowards(transport.localPosition, transport.localPosition - Vector3.up, Time.deltaTime * 20);
+							transport.localPosition = Vector3.MoveTowards(transport.localPosition, transport.localPosition - Vector3.up, Time.deltaTime * 10);
 						}
 						else
 						{
@@ -129,9 +129,9 @@ namespace Nimbi.Interaction
 						}
 						break;
 					case 1:
-						if (transport.localPosition.x >= -19.75f)
+						if (transport.localPosition.x <= -19.67f)
 						{
-							//transport.localPosition = Vector3.MoveTowards(transport.localPosition, transport.localPosition + Vector3.left, Time.deltaTime * 20);
+							transport.localPosition = Vector3.MoveTowards(transport.localPosition, transport.localPosition - Vector3.left, Time.deltaTime * 20);
 						}
 						else
 						{
@@ -139,9 +139,9 @@ namespace Nimbi.Interaction
 						}
 						break;
 					case 2:
-						if (transport.localPosition.z <= 11)
+						if (transport.localPosition.z >= -1.47f)
 						{
-							//transport.localPosition = Vector3.MoveTowards(transport.localPosition, transport.localPosition + Vector3.forward, Time.deltaTime * 20);
+							transport.localPosition = Vector3.MoveTowards(transport.localPosition, transport.localPosition - Vector3.forward, Time.deltaTime * 20);
 						}
 						else
 						{
@@ -149,9 +149,9 @@ namespace Nimbi.Interaction
 						}
 						break;
 					case 3:
-						if (transport.localPosition.x >= -37f)
+						if (transport.localPosition.x <= -17.5f)
 						{
-							//transport.localPosition = Vector3.MoveTowards(transport.localPosition, transport.localPosition + Vector3.left, Time.deltaTime * 20);
+							transport.localPosition = Vector3.MoveTowards(transport.localPosition, transport.localPosition - Vector3.left, Time.deltaTime * 10);
 						}
 						else
 						{
@@ -159,6 +159,14 @@ namespace Nimbi.Interaction
 						}
 						break;
 					case 4:
+						if (transport.localPosition.y <= 2.75f)
+						{
+							transport.localPosition = Vector3.MoveTowards(transport.localPosition, transport.localPosition + Vector3.up, Time.deltaTime * 10);
+						}
+						else
+						{
+							phase = 5;
+						}
 						break;
 					default:
 						break;
