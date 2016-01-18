@@ -1,4 +1,4 @@
-﻿using Nimbi.Framework;
+﻿using Nimbi.UI;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
