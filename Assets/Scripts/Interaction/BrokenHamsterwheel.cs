@@ -7,7 +7,7 @@ namespace Nimbi.Interaction
 {
     public class BrokenHamsterwheel : MonoBehaviour
     {
-        public HamsterWheelTrigger rotateTrigger;
+        public RotateTrigger rotateTrigger;
         public WaterHole waterHole;
         public float maxDamage = 6.5f;
 

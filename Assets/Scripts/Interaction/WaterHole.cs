@@ -12,7 +12,7 @@ namespace Nimbi.Interaction
         public bool waterRising = true;
         public float growToScale = 2.3f;
 
-        public HamsterWheelTrigger rotateTriggerScript;
+        public RotateTrigger rotateTriggerScript;
         private int raised = 0;
 
         private bool raiseWaterFromHamsterWheel = false;
