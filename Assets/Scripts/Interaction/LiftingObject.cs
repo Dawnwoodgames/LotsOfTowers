@@ -11,7 +11,6 @@ namespace Nimbi.Interaction
         private float smoothLerp = 5;
         private Rigidbody rigid;
         private MeshCollider meshColl;
-        private bool onPickupObject = false;
 
         public bool pickedUp { get; set; }
 
