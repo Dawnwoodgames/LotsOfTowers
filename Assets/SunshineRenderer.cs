@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Text.RegularExpressions;
-using System.Collections;
+using System.Collections.Generic;
+using System.Linq;
 
 [RequireComponent(typeof(LineRenderer))]
 public class SunshineRenderer : MonoBehaviour
@@ -11,8 +12,8 @@ public class SunshineRenderer : MonoBehaviour
     private Vector3 inDirection, origin;
 
     private string input;
-    private int nReflections = 8;
     private int nPoints;
+    List<Vector3> linePositions;
 
     void Awake()
     {
@@ -21,53 +22,49 @@ public class SunshineRenderer : MonoBehaviour
 
     void Update()
     {
-        nReflections = Mathf.Clamp(nReflections, 0, nReflections);
-
+        linePositions = new List<Vector3>();
         origin = transform.position;
         ray = new Ray(origin, transform.forward);
 
         Debug.DrawRay(origin, transform.forward * 100, Color.magenta);
+        
+        linePositions.Add(origin);
 
-        nPoints = nReflections;
-        line.SetVertexCount(nPoints);
-        line.SetPosition(0, origin);
-
-        for (int i = 0; i < nReflections; i++)
-        {
-            if (i == 0)
-            {
-                if (Physics.Raycast(ray.origin, ray.direction, out hit, 100))
-                {
-                    if (hit.transform.tag == "Mirror")
-                    {
-                        inDirection = Vector3.Reflect(ray.direction, hit.normal);
-                        ray = new Ray(hit.point, inDirection);
-
-                        Debug.DrawRay(hit.point, hit.normal * 30, Color.blue);
-
-                        if (nReflections == 1)
-                        {
-                            line.SetVertexCount(++nPoints);
-                        }
-                    }
-                    line.SetPosition(i + 1, hit.point);
-                }
-            } else
-            {
-                if (Physics.Raycast(ray.origin,ray.direction,out hit, 100))
-                {
-                    if (hit.transform.tag == "Mirror")
-                    {
-                        inDirection = Vector3.Reflect(inDirection, hit.normal);
-                        ray = new Ray(hit.point, inDirection);
-
-                        Debug.DrawRay(hit.point, hit.normal * 30, Color.blue);
-
-                        line.SetVertexCount(++nPoints);
-                    }
-                    line.SetPosition(i + 1, hit.point);
-                }
-            }
-        }
+        AddRay(transform.position, transform.forward);
+        line.SetVertexCount(linePositions.Count);
+        line.SetPositions(linePositions.ToArray());
     }
+
+    private void AddRay(Vector3 start, Vector3 direction)
+    {
+        Ray ray = new Ray(start, direction);
+        RaycastHit[] rays = Physics.RaycastAll(ray, 100);
+        System.Array.Sort(rays, new RaycastSorter());
+        bool mirrorfound = false;
+        Debug.DrawRay(start, direction*100, Color.blue);
+        
+
+        foreach (RaycastHit hit in rays)
+        {
+            if (mirrorfound || hit.collider.tag == "Player")
+                continue;
+
+            mirrorfound = true;
+            Debug.DrawRay(hit.point, hit.normal*4, Color.red);
+            linePositions.Add(hit.point);
+            if(hit.collider.tag == "Mirror")
+                AddRay(hit.point, Vector3.Reflect(ray.direction, hit.normal).normalized);
+        }
+
+        if (!mirrorfound)
+            linePositions.Add(ray.origin+ray.direction * 100);
+    }
+}
+
+class RaycastSorter : IComparer<RaycastHit> {
+    public int Compare(RaycastHit a, RaycastHit b)
+    {
+        return a.distance.CompareTo(b.distance);
+    }
+
 }
