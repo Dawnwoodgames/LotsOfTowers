@@ -5,21 +5,37 @@ namespace Nimbi.Interaction
 {
     public class LightOnOff : MonoBehaviour {
 
-        public GameObject[] Lights;
+        public GameObject[] LightsOn;
+        public GameObject[] LightsOff;
 
         void OnTriggerEnter(Collider col)
         {
-            foreach(GameObject light in Lights)
+            if(col.tag == "Player" || col.tag == "HamsterBall")
             {
-                light.SetActive(true);
+                foreach (GameObject light in LightsOn)
+                {
+                    light.SetActive(true);
+                }
+                foreach (GameObject light in LightsOff)
+                {
+                    light.SetActive(false);
+                }
             }
         }
 
         void OnTriggerExit(Collider col)
         {
-            foreach (GameObject light in Lights)
+            if (col.tag == "Player" || col.tag == "HamsterBall")
             {
-                light.SetActive(false);
+                foreach (GameObject light in LightsOn)
+                {
+                    light.SetActive(false);
+                }
+
+                foreach (GameObject light in LightsOff)
+                {
+                    light.SetActive(true);
+                }
             }
         }
     }
