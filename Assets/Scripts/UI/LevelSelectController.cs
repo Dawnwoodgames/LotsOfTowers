@@ -19,10 +19,13 @@ namespace Nimbi.UI {
 			this.menu = FindObjectOfType<MenuController>();
 			this.mounts = chapters.Select(c => c.transform.FindChild("Mounting Point").gameObject).ToArray();
 
+            // Turn off before we ship the game lol
 			PlayerPrefs.SetInt("bIsLevelAvailable0", 1);
 			PlayerPrefs.SetInt("bIsLevelAvailable1", 1);
 			PlayerPrefs.SetInt("bIsLevelAvailable2", 1);
-			int levelIndex = 1;
+            PlayerPrefs.SetInt("bIsLevelAvailable3", 1);
+            PlayerPrefs.SetInt("bIsLevelAvailable4", 1);
+            int levelIndex = 1;
 
 			foreach (Button button in GetComponentsInChildren<Button>()) {
 				// Assign functions to each button in the menu
