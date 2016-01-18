@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 
 [RequireComponent(typeof(LineRenderer))]
-public class SunshineRenderer : MonoBehaviour
-{
+public class SunshineRenderer : MonoBehaviour {
     private LineRenderer line;
     private Ray ray;
 
     List<Vector3> linePositions;
+
+    public GameObject mirrorWind;
+    public GameObject mirrorDoor;
 
     void Awake()
     {
@@ -41,6 +43,9 @@ public class SunshineRenderer : MonoBehaviour
             if (mirrorfound || hit.collider.tag == "Player")
                 continue;
 
+            if (hit.collider.tag == "MirrorDoor")
+                Complete();
+
             mirrorfound = true;
             Debug.DrawRay(hit.point, hit.normal*4, Color.red);
             linePositions.Add(hit.point);
@@ -50,6 +55,11 @@ public class SunshineRenderer : MonoBehaviour
 
         if (!mirrorfound)
             linePositions.Add(ray.origin+ray.direction * 100);
+    }
+
+    public void Complete()
+    {
+        // Complete puzzle here once we have a new model
     }
 }
 

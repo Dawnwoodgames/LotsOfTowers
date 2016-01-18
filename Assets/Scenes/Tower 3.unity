@@ -2406,7 +2406,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 291252430}
   m_LocalRotation: {x: -0.14079516, y: -0.049487423, z: 0.0070466814, w: 0.9887761}
-  m_LocalPosition: {x: -2.43, y: 20.770002, z: 10.4}
+  m_LocalPosition: {x: -2.43, y: 21.5, z: 10.4}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 987317041}
@@ -4193,8 +4193,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 20, y: 4.7106085, z: 35}
-  m_Center: {x: 0, y: 0.35530186, z: 0}
+  m_Size: {x: 20, y: 2.710865, z: 35}
+  m_Center: {x: 0, y: -0.64457226, z: 0}
 --- !u!114 &489154089
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4369,7 +4369,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e2fae284985a24a5e9d4e0cbc0e0fbe2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  testMode: 0
+  testMode: 1
 --- !u!1 &520032040
 GameObject:
   m_ObjectHideFlags: 0
@@ -7541,6 +7541,61 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &750148740
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 750148741}
+  - 65: {fileID: 750148743}
+  - 114: {fileID: 750148742}
+  m_Layer: 0
+  m_Name: EasyBallMovementTriggerEnd
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &750148741
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 750148740}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.73, y: 2.6899986, z: 16.87}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1443085982}
+  m_RootOrder: 13
+--- !u!114 &750148742
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 750148740}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9cdae9baddb67a4381e07420f0c4e1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hamsterBall: {fileID: 1568941734}
+  easyOnExit: 1
+  removeEasyBallMovement: 1
+--- !u!65 &750148743
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 750148740}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 11.342518, y: 7.926419, z: 3.6676874}
+  m_Center: {x: 0.73287106, y: -1.0835495, z: -0.9046879}
 --- !u!1 &763141609
 GameObject:
   m_ObjectHideFlags: 0
@@ -8204,8 +8259,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.1296184, y: 3.2910035, z: 2.6053607}
-  m_Center: {x: 0.1635966, y: -2.6004386, z: -0.8026807}
+  m_Size: {x: 3.1296184, y: 3.7092633, z: 2.6053607}
+  m_Center: {x: 0.1635966, y: -2.3913205, z: -0.8026807}
 --- !u!33 &847823356
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -9350,6 +9405,7 @@ Transform:
   - {fileID: 291252431}
   - {fileID: 766822489}
   - {fileID: 1771138602}
+  - {fileID: 1602144926}
   m_Father: {fileID: 283884691}
   m_RootOrder: 2
 --- !u!1 &992256224
@@ -10590,6 +10646,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   LightsOn:
+  - {fileID: 2130447996}
   - {fileID: 1231336838}
   LightsOff: []
 --- !u!65 &1153984668
@@ -13024,6 +13081,7 @@ Transform:
   - {fileID: 1611077925}
   - {fileID: 943168857}
   - {fileID: 1153984666}
+  - {fileID: 750148741}
   m_Father: {fileID: 283884691}
   m_RootOrder: 3
 --- !u!1 &1444085720
@@ -14365,6 +14423,61 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!1 &1602144925
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1602144926}
+  - 65: {fileID: 1602144928}
+  - 114: {fileID: 1602144927}
+  m_Layer: 0
+  m_Name: EasyBallMovementTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1602144926
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1602144925}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.73, y: 24.69, z: -14.11}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 987317041}
+  m_RootOrder: 9
+--- !u!114 &1602144927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1602144925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b9cdae9baddb67a4381e07420f0c4e1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hamsterBall: {fileID: 1568941734}
+  easyOnExit: 1
+  removeEasyBallMovement: 0
+--- !u!65 &1602144928
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1602144925}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.0062318, y: 3.528439, z: 1.965198}
+  m_Center: {x: -0.18394208, y: -0.2241745, z: -0.053447723}
 --- !u!1 &1605104226
 GameObject:
   m_ObjectHideFlags: 0
@@ -15606,7 +15719,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 409022, guid: 4d5d69b59f39a4e43a381b37bc52cfa1, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 4.7
+      value: 4.64
       objectReference: {fileID: 0}
     - target: {fileID: 409022, guid: 4d5d69b59f39a4e43a381b37bc52cfa1, type: 2}
       propertyPath: m_LocalRotation.x
@@ -18304,7 +18417,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 2130447996}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.73, y: -0.04, z: 5.11}
+  m_LocalPosition: {x: -0.73, y: -0.04, z: 5.73}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1443085982}
