@@ -1,7 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Nimbi.Actors;
-using UnityEditor;
 using Nimbi.Framework;
 using Nimbi.Interaction.Triggers;
 
@@ -79,10 +78,9 @@ namespace Nimbi.Interaction
                 if (!currentlyDown && blowCount < 3)
                 {
                     blowCount += 1;
+                    fire.maxParticles += 10;
+                    fire.startLifetime += 0.3f;
                     fire.startSize += 0.2f;
-                    SerializedObject so = new SerializedObject(fire);
-                    so.FindProperty("ShapeModule.boxX").floatValue += 0.4f;
-                    so.ApplyModifiedProperties();
                 }
                 if (blowCount >= 3)
                     completed = true;
