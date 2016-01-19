@@ -9,7 +9,7 @@ namespace Nimbi.Interaction.Triggers
 
 		private void OnTriggerEnter(Collider coll)
 		{
-			if (coll.name == gameObject.name.Replace("Trigger", ""))
+			if (coll.name == gameObject.name.Replace("Trigger", "") && !coll.GetComponent<LiftingObject>().pickedUp)
 			{
 				try
 				{
