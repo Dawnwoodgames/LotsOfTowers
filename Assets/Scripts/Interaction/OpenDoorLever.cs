@@ -44,16 +44,19 @@ namespace Nimbi.Interaction
             }
         }
 
-        private void OnCollisionEnter(Collision coll)
+        void OnTriggerEnter(Collider coll)
         {
             if (coll.gameObject.tag == "Player")
             {
                 inTrigger = true;
             }
         }
-        private void OnCollisionExit()
+        void OnTriggerExit(Collider coll)
         {
-            inTrigger = false;
+            if (coll.gameObject.tag == "Player")
+            {
+                inTrigger = false;
+            }
         }
 
         // Open the door to the given position.
