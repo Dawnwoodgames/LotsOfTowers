@@ -533,7 +533,7 @@ Transform:
   m_Children:
   - {fileID: 442355360}
   m_Father: {fileID: 1958690903}
-  m_RootOrder: 4
+  m_RootOrder: 6
 --- !u!23 &62933327
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1728,7 +1728,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1958690903}
-  m_RootOrder: 3
+  m_RootOrder: 5
 --- !u!23 &436983655
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -1972,7 +1972,7 @@ Transform:
   - {fileID: 15272103}
   - {fileID: 1288443436}
   m_Father: {fileID: 1958690903}
-  m_RootOrder: 9
+  m_RootOrder: 11
 --- !u!137 &537848044
 SkinnedMeshRenderer:
   m_ObjectHideFlags: 0
@@ -2342,7 +2342,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1958690903}
-  m_RootOrder: 7
+  m_RootOrder: 9
 --- !u!23 &607006018
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -2973,7 +2973,7 @@ Transform:
   - {fileID: 1406081521}
   - {fileID: 84108625}
   m_Father: {fileID: 1958690903}
-  m_RootOrder: 8
+  m_RootOrder: 10
 --- !u!4 &757901365 stripped
 Transform:
   m_PrefabParentObject: {fileID: 485132, guid: e3c1aa844ac241f4989be09857e9cd6b, type: 2}
@@ -3015,7 +3015,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 448254, guid: a558149a5545b0742a57949f45fb74fe, type: 2}
       propertyPath: m_RootOrder
-      value: 13
+      value: 17
       objectReference: {fileID: 0}
     - target: {fileID: 2343994, guid: a558149a5545b0742a57949f45fb74fe, type: 2}
       propertyPath: m_Materials.Array.data[0]
@@ -3250,7 +3250,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 461198, guid: ef9f58e242f3e58408b7d08f293f410d, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 11470322, guid: ef9f58e242f3e58408b7d08f293f410d, type: 2}
       propertyPath: mirrorWind
@@ -3260,6 +3260,14 @@ Prefab:
       propertyPath: mirrorDoor
       value: 
       objectReference: {fileID: 436983653}
+    - target: {fileID: 11470322, guid: ef9f58e242f3e58408b7d08f293f410d, type: 2}
+      propertyPath: newMirror
+      value: 
+      objectReference: {fileID: 1543271504}
+    - target: {fileID: 11470322, guid: ef9f58e242f3e58408b7d08f293f410d, type: 2}
+      propertyPath: newDoor
+      value: 
+      objectReference: {fileID: 1512335038}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: ef9f58e242f3e58408b7d08f293f410d, type: 2}
   m_IsPrefabParent: 0
@@ -3377,7 +3385,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 1958690903}
-  m_RootOrder: 6
+  m_RootOrder: 8
 --- !u!23 &927304062
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -13067,7 +13075,7 @@ Transform:
   - {fileID: 1085219097}
   - {fileID: 1711782811}
   m_Father: {fileID: 1958690903}
-  m_RootOrder: 11
+  m_RootOrder: 13
 --- !u!1 &1463708454
 GameObject:
   m_ObjectHideFlags: 0
@@ -13465,6 +13473,70 @@ Transform:
 GameObject:
   m_PrefabParentObject: {fileID: 169298, guid: 4d5d69b59f39a4e43a381b37bc52cfa1, type: 2}
   m_PrefabInternal: {fileID: 1284475828}
+--- !u!1 &1512335038
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100046, guid: daafd300e15693b4ea29e2e708cb98b4, type: 3}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1512335039}
+  - 33: {fileID: 1512335041}
+  - 23: {fileID: 1512335040}
+  m_Layer: 0
+  m_Name: Spiegel_deur_doorgang
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1512335039
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400046, guid: daafd300e15693b4ea29e2e708cb98b4, type: 3}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1512335038}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.263675, y: 4.2685614, z: 3.3233051}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1958690903}
+  m_RootOrder: 4
+--- !u!23 &1512335040
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 2300036, guid: daafd300e15693b4ea29e2e708cb98b4,
+    type: 3}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1512335038}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 2100000, guid: ec3c4b258e26606459f74873fbb6e678, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!33 &1512335041
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 3300036, guid: daafd300e15693b4ea29e2e708cb98b4,
+    type: 3}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1512335038}
+  m_Mesh: {fileID: 4300030, guid: daafd300e15693b4ea29e2e708cb98b4, type: 3}
 --- !u!1001 &1517866303
 Prefab:
   m_ObjectHideFlags: 0
@@ -13601,7 +13673,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 446008, guid: cd0394506c107b747961cff4cbcca927, type: 2}
       propertyPath: m_RootOrder
-      value: 12
+      value: 16
       objectReference: {fileID: 0}
     - target: {fileID: 11402192, guid: cd0394506c107b747961cff4cbcca927, type: 2}
       propertyPath: hamsterRequired
@@ -13771,6 +13843,70 @@ MonoBehaviour:
   end: {fileID: 1144195858}
   endTrigger: {fileID: 1725518803}
   transport: {fileID: 1378298316}
+--- !u!1 &1543271504
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 100044, guid: daafd300e15693b4ea29e2e708cb98b4, type: 3}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1543271505}
+  - 33: {fileID: 1543271507}
+  - 23: {fileID: 1543271506}
+  m_Layer: 0
+  m_Name: Spiegel_deur3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!4 &1543271505
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 400044, guid: daafd300e15693b4ea29e2e708cb98b4, type: 3}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1543271504}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.632506, y: 10.848773, z: 3.3184042}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1958690903}
+  m_RootOrder: 3
+--- !u!23 &1543271506
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 2300034, guid: daafd300e15693b4ea29e2e708cb98b4,
+    type: 3}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1543271504}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 2100000, guid: ec3c4b258e26606459f74873fbb6e678, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+--- !u!33 &1543271507
+MeshFilter:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 3300034, guid: daafd300e15693b4ea29e2e708cb98b4,
+    type: 3}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1543271504}
+  m_Mesh: {fileID: 4300032, guid: daafd300e15693b4ea29e2e708cb98b4, type: 3}
 --- !u!1 &1543964427
 GameObject:
   m_ObjectHideFlags: 0
@@ -13799,7 +13935,7 @@ Transform:
   m_LocalScale: {x: 0.99999994, y: 1, z: 0.99999994}
   m_Children: []
   m_Father: {fileID: 1958690903}
-  m_RootOrder: 10
+  m_RootOrder: 12
 --- !u!114 &1543964429
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -14203,7 +14339,7 @@ Transform:
   m_Children:
   - {fileID: 1187219869}
   m_Father: {fileID: 1958690903}
-  m_RootOrder: 5
+  m_RootOrder: 7
 --- !u!23 &1758618124
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -14558,6 +14694,8 @@ Transform:
   - {fileID: 1958690931}
   - {fileID: 1216004806}
   - {fileID: 983447599}
+  - {fileID: 1543271505}
+  - {fileID: 1512335039}
   - {fileID: 436983654}
   - {fileID: 62933326}
   - {fileID: 1758618123}
@@ -14567,9 +14705,9 @@ Transform:
   - {fileID: 537848043}
   - {fileID: 1543964428}
   - {fileID: 1453431180}
+  - {fileID: 1814211790}
   - {fileID: 696338927}
   - {fileID: 300739855}
-  - {fileID: 1814211790}
   m_Father: {fileID: 1302688336}
   m_RootOrder: 5
 --- !u!1 &1958690904
