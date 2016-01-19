@@ -54,6 +54,6 @@ public class WalkthroughCurrentPuzzle : MonoBehaviour {
     {
         boardActive = false;
         images.SetActive(false);
-        images.transform.parent = GameObject.Find("walkthrough").transform;
+        images.transform.parent = GameObject.Find("WalkthroughCurrent").transform;
     }
 }

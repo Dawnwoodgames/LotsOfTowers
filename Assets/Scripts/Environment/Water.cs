@@ -10,10 +10,12 @@ namespace Nimbi.Environment {
 		private Rigidbody playerRigidbody;
 		private float surfaceHeight;
 
+        public float depthLevel;
+
 		public void Awake() {
 			this.driftConstraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
 			this.sinkConstraints = RigidbodyConstraints.FreezeRotation;
-			this.surfaceHeight = (transform.position.y + transform.localScale.y / 3) - 0.75f;
+			this.surfaceHeight = (transform.position.y + transform.localScale.y / 3) + depthLevel;
 		}
 
 		public void FixedUpdate() {
@@ -65,8 +67,11 @@ namespace Nimbi.Environment {
 
 		public void OnTriggerExit(Collider coll) {
 			if (coll.gameObject.tag == "HamsterBall" || coll.gameObject.tag == "Player") {
-				ball = null;
-				ballRigidBody.useGravity = true;
+                if (ball != null)
+                {
+                    ball = null;
+                    ballRigidBody.useGravity = true;
+                }
 				player = null;
 				playerRigidbody.constraints = sinkConstraints;
 				playerRigidbody.useGravity = true;
