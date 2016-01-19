@@ -169,7 +169,7 @@ namespace Nimbi {
                 yield return null;
             }
 
-            if (index != 0) {
+			if (index != 0 && index != 1) {
                 // If the scene to be loaded is NOT the main menu, show the loading screen
                 loadingScreen.sprite = loadingSpriteA;
                 loadingScreen.enabled = true;
@@ -178,7 +178,7 @@ namespace Nimbi {
             SceneManager.LoadSceneAsync(index);
             yield return new WaitForSeconds(1);
 
-            if (index != 0) {
+			if (index != 0 && index != 1) {
                 loadingScreen.sprite = loadingSpriteB;
 
                 while (Input.GetAxis("Submit") == 0) {
@@ -186,6 +186,7 @@ namespace Nimbi {
                 }
 
                 loadingScreen.enabled = false;
+				Camera.main.GetComponent<Animator> ().SetBool ("playanimation",true);
             }
 
             while (fader.color.a > 0.01f) {

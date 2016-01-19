@@ -36,14 +36,14 @@ public class IntroSceneScript : MonoBehaviour {
 
 		switch (IntroState) {
 		    case 1:
-			    IntroText.GetComponent<Text>().text = "";
+			    IntroText.GetComponent<Text>().text = "On a normal sunday morning";
 			    GameObject.Find("ImageIntroScreen").GetComponent<Image>().sprite = introSprites[0];
 			    break;
-            case 10:
+            case 9:
                 GameManager.Instance.LoadLevel(2, true);
                 break;
             default:
-			    IntroText.GetComponent<Text>().text = ("intro_"+(IntroState-1)).Localize();
+			    IntroText.GetComponent<Text>().text = ("intro_"+(IntroState)).Localize();
 			    GameObject.Find("ImageIntroScreen").GetComponent<Image>().sprite = introSprites[IntroState-1];
 			    break;
 		    
