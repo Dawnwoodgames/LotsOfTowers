@@ -66,39 +66,37 @@ namespace Nimbi.Audio
             onesieSwitchHamsterSound = switchOnesieToHamsterSoundFile;
         }
 
-        private void playMusic()
+        private void StartMusic(AudioClip track)
+        {
+            if (backgroundMusic.GetComponent<AudioSource>().clip != track)
+            {
+                backgroundMusic.GetComponent<AudioSource>().clip = track;
+                backgroundMusic.GetComponent<AudioSource>().Play();
+                playing = true;
+            }
+        }
+
+        private void PlayMusic()
         {
             switch (SceneManager.GetActiveScene().name)
             {
                 case "Tower 1":
-                    backgroundMusic.GetComponent<AudioSource>().clip = backgroundMusicTowerOne;
-                    backgroundMusic.GetComponent<AudioSource>().Play();
-                    playing = true;
+                    StartMusic(backgroundMusicTowerOne);
                     break;
                 case "Tower 2":
-                    backgroundMusic.GetComponent<AudioSource>().clip = backgroundMusicTowerTwo;
-                    backgroundMusic.GetComponent<AudioSource>().Play();
-                    playing = true;
+                    StartMusic(backgroundMusicTowerTwo);
                     break;
                 case "Tower 3":
-                    backgroundMusic.GetComponent<AudioSource>().clip = backgroundMusicTowerThree;
-                    backgroundMusic.GetComponent<AudioSource>().Play();
-                    playing = true;
+                    StartMusic(backgroundMusicTowerThree);
                     break;
                 case "Tower 4":
-                    backgroundMusic.GetComponent<AudioSource>().clip = backgroundMusicTowerFour;
-                    backgroundMusic.GetComponent<AudioSource>().Play();
-                    playing = true;
+                    StartMusic(backgroundMusicTowerFour);
                     break;
                 case "Tower 5":
-                    backgroundMusic.GetComponent<AudioSource>().clip = backgroundMusicTowerFive;
-                    backgroundMusic.GetComponent<AudioSource>().Play();
-                    playing = true;
+                    StartMusic(backgroundMusicTowerFive);
                     break;
                 default:
-                    backgroundMusic.GetComponent<AudioSource>().clip = backgroundMusicTowerOne;
-                    backgroundMusic.GetComponent<AudioSource>().Play();
-                    playing = true;
+                    StartMusic(backgroundMusicTowerOne);
                     break;
             }
         }
@@ -107,7 +105,7 @@ namespace Nimbi.Audio
         {
             if(!playing)
             {
-                playMusic();
+                PlayMusic();
             }
 
             if (currentScene != SceneManager.GetActiveScene().name)
