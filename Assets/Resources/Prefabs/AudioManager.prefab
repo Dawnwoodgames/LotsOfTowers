@@ -250,6 +250,8 @@ MonoBehaviour:
   backgroundMusic: {fileID: 0}
   switchOnesieToDefaultSoundFile: {fileID: 8300000, guid: 3fcdd9c8e32a0144eb5a7d63ad8b060f,
     type: 3}
+  switchOnesieToDragonSoundFile: {fileID: 8300000, guid: f4580aece824a36498622088f8f05779,
+    type: 3}
   switchOnesieToElephantSoundFile: {fileID: 8300000, guid: a81ad974c06489045b41aa09f13c8703,
     type: 3}
   switchOnesieToHamsterSoundFile: {fileID: 8300000, guid: e3902857617ec2e4dbf03a1c8c0a9ddd,
@@ -267,7 +269,11 @@ Prefab:
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
-    m_Modifications: []
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: switchOnesieToDragonSoundFile
+      value: 
+      objectReference: {fileID: 8300000, guid: f4580aece824a36498622088f8f05779, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 157622}

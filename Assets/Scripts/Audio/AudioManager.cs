@@ -13,12 +13,14 @@ namespace Nimbi.Audio
         public AudioClip backgroundMusic;
 
         public AudioClip switchOnesieToDefaultSoundFile;
+        public AudioClip switchOnesieToDragonSoundFile;
         public AudioClip switchOnesieToElephantSoundFile;
         public AudioClip switchOnesieToHamsterSoundFile;
 
         public AudioClip[] enviromentSounds;
         
         public AudioClip onesieSwitchDefaultSound { get; set; }
+        public AudioClip onesieSwitchDragonSound { get; set; }
         public AudioClip onesieSwitchElephantSound { get; set; }
         public AudioClip onesieSwitchHamsterSound { get; set; }
 
@@ -56,6 +58,7 @@ namespace Nimbi.Audio
             DontDestroyOnLoad(this);
 
             onesieSwitchDefaultSound = switchOnesieToDefaultSoundFile;
+            onesieSwitchDragonSound = switchOnesieToDragonSoundFile;
             onesieSwitchElephantSound = switchOnesieToElephantSoundFile;
             onesieSwitchHamsterSound = switchOnesieToHamsterSoundFile;
 
@@ -106,6 +109,9 @@ namespace Nimbi.Audio
             else if(onesieString.Contains("Hamster"))
             {
                 return onesieSwitchHamsterSound;
+            }
+            else if (onesieString.Contains("Dragon")) {
+                return onesieSwitchDragonSound;
             }
             else
             {
