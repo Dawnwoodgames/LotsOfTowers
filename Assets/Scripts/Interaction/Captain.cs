@@ -16,7 +16,7 @@ namespace Nimbi.Interaction
 
 		private Player player;
         private GameObject nut;
-        public bool nutDelivered = false;
+        private bool nutDelivered = false;
         private float startTime;
         private float journeyLength;
         private bool firstInteraction = true;
