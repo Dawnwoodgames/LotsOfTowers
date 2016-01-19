@@ -58,10 +58,16 @@ namespace Nimbi.Interaction
 
 		private void Move(Vector3 movement)
 		{
-            if (movement == Vector3.zero) rb.velocity = Vector3.zero;
+            if (movement == Vector3.zero && EasyBallMovement)
+            {
+                rb.velocity = Vector3.zero;
+            }
 			movement = focusView.transform.TransformDirection(movement);
 
-            if (movement.magnitude > 1f) movement.Normalize();
+            if (movement.magnitude > 1f) 
+            {
+                movement.Normalize();
+            }
 			movement = transform.InverseTransformDirection(movement);
 
 			rb.AddForce(movement * movementSpeed);
@@ -77,5 +83,8 @@ namespace Nimbi.Interaction
 		{
 			playerIsNear = false;
 		}
+
+        public bool EasyBallMovement { get; set; }
+        
 	}
 }
