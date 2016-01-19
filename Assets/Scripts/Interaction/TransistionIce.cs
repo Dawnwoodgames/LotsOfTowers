@@ -107,6 +107,7 @@ namespace Nimbi.Interaction
 				if (phase == 5)
 				{
 					player.transform.parent = null;
+					player.transform.localPosition = end.position;
 					player.transform.localScale = new Vector3(1, 1, 1);
 					player.GetComponent<Rigidbody>().isKinematic = false;
 					player.GetComponent<PlayerController>().enabled = true;
@@ -175,10 +176,10 @@ namespace Nimbi.Interaction
 				if (phase == 5)
 				{
 					player.transform.parent = null;
+					player.transform.localPosition = start.position;
 					player.transform.localScale = new Vector3(1, 1, 1);
 					player.GetComponent<Rigidbody>().isKinematic = false;
 					player.GetComponent<PlayerController>().enabled = true;
-					player.transform.localPosition = start.localPosition;
 					insideEndTrigger = false;
 					phase = 0;
 				}

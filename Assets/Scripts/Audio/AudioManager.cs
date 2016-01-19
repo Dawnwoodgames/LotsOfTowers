@@ -64,7 +64,6 @@ namespace Nimbi.Audio
             onesieSwitchDragonSound = switchOnesieToDragonSoundFile;
             onesieSwitchElephantSound = switchOnesieToElephantSoundFile;
             onesieSwitchHamsterSound = switchOnesieToHamsterSoundFile;
-            
         }
 
         private void playMusic()
@@ -128,7 +127,8 @@ namespace Nimbi.Audio
             {
                 return onesieSwitchHamsterSound;
             }
-            else if (onesieString.Contains("Dragon")) {
+            else if (onesieString.Contains("Dragon"))
+            {
                 return onesieSwitchDragonSound;
             }
             else
