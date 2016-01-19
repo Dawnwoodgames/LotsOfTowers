@@ -108,7 +108,7 @@ namespace Nimbi.Actors {
         }
 
         private void SetSkeleton(string name) {
-            currentSkeleton = skeletons.Single(s => s.name == name);
+            currentSkeleton = skeletons.Single(s => s.name == "Onesie" + name);
             currentSkeleton.GetComponent<Animator>().SetTrigger("To_" + name);
             currentSkeleton.Renderer.enabled = true;
             skeletons.Where(s => s != currentSkeleton).ToList().ForEach(s => s.Renderer.enabled = false);
