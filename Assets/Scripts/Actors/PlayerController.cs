@@ -64,8 +64,10 @@ namespace Nimbi.Actors
                 {
 
                     //Switch to the selected onesie
-                    onesieSwitchAnimation.Trigger();
+                    //onesieSwitchAnimation.Trigger();
+                    StartCoroutine(player.SetEffectActiveForDuration("Onesie Switch", 0.5f));
                     player.SwitchOnesie(input);
+
                     switchDelay = InputDelay;
                 }
             }
