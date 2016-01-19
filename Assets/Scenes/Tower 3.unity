@@ -2146,7 +2146,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 447390, guid: e1902c15317a5e64eb2c5b3af69c90f1, type: 2}
       propertyPath: m_RootOrder
-      value: 11
+      value: 12
       objectReference: {fileID: 0}
     - target: {fileID: 172982, guid: e1902c15317a5e64eb2c5b3af69c90f1, type: 2}
       propertyPath: m_Name
@@ -3931,6 +3931,8 @@ MonoBehaviour:
   landlobberDialog: {fileID: 1237138941}
   finishNutDialog: {fileID: 672820734}
   fixBoatDialog: {fileID: 1372120245}
+  endMarker: {fileID: 693808050}
+  nutDelivered: 0
 --- !u!1 &437409919
 GameObject:
   m_ObjectHideFlags: 0
@@ -7232,7 +7234,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 447390, guid: e1902c15317a5e64eb2c5b3af69c90f1, type: 2}
       propertyPath: m_RootOrder
-      value: 9
+      value: 10
       objectReference: {fileID: 0}
     - target: {fileID: 11407232, guid: e1902c15317a5e64eb2c5b3af69c90f1, type: 2}
       propertyPath: showForSeconds
@@ -7289,6 +7291,33 @@ Transform:
 GameObject:
   m_PrefabParentObject: {fileID: 172982, guid: e1902c15317a5e64eb2c5b3af69c90f1, type: 2}
   m_PrefabInternal: {fileID: 672820732}
+--- !u!1 &693808049
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 693808050}
+  m_Layer: 0
+  m_Name: EndMarkerHaatBaard
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &693808050
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 693808049}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -8.62, y: 49.84, z: 11.03}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2066230031}
+  m_RootOrder: 4
 --- !u!1 &703934314
 GameObject:
   m_ObjectHideFlags: 0
@@ -8306,7 +8335,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 447390, guid: e1902c15317a5e64eb2c5b3af69c90f1, type: 2}
       propertyPath: m_RootOrder
-      value: 6
+      value: 7
       objectReference: {fileID: 0}
     - target: {fileID: 11407232, guid: e1902c15317a5e64eb2c5b3af69c90f1, type: 2}
       propertyPath: showForSeconds
@@ -9997,7 +10026,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 447390, guid: e1902c15317a5e64eb2c5b3af69c90f1, type: 2}
       propertyPath: m_RootOrder
-      value: 7
+      value: 8
       objectReference: {fileID: 0}
     - target: {fileID: 11407232, guid: e1902c15317a5e64eb2c5b3af69c90f1, type: 2}
       propertyPath: showForSeconds
@@ -11392,7 +11421,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 447390, guid: e1902c15317a5e64eb2c5b3af69c90f1, type: 2}
       propertyPath: m_RootOrder
-      value: 8
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 11407232, guid: e1902c15317a5e64eb2c5b3af69c90f1, type: 2}
       propertyPath: showForSeconds
@@ -12326,7 +12355,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 447390, guid: e1902c15317a5e64eb2c5b3af69c90f1, type: 2}
       propertyPath: m_RootOrder
-      value: 10
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 11407232, guid: e1902c15317a5e64eb2c5b3af69c90f1, type: 2}
       propertyPath: showForSeconds
@@ -15214,7 +15243,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 447390, guid: e1902c15317a5e64eb2c5b3af69c90f1, type: 2}
       propertyPath: m_RootOrder
-      value: 5
+      value: 6
       objectReference: {fileID: 0}
     - target: {fileID: 11407232, guid: e1902c15317a5e64eb2c5b3af69c90f1, type: 2}
       propertyPath: showForSeconds
@@ -17637,12 +17666,16 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400066, guid: 9c7c3614536874744922ca9fd24fb0f6, type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 9500000, guid: 9c7c3614536874744922ca9fd24fb0f6, type: 3}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: dc3a3fe57054cbf4b97306828854fbfe, type: 2}
+    - target: {fileID: 100066, guid: 9c7c3614536874744922ca9fd24fb0f6, type: 3}
+      propertyPath: m_Name
+      value: HaatBaard
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9c7c3614536874744922ca9fd24fb0f6, type: 3}
   m_IsPrefabParent: 0
@@ -18195,6 +18228,7 @@ Transform:
   - {fileID: 946497626}
   - {fileID: 1910896033}
   - {fileID: 82443232}
+  - {fileID: 693808050}
   - {fileID: 2014764713}
   - {fileID: 1742847383}
   - {fileID: 1143974099}
