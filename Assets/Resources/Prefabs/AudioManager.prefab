@@ -42,7 +42,7 @@ GameObject:
   - 4: {fileID: 480018}
   - 82: {fileID: 8264148}
   m_Layer: 0
-  m_Name: BackgroundSounds
+  m_Name: BackgroundMusic
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -97,7 +97,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.5
   m_Pitch: 1
   Loop: 0
   Mute: 0
@@ -246,8 +246,17 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundEffects: {fileID: 118616}
-  backgroundSounds: {fileID: 168310}
-  backgroundMusic: {fileID: 0}
+  backgroundMusic: {fileID: 168310}
+  backgroundMusicTowerOne: {fileID: 8300000, guid: f288e25de800ce14a97437a0831ad9b8,
+    type: 3}
+  backgroundMusicTowerTwo: {fileID: 8300000, guid: 572d7ede65b777a45a9ab894583692ad,
+    type: 3}
+  backgroundMusicTowerThree: {fileID: 8300000, guid: f288e25de800ce14a97437a0831ad9b8,
+    type: 3}
+  backgroundMusicTowerFour: {fileID: 8300000, guid: 572d7ede65b777a45a9ab894583692ad,
+    type: 3}
+  backgroundMusicTowerFive: {fileID: 8300000, guid: f288e25de800ce14a97437a0831ad9b8,
+    type: 3}
   switchOnesieToDefaultSoundFile: {fileID: 8300000, guid: 3fcdd9c8e32a0144eb5a7d63ad8b060f,
     type: 3}
   switchOnesieToDragonSoundFile: {fileID: 8300000, guid: f4580aece824a36498622088f8f05779,
@@ -256,13 +265,6 @@ MonoBehaviour:
     type: 3}
   switchOnesieToHamsterSoundFile: {fileID: 8300000, guid: e3902857617ec2e4dbf03a1c8c0a9ddd,
     type: 3}
-  enviromentSounds:
-  - {fileID: 8300000, guid: 1a719b48646888a4a8030b2c9fffc966, type: 3}
-  - {fileID: 8300000, guid: c01e67f8f77218f4f8edba76c1218258, type: 3}
-  - {fileID: 8300000, guid: 0032bfc94c2b9ed4ea820356af5a748f, type: 3}
-  - {fileID: 8300000, guid: 380d1624d1932d347b2ccd3eed60ba02, type: 3}
-  - {fileID: 8300000, guid: da24abd4e9a6a134291cc07e22071642, type: 3}
-  - {fileID: 8300000, guid: e7a423f9e6280b74289925d7bb69e4fe, type: 3}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1
@@ -274,6 +276,38 @@ Prefab:
       propertyPath: switchOnesieToDragonSoundFile
       value: 
       objectReference: {fileID: 8300000, guid: f4580aece824a36498622088f8f05779, type: 3}
+    - target: {fileID: 0}
+      propertyPath: backgroundMusic
+      value: 
+      objectReference: {fileID: 168310}
+    - target: {fileID: 0}
+      propertyPath: m_Name
+      value: BackgroundMusic
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: backgroundMusicTowerOne
+      value: 
+      objectReference: {fileID: 8300000, guid: f288e25de800ce14a97437a0831ad9b8, type: 3}
+    - target: {fileID: 0}
+      propertyPath: backgroundMusicTowerTwo
+      value: 
+      objectReference: {fileID: 8300000, guid: 572d7ede65b777a45a9ab894583692ad, type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: backgroundMusicTowerThree
+      value: 
+      objectReference: {fileID: 8300000, guid: f288e25de800ce14a97437a0831ad9b8, type: 3}
+    - target: {fileID: 0}
+      propertyPath: backgroundMusicTowerFour
+      value: 
+      objectReference: {fileID: 8300000, guid: 572d7ede65b777a45a9ab894583692ad, type: 3}
+    - target: {fileID: 0}
+      propertyPath: backgroundMusicTowerFive
+      value: 
+      objectReference: {fileID: 8300000, guid: f288e25de800ce14a97437a0831ad9b8, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
   m_RootGameObject: {fileID: 157622}

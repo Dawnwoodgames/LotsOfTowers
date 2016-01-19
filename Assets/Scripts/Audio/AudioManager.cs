@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.SceneManagement;
 
 namespace Nimbi.Audio
 {
@@ -8,24 +9,26 @@ namespace Nimbi.Audio
         private static AudioManager instance;
 
         public GameObject soundEffects;
-        public GameObject backgroundSounds;
+        public GameObject backgroundMusic;
 
-        public AudioClip backgroundMusic;
+        public AudioClip backgroundMusicTowerOne;
+        public AudioClip backgroundMusicTowerTwo;
+        public AudioClip backgroundMusicTowerThree;
+        public AudioClip backgroundMusicTowerFour;
+        public AudioClip backgroundMusicTowerFive;
 
         public AudioClip switchOnesieToDefaultSoundFile;
         public AudioClip switchOnesieToDragonSoundFile;
         public AudioClip switchOnesieToElephantSoundFile;
         public AudioClip switchOnesieToHamsterSoundFile;
 
-        public AudioClip[] enviromentSounds;
-        
         public AudioClip onesieSwitchDefaultSound { get; set; }
         public AudioClip onesieSwitchDragonSound { get; set; }
         public AudioClip onesieSwitchElephantSound { get; set; }
         public AudioClip onesieSwitchHamsterSound { get; set; }
 
-        private int lastrnd;
         private bool playing = false;
+        private string currentScene = "";
 
         public static AudioManager Instance
         {
@@ -61,45 +64,60 @@ namespace Nimbi.Audio
             onesieSwitchDragonSound = switchOnesieToDragonSoundFile;
             onesieSwitchElephantSound = switchOnesieToElephantSoundFile;
             onesieSwitchHamsterSound = switchOnesieToHamsterSoundFile;
+            
+        }
 
-            playRandomSong();
+        private void playMusic()
+        {
+            switch (SceneManager.GetActiveScene().name)
+            {
+                case "Tower 1":
+                    backgroundMusic.GetComponent<AudioSource>().clip = backgroundMusicTowerOne;
+                    backgroundMusic.GetComponent<AudioSource>().Play();
+                    playing = true;
+                    break;
+                case "Tower 2":
+                    backgroundMusic.GetComponent<AudioSource>().clip = backgroundMusicTowerTwo;
+                    backgroundMusic.GetComponent<AudioSource>().Play();
+                    playing = true;
+                    break;
+                case "Tower 3":
+                    backgroundMusic.GetComponent<AudioSource>().clip = backgroundMusicTowerThree;
+                    backgroundMusic.GetComponent<AudioSource>().Play();
+                    playing = true;
+                    break;
+                case "Tower 4":
+                    backgroundMusic.GetComponent<AudioSource>().clip = backgroundMusicTowerFour;
+                    backgroundMusic.GetComponent<AudioSource>().Play();
+                    playing = true;
+                    break;
+                case "Tower 5":
+                    backgroundMusic.GetComponent<AudioSource>().clip = backgroundMusicTowerFive;
+                    backgroundMusic.GetComponent<AudioSource>().Play();
+                    playing = true;
+                    break;
+                default:
+                    backgroundMusic.GetComponent<AudioSource>().clip = backgroundMusicTowerOne;
+                    backgroundMusic.GetComponent<AudioSource>().Play();
+                    playing = true;
+                    break;
+            }
         }
 
         void Update()
         {
-            if (!playing)
+            if(!playing)
             {
-                StartCoroutine(PlayMusic());
-                playing = true;
-            }
-        }
-
-        IEnumerator PlayMusic()
-        {
-            yield return new WaitForSeconds(17);
-            playRandomSong();
-        }
-
-        private int createRandomNumberForSound() {
-            return Random.Range(0, (enviromentSounds.Length - 1));
-        }
-
-        private void playRandomSong()
-        {
-            int rnd = createRandomNumberForSound();
-
-            while (rnd == lastrnd)
-            {
-                rnd = createRandomNumberForSound();
+                playMusic();
             }
 
-            lastrnd = rnd;
-
-            backgroundSounds.GetComponent<AudioSource>().clip = enviromentSounds[rnd];
-            backgroundSounds.GetComponent<AudioSource>().Play();
-            playing = false;
+            if (currentScene != SceneManager.GetActiveScene().name)
+            {
+                currentScene = SceneManager.GetActiveScene().name;
+                playing = false;
+            }
         }
-
+        
         public AudioClip GetOnesieSwitchSound(string onesieString)
         {
             if(onesieString.Contains("Elephant"))
