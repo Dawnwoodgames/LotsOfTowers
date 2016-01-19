@@ -16,6 +16,7 @@ namespace Nimbi.Interaction.Triggers
 
 		public bool hasPumpAnimation = false;
 		private Animator pumpAnimation;
+		private float currentAnimationTime;
 
 		private bool inTrigger = false;
 
@@ -43,8 +44,9 @@ namespace Nimbi.Interaction.Triggers
 				if (pumpAnimation != null)
 				{
 					//Implement PumpAnimation Here
-					pumpAnimation.SetBool("rotating", true);
-				}
+					pumpAnimation.enabled = true;
+                    pumpAnimation.SetBool("rotating", true);
+                }
 
 				rotation = new Vector3(speed * (x ? 1 : 0), speed * (y ? 1 : 0), speed * (z ? 1 : 0)) * (negative ? -1 : 1);
 				totalRotation += rotation;
@@ -54,7 +56,8 @@ namespace Nimbi.Interaction.Triggers
 			{
 				if (pumpAnimation != null)
 				{
-					pumpAnimation.SetBool("rotating", false);
+
+					pumpAnimation.enabled = false;
 				}
 			}
 		}
