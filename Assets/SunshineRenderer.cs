@@ -12,6 +12,8 @@ public class SunshineRenderer : MonoBehaviour {
 
     public GameObject mirrorWind;
     public GameObject mirrorDoor;
+    public GameObject newMirror;
+    public GameObject newDoor;
 
     void Awake()
     {
@@ -60,6 +62,12 @@ public class SunshineRenderer : MonoBehaviour {
     public void Complete()
     {
         // Complete puzzle here once we have a new model
+        if(mirrorWind.activeInHierarchy)
+        {
+            mirrorDoor.SetActive(false);
+            newMirror.SetActive(true);
+            newDoor.SetActive(true);
+        }
     }
 }
 
