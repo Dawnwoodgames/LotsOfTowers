@@ -1,4 +1,5 @@
 ﻿using Nimbi.UI;
+using Nimbi.VFX;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
@@ -16,7 +17,6 @@ namespace Nimbi.Actors
 		private CapsuleCollider capsule;
         private HeadsUpDisplayScript hudUi;
         private Transform mainCamera;
-        private OnesieSwitchController onesieSwitchAnimation;
         private Player player;
 
         //Moving variables
@@ -32,11 +32,12 @@ namespace Nimbi.Actors
         private bool canMove = true;
 		private bool moving;
         private float abilityCooldown;
+        private OnesieSwitch switchAnimation;
 
-		private void Awake() {
+        private void Awake() {
 			this.mainCamera = Camera.main.transform;
-            this.onesieSwitchAnimation = GetComponentInChildren<OnesieSwitchController>();
 			this.player = GetComponent<Player>();
+            this.switchAnimation = FindObjectOfType<OnesieSwitch>();
         }
 
 		private void FixedUpdate()
@@ -64,10 +65,7 @@ namespace Nimbi.Actors
                 {
 
                     //Switch to the selected onesie
-                    //onesieSwitchAnimation.Trigger();
-                    StartCoroutine(player.SetEffectActiveForDuration("Onesie Switch", 0.5f));
-                    player.SwitchOnesie(input);
-
+                    switchAnimation.Play(input);
                     switchDelay = InputDelay;
                 }
             }
