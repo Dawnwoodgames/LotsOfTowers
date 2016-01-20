@@ -13,6 +13,7 @@ namespace Nimbi.Interaction.Triggers
         private RotateTrigger trigger;
         public RopePickup rope;
         public GameObject waterval;
+        public GameObject door;
 
         void Start()
         {
@@ -27,6 +28,7 @@ namespace Nimbi.Interaction.Triggers
                 trigger.Stop();
                 active = true;
                 waterval.SetActive(true);
+                door.GetComponent<HingedDoor>().Open();
             }
             else if (active && heightIncrease + startPosition.y > stopje.transform.position.y)
             {
