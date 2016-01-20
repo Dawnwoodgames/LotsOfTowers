@@ -25,7 +25,7 @@ namespace Nimbi.Interaction.Triggers
 
         private void OnTriggerStay(Collider coll)
         {
-            if (coll.tag == "Player")
+            if (coll.tag == "Player" && coll.GetComponent<Actors.Player>().Onesie.type == Actors.OnesieType.Hamster)
                 playerRunning = true;
         }
 
