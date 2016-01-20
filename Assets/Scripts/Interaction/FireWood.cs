@@ -26,7 +26,8 @@ public class FireWood : MonoBehaviour {
 	 if(hasFireContact == true)
         {
             print("I am on fire Baby!");
-        
+            particle.SetActive(true);
+
         }
 	}
 
