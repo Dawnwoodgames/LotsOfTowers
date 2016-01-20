@@ -4,10 +4,9 @@ using UnityEngine.UI;
 
 namespace Nimbi.UI {
     public sealed class HUD : MonoBehaviour {
-        private Onesie oldOnesie;
         private Player player;
 
-        public Image dragonSlot, elephantSlot, hamsterSlot; 
+        public Image dragonSlot, elephantSlot, hamsterSlot;
 
         public Sprite dragonSlotDisabled;
         public Sprite dragonSlotEmpty;
@@ -36,10 +35,7 @@ namespace Nimbi.UI {
         }
 
         public void Update() {
-            if (oldOnesie != player.Onesie) {
-                Invalidate();
-                oldOnesie = player.Onesie;
-            }
+            Invalidate();
         }
     }
 }
