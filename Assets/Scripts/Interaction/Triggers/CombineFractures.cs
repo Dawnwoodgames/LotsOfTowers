@@ -10,6 +10,7 @@ namespace Nimbi.Interaction.Triggers
 		public FanSnapTrigger[] fracturesSnapped;
         public GameObject completeFan;
         public GameObject fractures;
+		public GameObject outline;
 
 		void Start()
 		{
@@ -32,6 +33,7 @@ namespace Nimbi.Interaction.Triggers
                 fractures.SetActive(false);
                 completeFan.SetActive(true);
                 gameObject.SetActive(false);
+				outline.SetActive(false);
 			}
 		}
 	}
