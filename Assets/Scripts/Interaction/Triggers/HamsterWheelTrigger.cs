@@ -7,18 +7,20 @@ namespace Nimbi.Interaction.Triggers
     {
 
         public GameObject wheel;
+        public bool negativeRotate;
 
         private bool playerRunning = false;
+        private float rotateSpeed = 3f;
 
         void Start()
         {
-
+            rotateSpeed = (negativeRotate) ? -rotateSpeed : rotateSpeed;
         }
 
         void Update()
         {
             if (playerRunning)
-                wheel.transform.Rotate(3f, 0, 0);
+                wheel.transform.Rotate(rotateSpeed, 0, 0);
         }
 
         private void OnTriggerStay(Collider coll)
@@ -34,5 +36,6 @@ namespace Nimbi.Interaction.Triggers
         }
 
         public bool GetPlayerRunning() { return playerRunning; }
+        public bool GetNegativeRotate() { return negativeRotate; }
     }
 }

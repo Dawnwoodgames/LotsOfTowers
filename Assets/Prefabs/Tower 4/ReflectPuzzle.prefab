@@ -99,7 +99,7 @@ GameObject:
   - 114: {fileID: 11434258}
   - 114: {fileID: 11444398}
   m_Layer: 0
-  m_Name: WheelTrigger
+  m_Name: WheelTriggerNegative
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -115,6 +115,24 @@ GameObject:
   - 4: {fileID: 487718}
   m_Layer: 0
   m_Name: HamsterWheelPlatform
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &134824
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 412608}
+  - 65: {fileID: 6563578}
+  - 114: {fileID: 11475110}
+  - 114: {fileID: 11413428}
+  m_Layer: 0
+  m_Name: WheelTriggerPositive
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -362,6 +380,18 @@ Transform:
   - {fileID: 447898}
   m_Father: {fileID: 440314}
   m_RootOrder: 0
+--- !u!4 &412608
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 134824}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 6.870001, y: 0.58, z: -3.38}
+  m_LocalScale: {x: 0.77728295, y: 0.77728283, z: 0.77728295}
+  m_Children: []
+  m_Father: {fileID: 494856}
+  m_RootOrder: 2
 --- !u!4 &413482
 Transform:
   m_ObjectHideFlags: 1
@@ -374,7 +404,7 @@ Transform:
   m_Children:
   - {fileID: 473672}
   m_Father: {fileID: 494856}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!4 &414980
 Transform:
   m_ObjectHideFlags: 1
@@ -387,7 +417,7 @@ Transform:
   m_Children:
   - {fileID: 455692}
   m_Father: {fileID: 494856}
-  m_RootOrder: 6
+  m_RootOrder: 7
 --- !u!4 &415590
 Transform:
   m_ObjectHideFlags: 1
@@ -407,11 +437,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 123150}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 6.870001, y: 0.40999985, z: -3.5499992}
+  m_LocalPosition: {x: 6.870001, y: 0.59, z: -6.14}
   m_LocalScale: {x: 0.77728295, y: 0.77728283, z: 0.77728295}
   m_Children: []
   m_Father: {fileID: 494856}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!4 &425288
 Transform:
   m_ObjectHideFlags: 1
@@ -424,7 +454,7 @@ Transform:
   m_Children:
   - {fileID: 415590}
   m_Father: {fileID: 494856}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!4 &440314
 Transform:
   m_ObjectHideFlags: 1
@@ -440,7 +470,7 @@ Transform:
   - {fileID: 449418}
   - {fileID: 492496}
   m_Father: {fileID: 494856}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!4 &447898
 Transform:
   m_ObjectHideFlags: 1
@@ -550,6 +580,7 @@ Transform:
   m_Children:
   - {fileID: 487718}
   - {fileID: 411490}
+  - {fileID: 412608}
   - {fileID: 424110}
   - {fileID: 440314}
   - {fileID: 413482}
@@ -1263,6 +1294,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 3.1034925}
   m_Center: {x: 0.000018737182, y: 0.00000009414185, z: 1.0522411}
+--- !u!65 &6563578
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 134824}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 2.5, y: 2, z: 1}
+  m_Center: {x: 0, y: -1, z: 1.6}
 --- !u!65 &6565454
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1298,6 +1341,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec4d5c331befd7245b82bbb2742195d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11413428
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 134824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 32876278db8362c4e918f96dd1a6d685, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  item: {fileID: 162744}
+  rotateSpeed: 0
 --- !u!114 &11434258
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1310,6 +1366,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   wheel: {fileID: 160366}
+  negativeRotate: 1
 --- !u!114 &11444398
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1322,6 +1379,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   item: {fileID: 162744}
+  rotateSpeed: 0
 --- !u!114 &11458468
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1333,6 +1391,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ec4d5c331befd7245b82bbb2742195d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &11475110
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 134824}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2e64ad010dd82334f9c05c812378c6cc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  wheel: {fileID: 160366}
+  negativeRotate: 0
 --- !u!114 &11496786
 MonoBehaviour:
   m_ObjectHideFlags: 1

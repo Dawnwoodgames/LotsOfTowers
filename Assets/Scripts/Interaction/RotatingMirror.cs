@@ -22,7 +22,10 @@ namespace Nimbi.Interaction
         private void OnCollisionExit(Collision coll)
         {
             if (coll.gameObject.tag == "Player")
+            {
+                transform.rotation = Quaternion.Euler(0, transform.rotation.eulerAngles.y, 0);
                 rb.isKinematic = true;
+            }
         }
     }
 }
