@@ -25,8 +25,18 @@ namespace Nimbi.CameraControl
 
         public void Update()
         {
-            // Rotate controls
-            if (Input.GetMouseButton(0) || Input.GetMouseButton(1)) {
+			if (GetComponent<Animator>() != null && GetComponent<Animator>().GetBool("playanimation"))
+			{
+				GetComponent<Animator>().SetBool("playanimation", false);
+			}
+
+			if(GetComponent<Animator>() != null && GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+			{
+				Destroy(GetComponent<Animator>());
+			}
+
+			// Rotate controls
+			if (Input.GetMouseButton(0) || Input.GetMouseButton(1)) {
                 degree += Input.GetAxis("Mouse X") * Sensitivity * 1.2f;
             } else if (Input.GetAxis("RightJoystick") != 0) {
                 degree += Input.GetAxis("RightJoystick") * Sensitivity;

@@ -186,7 +186,7 @@ namespace Nimbi {
                 }
 
                 loadingScreen.enabled = false;
-				Camera.main.GetComponent<Animator> ().SetBool ("playanimation",true);
+				Camera.main.GetComponent<Animator>().enabled = true;
             }
 
             while (fader.color.a > 0.01f) {
