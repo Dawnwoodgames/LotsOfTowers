@@ -10,7 +10,7 @@ namespace Nimbi.Actors
 	[RequireComponent(typeof(Rigidbody))]
 	public class PlayerController : MonoBehaviour
 	{
-		private static readonly float InputDelay = 0.5f;
+		private static readonly float InputDelay = 1;
 
 		//The actual player with all the movement properties
 		private BoxCollider box;
