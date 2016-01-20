@@ -112,7 +112,7 @@ namespace Nimbi.Interaction
         IEnumerator CompletedLevel()
 		{
 			yield return new WaitForSeconds(15);
-			GameManager.Instance.LoadLevel(4, true);
+			GameManager.Instance.LoadLevel(5, true);
 		}
 	}
 }
