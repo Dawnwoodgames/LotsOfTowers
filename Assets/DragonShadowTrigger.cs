@@ -5,8 +5,11 @@ using Nimbi.Actors;
 public class DragonShadowTrigger : MonoBehaviour
 {
 	public Light dragonLight;
-	public Transform scaryGuy;
+	public GameObject scaryGuy;
+
+	[HideInInspector]
 	public bool isCompleted = false;
+
 	private bool showDragonShadow = false;
 
 	// Update is called once per frame
@@ -14,7 +17,7 @@ public class DragonShadowTrigger : MonoBehaviour
 	{
 		if (coll.tag == "Player")
 		{
-			if (coll.GetComponent<Player>().Onesie.name == "Dragon" && dragonLight.isActiveAndEnabled)
+			if (coll.GetComponent<Player>().Onesie.type == OnesieType.Dragon && dragonLight.isActiveAndEnabled)
 			{
 				showDragonShadow = true;
 			}
@@ -25,8 +28,8 @@ public class DragonShadowTrigger : MonoBehaviour
 	{
 		if(showDragonShadow)
 		{
-			//Let scaryguy run
-			//scaryGuy.LERPDIEDERP
+			//Let scaryguy scare
+			scaryGuy.SetActive(false);
 
 			isCompleted = true;
 		}
