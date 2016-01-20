@@ -26,11 +26,11 @@ namespace Nimbi.UI {
         }
 
         private void Invalidate() {
-            dragonSlot.sprite = player.hasDragonOnesie ? (player.Onesie.type == OnesieType.Dragon ?
+            dragonSlot.sprite = player.HasOnesie(OnesieType.Dragon) ? (player.Onesie.type == OnesieType.Dragon ?
                 dragonSlotEnabled : dragonSlotDisabled) : dragonSlotEmpty;
-            elephantSlot.sprite = player.hasElephantOnesie ? (player.Onesie.type == OnesieType.Elephant ?
+            elephantSlot.sprite = player.HasOnesie(OnesieType.Elephant) ? (player.Onesie.type == OnesieType.Elephant ?
                 elephantSlotEnabled : elephantSlotDisabled) : elephantSlotEmpty;
-            hamsterSlot.sprite = player.hasHamsterOnesie ? (player.Onesie.type == OnesieType.Hamster ?
+            hamsterSlot.sprite = player.HasOnesie(OnesieType.Hamster) ? (player.Onesie.type == OnesieType.Hamster ?
                 hamsterSlotEnabled : hamsterSlotDisabled) : hamsterSlotEmpty;
         }
 
