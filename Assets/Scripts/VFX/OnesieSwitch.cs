@@ -15,6 +15,8 @@ namespace Nimbi.VFX {
             this.animator = GetComponent<Animator>();
             this.player = FindObjectOfType<Player>();
             this.renderers = GetComponentsInChildren<MeshRenderer>().ToList();
+
+            SetVisible(false);
         }
 
         public void Play(int onesieIndex) {
