@@ -40,7 +40,7 @@ public class IntroSceneScript : MonoBehaviour {
 			    GameObject.Find("ImageIntroScreen").GetComponent<Image>().sprite = introSprites[0];
 			    break;
             case 9:
-                GameManager.Instance.LoadLevel(2, true);
+                GameManager.Instance.LoadLevel(2);
                 break;
             default:
 			    IntroText.GetComponent<Text>().text = ("intro_"+(IntroState)).Localize();
