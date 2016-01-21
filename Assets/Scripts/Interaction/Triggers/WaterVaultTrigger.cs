@@ -43,6 +43,8 @@ namespace Nimbi.Interaction.Triggers
         {
             startTime = Time.time;
             vaultActive = false;
+            Destroy(water.GetComponent<Environment.Water>());
+            Destroy(GameObject.Find("Ramp").GetComponent<ExitWater>());
             Destroy(waterfall);
             Destroy(GameObject.Find("CurrentPuzzle"));
         }
