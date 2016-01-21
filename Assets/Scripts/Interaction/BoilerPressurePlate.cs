@@ -8,14 +8,16 @@ namespace Nimbi.Interaction
     {
         public GameObject BoilerLid;
         public int maxLidPosition = 50;
+        public bool lidIsOpen;
 
-        private bool inTrigger;
-        private Vector3 lidPosition; 
         private Player player;
-        private bool lifting;
+        private bool inTrigger;
+      
+        private Vector3 rotateAngle;
+        private Vector3 lidPosition; 
         private Quaternion lidRotation;
 
-        private Vector3 rotateAngle;
+        
         
         // Use this for initialization
         void Start()
@@ -27,7 +29,7 @@ namespace Nimbi.Interaction
             lidRotation = transform.rotation;
             
             inTrigger = false;
-            lifting = false;
+            lidIsOpen = false;
         }
 
         // Update is called once per frame
@@ -36,9 +38,9 @@ namespace Nimbi.Interaction
             //If Nimbi is In his Elephant Onesie!
             if (inTrigger == true && player.GetComponent<Player>().Onesie.isHeavy)
             {
-                lifting = true;
+                lidIsOpen = true;
 
-                if (lifting)
+                if (lidIsOpen)
                 {
                     //Do Stuff
                     Vector3 endPosition = new Vector3(-17, 0, 0);
@@ -46,7 +48,6 @@ namespace Nimbi.Interaction
                     {
                         if (BoilerLid.transform.eulerAngles.z < maxLidPosition)
                         BoilerLid.transform.Rotate(-16, 0, 17);
-
                     }
 
                     else
@@ -64,7 +65,7 @@ namespace Nimbi.Interaction
                 if (col.attachedRigidbody)
                 {
                     inTrigger = true;
-                    lifting = false;
+                    lidIsOpen = false;
             }
             }
         

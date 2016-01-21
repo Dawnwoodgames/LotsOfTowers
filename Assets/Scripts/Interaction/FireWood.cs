@@ -3,22 +3,29 @@ using System.Collections;
 using Nimbi.Actors;
 using System.Linq;
 
-
-public class FireWood : MonoBehaviour {
+namespace Nimbi.Interaction
+{
+    public class FireWood : MonoBehaviour {
 
     public GameObject particle;
+    public GameObject water;
+    public GameObject cloudToSpawn;
+
+
+    public GameObject BoilerLid;
 
     private Player player;
     private bool hasFireContact;
     private bool isTrigger;
+    private bool boilingWater;
 
     
-
 // Use this for initialization
     void Start () {
     player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
     hasFireContact = false;
     isTrigger = false;
+    boilingWater = false;
     }
 	
 	// Update is called once per frame
@@ -27,13 +34,15 @@ public class FireWood : MonoBehaviour {
         {
             print("I am on fire Baby!");
             particle.SetActive(true);
-
+            boilingWater = true;
+            InvokeRepeating("SpawnCloud", 0.5f, 5);
+            hasFireContact = false;
         }
 	}
 
-    void Ignite()
-    {
-
+    void SpawnCloud()
+    {   
+           Instantiate(cloudToSpawn, new Vector3(-8, 19.95f, -39), Quaternion.identity);  
     }
 
     void OnTriggerEnter(Collider col)
@@ -41,12 +50,8 @@ public class FireWood : MonoBehaviour {
         if (col.tag == "Fire")
         {
             hasFireContact = true;
-            Ignite();
+            
         }
     }
-
-
-
-
-
+}
 }
