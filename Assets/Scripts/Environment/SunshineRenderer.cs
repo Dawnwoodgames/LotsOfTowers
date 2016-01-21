@@ -5,7 +5,6 @@ using System.Linq;
 
 namespace Nimbi.Environment
 {
-    [RequireComponent(typeof(LineRenderer))]
     public class SunshineRenderer : MonoBehaviour
     {
         
