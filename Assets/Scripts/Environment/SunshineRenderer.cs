@@ -8,19 +8,23 @@ namespace Nimbi.Environment
     [RequireComponent(typeof(LineRenderer))]
     public class SunshineRenderer : MonoBehaviour
     {
-        private LineRenderer line;
-        private Ray ray;
-
-        List<Vector3> linePositions;
-
+        
+        public Material lineMat;
+        public Mesh cylinderMesh;
+        public float rayDiameter;
         public GameObject mirrorWind;
         public GameObject mirrorDoor;
         public GameObject newMirror;
         public GameObject newDoor;
 
+        private List<Vector3> linePositions;
+        private Ray ray;
+        
+        private List<GameObject> lines;
+
         void Awake()
         {
-            line = this.GetComponent<LineRenderer>();
+            lines = new List<GameObject>();
         }
 
         void Update()
@@ -30,8 +34,7 @@ namespace Nimbi.Environment
             linePositions.Add(transform.position);
 
             AddRay(transform.position, transform.forward);
-            line.SetVertexCount(linePositions.Count);
-            line.SetPositions(linePositions.ToArray());
+            CreateLines(linePositions);
         }
 
         private void AddRay(Vector3 start, Vector3 direction)
@@ -62,15 +65,54 @@ namespace Nimbi.Environment
                 linePositions.Add(ray.origin + ray.direction * 100);
         }
 
-        public void Complete()
+        private void Complete()
         {
-            // Complete puzzle here once we have a new model
             if (mirrorWind.activeInHierarchy)
             {
                 mirrorDoor.SetActive(false);
                 newMirror.SetActive(true);
                 newDoor.SetActive(true);
             }
+        }
+
+        private void CreateLines(List<Vector3> positions)
+        {
+            if(lines.Count < positions.Count-1)
+                for(int i = lines.Count; i < positions.Count-1; i++)
+                    lines.Add(NewLine());
+
+            if (lines.Count > positions.Count-1)
+                for (int i = lines.Count; i > positions.Count-1; i--)
+                {
+                    Destroy(lines[i-1]);
+                    lines.RemoveAt(i - 1);
+                }
+
+            for (int i = 0; i < positions.Count - 1; i++)
+            {
+                GameObject line = lines[i];
+                line.transform.position = Vector3.Lerp(positions[i],positions[i+1],0.5f);
+                float cylinderDistance = 0.5f * Vector3.Distance(positions[i], positions[i+1]);
+                line.transform.localScale = new Vector3(rayDiameter, cylinderDistance, rayDiameter);
+
+                // Make the cylinder look at the main point.
+                // Since the cylinder is pointing up(y) and the forward is z, we need to offset by 90 degrees.
+                line.transform.LookAt(positions[i+1], Vector3.up);
+                line.transform.rotation *= Quaternion.Euler(90, 0, 0);
+            }
+        }
+
+        private GameObject NewLine()
+        {
+            GameObject go = new GameObject();
+            go.name = "Sunshine Ray";
+            MeshFilter ringMesh = go.AddComponent<MeshFilter>();
+            ringMesh.mesh = cylinderMesh;
+
+            MeshRenderer ringRenderer = go.AddComponent<MeshRenderer>();
+            ringRenderer.material = lineMat;
+
+            return go;
         }
     }
 
