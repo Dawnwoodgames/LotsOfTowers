@@ -7,7 +7,7 @@ namespace Nimbi.Interaction {
 
 		public void OnTriggerEnter(Collider coll) {
 			if (coll.tag == "Player") {
-				GameManager.Instance.LoadLevel(levelIndex, true);
+				GameManager.Instance.LoadLevel(levelIndex);
 			}
 		}
 	}

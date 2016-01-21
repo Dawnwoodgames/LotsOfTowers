@@ -134,14 +134,8 @@ namespace Nimbi {
         }
 
         public void LoadLevel(int index) {
-            LoadLevel(index, false);
-        }
-
-        public void LoadLevel(int index, bool forceUnlock) {
             if (index == -1) {
                 index = SceneManager.GetActiveScene().buildIndex;
-            } else if (!forceUnlock && PlayerPrefs.GetInt("bIsLevelAvailable" + index, 0) == 0) {
-                return;
             }
 
             PlayerPrefs.SetInt("bIsLevelAvailable" + index, 1);
@@ -159,15 +153,7 @@ namespace Nimbi {
                 yield return null;
             }
 
-            while (fader.color.a < 0.99f) {
-                fader.color = new Color(
-                    fader.color.r,
-                    fader.color.g,
-                    fader.color.b,
-                    fader.color.a + Time.deltaTime / FadeDuration
-                );
-                yield return null;
-            }
+            yield return FadeOutCoroutine();
 
 			if (index != 0 && index != 1) {
                 // If the scene to be loaded is NOT the main menu, show the loading screen
@@ -186,18 +172,10 @@ namespace Nimbi {
                 }
 
                 loadingScreen.enabled = false;
-				Camera.main.GetComponent<Animator> ().SetBool ("playanimation",true);
+				Camera.main.GetComponent<Animator>().enabled = true;
             }
 
-            while (fader.color.a > 0.01f) {
-                fader.color = new Color(
-                    fader.color.r,
-                    fader.color.g,
-                    fader.color.b,
-                    fader.color.a - Time.deltaTime / FadeDuration
-                );
-                yield return null;
-            }
+            yield return FadeInCoroutine();
 
             if (playerController != null) {
                 playerController.enabled = true;
@@ -230,15 +208,7 @@ namespace Nimbi {
                     yield return null;
                 }
 
-                while (fader.color.a < 0.99f) {
-                    fader.color = new Color(
-                        fader.color.r,
-                        fader.color.g,
-                        fader.color.b,
-                        fader.color.a + Time.deltaTime / FadeDuration
-                    );
-                    yield return null;
-                }
+                yield return FadeOutCoroutine();
 
                 if (ball != null && ball.playerInside) {
                     ball.Ball.transform.position = spawnPoint.position;
@@ -247,15 +217,7 @@ namespace Nimbi {
                 player.transform.position = spawnPoint.position;
                 player.transform.rotation = spawnPoint.rotation;
 
-                while (fader.color.a > 0.01f) {
-                    fader.color = new Color(
-                        fader.color.r,
-                        fader.color.g,
-                        fader.color.b,
-                        fader.color.a - Time.deltaTime / FadeDuration
-                    );
-                    yield return null;
-                }
+                yield return FadeInCoroutine();
 
                 playerController.enabled = true;
                 if (ball != null && ball.playerInside) {
@@ -274,15 +236,7 @@ namespace Nimbi {
                 yield return null;
             }
 
-            while (fader.color.a < 0.99f) {
-                fader.color = new Color(
-                    fader.color.r,
-                    fader.color.g,
-                    fader.color.b,
-                    fader.color.a + Time.deltaTime / FadeDuration
-                );
-                yield return null;
-            }
+            yield return FadeOutCoroutine();
 
             Application.Quit();
         }
