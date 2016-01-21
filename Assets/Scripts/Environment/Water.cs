@@ -27,7 +27,7 @@ namespace Nimbi.Environment {
                 {
                     swimConstraints = (playerIsElephant) ? RigidbodyConstraints.FreezeRotation : RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
                     if (!playerIsElephant)
-                        player.transform.position = new Vector3(player.transform.position.x, playerPositionY - (GetComponent<Collider>().bounds.extents.y / 2), player.transform.position.z);
+                        player.transform.position = new Vector3(player.transform.position.x, playerPositionY - (GetComponent<Collider>().bounds.extents.y / 2) + .3f, player.transform.position.z);
                 }
                 else
                     swimConstraints = RigidbodyConstraints.FreezeRotation;
