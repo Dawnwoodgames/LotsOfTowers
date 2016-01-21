@@ -100,7 +100,7 @@ namespace Nimbi.UI
 
             // Reset LanguageManager & reload level
 			GameManager.Instance.Language = "en";
-			GameManager.Instance.LoadLevel(-1);
+            GameManager.Instance.Quit();
 		}
 
 		public void QuitApplication()
