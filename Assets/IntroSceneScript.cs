@@ -8,7 +8,7 @@ public class IntroSceneScript : MonoBehaviour {
 
 
 	public GameObject IntroText;
-	public int IntroState = 1;
+	public int IntroState = 0;
 	public Sprite[] introSprites;
 
 
@@ -20,34 +20,31 @@ public class IntroSceneScript : MonoBehaviour {
 	void Start () {
 			
 	}
-
-	public void IntroFade()
-	{
-		IntroState++;
-	}
-			
+						
 	// Update is called once per frame
-	void Update () {
+	void FixedUpdate () {
 
-		if (Input.GetButtonDown ("Submit")) 
-		{
-			IntroFade ();
-		}
-
+	
 		switch (IntroState) {
-		    case 1:
-			    IntroText.GetComponent<Text>().text = "On a normal sunday morning";
-			    GameObject.Find("ImageIntroScreen").GetComponent<Image>().sprite = introSprites[0];
-			    break;
-            case 9:
+			case 8:
+				Debug.Log (IntroState);
                 GameManager.Instance.LoadLevel(2);
                 break;
             default:
-			    IntroText.GetComponent<Text>().text = ("intro_"+(IntroState)).Localize();
-			    GameObject.Find("ImageIntroScreen").GetComponent<Image>().sprite = introSprites[IntroState-1];
+			    IntroText.GetComponent<Text>().text = ("intro_"+(IntroState+1)).Localize();
+			    GameObject.Find("ImageIntroScreen").GetComponent<Image>().sprite = introSprites[IntroState];
 			    break;
 		    
 		}
+
+			if (Input.GetButtonDown ("Submit")) 
+			{
+				if (IntroState <8) {
+					IntroState++;
+				}
+
+			}
+
 	}
 }
 }
