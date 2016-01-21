@@ -71,6 +71,10 @@ namespace Nimbi.Actors {
         }
 
         public bool HasOnesie(OnesieType type) {
+            if (onesies == null) {
+                return false;
+            }
+
             foreach (Onesie onesie in onesies) {
                 if (onesie != null && onesie.type == type) {
                     return true;
