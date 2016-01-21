@@ -97,11 +97,10 @@ namespace Nimbi.UI
             
             // Destroy all game data (R.I.P.)
 			PlayerPrefs.DeleteAll();
-			PlayerPrefs.Save();
 
             // Reset LanguageManager & reload level
 			GameManager.Instance.Language = "en";
-			GameManager.Instance.LoadLevel(SceneManager.GetActiveScene().buildIndex, true);
+            GameManager.Instance.Quit();
 		}
 
 		public void QuitApplication()

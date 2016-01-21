@@ -7323,7 +7323,7 @@ MonoBehaviour:
     m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
     m_ColorMultiplier: 1
     m_FadeDuration: 0.1
-  font: {fileID: 12800000, guid: 428e836c5d4a44808b8c0659d197c08d, type: 3}
+  font: {fileID: 0}
 --- !u!1 &1133971060
 GameObject:
   m_ObjectHideFlags: 0
@@ -9580,7 +9580,6 @@ GameObject:
   m_Component:
   - 4: {fileID: 1461869686}
   - 108: {fileID: 1461869685}
-  - 123: {fileID: 1461869684}
   m_Layer: 0
   m_Name: Sun
   m_TagString: Untagged
@@ -9588,21 +9587,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
---- !u!123 &1461869684
-LensFlare:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1461869683}
-  m_Enabled: 1
-  m_Flare: {fileID: 12100000, guid: 582459578f01944fd83b05aa4fdbb7fd, type: 2}
-  m_Color: {r: 1, g: 0.934, b: 0.703, a: 0}
-  m_Brightness: 0.5
-  m_FadeSpeed: 1
-  m_IgnoreLayers:
-    serializedVersion: 2
-    m_Bits: 6
-  m_Directional: 1
 --- !u!108 &1461869685
 Light:
   m_ObjectHideFlags: 0
@@ -9625,7 +9609,7 @@ Light:
     m_NormalBias: 0.4
     m_NearPlane: 0.2
   m_Cookie: {fileID: 0}
-  m_DrawHalo: 1
+  m_DrawHalo: 0
   m_Flare: {fileID: 0}
   m_RenderMode: 0
   m_CullingMask:

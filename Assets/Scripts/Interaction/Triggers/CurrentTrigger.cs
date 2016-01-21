@@ -20,7 +20,7 @@ public class CurrentTrigger : MonoBehaviour {
     {
         coll.GetComponent<PlayerController>().DisableMovement();
         if (coll.tag == "Player")
-            if (rb.velocity.magnitude < 5)
-                rb.AddForce(transform.forward * 1f, ForceMode.Impulse);
+            if (rb.velocity.magnitude < 8)
+                rb.AddForce(transform.forward * 8f, ForceMode.Impulse);
     }
 }

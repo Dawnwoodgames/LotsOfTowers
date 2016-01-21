@@ -48,7 +48,7 @@ namespace Nimbi.Environment
 
             foreach (RaycastHit hit in rays)
             {
-                if (mirrorfound || hit.collider.tag == "Player")
+                if (mirrorfound || hit.collider.tag == "Player" || hit.collider.name == "MagnifyGlass")
                     continue;
 
                 if (hit.collider.tag == "MirrorDoor")

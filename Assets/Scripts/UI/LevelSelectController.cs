@@ -18,13 +18,17 @@ namespace Nimbi.UI {
 			this.eventSystem = FindObjectOfType<EventSystem>();
 			this.menu = FindObjectOfType<MenuController>();
 			this.mounts = chapters.Select(c => c.transform.FindChild("Mounting Point").gameObject).ToArray();
+            
+            // Enable Menu, Intro & Tower 1
+            PlayerPrefs.SetInt("bIsLevelAvailable0", 1);
+            PlayerPrefs.SetInt("bIsLevelAvailable1", 1);
+            PlayerPrefs.SetInt("bIsLevelAvailable2", 1);
+            if (Debug.isDebugBuild) { // Enable all towers when in editor
+                PlayerPrefs.SetInt("bIsLevelAvailable3", 1);
+                PlayerPrefs.SetInt("bIsLevelAvailable4", 1);
+                PlayerPrefs.SetInt("bIsLevelAvailable5", 1);
+            }
 
-            // Turn off before we ship the game lol
-			PlayerPrefs.SetInt("bIsLevelAvailable0", 1);
-			PlayerPrefs.SetInt("bIsLevelAvailable1", 1);
-			PlayerPrefs.SetInt("bIsLevelAvailable2", 1);
-            PlayerPrefs.SetInt("bIsLevelAvailable3", 1);
-            PlayerPrefs.SetInt("bIsLevelAvailable4", 1);
             int levelIndex = 1;
 
 			foreach (Button button in GetComponentsInChildren<Button>()) {

@@ -12,11 +12,13 @@ using UnityEngine.UI;
 namespace Nimbi {
     [RequireComponent(typeof(Canvas))]
     [RequireComponent(typeof(CanvasRenderer))]
+    [RequireComponent(typeof(CanvasScaler))]
     public class GameManager : MonoBehaviour {
         public const float FadeDuration = 0.5f;
 
         private static GameManager instance;
         private Canvas canvas;
+        private CanvasScaler canvasScaler;
         private Image fader;
         private bool hasStarted;
         private Image loadingScreen;
@@ -81,6 +83,7 @@ namespace Nimbi {
             OnLevelWasLoaded(SceneManager.GetActiveScene().buildIndex);
 
             this.canvas = GetComponent<Canvas>();
+            this.canvasScaler = GetComponent<CanvasScaler>();
             this.fader = new GameObject("Transition Fader", typeof(Image)).GetComponent<Image>();
             this.loadingScreen = new GameObject("Loading Screen", typeof(Image)).GetComponent<Image>();
             this.loadingSpriteA = Resources.Load<Sprite>("UI/LoadingScreenLoading");
@@ -134,14 +137,8 @@ namespace Nimbi {
         }
 
         public void LoadLevel(int index) {
-            LoadLevel(index, false);
-        }
-
-        public void LoadLevel(int index, bool forceUnlock) {
             if (index == -1) {
                 index = SceneManager.GetActiveScene().buildIndex;
-            } else if (!forceUnlock && PlayerPrefs.GetInt("bIsLevelAvailable" + index, 0) == 0) {
-                return;
             }
 
             PlayerPrefs.SetInt("bIsLevelAvailable" + index, 1);
@@ -159,15 +156,7 @@ namespace Nimbi {
                 yield return null;
             }
 
-            while (fader.color.a < 0.99f) {
-                fader.color = new Color(
-                    fader.color.r,
-                    fader.color.g,
-                    fader.color.b,
-                    fader.color.a + Time.deltaTime / FadeDuration
-                );
-                yield return null;
-            }
+            yield return FadeOutCoroutine();
 
 			if (index != 0 && index != 1) {
                 // If the scene to be loaded is NOT the main menu, show the loading screen
@@ -189,15 +178,7 @@ namespace Nimbi {
 				Camera.main.GetComponent<Animator>().enabled = true;
             }
 
-            while (fader.color.a > 0.01f) {
-                fader.color = new Color(
-                    fader.color.r,
-                    fader.color.g,
-                    fader.color.b,
-                    fader.color.a - Time.deltaTime / FadeDuration
-                );
-                yield return null;
-            }
+            yield return FadeInCoroutine();
 
             if (playerController != null) {
                 playerController.enabled = true;
@@ -230,15 +211,7 @@ namespace Nimbi {
                     yield return null;
                 }
 
-                while (fader.color.a < 0.99f) {
-                    fader.color = new Color(
-                        fader.color.r,
-                        fader.color.g,
-                        fader.color.b,
-                        fader.color.a + Time.deltaTime / FadeDuration
-                    );
-                    yield return null;
-                }
+                yield return FadeOutCoroutine();
 
                 if (ball != null && ball.playerInside) {
                     ball.Ball.transform.position = spawnPoint.position;
@@ -247,15 +220,7 @@ namespace Nimbi {
                 player.transform.position = spawnPoint.position;
                 player.transform.rotation = spawnPoint.rotation;
 
-                while (fader.color.a > 0.01f) {
-                    fader.color = new Color(
-                        fader.color.r,
-                        fader.color.g,
-                        fader.color.b,
-                        fader.color.a - Time.deltaTime / FadeDuration
-                    );
-                    yield return null;
-                }
+                yield return FadeInCoroutine();
 
                 playerController.enabled = true;
                 if (ball != null && ball.playerInside) {
@@ -274,15 +239,7 @@ namespace Nimbi {
                 yield return null;
             }
 
-            while (fader.color.a < 0.99f) {
-                fader.color = new Color(
-                    fader.color.r,
-                    fader.color.g,
-                    fader.color.b,
-                    fader.color.a + Time.deltaTime / FadeDuration
-                );
-                yield return null;
-            }
+            yield return FadeOutCoroutine();
 
             Application.Quit();
         }
@@ -305,6 +262,7 @@ namespace Nimbi {
         public void Start() {
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
             canvas.sortingOrder = Int16.MaxValue;
+            canvasScaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
 
             // Transition Fader setup
             fader.color = Color.clear;

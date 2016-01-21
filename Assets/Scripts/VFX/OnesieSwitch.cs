@@ -6,17 +6,17 @@ using UnityEngine;
 
 namespace Nimbi.VFX {
     [RequireComponent(typeof(Animator))]
-    public sealed class OnesieSwitch : MonoBehaviour {
+    public class OnesieSwitch : MonoBehaviour {
         private Animator animator;
         private Player player;
         private List<MeshRenderer> renderers;
 
         public void Awake() {
-            this.animator = GetComponent<Animator>();
-            this.player = FindObjectOfType<Player>();
-            this.renderers = GetComponentsInChildren<MeshRenderer>().ToList();
+            animator = GetComponent<Animator>();
+            player = FindObjectOfType<Player>();
+            renderers = GetComponentsInChildren<MeshRenderer>().ToList();
 
-            SetVisible(false);
+            SetVisible(false, Color.clear);
         }
 
         public void Play(int onesieIndex) {
@@ -24,22 +24,45 @@ namespace Nimbi.VFX {
         }
 
         private IEnumerator PlayCoroutine(int onesieIndex) {
-            SetVisible(true);
+			Color color;
+
+			//Change color based on onesie
+			switch (onesieIndex)
+			{
+				default :
+				case 0:
+					//Elephant
+					color = Color.blue;
+                    break;
+				case 1:
+					//Hamster
+					color = Color.yellow;
+					break;
+				case 2:
+					//Dragon
+					color = Color.red;
+					break;
+			}
+
+			SetVisible(true, color);
             animator.Play("VFX");
 
             yield return new WaitForSeconds(0.06f);
-
+			
             player.SwitchOnesie(onesieIndex);
 
             while (animator.GetCurrentAnimatorStateInfo(0).IsName("VFX")) {
                 yield return null;
             }
 
-            SetVisible(false);
+            SetVisible(false, Color.clear);
         }
 
-        public void SetVisible(bool visible) {
-            renderers.ForEach(r => r.enabled = visible);
-        }
-    }
+        public void SetVisible(bool visible, Color color) {
+			//Set Color
+			renderers.ForEach(r => r.material.color = color);
+			//Set visibility
+			renderers.ForEach(r => r.enabled = visible);
+		}
+	}
 }

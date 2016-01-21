@@ -25,11 +25,6 @@ namespace Nimbi.CameraControl
 
         public void Update()
         {
-			if (GetComponent<Animator>() != null && GetComponent<Animator>().GetBool("playanimation"))
-			{
-				GetComponent<Animator>().SetBool("playanimation", false);
-			}
-
 			if(GetComponent<Animator>() != null && GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Idle"))
 			{
 				Destroy(GetComponent<Animator>());
