@@ -9,6 +9,7 @@ namespace Nimbi.Interaction {
 		private float timer;
 
 		public float delay = 0.5f; // Seconds between triggers
+        public Material lineMaterial;
 
 		public void Awake() {
 			RaycastHit hit;
@@ -32,6 +33,13 @@ namespace Nimbi.Interaction {
             try
             {
                 manager.GateOpened(this, leftBuoy.Red || rightBuoy.Red);
+                if (!(leftBuoy.Red || rightBuoy.Red)) {
+                    LineRenderer line = gameObject.AddComponent<LineRenderer>();
+
+                    line.material = lineMaterial;
+                    line.SetPosition(0, leftBuoy.transform.position);
+                    line.SetPosition(1, rightBuoy.transform.position);
+                }
             }
             catch (System.Exception)
             {
@@ -44,7 +52,7 @@ namespace Nimbi.Interaction {
 		}
 
 		public void Update() {
-			if (timer > 0) {
+            if (timer > 0) {
 				timer -= Time.deltaTime;
 			}
 		}
