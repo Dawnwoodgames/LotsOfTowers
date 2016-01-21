@@ -270,11 +270,12 @@ namespace Nimbi {
             fader.transform.SetParent(transform, false);
 
             // Loading Screen setup
-            var scale = Mathf.Round(Screen.width / 192) < Mathf.Round(Screen.height / 108) ?
-                Mathf.Round(Screen.width / 192) : Mathf.Round(Screen.height / 108);
             loadingScreen.enabled = false;
-            loadingScreen.rectTransform.localScale = new Vector3(scale, scale, 1);
-            loadingScreen.rectTransform.sizeDelta = new Vector2(192, 108);
+            loadingScreen.rectTransform.anchoredPosition = new Vector2(0, 0);
+            loadingScreen.rectTransform.anchorMax = new Vector2(0.85f, 0.92f);
+            loadingScreen.rectTransform.anchorMin = new Vector2(0.15f, 0.08f);
+            loadingScreen.rectTransform.offsetMax = new Vector2(0, 0);
+            loadingScreen.rectTransform.offsetMin = new Vector2(0, 0);
             loadingScreen.sprite = loadingSpriteA;
             loadingScreen.transform.SetParent(transform, false);
 

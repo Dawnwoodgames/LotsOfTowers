@@ -5,6 +5,7 @@ namespace Nimbi.Interaction.Triggers
 {
     public class BreakableMirror : MonoBehaviour
     {
+        public GameObject[] ropes;
         private void OnTriggerStay(Collider coll)
         {
             if (coll.tag == "Player")
@@ -15,6 +16,11 @@ namespace Nimbi.Interaction.Triggers
         private void BreakObject()
         {
             transform.gameObject.AddComponent<Rigidbody>();
+            gameObject.GetComponent<Rigidbody>().AddForce(Vector3.right*0.2f,ForceMode.Impulse);
+            foreach(GameObject rope in ropes)
+            {
+                Destroy(rope);
+            }
         }
     }
 }

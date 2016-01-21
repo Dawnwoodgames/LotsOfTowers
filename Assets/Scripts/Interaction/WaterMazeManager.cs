@@ -82,6 +82,7 @@ namespace Nimbi.Interaction {
 
 		public void Update() {
 			if (respawnOnNext || gates.Count > 22) {
+                FindObjectsOfType<LineRenderer>().ToList().ForEach(l => Destroy(l));
 				GameManager.Instance.PlayerPassOutAndRespawn(transform);
 				gates.Clear();
 				respawnOnNext = false;
@@ -91,6 +92,7 @@ namespace Nimbi.Interaction {
             {
                 if (!puzzleCompleted)
                 {
+                    FindObjectsOfType<LineRenderer>().ToList().ForEach(l => Destroy(l));
                     puzzleCompleted = true;
                     StartCoroutine(PuzzleClearedCoroutine());
                 }
