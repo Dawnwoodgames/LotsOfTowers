@@ -12,11 +12,13 @@ using UnityEngine.UI;
 namespace Nimbi {
     [RequireComponent(typeof(Canvas))]
     [RequireComponent(typeof(CanvasRenderer))]
+    [RequireComponent(typeof(CanvasScaler))]
     public class GameManager : MonoBehaviour {
         public const float FadeDuration = 0.5f;
 
         private static GameManager instance;
         private Canvas canvas;
+        private CanvasScaler canvasScaler;
         private Image fader;
         private bool hasStarted;
         private Image loadingScreen;
@@ -81,6 +83,7 @@ namespace Nimbi {
             OnLevelWasLoaded(SceneManager.GetActiveScene().buildIndex);
 
             this.canvas = GetComponent<Canvas>();
+            this.canvasScaler = GetComponent<CanvasScaler>();
             this.fader = new GameObject("Transition Fader", typeof(Image)).GetComponent<Image>();
             this.loadingScreen = new GameObject("Loading Screen", typeof(Image)).GetComponent<Image>();
             this.loadingSpriteA = Resources.Load<Sprite>("UI/LoadingScreenLoading");
@@ -259,6 +262,7 @@ namespace Nimbi {
         public void Start() {
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
             canvas.sortingOrder = Int16.MaxValue;
+            canvasScaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
 
             // Transition Fader setup
             fader.color = Color.clear;
