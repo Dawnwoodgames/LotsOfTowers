@@ -5,14 +5,14 @@ namespace Nimbi.Environment
 	public class Fans : MonoBehaviour
 	{
 		public Vector3 rotation;
-        public Vector3 originalRotation;
+        private Vector3 originalRotation;
 
         void Start()
         {
             originalRotation = rotation;
         }
 		
-		void Update()
+		void FixedUpdate()
 		{
 			transform.Rotate(rotation);
 		}
