@@ -1,5 +1,6 @@
 ﻿using Nimbi.Actors;
 using Nimbi.Interaction;
+using Nimbi.CameraControl;
 using Nimbi.UI;
 using SmartLocalization;
 using System;
@@ -175,7 +176,7 @@ namespace Nimbi {
                 }
 
                 loadingScreen.enabled = false;
-				Camera.main.GetComponent<Animator>().enabled = true;
+				Camera.main.GetComponent<MainCameraScript>().playingAnimation = true;
             }
 
             yield return FadeInCoroutine();
