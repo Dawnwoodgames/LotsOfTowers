@@ -4019,7 +4019,7 @@ Transform:
   m_LocalScale: {x: 1, y: 0.04, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 10
+  m_RootOrder: 9
 --- !u!114 &891333245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4031,8 +4031,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 520a2209b8524a24b921cceb07d72ff0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  BoilerLid: {fileID: 972351086}
-  maxLidPosition: 50
   lidIsOpen: 0
 --- !u!1 &912896604
 GameObject:
@@ -4140,6 +4138,20 @@ Transform:
 GameObject:
   m_PrefabParentObject: {fileID: 172428, guid: 0c77344ae39b1db4f9564d7f525290a8, type: 2}
   m_PrefabInternal: {fileID: 1244725915}
+--- !u!114 &972351090
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 972351086}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 29a19957d4890e04bb50ba5e1747e5f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxLidPosition: 50
+  lidIsopen: 1
+  BoilerLid: {fileID: 972351086}
 --- !u!1 &1008266834
 GameObject:
   m_ObjectHideFlags: 0
@@ -6771,7 +6783,7 @@ Transform:
   m_Children:
   - {fileID: 1111518381}
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 10
 --- !u!1 &1939056642
 GameObject:
   m_ObjectHideFlags: 0
@@ -7156,7 +7168,6 @@ MonoBehaviour:
   water: {fileID: 1697407902}
   cloudToSpawn: {fileID: 172564, guid: 2be2c7f1b9c1d3e4293a2f8ed121f43f, type: 2}
   cloudSpeed: 1
-  BoilerLid: {fileID: 0}
 --- !u!135 &2135995550
 SphereCollider:
   m_ObjectHideFlags: 0
