@@ -39,7 +39,7 @@ namespace Nimbi {
         public bool CursorEnabled {
             get { return Cursor.lockState == CursorLockMode.None && Cursor.visible; }
             set {
-                if (!Application.isEditor) {
+                if (!Debug.isDebugBuild) {
                     Cursor.lockState = value ? CursorLockMode.None : CursorLockMode.Locked;
                     Cursor.visible = value;
                 }

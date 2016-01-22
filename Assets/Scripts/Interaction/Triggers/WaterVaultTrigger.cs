@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Nimbi.Environment;
 
 namespace Nimbi.Interaction.Triggers
 {
@@ -7,6 +8,7 @@ namespace Nimbi.Interaction.Triggers
     {
         public GameObject waterfall;
         public GameObject water;
+        public Fans waterrad;
 
         private Vector3 startMarker;
         private Vector3 endMarker;
@@ -45,8 +47,9 @@ namespace Nimbi.Interaction.Triggers
             vaultActive = false;
             Destroy(water.GetComponent<Environment.Water>());
             Destroy(GameObject.Find("Ramp").GetComponent<ExitWater>());
-            Destroy(waterfall);
+            waterfall.GetComponent<Renderer>().enabled = false;
             Destroy(GameObject.Find("CurrentPuzzle"));
+            waterrad.Stop();
         }
     }
 }
