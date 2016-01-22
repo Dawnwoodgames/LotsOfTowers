@@ -7,12 +7,12 @@ public class biggetjeopspitscript : MonoBehaviour {
 
 	ParticleSystem Vuurtje;
 	private Player player;
-	Animator animatie;
+	Rigidbody rigidbody;
 
 	// Use this for initialization
 	void Start () {
 		Vuurtje = gameObject.GetComponentInChildren<ParticleSystem> ();
-			animatie = gameObject.GetComponent<Animator> ();
+		rigidbody = gameObject.GetComponentInChildren<Rigidbody> ();
 		Vuurtje.Stop ();
 		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player> ();
 	}
@@ -26,7 +26,7 @@ public class biggetjeopspitscript : MonoBehaviour {
 	private void OnTriggerStay(Collider coll){
 			if (Input.GetButtonDown("Submit") && player.Onesie.type == OnesieType.Dragon) {
 			Vuurtje.Play ();
-			animatie.Play ("triggerd", 1);
+			rigidbody.useGravity = true;
 		}
 	}
 }
