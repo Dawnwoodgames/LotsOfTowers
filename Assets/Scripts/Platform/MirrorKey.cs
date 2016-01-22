@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Nimbi.Audio;
 
 namespace Nimbi.Platform
 {
@@ -105,6 +106,7 @@ namespace Nimbi.Platform
             {
                 if (Input.GetButtonDown("Submit"))
                 {
+					AudioManager.Instance.PlaySoundeffect(AudioManager.Instance.pickupKeySoundFile);
                     this.gameObject.transform.SetParent(mirrorPlayer.transform);
                     this.gameObject.transform.localPosition = new Vector3(0, .08f, 0);
                     pickedUp = true;

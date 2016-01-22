@@ -22,10 +22,15 @@ namespace Nimbi.Audio
         public AudioClip switchOnesieToElephantSoundFile;
         public AudioClip switchOnesieToHamsterSoundFile;
 
+		public AudioClip pickupKeySoundFile;
+		public AudioClip doorOpenSoundFile;
+		public AudioClip pickupNutSoundFile;
+
         public AudioClip onesieSwitchDefaultSound { get; set; }
         public AudioClip onesieSwitchDragonSound { get; set; }
         public AudioClip onesieSwitchElephantSound { get; set; }
         public AudioClip onesieSwitchHamsterSound { get; set; }
+
 
         private bool playing = false;
         private string currentScene = "";
@@ -64,6 +69,7 @@ namespace Nimbi.Audio
             onesieSwitchDragonSound = switchOnesieToDragonSoundFile;
             onesieSwitchElephantSound = switchOnesieToElephantSoundFile;
             onesieSwitchHamsterSound = switchOnesieToHamsterSoundFile;
+
         }
 
         private void StartMusic(AudioClip track)

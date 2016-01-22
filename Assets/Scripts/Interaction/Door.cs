@@ -1,5 +1,6 @@
 ﻿using Nimbi.Platform;
 using UnityEngine;
+using Nimbi.Audio;
 
 namespace Nimbi.Interaction
 {
@@ -28,6 +29,7 @@ namespace Nimbi.Interaction
 
 		private void OpenDoor(GameObject key)
 		{
+			AudioManager.Instance.PlaySoundeffect(AudioManager.Instance.doorOpenSoundFile);
 			Destroy(mirrorDoor);
 			Destroy(key);
 			Destroy(gameObject);
