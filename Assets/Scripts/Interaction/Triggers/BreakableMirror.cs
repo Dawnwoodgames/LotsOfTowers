@@ -15,8 +15,12 @@ namespace Nimbi.Interaction.Triggers
 
         private void BreakObject()
         {
-            transform.gameObject.AddComponent<Rigidbody>();
-            gameObject.GetComponent<Rigidbody>().AddForce(Vector3.right*0.2f,ForceMode.Impulse);
+            if (!GetComponent<Rigidbody>())
+            {
+                gameObject.AddComponent<Rigidbody>();
+            }
+            
+            GetComponent<Rigidbody>().AddForce(Vector3.right*0.2f,ForceMode.Impulse);
             foreach(GameObject rope in ropes)
             {
                 Destroy(rope);
