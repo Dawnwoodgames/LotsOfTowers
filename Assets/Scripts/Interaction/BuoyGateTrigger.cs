@@ -9,7 +9,6 @@ namespace Nimbi.Interaction
     {
 		private WaterMazeManager manager;
 		private Buoy leftBuoy, rightBuoy;
-		private float timer;
 
 		public float delay = 0.5f; // Seconds between triggers
         public Material lineMaterial;
@@ -51,13 +50,11 @@ namespace Nimbi.Interaction
 		}
 
 		public void OnTriggerExit(Collider coll) {
-			timer = delay;
+			
 		}
 
 		public void Update() {
-            if (timer > 0) {
-				timer -= Time.deltaTime;
-			}
+            
 		}
 	}
 }
