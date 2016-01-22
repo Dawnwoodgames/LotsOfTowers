@@ -1,9 +1,12 @@
 ﻿using Nimbi.Environment;
 using UnityEngine;
 
-namespace Nimbi.Interaction {
+namespace Nimbi.Interaction
+{
+
 	[RequireComponent(typeof(BoxCollider))]
-	public class BuoyGateTrigger : MonoBehaviour {
+	public class BuoyGateTrigger : MonoBehaviour
+    {
 		private WaterMazeManager manager;
 		private Buoy leftBuoy, rightBuoy;
 		private float timer;
@@ -15,7 +18,7 @@ namespace Nimbi.Interaction {
 			RaycastHit hit;
 
 			GetComponent<BoxCollider>().isTrigger = true;
-			this.manager = FindObjectOfType<WaterMazeManager>();
+			manager = FindObjectOfType<WaterMazeManager>();
 
 			// Try and find a buoy on the left
 			Physics.Raycast(transform.position, transform.rotation * (Vector3.left * 5), out hit);
@@ -27,7 +30,7 @@ namespace Nimbi.Interaction {
 		}
 
 		public void OnTriggerEnter(Collider coll) {
-			if (timer > 0 || coll.gameObject.tag != "HamsterBall") {
+			if (coll.gameObject.name != "GateTrigger") {
 				return;
 			}
             try
