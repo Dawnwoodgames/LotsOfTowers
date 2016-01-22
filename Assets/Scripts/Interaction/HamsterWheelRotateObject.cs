@@ -4,17 +4,17 @@ using Nimbi.Interaction.Triggers;
 
 namespace Nimbi.Interaction
 {
-    [RequireComponent(typeof(HamsterWheelTrigger))]
+    [RequireComponent(typeof(RotateTrigger))]
     public class HamsterWheelRotateObject : MonoBehaviour
     {
         public GameObject item;
         public float rotateSpeed;
-        private HamsterWheelTrigger wheel;
+        private RotateTrigger wheel;
 
         void Start()
         {
-            wheel = GetComponent<HamsterWheelTrigger>();
-            rotateSpeed = (wheel.GetNegativeRotate()) ? -rotateSpeed : rotateSpeed;
+            wheel = GetComponent<RotateTrigger>();
+            rotateSpeed = (wheel.negative) ? -rotateSpeed : rotateSpeed;
         }
 
         void Update()
