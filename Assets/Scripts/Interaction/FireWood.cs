@@ -10,6 +10,7 @@ namespace Nimbi.Interaction
     public GameObject particle;
     public GameObject water;
     public GameObject cloudToSpawn;
+    public float cloudSpeed = 1f;
 
 
     public GameObject BoilerLid;
@@ -18,6 +19,7 @@ namespace Nimbi.Interaction
     private bool hasFireContact;
     private bool isTrigger;
     private bool boilingWater;
+    private Vector3 moveMent;
 
     
 // Use this for initialization
@@ -26,7 +28,8 @@ namespace Nimbi.Interaction
     hasFireContact = false;
     isTrigger = false;
     boilingWater = false;
-    }
+    moveMent = Vector3.MoveTowards(cloudToSpawn.transform.position, moveMent, cloudSpeed * Time.deltaTime);
+        }
 	
 	// Update is called once per frame
 	void Update () {
@@ -42,7 +45,8 @@ namespace Nimbi.Interaction
 
     void SpawnCloud()
     {   
-           Instantiate(cloudToSpawn, new Vector3(-8, 19.95f, -39), Quaternion.identity);  
+           Instantiate(cloudToSpawn, new Vector3(-8 + 1, 19.95f, -39), Quaternion.identity);
+           
     }
 
     void OnTriggerEnter(Collider col)
