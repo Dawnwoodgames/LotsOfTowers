@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Nimbi.Interaction.Triggers;
+using Nimbi.Environment;
 
 namespace Nimbi.Interaction.Triggers
 {
@@ -13,7 +14,9 @@ namespace Nimbi.Interaction.Triggers
         private RotateTrigger trigger;
         public RopePickup rope;
         public GameObject waterval;
-        public GameObject door;
+        public HingedDoor door;
+        public GameObject waterval2;
+        public Fans fan;
 
         void Start()
         {
@@ -28,7 +31,9 @@ namespace Nimbi.Interaction.Triggers
                 trigger.Stop();
                 active = true;
                 waterval.SetActive(true);
-                door.GetComponent<HingedDoor>().Open();
+                door.Open();
+                waterval.SetActive(true);
+                fan.Restart();
             }
             else if (active && heightIncrease + startPosition.y > stopje.transform.position.y)
             {
