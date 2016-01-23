@@ -3314,7 +3314,7 @@ Transform:
   m_LocalScale: {x: -0.4, y: 0.3, z: 0.27}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 12
+  m_RootOrder: 9
 --- !u!1001 &422105893
 Prefab:
   m_ObjectHideFlags: 0
@@ -4019,7 +4019,7 @@ Transform:
   m_LocalScale: {x: 1, y: 0.04, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 9
+  m_RootOrder: 12
 --- !u!114 &891333245
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4150,7 +4150,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxLidPosition: 50
-  lidIsopen: 1
   BoilerLid: {fileID: 972351086}
 --- !u!1 &1008266834
 GameObject:
@@ -5749,10 +5748,6 @@ ParticleSystem:
     subEmitterCollision1: {fileID: 0}
     subEmitterDeath: {fileID: 0}
     subEmitterDeath1: {fileID: 0}
---- !u!4 &1111518381 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 443046, guid: 0c77344ae39b1db4f9564d7f525290a8, type: 2}
-  m_PrefabInternal: {fileID: 1244725915}
 --- !u!1 &1116960456
 GameObject:
   m_ObjectHideFlags: 0
@@ -6011,19 +6006,19 @@ Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Modification:
-    m_TransformParent: {fileID: 1902484701}
+    m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 443046, guid: 0c77344ae39b1db4f9564d7f525290a8, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 4.82
+      value: -7.85
       objectReference: {fileID: 0}
     - target: {fileID: 443046, guid: 0c77344ae39b1db4f9564d7f525290a8, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 20.52
+      value: 21.04
       objectReference: {fileID: 0}
     - target: {fileID: 443046, guid: 0c77344ae39b1db4f9564d7f525290a8, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -29.39
+      value: -45.96
       objectReference: {fileID: 0}
     - target: {fileID: 443046, guid: 0c77344ae39b1db4f9564d7f525290a8, type: 2}
       propertyPath: m_LocalRotation.x
@@ -6043,7 +6038,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 443046, guid: 0c77344ae39b1db4f9564d7f525290a8, type: 2}
       propertyPath: m_RootOrder
-      value: 0
+      value: 14
+      objectReference: {fileID: 0}
+    - target: {fileID: 443046, guid: 0c77344ae39b1db4f9564d7f525290a8, type: 2}
+      propertyPath: m_LocalScale.x
+      value: 125
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0c77344ae39b1db4f9564d7f525290a8, type: 2}
@@ -6535,7 +6534,7 @@ Transform:
   m_LocalScale: {x: 2, y: 0.5, z: 2}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 13
+  m_RootOrder: 11
 --- !u!1001 &1699487631
 Prefab:
   m_ObjectHideFlags: 0
@@ -6756,34 +6755,6 @@ Light:
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
---- !u!1 &1902484700
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 1902484701}
-  m_Layer: 0
-  m_Name: Boiler
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &1902484701
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1902484700}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12.67, y: 0.52, z: -16.57}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 1111518381}
-  m_Father: {fileID: 0}
-  m_RootOrder: 10
 --- !u!1 &1939056642
 GameObject:
   m_ObjectHideFlags: 0
@@ -7167,6 +7138,7 @@ MonoBehaviour:
   particle: {fileID: 1466652713}
   water: {fileID: 1697407902}
   cloudToSpawn: {fileID: 172564, guid: 2be2c7f1b9c1d3e4293a2f8ed121f43f, type: 2}
+  speed: 5
   cloudSpeed: 1
 --- !u!135 &2135995550
 SphereCollider:

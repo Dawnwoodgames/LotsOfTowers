@@ -11,6 +11,11 @@ namespace Nimbi.Interaction
         public GameObject particle;
         public GameObject water;
         public GameObject cloudToSpawn;
+
+        GameObject go;
+        Vector3 movePosition = new Vector3(75f + 1, 1.7f, 75f);
+        public float speed = 5f;
+
         public float cloudSpeed = 1f;
 
 
@@ -20,17 +25,17 @@ namespace Nimbi.Interaction
         private bool hasFireContact;
         private bool isTrigger;
         private bool boilingWater;
-        private Vector3 moveMent;
-
 
         // Use this for initialization
         void Start()
         {
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+            BoilerLid = GameObject.Find("PressurePlate").GetComponent<BoilerPressurePlate>();
+
             hasFireContact = false;
             isTrigger = false;
             boilingWater = false;
-            moveMent = Vector3.MoveTowards(cloudToSpawn.transform.position, moveMent, cloudSpeed * Time.deltaTime);
+            
         }
 
         // Update is called once per frame
@@ -38,21 +43,27 @@ namespace Nimbi.Interaction
         {
             if (hasFireContact == true)
             {
-                print("I am on fire Baby!");
                 particle.SetActive(true);
                 boilingWater = true;
                 if(BoilerLid.lidIsOpen)
                 {
-                    InvokeRepeating("SpawnCloud", 0.5f, 5);
+                    InvokeRepeating("SpawnCloud", 2, 5);
                     hasFireContact = false;
                 }
-           
+
+                if (go.transform.position != movePosition)
+                {
+                    Vector3 newPos = Vector3.MoveTowards(go.transform.position, movePosition, speed * Time.deltaTime);
+                    go.transform.position = newPos;
+                }
+
             }
         }
 
         void SpawnCloud()
         {
-                Instantiate(cloudToSpawn, new Vector3(-8 + 1, 19.95f, -39), Quaternion.identity);
+            go = Instantiate(cloudToSpawn, new Vector3(-8, 19.95f, -39), transform.rotation)as GameObject;
+           
         }
 
         void OnTriggerEnter(Collider col)
