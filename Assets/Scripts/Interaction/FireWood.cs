@@ -47,23 +47,21 @@ namespace Nimbi.Interaction
                 boilingWater = true;
                 if(BoilerLid.lidIsOpen)
                 {
-                    InvokeRepeating("SpawnCloud", 2, 5);
+                    InvokeRepeating("SpawnCloud", 0.5f, 5);
                     hasFireContact = false;
                 }
-
-                if (go.transform.position != movePosition)
-                {
-                    Vector3 newPos = Vector3.MoveTowards(go.transform.position, movePosition, speed * Time.deltaTime);
-                    go.transform.position = newPos;
-                }
-
             }
-        }
+
+			if (go.transform.position != movePosition)
+			{
+				Vector3 newPos = Vector3.MoveTowards(go.transform.position, movePosition, speed * Time.deltaTime);
+				go.transform.position = newPos;
+			}
+		}
 
         void SpawnCloud()
         {
             go = Instantiate(cloudToSpawn, new Vector3(-8, 19.95f, -39), transform.rotation)as GameObject;
-           
         }
 
         void OnTriggerEnter(Collider col)

@@ -26,7 +26,6 @@ namespace Nimbi.Interaction
             //If Nimbi is In his Elephant Onesie!
             if (inTrigger && player.GetComponent<Player>().Onesie.isHeavy)
             {
-                print("Ik zie je wel, maar ik doe niks!");
                 lidIsOpen = true;
             }
         }
