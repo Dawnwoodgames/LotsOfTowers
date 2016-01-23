@@ -11,16 +11,12 @@ namespace Nimbi.Interaction
         public GameObject particle;
         public GameObject water;
         public GameObject cloudToSpawn;
-
-        GameObject go;
-        Vector3 movePosition = new Vector3(75f + 1, 1.7f, 75f);
-        public float speed = 5f;
-
         public float cloudSpeed = 1f;
 
+        GameObject spawnedCloud;
+        Vector3 cloudMovePosition = new Vector3(-2.74f, 16.99f, -36.60f);
 
         private BoilerPressurePlate BoilerLid;
-
         private Player player;
         private bool hasFireContact;
         private bool isTrigger;
@@ -35,7 +31,7 @@ namespace Nimbi.Interaction
             hasFireContact = false;
             isTrigger = false;
             boilingWater = false;
-            
+
         }
 
         // Update is called once per frame
@@ -44,24 +40,26 @@ namespace Nimbi.Interaction
             if (hasFireContact == true)
             {
                 particle.SetActive(true);
-                boilingWater = true;
-                if(BoilerLid.lidIsOpen)
+                if (BoilerLid.lidIsOpen)
                 {
-                    InvokeRepeating("SpawnCloud", 0.5f, 5);
+                    InvokeRepeating("SpawnCloud", 2 * Time.deltaTime, 5f);
                     hasFireContact = false;
                 }
+                
             }
 
-			if (go.transform.position != movePosition)
-			{
-				Vector3 newPos = Vector3.MoveTowards(go.transform.position, movePosition, speed * Time.deltaTime);
-				go.transform.position = newPos;
-			}
-		}
+
+            if (boilingWater == true && spawnedCloud.transform.position != cloudMovePosition)
+            {
+                Vector3 newPos = Vector3.MoveTowards(spawnedCloud.transform.position, cloudMovePosition, cloudSpeed * Time.deltaTime);
+                spawnedCloud.transform.position = newPos;
+            }
+        }
 
         void SpawnCloud()
         {
-            go = Instantiate(cloudToSpawn, new Vector3(-8, 19.95f, -39), transform.rotation)as GameObject;
+            boilingWater = true;
+            spawnedCloud = Instantiate(cloudToSpawn, new Vector3(-8, 19.95f, -39), transform.rotation) as GameObject;
         }
 
         void OnTriggerEnter(Collider col)
