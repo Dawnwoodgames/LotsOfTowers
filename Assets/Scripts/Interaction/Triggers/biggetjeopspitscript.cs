@@ -2,32 +2,48 @@
 using System.Collections;
 using Nimbi.Actors;
 
-namespace Nimbi.Interaction.Triggers{
-public class biggetjeopspitscript : MonoBehaviour {
+namespace Nimbi.Interaction.Triggers
+{
+	public class biggetjeopspitscript : MonoBehaviour
+	{
+		private ParticleSystem vuurtje;
+		private Player player;
+		private GameObject pigModel;
+		private bool rotating = false;
 
-	ParticleSystem Vuurtje;
-	private Player player;
-	Rigidbody rigidbody;
+		// Use this for initialization
+		void Start()
+		{
+			vuurtje = GetComponentInChildren<ParticleSystem>();
+			player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+			pigModel = GameObject.FindGameObjectWithTag("PigModel");
+			vuurtje.Stop();
+		}
+		void FixedUpdate()
+		{
+			if (rotating)
+			{
+				pigModel.transform.Rotate(Vector3.forward * 2);
+			}
+		}
 
-	// Use this for initialization
-	void Start () {
-		Vuurtje = gameObject.GetComponentInChildren<ParticleSystem> ();
-		rigidbody = gameObject.GetComponentInChildren<Rigidbody> ();
-		Vuurtje.Stop ();
-		player = GameObject.FindGameObjectWithTag ("Player").GetComponent<Player> ();
-	}
-	
-	// Update is called once per frame
-	void Update () {
+		private void OnTriggerStay(Collider coll)
+		{
+			if (coll.tag == "Fire")
+			{
+				vuurtje.Play();
+				rotating = true;
 
+				StartCoroutine(WaitForDropping());
+			}
+		}
 
-	}
+		private IEnumerator WaitForDropping()
+		{
+			yield return new WaitForSeconds(2);
 
-	private void OnTriggerStay(Collider coll){
-			if (Input.GetButtonDown("Submit") && player.Onesie.type == OnesieType.Dragon) {
-			Vuurtje.Play ();
-			rigidbody.useGravity = true;
+			//Wait couple of seconds and rotate biggetje?
+			GetComponentInChildren<Rigidbody>().useGravity = true;
 		}
 	}
-}
 }
