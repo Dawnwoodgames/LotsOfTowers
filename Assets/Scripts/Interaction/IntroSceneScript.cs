@@ -27,7 +27,6 @@ public class IntroSceneScript : MonoBehaviour {
 	
 		switch (IntroState) {
 			case 8:
-				Debug.Log (IntroState);
                 GameManager.Instance.LoadLevel(2);
                 break;
             default:

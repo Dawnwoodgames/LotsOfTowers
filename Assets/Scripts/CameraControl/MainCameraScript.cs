@@ -10,6 +10,8 @@ namespace Nimbi.CameraControl
 		public float degree;
 		public float verticalDegree;
 		public float cameraSpeed = 6;
+
+		[HideInInspector]
 		public bool playingAnimation;
 
 		#region Properties
@@ -19,14 +21,19 @@ namespace Nimbi.CameraControl
 		}
 		#endregion
 
+		void Awake()
+		{
+			playingAnimation = true;
+		}
+
 		// Use this for initialization
-		public void Start()
+		void Start()
 		{
 			centerFocus = GameObject.Find("CenterFocus").transform;
 			verticalDegree = 30;
-		}
+        }
 
-		public void Update()
+		void Update()
 		{
 			if (playingAnimation)
 			{
@@ -50,7 +57,7 @@ namespace Nimbi.CameraControl
 			}
 			else if(GetComponent<Animator>() != null)
 			{
-				Destroy(GetComponent<Animator>());
+				GetComponent<Animator>().enabled = false;
 			}
 
 			// Rotate controls
