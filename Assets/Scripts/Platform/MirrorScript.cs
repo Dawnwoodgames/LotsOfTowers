@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using Nimbi.Actors;
+using System.Linq;
 
 namespace Nimbi.Platform
 {
@@ -15,12 +16,24 @@ namespace Nimbi.Platform
         private bool mirrorPlayerCurrentlyVisible = true;
         private bool playerCurrentlyVisible = true;
 
-        void Start()
-        {
+		private GameObject mirrorDefaultOnesie;
+		private GameObject mirrorElephantOnesie;
 
+
+		void Start()
+        {
+			try
+			{
+				mirrorDefaultOnesie = mirrorPlayer.GetComponentsInChildren<Transform>(true).FirstOrDefault(go => go.name == "OnesieDefault").gameObject;
+				mirrorElephantOnesie = mirrorPlayer.GetComponentsInChildren<Transform>(true).FirstOrDefault(go => go.name == "OnesieElephant").gameObject;
+			}
+			catch (System.Exception)
+			{
+				throw;
+			}
         }
 
-        void Update()
+		void Update()
         {
             CheckMirror();
             CheckVisibility();
@@ -28,6 +41,7 @@ namespace Nimbi.Platform
 
         public void UpdateMirroredPlayerPosition(GameObject player, Vector3 rayHit)
         {
+			UpdateMirroredPlayerAnimation();
             Vector3 newPosition = transform.position + Vector3.Reflect(player.transform.position - transform.position, mirrorNormal);
             newPosition.y = player.transform.position.y;
             mirrorPlayer.transform.position = newPosition;
@@ -38,7 +52,48 @@ namespace Nimbi.Platform
                 player.transform.localRotation.w) * Quaternion.AngleAxis(90, Vector3.down);
         }
 
-        private void CheckMirror()
+		private void UpdateMirroredPlayerAnimation()
+		{
+			//Go to the onesie the player is wearing. 
+			switch (player.GetComponent<Player>().Onesie.type)
+			{
+				default:
+				case OnesieType.Human:
+					mirrorDefaultOnesie.SetActive(true);
+					mirrorElephantOnesie.SetActive(false);
+					
+					//Check if player is moving? 
+					if (player.GetComponent<Player>().Animator.GetBool("Moving"))
+					{
+						//Let the mirror player animate (walk/idle)
+						mirrorDefaultOnesie.GetComponent<Animator>().SetBool("Moving", true);
+					}
+					else
+					{
+						mirrorDefaultOnesie.GetComponent<Animator>().SetBool("Moving", false);
+					}
+
+					break;
+				case OnesieType.Elephant:
+					mirrorDefaultOnesie.SetActive(false);
+					mirrorElephantOnesie.SetActive(true);
+
+					//Check if player is moving? 
+					if (player.GetComponent<Player>().Animator.GetBool("Moving"))
+					{
+						//Let the mirror player animate (walk/idle)
+						mirrorElephantOnesie.GetComponent<Animator>().SetBool("Moving", true);
+					}
+					else
+					{
+						mirrorElephantOnesie.GetComponent<Animator>().SetBool("Moving", false);
+					}
+					break;
+			}
+
+		}
+
+		private void CheckMirror()
         {
 
             Vector3 hitTarget = transform.position - player.transform.position;
