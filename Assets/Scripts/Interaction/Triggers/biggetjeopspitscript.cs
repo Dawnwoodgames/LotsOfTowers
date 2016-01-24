@@ -9,7 +9,9 @@ namespace Nimbi.Interaction.Triggers
 		private ParticleSystem vuurtje;
 		private Player player;
 		private GameObject pigModel;
+		private GameObject pigColor;
 		private bool rotating = false;
+		private Color newColor;
 
 		// Use this for initialization
 		void Start()
@@ -17,13 +19,16 @@ namespace Nimbi.Interaction.Triggers
 			vuurtje = GetComponentInChildren<ParticleSystem>();
 			player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 			pigModel = GameObject.FindGameObjectWithTag("PigModel");
+			pigColor = GameObject.FindGameObjectWithTag("PigColor");
 			vuurtje.Stop();
+			ColorUtility.TryParseHtmlString("#492200FF", out newColor);
 		}
 		void FixedUpdate()
 		{
 			if (rotating)
 			{
 				pigModel.transform.Rotate(Vector3.forward * 2);
+				pigColor.GetComponent<SkinnedMeshRenderer>().material.color = Color.Lerp(pigColor.GetComponent<SkinnedMeshRenderer>().material.color, newColor, Time.deltaTime);
 			}
 		}
 
