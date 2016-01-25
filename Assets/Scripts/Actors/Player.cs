@@ -19,6 +19,8 @@ namespace Nimbi.Actors {
         public bool hasElephantOnesie;
         public bool hasHamsterOnesie;
 
+        public bool PlayerCanSwitchOnesie { get; set; }
+
         public Animator Animator {
             get { return currentSkeleton.GetComponent<Animator>(); }
         }
@@ -62,12 +64,13 @@ namespace Nimbi.Actors {
         }
 
         public void Awake() {
-            this.defaultOnesie = Resources.Load<Onesie>("OnesieDefault");
-            this.onesies = new Onesie[3];
-            this.particleSystems = GameObject.Find("Nimbi/VFX").transform.Cast<Transform>()
+            PlayerCanSwitchOnesie = true;
+            defaultOnesie = Resources.Load<Onesie>("OnesieDefault");
+            onesies = new Onesie[3];
+            particleSystems = GameObject.Find("Nimbi/VFX").transform.Cast<Transform>()
                 .Where(t => t.GetComponent<ParticleSystem>() != null)
                 .Select(t => t.gameObject).ToList();
-            this.skeletons = GetComponentsInChildren<Skeleton>().ToList();
+            skeletons = GetComponentsInChildren<Skeleton>().ToList();
         }
 
         public bool HasOnesie(OnesieType type) {
@@ -134,14 +137,21 @@ namespace Nimbi.Actors {
         }
 
         public void SwitchOnesie(int index) {
-            if (index > -1 && index < 3 && onesies[index] != null) {
-                try {
-                    currentOnesie = (currentOnesie == onesies[index]) ? defaultOnesie : onesies[index];
-                    AudioManager.Instance.PlaySoundeffect(AudioManager.Instance.GetOnesieSwitchSound(currentOnesie.name));
-                    SetSkeleton(currentOnesie.name.Replace("Onesie", ""));
-                } catch (Exception ex) {
-                    Debug.Log("Error in Player.cs: " + ex.Message + ", \r\nTrace: " + ex.StackTrace);
-                    SetSkeleton("Default");
+            if(PlayerCanSwitchOnesie)
+            {
+                if (index > -1 && index < 3 && onesies[index] != null)
+                {
+                    try
+                    {
+                        currentOnesie = (currentOnesie == onesies[index]) ? defaultOnesie : onesies[index];
+                        AudioManager.Instance.PlaySoundeffect(AudioManager.Instance.GetOnesieSwitchSound(currentOnesie.name));
+                        SetSkeleton(currentOnesie.name.Replace("Onesie", ""));
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.Log("Error in Player.cs: " + ex.Message + ", \r\nTrace: " + ex.StackTrace);
+                        SetSkeleton("Default");
+                    }
                 }
             }
         }

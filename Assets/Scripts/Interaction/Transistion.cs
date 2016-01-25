@@ -26,22 +26,25 @@ namespace Nimbi.Interaction
 		// Update is called once per frame
 		void Update()
 		{
-			if (startTrigger.insideStartTrigger && Input.GetButtonDown("Submit"))
-			{
-				player.transform.parent = transport;
-				player.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
-				player.GetComponent<Rigidbody>().isKinematic = true;
-				player.GetComponent<PlayerController>().enabled = false;
-				insideStartTrigger = true;
-			}
-			else if (endTrigger.insideEndTrigger && Input.GetButtonDown("Submit"))
-			{
-				player.transform.parent = transport;
-				player.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
-				player.GetComponent<Rigidbody>().isKinematic = true;
-				player.GetComponent<PlayerController>().enabled = false;
-				insideEndTrigger = true;
-			}
+            if(player.GetComponent<Player>().Onesie.type == OnesieType.Hamster)
+            {
+                if (startTrigger.insideStartTrigger && Input.GetButtonDown("Submit"))
+                {
+                    player.transform.parent = transport;
+                    player.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
+                    player.GetComponent<Rigidbody>().isKinematic = true;
+                    player.GetComponent<PlayerController>().enabled = false;
+                    insideStartTrigger = true;
+                }
+                else if (endTrigger.insideEndTrigger && Input.GetButtonDown("Submit"))
+                {
+                    player.transform.parent = transport;
+                    player.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
+                    player.GetComponent<Rigidbody>().isKinematic = true;
+                    player.GetComponent<PlayerController>().enabled = false;
+                    insideEndTrigger = true;
+                }
+            }
 		}
 
 		void FixedUpdate()
