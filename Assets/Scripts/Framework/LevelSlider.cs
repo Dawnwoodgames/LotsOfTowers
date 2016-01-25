@@ -11,7 +11,7 @@ namespace Nimbi.Framework
         private Vector3[] oldPosition;
         public float increaseBy;
         public float speed = 1f;
-        private bool moveUp = false;
+        public bool InTrigger = false;
         private bool[] isActive;
         
         void Start()
@@ -25,7 +25,7 @@ namespace Nimbi.Framework
 
 		void Update()
 		{
-			if (moveUp) { 
+			if (InTrigger) { 
 				for (int obj = 0; obj < toMove.Length; obj++)
 				{
                     if (!isActive[obj])
@@ -52,7 +52,7 @@ namespace Nimbi.Framework
 		{
 			if (col.tag == "Player" || col.tag == "HamsterBall")
 			{
-				moveUp = true;
+				InTrigger = true;
                 for (int i = 0; i < toMove.Length; i++)
                     isActive[i] = true;
             }
@@ -62,7 +62,7 @@ namespace Nimbi.Framework
 		{
 			if (col.tag == "Player" || col.tag == "HamsterBall")
 			{
-				moveUp = false;
+				InTrigger = false;
                 for (int i = 0; i < toMove.Length; i++)
                     isActive[i] = true;
             }
