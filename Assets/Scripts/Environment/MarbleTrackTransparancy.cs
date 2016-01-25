@@ -7,12 +7,13 @@ namespace Nimbi.Environment
     {
         private GameObject marbleTrack;
         private Renderer rend;
+        private Material originMaterial;
 
         void Start()
         {
             marbleTrack = transform.GetChild(0).gameObject;
             rend = marbleTrack.GetComponent<Renderer>();
-            rend.material = rend.materials[0];
+            originMaterial = rend.materials[0];
         }
 
         private void OnCollisionEnter(Collision coll)
@@ -34,7 +35,7 @@ namespace Nimbi.Environment
 
         private void DeactivateSeethrough()
         {
-            rend.material = rend.materials[0];
+            rend.material = originMaterial;
         }
     }
 }
