@@ -50,7 +50,7 @@ namespace Nimbi.UI {
                 if (levelSlider == null) {
                     levelSlider = GameObject.Find("LevelSlider/Segment1").GetComponent<LevelSlider>();
                 }
-                Debug.Log(levelSlider.InTrigger);
+
                 string digits = string.Format("{0:00}", mazeManager.GatesOpened);
 
                 buoyCounter.SetActive(levelSlider.InTrigger);
