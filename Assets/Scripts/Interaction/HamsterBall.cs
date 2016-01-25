@@ -3,6 +3,7 @@ using System.Collections;
 using Nimbi.CameraControl;
 using System.Linq;
 using System;
+using Nimbi.Actors;
 
 namespace Nimbi.Interaction
 {
@@ -42,17 +43,19 @@ namespace Nimbi.Interaction
 				Vector3 movement = new Vector3(hMove, 0f, vMove);
 				Move(movement);
 			}
-			else if (playerIsNear && Input.GetButtonDown("Submit"))
+			else if (playerIsNear 
+                && Input.GetButtonDown("Submit")
+                && player.GetComponent<Player>().Onesie.type == OnesieType.Hamster)
 			{
                 ball.tag = "HamsterBall";
-				player.transform.parent = transform;
-				player.GetComponent<CapsuleCollider>().enabled = false;
-				player.GetComponent<Rigidbody>().useGravity = false;
+                player.transform.parent = transform;
+                player.GetComponent<CapsuleCollider>().enabled = false;
+                player.GetComponent<Rigidbody>().useGravity = false;
                 player.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
                 Destroy(GameObject.Find("TemporaryBlock"));
                 playerInside = true;
-				rb.isKinematic = false;
-				playerIsNear = false;
+                rb.isKinematic = false;
+                playerIsNear = false;
 			}
 		}
 
