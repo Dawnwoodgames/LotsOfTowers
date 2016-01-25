@@ -40,16 +40,15 @@ namespace Nimbi.Interaction
             if (hasFireContact == true)
             {
                 particle.SetActive(true);
-                if (BoilerLid.lidIsOpen)
-                {
-                    InvokeRepeating("SpawnCloud", 2 * Time.deltaTime, 5f);
-                    hasFireContact = false;
-                }
-                
+
+                InvokeRepeating("SpawnCloud", 2 * Time.deltaTime, 5f);
+                hasFireContact = false;
+
+
             }
 
 
-            if (boilingWater == true && spawnedCloud.transform.position != cloudMovePosition)
+            if (spawnedCloud.transform.position != cloudMovePosition)
             {
                 Vector3 newPos = Vector3.MoveTowards(spawnedCloud.transform.position, cloudMovePosition, cloudSpeed * Time.deltaTime);
                 spawnedCloud.transform.position = newPos;
@@ -58,8 +57,12 @@ namespace Nimbi.Interaction
 
         void SpawnCloud()
         {
-            boilingWater = true;
-            spawnedCloud = Instantiate(cloudToSpawn, new Vector3(-8, 19.95f, -39), transform.rotation) as GameObject;
+            if (BoilerLid.lidIsOpen)
+            {
+                boilingWater = true;
+                spawnedCloud = Instantiate(cloudToSpawn, new Vector3(-8, 19.95f, -39), transform.rotation) as GameObject;
+            }
+
         }
 
         void OnTriggerEnter(Collider col)

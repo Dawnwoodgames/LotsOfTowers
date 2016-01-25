@@ -41,6 +41,7 @@ namespace Nimbi.Interaction
         public void OnTriggerExit()
         {
             inTrigger = false;
+            lidIsOpen = false;
         }
 
     }

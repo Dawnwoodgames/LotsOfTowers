@@ -7,12 +7,12 @@ namespace Nimbi.Interaction.Triggers
 {
     public class BoilerLidTrigger : MonoBehaviour
     {
-
+     
         public int maxLidPosition = 50;
         public GameObject BoilerLid;
+        float rotationLidSpeed = 1.0f;
 
         private BoilerPressurePlate lidOpen; 
-
         private Vector3 rotateAngle;
         private Vector3 lidPosition;
         private Quaternion lidRotation;
@@ -38,6 +38,10 @@ namespace Nimbi.Interaction.Triggers
                         BoilerLid.transform.Rotate(-16, 0, 17);
 
                 }
+            }
+            else
+            {
+                transform.rotation = Quaternion.Slerp(transform.rotation, lidRotation, Time.time * rotationLidSpeed);
             }
         }
     }
