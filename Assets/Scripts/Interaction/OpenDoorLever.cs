@@ -36,10 +36,12 @@ namespace Nimbi.Interaction
                 if(doorOpen)
                 {
                     CloseDoor();
+                    GetComponent<Animator>().SetBool("GoingDown", false);
                 }
                 else
                 {
                     OpenDoor();
+                    GetComponent<Animator>().SetBool("GoingDown", true);
                 }
             }
         }
