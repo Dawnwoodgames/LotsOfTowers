@@ -68,7 +68,7 @@ namespace Nimbi.Interaction
             }
 			movement = focusView.transform.TransformDirection(movement);
 
-            if (movement.magnitude > 1f) 
+            if (movement.magnitude > 1f)
             {
                 movement.Normalize();
             }

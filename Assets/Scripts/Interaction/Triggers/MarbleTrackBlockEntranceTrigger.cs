@@ -16,7 +16,7 @@ namespace Nimbi.Interaction.Triggers
         private void OnTriggerEnter(Collider coll)
         {
             if (coll.tag == "Player" && coll.GetComponent<Player>().Onesie.type != OnesieType.Hamster)
-                rb.AddForce(new Vector3(.1f, 0, -1) * 10, ForceMode.Impulse);
+                rb.AddForce(transform.forward * 10, ForceMode.Impulse);
         }
     }
 }
