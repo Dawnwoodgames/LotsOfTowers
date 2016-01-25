@@ -156,10 +156,6 @@ namespace Nimbi.Actors {
             }
         }
 
-        public void Update() {
-            SetEffectActive("Drops", HoldingWater);
-        }
-
         public void UseOnesieSpecialAbility() {
             if (Onesie.type == OnesieType.Dragon) {
                 StartCoroutine(SetEffectActiveForDuration("Flame Breath", 0.5f));
