@@ -45,13 +45,13 @@ namespace Nimbi.UI {
 
             // Buoy HUD elements
             if (mazeManager == null) {
-                buoyCounter.SetActive(true);
+                buoyCounter.SetActive(false);
             } else {
                 if (levelSlider == null) {
                     levelSlider = GameObject.Find("LevelSlider/Segment1").GetComponent<LevelSlider>();
                 }
 
-                string digits = string.Format("{0:00}", mazeManager.GatesOpened);
+                string digits = string.Format("{0:00}", 22 - mazeManager.GatesOpened);
 
                 buoyCounter.SetActive(levelSlider.InTrigger);
                 buoyCounterLeftDigit.text = digits[0].ToString();
