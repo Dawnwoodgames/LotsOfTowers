@@ -18,6 +18,10 @@ namespace Nimbi.Interaction {
 			this.gates = new List<BuoyGateTrigger>();
 		}
 
+        public int GatesOpened {
+            get { return gates == null ? 0 : gates.Count; }
+        }
+
 		public void GateOpened(BuoyGateTrigger gate, bool hasRedBuoy) {
 			if (hasRedBuoy || gates.Contains(gate)) {
 				respawnOnNext = true;
