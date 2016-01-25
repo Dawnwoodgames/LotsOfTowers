@@ -3,9 +3,14 @@
 namespace Nimbi.VFX {
     public sealed class FlameBreath : MonoBehaviour {
         private ParticleSystem.Particle[] particles;
+        private GameObject root;
         private ParticleSystem system;
 
         public new Light light;
+
+        public void Awake() {
+            this.root = GameObject.Find("Nimbi/VFX");
+        }
 
         public void Update() {
             system = GetComponent<ParticleSystem>();
@@ -13,8 +18,9 @@ namespace Nimbi.VFX {
             system.GetParticles(particles);
 
             for (int i = 0; i < particles.Length; i++) {
-                if (i % 2 == 0) {
-                    Instantiate(light, system.transform.position + particles[i].position, Quaternion.identity);
+                if (i % 4 == 0) {
+                    ((Light)Instantiate(light, particles[i].position, Quaternion.identity))
+                        .gameObject.transform.SetParent(root.transform, false);
                 }
             }
 
