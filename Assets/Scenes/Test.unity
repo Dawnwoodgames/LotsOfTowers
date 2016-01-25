@@ -6459,15 +6459,28 @@ MeshCollider:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1586558630}
   m_Material: {fileID: 13400000, guid: 01571ba68fb2dad46aa03094ab219579, type: 2}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Convex: 0
+  m_Convex: 1
   m_Mesh: {fileID: 4300000, guid: c93ab0aa3b1cb9544bec61664e1c4a29, type: 3}
 --- !u!4 &1586558635 stripped
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: c93ab0aa3b1cb9544bec61664e1c4a29, type: 3}
   m_PrefabInternal: {fileID: 1435049024}
+--- !u!114 &1586558636
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1586558630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d01e72a429b331f468b7c66e91d713e4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blockade: {fileID: 741129747}
+  pipeBomb: {fileID: 1586558630}
 --- !u!1 &1596771059
 GameObject:
   m_ObjectHideFlags: 0
