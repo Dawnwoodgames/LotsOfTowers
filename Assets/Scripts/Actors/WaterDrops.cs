@@ -2,6 +2,7 @@
 using System.Collections;
 using Nimbi.Actors;
 
+[RequireComponent(typeof(Animator))]
 public class WaterDrops : MonoBehaviour {
 
     public GameObject[] drops;

@@ -55,18 +55,20 @@ namespace Nimbi.Actors
 				switchDelay -= Time.smoothDeltaTime;
 			}
 
-			if ((onesie1 || onesie2 || onesie3) && switchDelay <= 0)
-			{
-                int input = onesie1 ? 0 : (onesie2 ? 1 : 2);
-
-                if ((input == 0 && player.HasOnesie(OnesieType.Elephant)) ||
-                    (input == 1 && player.HasOnesie(OnesieType.Hamster)) ||
-                    (input == 2 && player.HasOnesie(OnesieType.Dragon)))
+            if(player.PlayerCanSwitchOnesie)
+            {
+                if ((onesie1 || onesie2 || onesie3) && switchDelay <= 0)
                 {
+                    int input = onesie1 ? 0 : (onesie2 ? 1 : 2);
 
-                    //Switch to the selected onesie
-                    switchAnimation.Play(input);
-                    switchDelay = InputDelay;
+                    if ((input == 0 && player.HasOnesie(OnesieType.Elephant)) ||
+                        (input == 1 && player.HasOnesie(OnesieType.Hamster)) ||
+                        (input == 2 && player.HasOnesie(OnesieType.Dragon)))
+                    {
+                        //Switch to the selected onesie
+                        switchAnimation.Play(input);
+                        switchDelay = InputDelay;
+                    }
                 }
             }
 
@@ -77,12 +79,14 @@ namespace Nimbi.Actors
                 Move(movement);
             }
 
-			if (removeChargeOnNextFrame) {
+			if (removeChargeOnNextFrame)
+            {
 				player.StaticCharge = 0;
 				removeChargeOnNextFrame = false;
 			}
 
-			if (submit) {
+			if (submit)
+            {
                 // Remove charge in next frame to avoid it being removed before it can be used
                 // Use onesie special ability if it has one
                 if (abilityCooldown <= 0) {

@@ -21,30 +21,36 @@ namespace Nimbi.Actors {
 
         public bool PlayerCanSwitchOnesie { get; set; }
 
-        public Animator Animator {
+        public Animator Animator
+        {
             get { return currentSkeleton.GetComponent<Animator>(); }
         }
 
-        public bool HoldingWater {
+        public bool HoldingWater
+        {
             get;
             set;
         }
 
-        public Onesie Onesie {
+        public Onesie Onesie
+        {
             get { return currentOnesie == null ? defaultOnesie : currentOnesie; }
             set { currentOnesie = onesies.Contains(value) ? value : currentOnesie; }
         }
 
-        public Onesie[] Onesies {
+        public Onesie[] Onesies
+        {
             get { return onesies; }
         }
 
-        public float StaticCharge {
+        public float StaticCharge
+        {
             get { return charge; }
             set { charge = Mathf.Max(0, Mathf.Min(value, 100)); }
         }
 
-        public void AddOnesie(Onesie onesie) {
+        public void AddOnesie(Onesie onesie)
+        {
             switch (onesie.type) {
                 case OnesieType.Dragon:
                     onesies[2] = onesie;
@@ -63,7 +69,8 @@ namespace Nimbi.Actors {
             }
         }
 
-        public void Awake() {
+        public void Awake()
+        {
             PlayerCanSwitchOnesie = true;
             defaultOnesie = Resources.Load<Onesie>("OnesieDefault");
             onesies = new Onesie[3];
@@ -73,21 +80,25 @@ namespace Nimbi.Actors {
             skeletons = GetComponentsInChildren<Skeleton>().ToList();
         }
 
-        public bool HasOnesie(OnesieType type) {
-            if (onesies == null) {
+        public bool HasOnesie(OnesieType type)
+        {
+            if (onesies == null)
+            {
                 return false;
             }
 
-            foreach (Onesie onesie in onesies) {
-                if (onesie != null && onesie.type == type) {
+            foreach (Onesie onesie in onesies)
+            {
+                if (onesie != null && onesie.type == type)
+                {
                     return true;
                 }
             }
-
             return false;
         }
 
-        public void ResetRenderers() {
+        public void ResetRenderers()
+        {
             currentSkeleton.Renderer.enabled = true;
             skeletons.Where(s => s != currentSkeleton).ToList().ForEach(s => s.Renderer.enabled = false);
         }
@@ -96,7 +107,8 @@ namespace Nimbi.Actors {
             particleSystems.Single(g => g.name == name).SetActive(active);
         }
 
-        public IEnumerator SetEffectActiveForDuration(string name, float duration) {
+        public IEnumerator SetEffectActiveForDuration(string name, float duration)
+        {
             ParticleSystem effect = particleSystems.Single(g => g.name == name).GetComponent<ParticleSystem>();
             float t = 0;
 
@@ -114,14 +126,16 @@ namespace Nimbi.Actors {
             effect.Stop();
         }
 
-        private void SetSkeleton(string name) {
+        private void SetSkeleton(string name)
+        {
             currentSkeleton = skeletons.Single(s => s.name == "Onesie" + name);
             currentSkeleton.GetComponent<Animator>().SetTrigger("To_" + name);
             currentSkeleton.Renderer.enabled = true;
             skeletons.Where(s => s != currentSkeleton).ToList().ForEach(s => s.Renderer.enabled = false);
         }
 
-        public void Start() {
+        public void Start()
+        {
             Physics.gravity = new Vector3(0, -35, 0);
             SetSkeleton("Default");
 
@@ -136,27 +150,26 @@ namespace Nimbi.Actors {
             }
         }
 
-        public void SwitchOnesie(int index) {
-            if(PlayerCanSwitchOnesie)
+        public void SwitchOnesie(int index)
+        {
+            if (index > -1 && index < 3 && onesies[index] != null)
             {
-                if (index > -1 && index < 3 && onesies[index] != null)
+                try
                 {
-                    try
-                    {
-                        currentOnesie = (currentOnesie == onesies[index]) ? defaultOnesie : onesies[index];
-                        AudioManager.Instance.PlaySoundeffect(AudioManager.Instance.GetOnesieSwitchSound(currentOnesie.name));
-                        SetSkeleton(currentOnesie.name.Replace("Onesie", ""));
-                    }
-                    catch (Exception ex)
-                    {
-                        Debug.Log("Error in Player.cs: " + ex.Message + ", \r\nTrace: " + ex.StackTrace);
-                        SetSkeleton("Default");
-                    }
+                    currentOnesie = (currentOnesie == onesies[index]) ? defaultOnesie : onesies[index];
+                    AudioManager.Instance.PlaySoundeffect(AudioManager.Instance.GetOnesieSwitchSound(currentOnesie.name));
+                    SetSkeleton(currentOnesie.name.Replace("Onesie", ""));
+                }
+                catch (Exception ex)
+                {
+                    Debug.Log("Error in Player.cs: " + ex.Message + ", \r\nTrace: " + ex.StackTrace);
+                    SetSkeleton("Default");
                 }
             }
         }
 
-        public void UseOnesieSpecialAbility() {
+        public void UseOnesieSpecialAbility()
+        {
             if (Onesie.type == OnesieType.Dragon) {
                 StartCoroutine(SetEffectActiveForDuration("Flame Breath", 0.5f));
             }
