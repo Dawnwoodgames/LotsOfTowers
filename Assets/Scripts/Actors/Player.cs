@@ -148,7 +148,6 @@ namespace Nimbi.Actors {
 
         public void Update() {
             SetEffectActive("Drops", HoldingWater);
-            SetEffectActive("Sparks", StaticCharge > 90);
         }
 
         public void UseOnesieSpecialAbility() {

@@ -1,5 +1,6 @@
 ﻿using Nimbi.Actors;
 using Nimbi.Interaction;
+using Nimbi.CameraControl;
 using Nimbi.UI;
 using SmartLocalization;
 using System;
@@ -162,23 +163,25 @@ namespace Nimbi {
                 // If the scene to be loaded is NOT the main menu, show the loading screen
                 loadingScreen.sprite = loadingSpriteA;
                 loadingScreen.enabled = true;
-            }
+			}
 
-            SceneManager.LoadSceneAsync(index);
+			SceneManager.LoadSceneAsync(index);
             yield return new WaitForSeconds(1);
 
 			if (index != 0 && index != 1) {
                 loadingScreen.sprite = loadingSpriteB;
 
-                while (Input.GetAxis("Submit") == 0) {
+				Camera.main.GetComponent<MainCameraScript>().playingAnimation = false;
+
+				while (Input.GetAxis("Submit") == 0) {
                     yield return null;
                 }
 
                 loadingScreen.enabled = false;
-				Camera.main.GetComponent<Animator>().enabled = true;
-            }
+				Camera.main.GetComponent<MainCameraScript>().playingAnimation = true;
+			}
 
-            yield return FadeInCoroutine();
+			yield return FadeInCoroutine();
 
             if (playerController != null) {
                 playerController.enabled = true;
