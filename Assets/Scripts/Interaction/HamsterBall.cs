@@ -48,6 +48,7 @@ namespace Nimbi.Interaction
                 && player.GetComponent<Player>().Onesie.type == OnesieType.Hamster)
 			{
                 ball.tag = "HamsterBall";
+                player.GetComponent<Player>().PlayerCanSwitchOnesie = false; // No no, you no switch
                 player.transform.parent = transform;
                 player.GetComponent<CapsuleCollider>().enabled = false;
                 player.GetComponent<Rigidbody>().useGravity = false;

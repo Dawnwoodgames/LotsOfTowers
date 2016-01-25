@@ -3,6 +3,7 @@ using System.Collections;
 using System;
 using Nimbi.CameraControl;
 using Nimbi.Interaction;
+using Nimbi.Actors;
 
 namespace Nimbi.Interaction.Triggers
 {
@@ -46,6 +47,7 @@ namespace Nimbi.Interaction.Triggers
 			player.transform.parent = null;
             player.GetComponent<Rigidbody>().velocity = Vector3.zero;
 
+            player.GetComponent<Player>().PlayerCanSwitchOnesie = true;
             player.transform.localPosition = new Vector3(ball.transform.position.x, ball.transform.position.y + 1f, ball.transform.position.z - 1f);
             player.GetComponent<CapsuleCollider>().enabled = true;
             player.transform.localScale = new Vector3(1, 1, 1);
