@@ -26,7 +26,8 @@ namespace Nimbi.Interaction
 		// Update is called once per frame
 		void Update()
 		{
-			if (startTrigger.insideStartTrigger && Input.GetButtonDown("Submit"))
+			if (startTrigger.insideStartTrigger && Input.GetButtonDown("Submit")
+				&& player.GetComponent<Player>().Onesie.type == OnesieType.Hamster)
 			{
 				player.transform.parent = transport;
 				player.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
@@ -34,7 +35,8 @@ namespace Nimbi.Interaction
 				player.GetComponent<PlayerController>().enabled = false;
 				insideStartTrigger = true;
 			}
-			else if (endTrigger.insideEndTrigger && Input.GetButtonDown("Submit"))
+			else if (endTrigger.insideEndTrigger && Input.GetButtonDown("Submit")
+				&& player.GetComponent<Player>().Onesie.type == OnesieType.Hamster)
 			{
 				player.transform.parent = transport;
 				player.transform.localScale = new Vector3(0.05f, 0.05f, 0.05f);
