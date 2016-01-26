@@ -3,21 +3,21 @@ using System.Collections;
 
 namespace Nimbi.Interaction.Triggers
 {
-    public class MarbleCompleteTrigger : MonoBehaviour
-    {
-        private bool puzzleCompleted = false;
+	public class MarbleCompleteTrigger : MonoBehaviour
+	{
+		public bool puzzleCompleted { get; set; }
 
-        private void OnTriggerEnter(Collider coll)
-        {
-            if (coll.name == "Marble")
-                Complete();
-        }
+		private void OnTriggerEnter(Collider coll)
+		{
+			if (coll.name == "Marble")
+			{
+				Complete();
+			}
+		}
 
-        private void Complete()
-        {
-            puzzleCompleted = true;
-        }
-
-        public bool GetPuzzleCompleted() { return puzzleCompleted; }
-    }
+		private void Complete()
+		{
+			puzzleCompleted = true;
+		}
+	}
 }
