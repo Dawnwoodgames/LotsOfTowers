@@ -1,27 +1,18 @@
 ﻿using UnityEngine;
 
 namespace Nimbi.Environment {
-	[RequireComponent(typeof(MeshRenderer))]
 	public class Buoy : MonoBehaviour {
-		private float internalClock;
-		private float originalY;
+        private float awakeY;
 
-		public Color Color {
-			get { return GetComponent<MeshRenderer>().material.color; }
-		}
+        public bool red = false;
+        public float speed = 0.5f;
 
-		public bool Red {
-			get { return Color.r > 0.5f; }
-		}
+        public void Awake() {
+            this.awakeY = transform.localPosition.y;
+        }
 
-		public void Awake() {
-			this.internalClock = Random.Range(0f, 1f);
-			this.originalY = transform.position.y;
-		}
-
-		public void FixedUpdate() {
-			internalClock += Time.deltaTime;
-			transform.position = new Vector3(transform.position.x, Mathf.Sin(internalClock) * 0.25f + originalY, transform.position.z);
-		}
+        public void FixedUpdate() {
+            transform.localPosition = new Vector3(transform.localPosition.x, Mathf.PingPong(Time.timeSinceLevelLoad * speed, awakeY), transform.localPosition.z);
+        }
 	}
 }

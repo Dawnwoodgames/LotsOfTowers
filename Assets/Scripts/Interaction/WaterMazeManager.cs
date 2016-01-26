@@ -80,19 +80,15 @@ namespace Nimbi.Interaction {
             Destroy(gameObject);
         }
 
-		public void OnGUI() {
-			GUI.Label(new Rect(0, 0, Screen.width, Screen.height), "Maze progress: " + gates.Count + " / " + (testMode ? "1 - Watermaze test mode is enabled; only 1 gate needs to be cleared" : "22"));
-		}
-
 		public void Update() {
-			if (respawnOnNext || gates.Count > 22) {
+			if (respawnOnNext || gates.Count > 12) {
                 FindObjectsOfType<LineRenderer>().ToList().ForEach(l => Destroy(l));
 				GameManager.Instance.PlayerPassOutAndRespawn(transform);
 				gates.Clear();
 				respawnOnNext = false;
 			}
 
-			if ((testMode && gates.Count > 0) || (!testMode && gates.Count == 22))
+			if ((testMode && gates.Count > 0) || (!testMode && gates.Count == 12))
             {
                 if (!puzzleCompleted)
                 {
