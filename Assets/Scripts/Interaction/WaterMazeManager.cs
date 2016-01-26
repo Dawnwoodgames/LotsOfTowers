@@ -22,12 +22,12 @@ namespace Nimbi.Interaction {
             get { return gates == null ? 0 : gates.Count; }
         }
 
-		public void GateOpened(BuoyGateTrigger gate, bool hasRedBuoy) {
-			if (hasRedBuoy || gates.Contains(gate)) {
-				respawnOnNext = true;
-			}
-
-			gates.Add(gate);
+		public void GateOpened(BuoyGateTrigger gate, bool hasRedBuoy, bool isLastGate) {
+            if (hasRedBuoy || gates.Contains(gate) || (gates.Count == 11 && !isLastGate)) {
+                respawnOnNext = true;
+            } else {
+                gates.Add(gate);
+            }
 		}
 
         private IEnumerator PuzzleClearedCoroutine()
@@ -81,6 +81,7 @@ namespace Nimbi.Interaction {
         }
 
 		public void Update() {
+            Debug.Log(respawnOnNext);
 			if (respawnOnNext || gates.Count > 12) {
                 FindObjectsOfType<LineRenderer>().ToList().ForEach(l => Destroy(l));
 				GameManager.Instance.PlayerPassOutAndRespawn(transform);

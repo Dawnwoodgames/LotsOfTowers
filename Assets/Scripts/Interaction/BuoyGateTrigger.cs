@@ -11,6 +11,7 @@ namespace Nimbi.Interaction
 		private Buoy leftBuoy, rightBuoy;
 
 		public float delay = 0.5f; // Seconds between triggers
+        public bool lastGate;
         public Material lineMaterial;
 
 		public void Awake() {
@@ -34,7 +35,7 @@ namespace Nimbi.Interaction
 			}
             try
             {
-                manager.GateOpened(this, leftBuoy.red || rightBuoy.red);
+                manager.GateOpened(this, leftBuoy.red || rightBuoy.red, lastGate);
                 if (!(leftBuoy.red || rightBuoy.red)) {
                     LineRenderer line = gameObject.AddComponent<LineRenderer>();
 
@@ -45,7 +46,7 @@ namespace Nimbi.Interaction
             }
             catch (System.Exception)
             {
-                manager.GateOpened(this, true);
+                manager.GateOpened(this, false, false);
             }
 		}
 
