@@ -14,7 +14,7 @@ namespace Nimbi.Interaction
 		public float cloudSpeed = 1f;
 
 		GameObject spawnedCloud;
-		Vector3 cloudMovePosition = new Vector3(-2.74f, 16.99f, -36.60f);
+		Vector3 cloudMovePosition = new Vector3(-2.55f, 15.06f, -4.5f);
 
 		private BoilerPressurePlate BoilerLid;
 		private Player player;
@@ -61,7 +61,7 @@ namespace Nimbi.Interaction
 		{
 			if (BoilerLid.lidIsOpen)
 			{
-				spawnedCloud = Instantiate(cloudToSpawn, new Vector3(-8, 19.95f, -39), transform.rotation) as GameObject;
+				spawnedCloud = Instantiate(cloudToSpawn, new Vector3(-5.02f, 18.8f, 5.03f), transform.rotation) as GameObject;
 			}
 		}
 
