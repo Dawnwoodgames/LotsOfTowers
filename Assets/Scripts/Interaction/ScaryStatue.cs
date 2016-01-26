@@ -12,7 +12,8 @@ namespace Nimbi.Interaction
         private Player player;
         public GameObject scaryStatue;
         private bool inTrigger;
-        private Vector3 standardMode;
+        private Vector3 goalRotation;
+
       
         // Use this for initialization
         void Start()
@@ -20,28 +21,29 @@ namespace Nimbi.Interaction
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
             inTrigger = false;
             isScary = true;
-            standardMode = new Vector3();
-
+            goalRotation = transform.localRotation.eulerAngles;
             
 
         }
 
         // Update is called once per frame
-        void FixedUpdate()
+        void Update()
         {
             if (Input.GetButtonDown("Submit") && inTrigger && isScary)
             {
 
                 //Rotate the Statue a certain row of times till it is not scary anymore!
-                scaryStatue.transform.Rotate(standardMode.z += 0, 0, 20);
+                goalRotation += new Vector3(0, 0, 30);
 
-                if (scaryStatue.transform.rotation.eulerAngles.z == 180)
-                {
-                    //If the statue show his happy face, the dragon will not be scared anymore.
-                    isScary = false;
-                    print("Doet het!");
-                }
+                
             }
+            if (scaryStatue.transform.localRotation.eulerAngles.z >= 180)
+            {
+                //If the statue show his happy face, the dragon will not be scared anymore.
+                isScary = false;
+                goalRotation.z = 180;
+            }
+            transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(goalRotation), Time.deltaTime);
         }
 
         private void OnTriggerStay(Collider coll)
