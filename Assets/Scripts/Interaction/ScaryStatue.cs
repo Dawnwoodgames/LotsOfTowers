@@ -8,22 +8,20 @@ namespace Nimbi.Interaction
     {
 
         public bool isScary;
-
+        public float maxRotationAngle = 180;
         private Player player;
-        private GameObject scaryStatue;
+        public GameObject scaryStatue;
         private bool inTrigger;
         private Vector3 standardMode;
-
-
-
+      
         // Use this for initialization
         void Start()
         {
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-            scaryStatue = GameObject.Find("Scary-Statue");
             inTrigger = false;
             isScary = true;
             standardMode = new Vector3();
+
             
 
         }
@@ -35,11 +33,11 @@ namespace Nimbi.Interaction
             {
 
                 //Rotate the Statue a certain row of times till it is not scary anymore!
-                scaryStatue.transform.Rotate(standardMode.x += 20, 0, 0);
-                if (standardMode.x == 180)
+                scaryStatue.transform.Rotate(standardMode.z += 0, 0, 20);
+
+                if (scaryStatue.transform.rotation.eulerAngles.z == 180)
                 {
                     //If the statue show his happy face, the dragon will not be scared anymore.
-                    print("Not scary anymore!");
                     isScary = false;
                 }
             }
