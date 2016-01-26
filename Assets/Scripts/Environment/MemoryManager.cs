@@ -20,5 +20,15 @@ namespace Nimbi.Environment
         {
 
         }
+
+        void Randomize()
+        {
+
+        }
+
+        void Reset()
+        {
+
+        }
     }
 }
