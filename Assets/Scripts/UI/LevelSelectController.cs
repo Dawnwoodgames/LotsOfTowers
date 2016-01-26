@@ -27,6 +27,7 @@ namespace Nimbi.UI {
                 PlayerPrefs.SetInt("bIsLevelAvailable3", 1);
                 PlayerPrefs.SetInt("bIsLevelAvailable4", 1);
                 PlayerPrefs.SetInt("bIsLevelAvailable5", 1);
+                PlayerPrefs.SetInt("bIsLevelAvailable6", 1);
             }
 
             int levelIndex = 1;
