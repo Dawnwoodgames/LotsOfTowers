@@ -8,6 +8,7 @@ public class SafeZoneTrigger : MonoBehaviour {
     {
         if (!coll.GetComponent<PlayerController>().GetMovement())
             coll.GetComponent<PlayerController>().EnableMovement();
+        coll.GetComponent<Player>().PlayerCanSwitchOnesie = true;
     }
 
     private void OnTriggerEnter(Collider coll) { StartCoroutine(ResetVelocity(coll)); }
