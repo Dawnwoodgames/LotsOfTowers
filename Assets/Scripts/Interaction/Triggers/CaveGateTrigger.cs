@@ -30,7 +30,7 @@ namespace Nimbi.Interaction
             if (inTrigger && scaryStatue.isScary)
             {
                 isPushed = true;
-                    player.GetComponent<Rigidbody>().AddForce(Vector3.left * pushBackRate, ForceMode.VelocityChange);
+                    player.GetComponent<Rigidbody>().AddForce(Vector3.right * pushBackRate, ForceMode.VelocityChange);
             }
         }
 

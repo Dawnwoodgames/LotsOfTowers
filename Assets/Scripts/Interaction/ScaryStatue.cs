@@ -39,6 +39,7 @@ namespace Nimbi.Interaction
                 {
                     //If the statue show his happy face, the dragon will not be scared anymore.
                     isScary = false;
+                    print("Doet het!");
                 }
             }
         }
