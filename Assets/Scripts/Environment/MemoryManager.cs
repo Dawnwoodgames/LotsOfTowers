@@ -7,6 +7,7 @@ namespace Nimbi.Environment
     {
         public MemoryStep[] steps;
         public MemoryStairs[] stairs;
+        public Color[] stepcolors;
 
         // Use this for initialization
         void Start()
