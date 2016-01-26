@@ -29,7 +29,7 @@ namespace Nimbi.Interaction
         // Update is called once per frame
         void Update()
         {
-            if (Input.GetButtonDown("Submit") && inTrigger && isScary)
+            if (Input.GetButtonDown("Submit") && inTrigger && isScary && player.GetComponent<Player>().Onesie.isHeavy)
             {
 
                 //Rotate the Statue a certain row of times till it is not scary anymore!
