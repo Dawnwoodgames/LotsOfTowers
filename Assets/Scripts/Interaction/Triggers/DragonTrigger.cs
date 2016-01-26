@@ -12,14 +12,14 @@ namespace Nimbi.Interaction.Triggers
         private Vector3 flyPosition;
 
         //Fields for Scary Statue
-        private ScaryStatue scaryStatue;
+        public ScaryStatue scaryStatue;
         private bool inTrigger;
 
 
         // Use this for initialization
         void Start() {
   
-            scaryStatue = GameObject.Find("Scary-Statue").GetComponent<ScaryStatue>();
+           
             inTrigger = false;
             flyPosition = transform.position;
 
