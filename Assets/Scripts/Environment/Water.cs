@@ -32,6 +32,8 @@ namespace Nimbi.Environment {
                 else
                     swimConstraints = RigidbodyConstraints.FreezeRotation;
             }
+            else
+                swimConstraints = RigidbodyConstraints.FreezeRotation;
         }
 
         private void OnTriggerEnter(Collider coll)
