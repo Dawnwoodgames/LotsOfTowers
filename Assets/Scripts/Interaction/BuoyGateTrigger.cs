@@ -34,8 +34,8 @@ namespace Nimbi.Interaction
 			}
             try
             {
-                manager.GateOpened(this, leftBuoy.Red || rightBuoy.Red);
-                if (!(leftBuoy.Red || rightBuoy.Red)) {
+                manager.GateOpened(this, leftBuoy.red || rightBuoy.red);
+                if (!(leftBuoy.red || rightBuoy.red)) {
                     LineRenderer line = gameObject.AddComponent<LineRenderer>();
 
                     line.material = lineMaterial;
