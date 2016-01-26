@@ -135,8 +135,8 @@ namespace Nimbi.Platform
 			if (!mirrorfound && mirrorPlayerCurrentlyVisible)
 			{
 				Renderer[] rs = mirrorPlayer.GetComponentsInChildren<Renderer>(true);
-				foreach (Renderer r in rs)
-					r.enabled = false;
+                foreach (Renderer r in rs)
+                    r.enabled = false;
 
 				mirrorPlayerCurrentlyVisible = false;
 			}
@@ -152,7 +152,7 @@ namespace Nimbi.Platform
 			// If there is no mirror between the player and the mirrorplayer, hide the mirrorplayer
 			if (!MirrorBetween(mirrorPlayer, player) && mirrorfound)
 			{
-				Renderer[] rs = mirrorPlayer.GetComponentsInChildren<Renderer>();
+				Renderer[] rs = mirrorPlayer.GetComponentsInChildren<Renderer>(true);
 				foreach (Renderer r in rs)
 					r.enabled = false;
 
