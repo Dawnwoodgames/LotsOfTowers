@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace Nimbi.Environment
+namespace Nimbi.Interaction
 {
     public class MemoryStairs : MonoBehaviour
     {
@@ -31,6 +31,7 @@ namespace Nimbi.Environment
         public void Reset()
         {
             height = startHeight;
+            IsExpanded = false;
         }
     }
 }

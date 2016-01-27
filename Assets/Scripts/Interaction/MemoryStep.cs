@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace Nimbi.Environment
+namespace Nimbi.Interaction
 {
     [RequireComponent(typeof(Renderer))]
     public class MemoryStep : MonoBehaviour
@@ -9,20 +9,17 @@ namespace Nimbi.Environment
         public MemoryManager manager;
         public int blockNumber = -1;
         public bool Pressed = false;
+        private Color baseColor;
+        public bool done = false;
 
         void Start()
         {
-
-        }
-
-        void Update()
-        {
-
+            baseColor = GetComponent<Renderer>().material.color;
         }
 
         void OnCollisionEnter(Collision coll)
         {
-            if(coll.collider.tag == "Player")
+            if(coll.collider.tag == "Player" && !Pressed && !done)
             {
                 Press();
             }
@@ -43,6 +40,13 @@ namespace Nimbi.Environment
         public void Unpress()
         {
             Pressed = false;
+        }
+
+        public void Reset()
+        {
+            blockNumber = -1;
+            Pressed = false;
+            GetComponent<Renderer>().material.color = baseColor;
         }
     }
 }

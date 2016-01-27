@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace Nimbi.Environment
+namespace Nimbi.Interaction
 {
     public class MemoryManager : MonoBehaviour
     {
@@ -9,11 +9,6 @@ namespace Nimbi.Environment
         public MemoryStairs[] stairs;
         public Color[] stepcolors;
         public int combinations = 6;
-
-        void Start()
-        {
-            Randomize();
-        }
 
         void Randomize()
         {
@@ -24,9 +19,15 @@ namespace Nimbi.Environment
             }
         }
 
-        void Reset()
+        public void Reset()
         {
+            foreach (MemoryStep s in steps)
+                s.Reset();
 
+            foreach (MemoryStairs s in stairs)
+                s.Reset();
+
+            Randomize();
         }
 
         void PlaceRandomBlock(int i)
@@ -58,6 +59,13 @@ namespace Nimbi.Environment
                         {
                             stairs[i].SetHeight(number);
                             found = true;
+                        }
+                    }
+                    foreach(MemoryStep step in steps)
+                    {
+                        if(step.blockNumber == number)
+                        {
+                            step.done = true;
                         }
                     }
                 }
