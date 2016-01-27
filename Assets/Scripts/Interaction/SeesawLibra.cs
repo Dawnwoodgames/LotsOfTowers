@@ -3,6 +3,7 @@ using System.Collections;
 using Nimbi.Interaction.Triggers;
 using Nimbi.Actors;
 using System;
+using Nimbi.UI;
 
 namespace Nimbi.Interaction
 {
@@ -17,7 +18,7 @@ namespace Nimbi.Interaction
 		public GameObject invisBlockWall;
 
 		public GameObject[] invisLibraWalls;
-        public Transform[] walkspots;
+		public Transform[] walkspots;
 
 		private SeesawLibraBoardTrigger boardStartTrigger;
 		private SeesawLibraBoardTrigger boardEndTrigger;
@@ -55,8 +56,8 @@ namespace Nimbi.Interaction
 		private bool elephantToSecondPosition = false;
 		private bool canElephantSecondJumpFlipBoard = false;
 
-        private bool isWalking;
-        private int nextPosition;
+		private bool isWalking;
+		private int nextPosition;
 
 		void Start()
 		{
@@ -85,29 +86,28 @@ namespace Nimbi.Interaction
 		void FixedUpdate()
 		{
 
-            if (isWalking)
-            {
-                elephant.GetComponent<Animator>().SetBool("isWalking", true);
-                invisLibraWalls[1].SetActive(false);
-                Debug.Log(elephant.transform.position.z - walkspots[nextPosition].position.z);
-                elephant.transform.position = Vector3.MoveTowards(elephant.transform.position, walkspots[nextPosition].position, 3 * Time.smoothDeltaTime);
-                if(Mathf.Abs(elephant.transform.position.x - walkspots[nextPosition].position.x) < 0.1f && Mathf.Abs(elephant.transform.position.z - walkspots[nextPosition].position.z) < 0.1f)
-                {
-                    
-                    nextPosition++;
-                    
-                    if (walkspots.Length <= nextPosition)
-                    {
-                        isWalking = false;
-                        ElephantWalkOff();
-                        invisLibraWalls[1].SetActive(true);
-                        elephant.GetComponent<Animator>().SetBool("isWalking", false);
-                        elephant.transform.LookAt(new Vector3(player.transform.position.x,elephant.transform.position.y,player.transform.position.z));
-                    }
-                    else
-                        elephant.transform.LookAt(new Vector3(walkspots[nextPosition].position.x, elephant.transform.position.y, walkspots[nextPosition].position.z));
-                }
-            }
+			if (isWalking)
+			{
+				elephant.GetComponent<Animator>().SetBool("isWalking", true);
+				invisLibraWalls[1].SetActive(false);
+				elephant.transform.position = Vector3.MoveTowards(elephant.transform.position, walkspots[nextPosition].position, 3 * Time.smoothDeltaTime);
+				if (Mathf.Abs(elephant.transform.position.x - walkspots[nextPosition].position.x) < 0.1f && Mathf.Abs(elephant.transform.position.z - walkspots[nextPosition].position.z) < 0.1f)
+				{
+
+					nextPosition++;
+
+					if (walkspots.Length <= nextPosition)
+					{
+						isWalking = false;
+						ElephantWalkOff();
+						invisLibraWalls[1].SetActive(true);
+						elephant.GetComponent<Animator>().SetBool("isWalking", false);
+						elephant.transform.LookAt(new Vector3(player.transform.position.x, elephant.transform.position.y, player.transform.position.z));
+					}
+					else
+						elephant.transform.LookAt(new Vector3(walkspots[nextPosition].position.x, elephant.transform.position.y, walkspots[nextPosition].position.z));
+				}
+			}
 
 			if (!puzzleFinished)
 			{
@@ -137,11 +137,7 @@ namespace Nimbi.Interaction
 							}
 							else
 							{
-								if (player.GetComponent<Player>().Onesie.type != OnesieType.Elephant)
-								{
-									GameManager.Instance.ShowTooltip("OnesieSwitch", "Onesie 1");
-								}
-								else
+								if (player.GetComponent<Player>().Onesie.type == OnesieType.Elephant)
 								{
 									if (!EvenBoardLerpFinished)
 									{
@@ -294,6 +290,10 @@ namespace Nimbi.Interaction
 		private void GiveElephantOnesie()
 		{
 			player.GetComponent<Player>().AddOnesie(elephantOnesie);
+
+			//Show popup
+			GameObject.Find("CenterFocus").GetComponent<OnesieInfoPopup>().ShowPopup(OnesieType.Elephant);
+
 			hasElephantOnesie = true;
 		}
 
@@ -374,27 +374,27 @@ namespace Nimbi.Interaction
 						elephantJumpFinished = true;
 					}
 					ElephantJumpLerp();
-                    playerController.DisableMovement(); // Disable the player controller. This is a controlled event
-                }
+					playerController.DisableMovement(); // Disable the player controller. This is a controlled event
+				}
 				else
 				{
 					if (boardStartTrigger.isPlayerOnTrigger() && !boardEndTrigger.isElephantOnTrigger())
 					{
 						SetElephantJumpStartValues();
-					} 
-                    else
-                    {
-                        playerController.EnableMovement(); // Player not on trigger? enable the controls....
-                    }
+					}
+					else
+					{
+						playerController.EnableMovement(); // Player not on trigger? enable the controls....
+					}
 				}
 			}
 		}
 
-        private void ElephantWalk()
-        {
-            isWalking = true;
-            nextPosition = 0;
-        }
+		private void ElephantWalk()
+		{
+			isWalking = true;
+			nextPosition = 0;
+		}
 
 		private void ElephantWalkOff()
 		{
@@ -403,9 +403,9 @@ namespace Nimbi.Interaction
 			{
 				elephant.transform.localPosition = elephantSecondPosition;
 			}
-            
+
 			board.GetComponent<Rigidbody>().isKinematic = false;
-            playerController.EnableMovement();
+			playerController.EnableMovement();
 		}
 		#endregion Elephant
 
