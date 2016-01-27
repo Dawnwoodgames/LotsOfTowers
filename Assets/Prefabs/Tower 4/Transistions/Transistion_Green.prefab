@@ -114,6 +114,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &169334
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 466058}
+  m_Layer: 0
+  m_Name: startEndPositionForPlayer
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &177546
 GameObject:
   m_ObjectHideFlags: 0
@@ -182,6 +197,18 @@ Transform:
   - {fileID: 436094}
   m_Father: {fileID: 474282}
   m_RootOrder: 4
+--- !u!4 &466058
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 169334}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -13.91, y: -3.66, z: 65.63}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 474282}
+  m_RootOrder: 5
 --- !u!4 &467228
 Transform:
   m_ObjectHideFlags: 1
@@ -209,6 +236,7 @@ Transform:
   - {fileID: 479210}
   - {fileID: 479808}
   - {fileID: 442416}
+  - {fileID: 466058}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &479210
@@ -401,6 +429,8 @@ MonoBehaviour:
   end: {fileID: 467228}
   endTrigger: {fileID: 11477916}
   transport: {fileID: 442416}
+  pushPlayerIntoStartPosition: 1
+  playerPostionAfterEndToStartTransfer: {fileID: 169334}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

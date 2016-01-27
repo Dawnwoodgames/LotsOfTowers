@@ -12,7 +12,10 @@ namespace Nimbi.Interaction
 		public TransistionTrigger endTrigger;
 		public Transform transport;
 
-		private GameObject player;
+        public bool pushPlayerIntoStartPosition = false;
+        public GameObject playerPostionAfterEndToStartTransfer;
+
+        private GameObject player;
 		private bool insideStartTrigger = false;
 		private bool insideEndTrigger = false;
 		private bool raisingUp = false;
@@ -95,9 +98,13 @@ namespace Nimbi.Interaction
 				{
 					player.transform.parent = null;
 					player.transform.localScale = new Vector3(1, 1, 1);
-					player.GetComponent<Rigidbody>().isKinematic = false;
+                    if (pushPlayerIntoStartPosition)
+                    {
+                        player.transform.localPosition = playerPostionAfterEndToStartTransfer.transform.position;
+                    }
+                    player.GetComponent<Rigidbody>().isKinematic = false;
 					player.GetComponent<PlayerController>().enabled = true;
-					insideEndTrigger = false;
+                    insideEndTrigger = false;
 					raisingUp = false;
 				}
 			}
