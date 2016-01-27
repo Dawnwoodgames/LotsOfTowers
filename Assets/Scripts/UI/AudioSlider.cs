@@ -17,6 +17,7 @@ namespace Nimbi.UI {
 
 		public void Update() {
 			AudioListener.volume = slider.value / 100;
+            PlayerPrefs.SetFloat("AudioVolume", AudioListener.volume);
 			slider.value = AudioListener.volume * 100;
 		}
 	}

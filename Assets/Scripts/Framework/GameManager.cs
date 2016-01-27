@@ -76,6 +76,7 @@ namespace Nimbi {
                 GameManager.instance = this;
             }
 
+            AudioListener.volume = PlayerPrefs.GetFloat("AudioVolume", 1);
             DontDestroyOnLoad(this);
             Instantiate(Resources.Load("Prefabs/AudioManager"));
             LanguageManager.Instance.ChangeLanguage(Language);
@@ -159,29 +160,29 @@ namespace Nimbi {
 
             yield return FadeOutCoroutine();
 
-			if (index != 0 && index != 1) {
+            if (index != 0 && index != 1) {
                 // If the scene to be loaded is NOT the main menu, show the loading screen
                 loadingScreen.sprite = loadingSpriteA;
                 loadingScreen.enabled = true;
-			}
+            }
 
-			SceneManager.LoadSceneAsync(index);
+            SceneManager.LoadSceneAsync(index);
             yield return new WaitForSeconds(1);
 
-			if (index != 0 && index != 1) {
+            if (index != 0 && index != 1) {
                 loadingScreen.sprite = loadingSpriteB;
 
-				Camera.main.GetComponent<MainCameraScript>().playingAnimation = false;
+                Camera.main.GetComponent<MainCameraScript>().playingAnimation = false;
 
-				while (Input.GetAxis("Submit") == 0) {
+                while (Input.GetAxis("Submit") == 0) {
                     yield return null;
                 }
 
                 loadingScreen.enabled = false;
-				Camera.main.GetComponent<MainCameraScript>().playingAnimation = true;
-			}
+                Camera.main.GetComponent<MainCameraScript>().playingAnimation = true;
+            }
 
-			yield return FadeInCoroutine();
+            yield return FadeInCoroutine();
 
             if (playerController != null) {
                 playerController.enabled = true;
@@ -263,6 +264,7 @@ namespace Nimbi {
         }
 
         public void Start() {
+            // Canvas setup
             canvas.renderMode = RenderMode.ScreenSpaceOverlay;
             canvas.sortingOrder = Int16.MaxValue;
             canvasScaler.uiScaleMode = CanvasScaler.ScaleMode.ScaleWithScreenSize;
