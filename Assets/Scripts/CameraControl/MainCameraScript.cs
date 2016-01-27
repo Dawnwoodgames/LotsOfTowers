@@ -26,7 +26,6 @@ namespace Nimbi.CameraControl
 			playingAnimation = true;
 		}
 
-		// Use this for initialization
 		void Start()
 		{
 			centerFocus = GameObject.Find("CenterFocus").transform;

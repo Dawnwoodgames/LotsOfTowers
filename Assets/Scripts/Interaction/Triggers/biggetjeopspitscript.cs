@@ -13,7 +13,6 @@ namespace Nimbi.Interaction.Triggers
 		private bool rotating = false;
 		private Color newColor;
 
-		// Use this for initialization
 		void Start()
 		{
 			vuurtje = GetComponentInChildren<ParticleSystem>();

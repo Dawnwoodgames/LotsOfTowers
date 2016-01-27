@@ -8,27 +8,39 @@ namespace Nimbi.Environment
         public MemoryStep[] steps;
         public MemoryStairs[] stairs;
         public Color[] stepcolors;
+        public int combinations = 6;
 
-        // Use this for initialization
         void Start()
         {
-
-        }
-
-        // Update is called once per frame
-        void Update()
-        {
-
+            Randomize();
         }
 
         void Randomize()
         {
-
+            for(int i = 0; i < combinations; i++)
+            {
+                for (int z = 0; z < 2; z++)
+                    PlaceRandomBlock(i);
+            }
         }
 
         void Reset()
         {
 
+        }
+
+        void PlaceRandomBlock(int i)
+        {
+            bool placed = false;
+            while (!placed)
+            {
+                int step = Random.Range(0, steps.Length - 1);
+                if(steps[step].blockNumber < 0)
+                {
+                    placed = true;
+                    steps[step].SetNumber(i,stepcolors[i]);
+                }
+            }
         }
     }
 }

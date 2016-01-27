@@ -22,14 +22,12 @@ namespace Nimbi.Interaction
 		private bool isTrigger;
 		private bool boilingWater;
 
-		// Use this for initialization
 		void Start()
 		{
 			player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 			BoilerLid = GameObject.Find("PressurePlate").GetComponent<BoilerPressurePlate>();
 		}
 
-		// Update is called once per frame
 		void Update()
 		{
 			//Only when fire is hitting the wood + water is not already boiling

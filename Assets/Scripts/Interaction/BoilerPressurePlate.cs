@@ -12,7 +12,6 @@ namespace Nimbi.Interaction
 
 
 
-        // Use this for initialization
         void Start()
         {
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
@@ -20,7 +19,6 @@ namespace Nimbi.Interaction
 
         }
 
-        // Update is called once per frame
         void Update()
         {
             //If Nimbi is In his Elephant Onesie!

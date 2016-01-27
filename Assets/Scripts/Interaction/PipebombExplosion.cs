@@ -13,13 +13,11 @@ namespace Nimbi.Interaction
         private bool nearPipebomb;
         
 
-        // Use this for initialization
         void Start()
         {
             
         }
 
-        // Update is called once per frame
         void Update()
         {
             if(nearPipebomb && Input.GetButton("Submit") && player.GetComponent<Player>().Onesie.isHeavy)

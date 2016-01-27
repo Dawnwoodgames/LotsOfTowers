@@ -3,18 +3,37 @@ using System.Collections;
 
 namespace Nimbi.Environment
 {
+    [RequireComponent(typeof(Renderer))]
     public class MemoryStep : MonoBehaviour
     {
         public MemoryManager manager;
+        public int blockNumber = -1;
 
-        // Use this for initialization
         void Start()
         {
 
         }
 
-        // Update is called once per frame
         void Update()
+        {
+
+        }
+
+        void OnCollisionEnter(Collision coll)
+        {
+            if(coll.collider.tag == "Player")
+            {
+                Press();
+            }
+        }
+
+        public void SetNumber(int n,Color c)
+        {
+            this.blockNumber = n;
+            GetComponent<Renderer>().material.color = c;
+        }
+
+        private void Press()
         {
 
         }

@@ -15,7 +15,6 @@ namespace Nimbi.Interaction
         public float pushBackRate = 10;
 
 
-        // Use this for initialization
         void Start()
         {
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
@@ -24,7 +23,6 @@ namespace Nimbi.Interaction
             
         }
 
-        // Update is called once per frame
         void Update()
         {
             if (inTrigger && scaryStatue.isScary)

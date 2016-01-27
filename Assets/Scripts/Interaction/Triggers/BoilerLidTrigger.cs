@@ -17,20 +17,18 @@ namespace Nimbi.Interaction.Triggers
         private Vector3 lidPosition;
         private Quaternion lidRotation;
 
-        
-        // Use this for initialization
+
         void Start()
         {
             lidOpen = GameObject.Find("PressurePlate").GetComponent<BoilerPressurePlate>();
             lidRotation = transform.rotation;
         }
 
-        // Update is called once per frame
         void Update()
         {
             if (lidOpen.lidIsOpen)
             {
-                //Do Stuff
+
                 Vector3 endPosition = new Vector3(-17, 0, 0);
                 if (Vector3.Distance(BoilerLid.transform.eulerAngles, endPosition) > 0.01f)
                 {

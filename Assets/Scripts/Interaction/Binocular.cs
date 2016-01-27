@@ -12,14 +12,13 @@ namespace Nimbi.Interaction
 		public Image levelPreview;
 		bool isDisplayed = false;
 		RectTransform imageTransform;
-		// Use this for initialization
+
 		void Start()
 		{
 			levelPreview.gameObject.SetActive(false);
 			imageTransform = levelPreview.GetComponent<RectTransform>();
 		}
 
-		// Update is called once per frame
 		void Update()
 		{
             if (isDisplayed && (imageTransform.rect.width < Screen.width || imageTransform.rect.height < Screen.height))

@@ -16,7 +16,6 @@ namespace Nimbi.Interaction.Triggers
         private bool inTrigger;
 
 
-        // Use this for initialization
         void Start() {
   
            
@@ -25,7 +24,6 @@ namespace Nimbi.Interaction.Triggers
 
         }
 
-        // Update is called once per frame
         void FixedUpdate() {
             BraveDragon();
         }

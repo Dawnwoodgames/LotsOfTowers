@@ -14,8 +14,7 @@ namespace Nimbi.Interaction
         private bool inTrigger;
         private Vector3 goalRotation;
 
-      
-        // Use this for initialization
+
         void Start()
         {
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
@@ -26,7 +25,6 @@ namespace Nimbi.Interaction
 
         }
 
-        // Update is called once per frame
         void Update()
         {
             if (Input.GetButtonDown("Submit") && inTrigger && isScary && player.GetComponent<Player>().Onesie.isHeavy)
