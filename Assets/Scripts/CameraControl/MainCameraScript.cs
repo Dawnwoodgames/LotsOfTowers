@@ -52,11 +52,15 @@ namespace Nimbi.CameraControl
 				{
 					GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().enabled = true;
 					playingAnimation = false;
+					transform.localPosition = Vector3.back * 15;
+					transform.localRotation = Quaternion.identity;
 				}
 			}
 			else if(GetComponent<Animator>() != null)
 			{
 				GetComponent<Animator>().enabled = false;
+				transform.localPosition = Vector3.back * 15;
+				transform.localRotation = Quaternion.identity;
 			}
 
 			// Rotate controls
