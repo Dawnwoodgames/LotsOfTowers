@@ -17,6 +17,7 @@ namespace Nimbi.Interaction
 		public GameObject invisBlockWall;
 
 		public GameObject[] invisLibraWalls;
+        public Transform[] walkspots;
 
 		private SeesawLibraBoardTrigger boardStartTrigger;
 		private SeesawLibraBoardTrigger boardEndTrigger;
@@ -54,6 +55,9 @@ namespace Nimbi.Interaction
 		private bool elephantToSecondPosition = false;
 		private bool canElephantSecondJumpFlipBoard = false;
 
+        private bool isWalking;
+        private int nextPosition;
+
 		void Start()
 		{
 			player = GameObject.FindGameObjectWithTag("Player");
@@ -80,6 +84,24 @@ namespace Nimbi.Interaction
 
 		void FixedUpdate()
 		{
+
+            if (isWalking)
+            {
+                invisLibraWalls[1].SetActive(false);
+                Debug.Log(elephant.transform.position.z - walkspots[nextPosition].position.z);
+                elephant.transform.position = Vector3.MoveTowards(elephant.transform.position, walkspots[nextPosition].position, 3 * Time.smoothDeltaTime);
+                if(Mathf.Abs(elephant.transform.position.x - walkspots[nextPosition].position.x) < 0.1f && Mathf.Abs(elephant.transform.position.z - walkspots[nextPosition].position.z) < 0.1f)
+                {
+                    nextPosition++;
+                    if (walkspots.Length <= nextPosition)
+                    {
+                        isWalking = false;
+                        ElephantWalkOff();
+                        invisLibraWalls[1].SetActive(true);
+                    }
+                }
+            }
+
 			if (!puzzleFinished)
 			{
 				if (!getOnesiePartFinished)
@@ -257,7 +279,7 @@ namespace Nimbi.Interaction
 		{
 			yield return new WaitForSeconds(amount);
 			// Elephant walks of and enables moving for player so he can walk to the other side
-			ElephantWalkOff();
+			ElephantWalk();
 			elephantToSecondPosition = true;
 		}
 
@@ -355,18 +377,23 @@ namespace Nimbi.Interaction
 					} 
                     else
                     {
-                        playerController.EnableMovement(); // Player not on trigger? enable the controlls....
+                        playerController.EnableMovement(); // Player not on trigger? enable the controls....
                     }
 				}
 			}
 		}
+
+        private void ElephantWalk()
+        {
+            isWalking = true;
+            nextPosition = 0;
+        }
 
 		private void ElephantWalkOff()
 		{
 			//Let the elephant walk off the board
 			if ((int)elephant.transform.localPosition.z != (int)elephantSecondPosition.z)
 			{
-				//Add smooth walk...... GOD DAMNIT NAV MESH U MOTHAFUCKA
 				elephant.transform.localPosition = elephantSecondPosition;
 			}
             
