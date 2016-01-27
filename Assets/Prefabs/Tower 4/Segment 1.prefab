@@ -372,6 +372,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &147290
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 451632}
+  - 65: {fileID: 6580706}
+  m_Layer: 0
+  m_Name: NoGoInvisWall
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &151422
 GameObject:
   m_ObjectHideFlags: 0
@@ -1188,6 +1204,7 @@ Transform:
   - {fileID: 423482}
   - {fileID: 495532}
   - {fileID: 487612}
+  - {fileID: 451632}
   m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!4 &448768
@@ -1202,6 +1219,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 400508}
   m_RootOrder: 10
+--- !u!4 &451632
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 147290}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -2.753, y: 4.29, z: -13.303}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 448254}
+  m_RootOrder: 6
 --- !u!4 &451962
 Transform:
   m_ObjectHideFlags: 1
@@ -2068,6 +2097,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!65 &6580706
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 147290}
+  m_Material: {fileID: 13400000, guid: 01571ba68fb2dad46aa03094ab219579, type: 2}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.8143174, y: 2.439928, z: 0.7515384}
+  m_Center: {x: 0.3726263, y: 0.719964, z: -0.12423229}
 --- !u!65 &6581042
 BoxCollider:
   m_ObjectHideFlags: 1

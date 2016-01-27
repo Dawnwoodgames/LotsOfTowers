@@ -4986,6 +4986,10 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a558149a5545b0742a57949f45fb74fe, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &783840551 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 147290, guid: a558149a5545b0742a57949f45fb74fe, type: 2}
+  m_PrefabInternal: {fileID: 783840550}
 --- !u!1 &787802802
 GameObject:
   m_ObjectHideFlags: 0
@@ -14674,7 +14678,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 409022, guid: 4d5d69b59f39a4e43a381b37bc52cfa1, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 70.09
+      value: 81.66
       objectReference: {fileID: 0}
     - target: {fileID: 409022, guid: 4d5d69b59f39a4e43a381b37bc52cfa1, type: 2}
       propertyPath: m_LocalRotation.x
@@ -14911,7 +14915,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1302688336}
-  - 114: {fileID: 1302688335}
   m_Layer: 0
   m_Name: Level
   m_TagString: Untagged
@@ -14919,17 +14922,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &1302688335
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1302688334}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7812f7a09df8cea4d8563c460a96b390, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!4 &1302688336
 Transform:
   m_ObjectHideFlags: 0
@@ -17956,6 +17948,7 @@ MonoBehaviour:
   water: {fileID: 741485798}
   waterrad: {fileID: 807581159}
   door: {fileID: 1525177350}
+  noGoInvisWall: {fileID: 783840551}
 --- !u!1 &1852629110
 GameObject:
   m_ObjectHideFlags: 0

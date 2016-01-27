@@ -10,6 +10,7 @@ namespace Nimbi.Interaction.Triggers
         public GameObject water;
         public Fans waterrad;
         public HingedDoor door;
+        public GameObject noGoInvisWall;
 
         private Vector3 startMarker;
         private Vector3 endMarker;
@@ -38,17 +39,22 @@ namespace Nimbi.Interaction.Triggers
         private void OnTriggerStay(Collider coll)
         {
             if (coll.tag == "Player")
+            {
                 if (Input.GetButtonDown("Submit"))
+                {
                     TurnOffVault();
+                }
+            }
         }
 
         private void TurnOffVault()
         {
             startTime = Time.time;
             vaultActive = false;
-            Destroy(water.GetComponent<Environment.Water>());
+            Destroy(water.GetComponent<Water>());
             Destroy(GameObject.Find("Ramp").GetComponent<ExitWater>());
             waterfall.SetActive(false);
+            Destroy(noGoInvisWall);
             Destroy(GameObject.Find("CurrentPuzzle"));
             waterrad.Stop();
             door.Close();
