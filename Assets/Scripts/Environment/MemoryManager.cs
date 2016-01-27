@@ -42,5 +42,30 @@ namespace Nimbi.Environment
                 }
             }
         }
+
+        public void Press(int number)
+        {
+            if (number < 0)
+                return;
+
+            foreach (MemoryStep s in steps) {
+                if(s.Pressed && s.blockNumber == number)
+                {
+                    bool found = false;
+                    for(int i = 0; i < stairs.Length; i++)
+                    {
+                        if(!found && !stairs[i].IsExpanded)
+                        {
+                            stairs[i].SetHeight(number);
+                            found = true;
+                        }
+                    }
+                }
+                else if (s.Pressed)
+                {
+                    s.Unpress();
+                }
+            }
+        }
     }
 }

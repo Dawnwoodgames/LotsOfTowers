@@ -8,6 +8,7 @@ namespace Nimbi.Environment
     {
         public MemoryManager manager;
         public int blockNumber = -1;
+        public bool Pressed = false;
 
         void Start()
         {
@@ -35,7 +36,13 @@ namespace Nimbi.Environment
 
         private void Press()
         {
+            manager.Press(blockNumber);
+            Pressed = true;
+        }
 
+        public void Unpress()
+        {
+            Pressed = false;
         }
     }
 }

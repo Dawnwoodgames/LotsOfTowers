@@ -2328,15 +2328,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 409022, guid: 4d5d69b59f39a4e43a381b37bc52cfa1, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -14.71
+      value: 2.11
       objectReference: {fileID: 0}
     - target: {fileID: 409022, guid: 4d5d69b59f39a4e43a381b37bc52cfa1, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 10.35
+      value: 4.28
       objectReference: {fileID: 0}
     - target: {fileID: 409022, guid: 4d5d69b59f39a4e43a381b37bc52cfa1, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -22.94
+      value: -1.7
       objectReference: {fileID: 0}
     - target: {fileID: 409022, guid: 4d5d69b59f39a4e43a381b37bc52cfa1, type: 2}
       propertyPath: m_LocalRotation.x
@@ -6425,6 +6425,30 @@ Prefab:
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 400076, guid: 758f2f2f1d0ecfb40866782581a23bbf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400074, guid: 758f2f2f1d0ecfb40866782581a23bbf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400072, guid: 758f2f2f1d0ecfb40866782581a23bbf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400070, guid: 758f2f2f1d0ecfb40866782581a23bbf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400068, guid: 758f2f2f1d0ecfb40866782581a23bbf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400066, guid: 758f2f2f1d0ecfb40866782581a23bbf, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 758f2f2f1d0ecfb40866782581a23bbf, type: 3}
   m_IsPrefabParent: 0
@@ -6664,6 +6688,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1869188367}
+  blockNumber: -1
+  Pressed: 0
 --- !u!114 &1869188367
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6707,19 +6733,20 @@ MonoBehaviour:
   - {fileID: 1869188368}
   - {fileID: 1869188366}
   stairs:
-  - {fileID: 1869188365}
-  - {fileID: 1869188364}
-  - {fileID: 1869188363}
-  - {fileID: 1869188362}
-  - {fileID: 1869188361}
   - {fileID: 1869188360}
+  - {fileID: 1869188361}
+  - {fileID: 1869188362}
+  - {fileID: 1869188363}
+  - {fileID: 1869188364}
+  - {fileID: 1869188365}
   stepcolors:
-  - {r: 0.60294116, g: 0.9014198, b: 1, a: 0}
-  - {r: 0.051470578, g: 0.84300196, b: 1, a: 0}
-  - {r: 0.21323532, g: 0.5116633, b: 1, a: 0}
-  - {r: 0, g: 0.33793116, b: 1, a: 0}
-  - {r: 0, g: 0.030882256, b: 0.6397059, a: 0}
-  - {r: 0, g: 0.08331641, b: 0.3897059, a: 0}
+  - {r: 1, g: 0.9724138, b: 0, a: 0}
+  - {r: 1, g: 0.6827586, b: 0, a: 0}
+  - {r: 1, g: 0.68275857, b: 0, a: 0}
+  - {r: 1, g: 0.5221095, b: 0.08823532, a: 0}
+  - {r: 1, g: 0.39310342, b: 0, a: 0}
+  - {r: 0.7647059, g: 0.14117648, b: 0, a: 0}
+  combinations: 6
 --- !u!114 &1869188368
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6732,6 +6759,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1869188367}
+  blockNumber: -1
+  Pressed: 0
 --- !u!114 &1869188369
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6744,6 +6773,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1869188367}
+  blockNumber: -1
+  Pressed: 0
 --- !u!114 &1869188370
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6756,6 +6787,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1869188367}
+  blockNumber: -1
+  Pressed: 0
 --- !u!114 &1869188371
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6768,6 +6801,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1869188367}
+  blockNumber: -1
+  Pressed: 0
 --- !u!114 &1869188372
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6780,6 +6815,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1869188367}
+  blockNumber: -1
+  Pressed: 0
 --- !u!114 &1869188373
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6792,6 +6829,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1869188367}
+  blockNumber: -1
+  Pressed: 0
 --- !u!114 &1869188374
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6804,6 +6843,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1869188367}
+  blockNumber: -1
+  Pressed: 0
 --- !u!114 &1869188375
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6816,6 +6857,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1869188367}
+  blockNumber: -1
+  Pressed: 0
 --- !u!114 &1869188376
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6828,6 +6871,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1869188367}
+  blockNumber: -1
+  Pressed: 0
 --- !u!114 &1869188377
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6840,6 +6885,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1869188367}
+  blockNumber: -1
+  Pressed: 0
 --- !u!114 &1869188378
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6852,6 +6899,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1869188367}
+  blockNumber: -1
+  Pressed: 0
 --- !u!114 &1869188379
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6864,6 +6913,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1869188367}
+  blockNumber: -1
+  Pressed: 0
 --- !u!114 &1869188380
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6876,6 +6927,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1869188367}
+  blockNumber: -1
+  Pressed: 0
 --- !u!114 &1869188381
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6888,6 +6941,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1869188367}
+  blockNumber: -1
+  Pressed: 0
 --- !u!114 &1869188382
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6900,6 +6955,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1869188367}
+  blockNumber: -1
+  Pressed: 0
 --- !u!114 &1869188383
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6912,6 +6969,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1869188367}
+  blockNumber: -1
+  Pressed: 0
 --- !u!114 &1869188384
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6924,6 +6983,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1869188367}
+  blockNumber: -1
+  Pressed: 0
 --- !u!114 &1869188385
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6936,6 +6997,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1869188367}
+  blockNumber: -1
+  Pressed: 0
 --- !u!114 &1869188386
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6948,6 +7011,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1869188367}
+  blockNumber: -1
+  Pressed: 0
 --- !u!114 &1869188387
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6960,6 +7025,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1869188367}
+  blockNumber: -1
+  Pressed: 0
 --- !u!114 &1869188388
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6972,6 +7039,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1869188367}
+  blockNumber: -1
+  Pressed: 0
 --- !u!114 &1869188389
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6984,6 +7053,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1869188367}
+  blockNumber: -1
+  Pressed: 0
 --- !u!114 &1869188390
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6996,6 +7067,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1869188367}
+  blockNumber: -1
+  Pressed: 0
 --- !u!114 &1869188391
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7008,6 +7081,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1869188367}
+  blockNumber: -1
+  Pressed: 0
 --- !u!114 &1869188392
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7020,6 +7095,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1869188367}
+  blockNumber: -1
+  Pressed: 0
 --- !u!114 &1869188393
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7032,6 +7109,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1869188367}
+  blockNumber: -1
+  Pressed: 0
 --- !u!114 &1869188394
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7044,6 +7123,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1869188367}
+  blockNumber: -1
+  Pressed: 0
 --- !u!114 &1869188395
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7056,6 +7137,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1869188367}
+  blockNumber: -1
+  Pressed: 0
 --- !u!114 &1869188396
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7068,6 +7151,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   manager: {fileID: 1869188367}
+  blockNumber: -1
+  Pressed: 0
 --- !u!64 &1869188397
 MeshCollider:
   m_ObjectHideFlags: 0

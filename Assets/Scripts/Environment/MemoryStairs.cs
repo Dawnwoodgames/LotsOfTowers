@@ -13,6 +13,7 @@ namespace Nimbi.Environment
         void Start()
         {
             startHeight = transform.position.y;
+            height = startHeight;
         }
 
         void Update()
@@ -22,8 +23,9 @@ namespace Nimbi.Environment
 
         public void SetHeight(int h)
         {
-            height = startHeight+1+h*0.5f;
+            height = startHeight+0.7f+h*0.36f;
             moving = true;
+            IsExpanded = true;
         }
 
         public void Reset()
