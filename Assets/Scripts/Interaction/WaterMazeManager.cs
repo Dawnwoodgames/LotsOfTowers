@@ -5,33 +5,32 @@ using UnityEngine;
 using System.Collections;
 
 namespace Nimbi.Interaction {
-	public class WaterMazeManager : MonoBehaviour {
-		private GameObject exit;
-		private List<BuoyGateTrigger> gates;
+    public class WaterMazeManager : MonoBehaviour {
+        private GameObject exit;
+        private List<BuoyGateTrigger> gates;
         private bool puzzleCompleted;
-		private bool respawnOnNext;
+        private bool respawnOnNext;
 
-		public bool testMode;
+        public bool testMode;
 
-		public void Awake() {
-			this.exit = GameObject.Find("BookcaseDoor");
-			this.gates = new List<BuoyGateTrigger>();
-		}
+        public void Awake() {
+            this.exit = GameObject.Find("BookcaseDoor");
+            this.gates = new List<BuoyGateTrigger>();
+        }
 
         public int GatesOpened {
             get { return gates == null ? 0 : gates.Count; }
         }
 
-		public void GateOpened(BuoyGateTrigger gate, bool hasRedBuoy, bool isLastGate) {
+        public void GateOpened(BuoyGateTrigger gate, bool hasRedBuoy, bool isLastGate) {
             if (hasRedBuoy || gates.Contains(gate) || (gates.Count == 11 && !isLastGate)) {
                 respawnOnNext = true;
             } else {
                 gates.Add(gate);
             }
-		}
+        }
 
-        private IEnumerator PuzzleClearedCoroutine()
-        {
+        private IEnumerator PuzzleClearedCoroutine() {
             List<GameObject> buoys = new List<GameObject>();
             float t = 0;
             GameObject water = GameObject.Find("Segment 2/Water");
@@ -39,22 +38,18 @@ namespace Nimbi.Interaction {
             float waterSize = water.transform.localScale.y;
 
             // Destroy all Buoy scripts & BuoyGateTrigger GameObjects
-            FindObjectsOfType<Buoy>().ToList().ForEach( b => { buoys.Add(b.gameObject); Destroy(b); });
+            FindObjectsOfType<Buoy>().ToList().ForEach(b => { buoys.Add(b.gameObject); Destroy(b); });
             FindObjectsOfType<BuoyGateTrigger>().ToList().ForEach(b => Destroy(b.gameObject));
 
             Vector3 buoySize = buoys.FirstOrDefault().transform.localScale;
 
-            while (t < 3)
-            {
+            while (t < 3) {
                 t += Time.smoothDeltaTime;
-                if (t >= 3)
-                {
+                if (t >= 3) {
                     buoys.ForEach(b => Destroy(b));
                     Destroy(water);
                     yield return null;
-                }
-                else
-                {
+                } else {
                     buoys.ForEach(b => b.transform.localScale = buoySize - (buoySize * t / 3));
                     water.transform.localScale = new Vector3(water.transform.localScale.x, waterSize - (t / 3 * waterSize), water.transform.localScale.z);
                     water.transform.position = new Vector3(water.transform.position.x, waterHeight - (t / 6 * waterSize), water.transform.position.z);
@@ -63,15 +58,12 @@ namespace Nimbi.Interaction {
             }
 
             t = 0;
-            
-            while (t < 2)
-            {
+
+            while (t < 2) {
                 t += Time.smoothDeltaTime;
-                if (t >= 2)
-                {
+                if (t >= 2) {
                     exit.transform.localRotation = Quaternion.Euler(new Vector3(exit.transform.localRotation.eulerAngles.x, -50, exit.transform.localRotation.eulerAngles.z));
-                } else
-                {
+                } else {
                     exit.transform.localRotation = Quaternion.Euler(new Vector3(exit.transform.localRotation.eulerAngles.x, 0 - 25 * t, exit.transform.localRotation.eulerAngles.z));
                 }
                 yield return null;
@@ -80,24 +72,21 @@ namespace Nimbi.Interaction {
             Destroy(gameObject);
         }
 
-		public void Update() {
-            Debug.Log(respawnOnNext);
-			if (respawnOnNext || gates.Count > 12) {
+        public void Update() {
+            if (respawnOnNext || gates.Count > 12) {
                 FindObjectsOfType<LineRenderer>().ToList().ForEach(l => Destroy(l));
-				GameManager.Instance.PlayerPassOutAndRespawn(transform);
-				gates.Clear();
-				respawnOnNext = false;
-			}
+                GameManager.Instance.PlayerPassOutAndRespawn(transform);
+                gates.Clear();
+                respawnOnNext = false;
+            }
 
-			if ((testMode && gates.Count > 0) || (!testMode && gates.Count == 12))
-            {
-                if (!puzzleCompleted)
-                {
+            if ((testMode && gates.Count > 0) || (!testMode && gates.Count == 12)) {
+                if (!puzzleCompleted) {
                     FindObjectsOfType<LineRenderer>().ToList().ForEach(l => Destroy(l));
                     puzzleCompleted = true;
                     StartCoroutine(PuzzleClearedCoroutine());
                 }
             }
-		}
-	}
+        }
+    }
 }
