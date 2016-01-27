@@ -93,14 +93,19 @@ namespace Nimbi.Interaction
                 elephant.transform.position = Vector3.MoveTowards(elephant.transform.position, walkspots[nextPosition].position, 3 * Time.smoothDeltaTime);
                 if(Mathf.Abs(elephant.transform.position.x - walkspots[nextPosition].position.x) < 0.1f && Mathf.Abs(elephant.transform.position.z - walkspots[nextPosition].position.z) < 0.1f)
                 {
+                    
                     nextPosition++;
+                    
                     if (walkspots.Length <= nextPosition)
                     {
                         isWalking = false;
                         ElephantWalkOff();
                         invisLibraWalls[1].SetActive(true);
                         elephant.GetComponent<Animator>().SetBool("isWalking", false);
+                        elephant.transform.LookAt(new Vector3(player.transform.position.x,elephant.transform.position.y,player.transform.position.z));
                     }
+                    else
+                        elephant.transform.LookAt(new Vector3(walkspots[nextPosition].position.x, elephant.transform.position.y, walkspots[nextPosition].position.z));
                 }
             }
 
