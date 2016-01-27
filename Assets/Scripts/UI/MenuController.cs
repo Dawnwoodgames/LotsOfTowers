@@ -46,6 +46,7 @@ namespace Nimbi.UI
 			{
 				camera.mount = GameObject.Find(menu.name + "/Mounting Point").transform;
 				currentMenu = menu;
+                menus.ToList().ForEach(m => m.GetComponent<Canvas>().enabled = m.name == currentMenu.name );
 
 				if (eventSystem.currentSelectedGameObject == null || eventSystem.currentSelectedGameObject.transform.parent.gameObject != menu)
 				{

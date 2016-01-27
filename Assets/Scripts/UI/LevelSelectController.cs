@@ -33,7 +33,6 @@ namespace Nimbi.UI {
             int levelIndex = 1;
 
 			foreach (Button button in GetComponentsInChildren<Button>()) {
-                Debug.Log(button.gameObject.name + " - " + levelIndex);
 				// Assign functions to each button in the menu
 				if (PlayerPrefs.GetInt("bIsLevelAvailable" + levelIndex, 0) > 0) {
 					button.interactable = true;
