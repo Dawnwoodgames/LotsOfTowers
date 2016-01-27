@@ -87,6 +87,7 @@ namespace Nimbi.Interaction
 
             if (isWalking)
             {
+                elephant.GetComponent<Animator>().SetBool("isWalking", true);
                 invisLibraWalls[1].SetActive(false);
                 Debug.Log(elephant.transform.position.z - walkspots[nextPosition].position.z);
                 elephant.transform.position = Vector3.MoveTowards(elephant.transform.position, walkspots[nextPosition].position, 3 * Time.smoothDeltaTime);
@@ -98,6 +99,7 @@ namespace Nimbi.Interaction
                         isWalking = false;
                         ElephantWalkOff();
                         invisLibraWalls[1].SetActive(true);
+                        elephant.GetComponent<Animator>().SetBool("isWalking", false);
                     }
                 }
             }
