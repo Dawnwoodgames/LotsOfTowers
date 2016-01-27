@@ -12,8 +12,9 @@ namespace Nimbi.UI
 		public GameObject dragonTip;
 
 		private OnesieType onesieType;
+		private bool waiting = true;
 
-		public void ShowPopup(OnesieType type)
+		public void ShowPopup(OnesieType type, float waitingTime)
 		{
 			switch (type)
 			{
@@ -23,20 +24,33 @@ namespace Nimbi.UI
 				case OnesieType.Hamster:
 					hamsterTip.SetActive(true);
 					break;
+				case OnesieType.Dragon:
+					dragonTip.SetActive(true);
+					break;
 				default:
 					break;
 			}
+
+			StartCoroutine("WaitForIt", waitingTime);
 		}
+
+		IEnumerator WaitForIt(float waitingTime)
+		{
+			yield return new WaitForSeconds(waitingTime);
+			waiting = false;
+		}
+
 
 		public void Update()
 		{
-			if (Input.GetButtonDown("Submit"))
+			if (Input.GetButtonDown("Submit") && !waiting)
 			{
 				if (elephantTip.activeSelf || hamsterTip.activeSelf || dragonTip.activeSelf)
 				{
 					elephantTip.SetActive(false);
 					hamsterTip.SetActive(false);
 					dragonTip.SetActive(false);
+					waiting = true;
 				}
 			}
 		}

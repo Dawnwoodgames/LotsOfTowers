@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using Nimbi.Actors;
 using System.Collections;
+using Nimbi.UI;
 
 namespace Nimbi.Interaction
 {
@@ -49,6 +50,7 @@ namespace Nimbi.Interaction
             */
             if (coll.tag == "Player" && Input.GetButtonDown("Submit") && firstInteraction)
             {
+				GameObject.Find("CenterFocus").GetComponent<OnesieInfoPopup>().ShowPopup(OnesieType.Hamster, 1);
                 player.GetComponent<Player>().AddOnesie(hamsterOnesie);
                 firstInteraction = false;
                 lostNutDialog.SetActive(true);

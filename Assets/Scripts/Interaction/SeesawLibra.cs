@@ -292,7 +292,7 @@ namespace Nimbi.Interaction
 			player.GetComponent<Player>().AddOnesie(elephantOnesie);
 
 			//Show popup
-			GameObject.Find("CenterFocus").GetComponent<OnesieInfoPopup>().ShowPopup(OnesieType.Elephant);
+			GameObject.Find("CenterFocus").GetComponent<OnesieInfoPopup>().ShowPopup(OnesieType.Elephant, 0);
 
 			hasElephantOnesie = true;
 		}
