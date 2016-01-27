@@ -10,6 +10,7 @@ namespace Nimbi.Interaction
 		public RotateTrigger rotateTrigger;
 		public WaterHole waterHole;
 		public float maxDamage = 6.5f;
+        public GameObject bumpWall;
 
 		private Player player;
 		private float damage = 0;
@@ -60,6 +61,7 @@ namespace Nimbi.Interaction
 
 				Destroy(rotateTrigger.gameObject);
 				Destroy(transform.parent.GetChild(1).gameObject);
+                Destroy(bumpWall);
 				Destroy(this);
 			}
 		}

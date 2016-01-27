@@ -67,18 +67,26 @@ namespace Nimbi.Interaction.Triggers
 			if (coll.tag == "Player")
 			{
 				if (hamsterRequired && coll.gameObject.GetComponent<Player>().Onesie.type == OnesieType.Hamster)
-					inTrigger = true;
-				else if (!hamsterRequired)
-					inTrigger = true;
+                {
+                    inTrigger = true;
+                }
+				else if(!hamsterRequired)
+                {
+                    inTrigger = true;
+                }
 				else
-					inTrigger = false;
+                {
+                    inTrigger = false;
+                }
 			}
 		}
 
 		private void OnTriggerExit(Collider coll)
 		{
 			if (coll.tag == "Player")
-				inTrigger = false;
+            {
+                inTrigger = false;
+            }
 		}
 
 		public bool GetPlayerRunning() { return inTrigger; }
