@@ -43,10 +43,11 @@ namespace Nimbi.Actors
 		private void FixedUpdate()
 		{
 			//Get Input controls
-			float h = CrossPlatformInputManager.GetAxis("Horizontal");
-			float v = CrossPlatformInputManager.GetAxis("Vertical");
+			float h = CrossPlatformInputManager.GetAxisRaw("Horizontal") == 0 ? 0 : CrossPlatformInputManager.GetAxis("Horizontal");
+			float v = CrossPlatformInputManager.GetAxisRaw("Vertical") == 0 ? 0 : CrossPlatformInputManager.GetAxis("Vertical");
 
-			bool onesie1 = CrossPlatformInputManager.GetButton("Onesie 1");
+
+            bool onesie1 = CrossPlatformInputManager.GetButton("Onesie 1");
 			bool onesie2 = CrossPlatformInputManager.GetButton("Onesie 2");
 			bool onesie3 = CrossPlatformInputManager.GetButton("Onesie 3");
 			bool submit = CrossPlatformInputManager.GetButton("Submit");

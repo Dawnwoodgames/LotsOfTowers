@@ -8,7 +8,7 @@ namespace Nimbi.CameraControl
 	{
 		private Transform centerFocus;
 		public float degree;
-		public float verticalDegree;
+		public float verticalDegree = 30;
 		public float cameraSpeed = 6;
 
 		[HideInInspector]
@@ -30,7 +30,6 @@ namespace Nimbi.CameraControl
 		void Start()
 		{
 			centerFocus = GameObject.Find("CenterFocus").transform;
-			verticalDegree = 30;
         }
 
 		void Update()
