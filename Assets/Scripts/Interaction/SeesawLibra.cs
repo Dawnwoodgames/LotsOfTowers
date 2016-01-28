@@ -150,10 +150,6 @@ namespace Nimbi.Interaction
 										getOnesiePartFinished = true;
 									}
 								}
-								else if(!GameObject.Find("CenterFocus").GetComponent<OnesieInfoPopup>().IsPopupShowing(OnesieType.Elephant))
-								{
-									obtainOnesieDialog.SetActive(true);
-								}
 							}
 						}
 					}
