@@ -30,6 +30,7 @@ namespace Nimbi.Interaction.Triggers
 				hasStarted = true;
 				StartCoroutine(Trigger());
 				source.GetComponent<Rigidbody>().sleepThreshold = 0.14f;
+                Destroy(GameObject.Find("PressurePlateInvisWall"));
 			}
 		}
 
