@@ -13,6 +13,7 @@ namespace Nimbi.CameraControl
 
 		[HideInInspector]
 		public bool playingAnimation;
+		private bool doneWithAnimating;
 
 		#region Properties
 		public float Sensitivity
@@ -59,9 +60,14 @@ namespace Nimbi.CameraControl
 			else if(GetComponent<Animator>() != null)
 			{
 				GetComponent<Animator>().enabled = false;
+				doneWithAnimating = true;
+			}
+			else if(doneWithAnimating)
+			{
 				transform.localPosition = Vector3.back * 15;
 				transform.localRotation = Quaternion.identity;
-			}
+				doneWithAnimating = false;
+            }
 
 			// Rotate controls
 			if ((Input.GetMouseButton(0) || Input.GetMouseButton(1)) && !playingAnimation)
