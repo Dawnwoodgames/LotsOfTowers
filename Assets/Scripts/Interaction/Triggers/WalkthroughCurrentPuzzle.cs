@@ -16,22 +16,6 @@ namespace Nimbi.Interaction.Triggers
             {
                 if (Input.GetButtonDown("Submit") && !boardActive)
                     ShowWalkthrough();
-                else
-                {
-                    if (Input.GetButtonDown("Submit"))
-                    {
-                        if (images.transform.GetChild(0).gameObject.activeSelf)
-                        {
-                            images.transform.GetChild(0).gameObject.SetActive(false);
-                            images.transform.GetChild(1).gameObject.SetActive(true);
-                        }
-                        else
-                        {
-                            images.transform.GetChild(0).gameObject.SetActive(true);
-                            images.transform.GetChild(1).gameObject.SetActive(false);
-                        }
-                    }
-                }
             }
         }
 
@@ -49,7 +33,6 @@ namespace Nimbi.Interaction.Triggers
                 images.transform.parent = GameObject.Find("HUD").transform;
                 images.SetActive(true);
                 images.transform.GetChild(0).gameObject.SetActive(true);
-                images.transform.GetChild(1).gameObject.SetActive(false);
             }
         }
 
