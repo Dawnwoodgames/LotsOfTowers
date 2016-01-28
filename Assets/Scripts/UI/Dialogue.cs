@@ -94,7 +94,7 @@ namespace Nimbi.UI
             }
         }
 
-        private void clearText()
+        public void clearText()
         {
             if(dialogueObject.GetComponent<Text>().text == dialogueText.Localize())
             {

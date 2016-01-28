@@ -13,6 +13,7 @@ namespace Nimbi.Interaction
         public GameObject landlobberDialog;
         public GameObject finishNutDialog;
         public GameObject fixBoatDialog;
+		public GameObject pressmeDialog;
 		public Transform endMarker;
 
 		private Player player;
@@ -21,14 +22,17 @@ namespace Nimbi.Interaction
         private float startTime;
         private float journeyLength;
         private bool firstInteraction = true;
+		private bool dialogIsGone = false;
+		private OnesieInfoPopup popup;
 
-        void Start()
+		void Start()
         {
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
             nut = GameObject.Find("Nut");
-        }
+			popup = GameObject.Find("CenterFocus").GetComponent<OnesieInfoPopup>();
+		}
 
-        void Update()
+		void Update()
         {
             if (nutDelivered)
             {
@@ -40,6 +44,11 @@ namespace Nimbi.Interaction
 				GetComponent<Animator>().SetBool("walking", false);
 				Destroy(this);
             }
+			if(!popup.IsPopupShowing(OnesieType.Hamster) && !firstInteraction)
+			{
+				lostNutDialog.SetActive(true);
+				landlobberDialog.SetActive(true);
+			}
         }
 
         private void OnTriggerStay(Collider coll)
@@ -50,11 +59,10 @@ namespace Nimbi.Interaction
             */
             if (coll.tag == "Player" && Input.GetButtonDown("Submit") && firstInteraction)
             {
-				GameObject.Find("CenterFocus").GetComponent<OnesieInfoPopup>().ShowPopup(OnesieType.Hamster, 1);
+				pressmeDialog.GetComponent<Dialogue>().clearText();
+                popup.ShowPopup(OnesieType.Hamster, 1);
                 player.GetComponent<Player>().AddOnesie(hamsterOnesie);
                 firstInteraction = false;
-                lostNutDialog.SetActive(true);
-                landlobberDialog.SetActive(true);
             }
 
             /*

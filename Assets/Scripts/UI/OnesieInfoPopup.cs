@@ -34,6 +34,21 @@ namespace Nimbi.UI
 			StartCoroutine("WaitForIt", waitingTime);
 		}
 
+		public bool IsPopupShowing(OnesieType type)
+		{
+			switch (type)
+			{
+				case OnesieType.Elephant:
+					return elephantTip.activeSelf;
+				case OnesieType.Hamster:
+					return hamsterTip.activeSelf;
+				case OnesieType.Dragon:
+					return dragonTip.activeSelf;
+				default:
+					return elephantTip.activeSelf;
+			}
+		}
+
 		IEnumerator WaitForIt(float waitingTime)
 		{
 			yield return new WaitForSeconds(waitingTime);
