@@ -14,9 +14,10 @@ namespace Nimbi.Interaction
 		private GameObject focusView;
 		private Rigidbody rb;
 		private float hMove, vMove;
-		private float movementSpeed = 8f;
+		private float movementSpeed = 25f;
 		private bool playerIsNear = false;
 		public bool playerInside = false;
+        public float maxSpeed = 1.5f;
 
         public GameObject Ball
         {
@@ -35,8 +36,8 @@ namespace Nimbi.Interaction
 		{
 			if (playerInside)
 			{
-				hMove = Input.GetAxis("Horizontal");
-				vMove = Input.GetAxis("Vertical");
+				hMove = Input.GetAxisRaw("Horizontal");
+				vMove = Input.GetAxisRaw("Vertical");
 				player.transform.position = new Vector3(ball.transform.position.x, ball.transform.position.y, ball.transform.position.z);
 				focusView.GetComponent<CameraFollowScript>().SetCameraFocus(ball);
 
@@ -62,7 +63,7 @@ namespace Nimbi.Interaction
 
 		private void Move(Vector3 movement)
 		{
-            if (movement == Vector3.zero && EasyBallMovement)
+            if (movement == Vector3.zero)
             {
                 rb.velocity = Vector3.zero;
             }
@@ -75,6 +76,10 @@ namespace Nimbi.Interaction
 			movement = transform.InverseTransformDirection(movement);
 
 			rb.AddForce(movement * movementSpeed);
+            if(rb.velocity.magnitude > maxSpeed)
+            {
+                rb.velocity = rb.velocity.normalized * maxSpeed;
+            }
 		}
 
 		private void OnTriggerStay(Collider coll)
