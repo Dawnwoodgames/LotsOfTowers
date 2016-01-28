@@ -20,6 +20,8 @@ namespace Nimbi.Interaction
 		public GameObject[] invisLibraWalls;
 		public Transform[] walkspots;
 
+		public GameObject obtainOnesieDialog;
+
 		private SeesawLibraBoardTrigger boardStartTrigger;
 		private SeesawLibraBoardTrigger boardEndTrigger;
 		private GameObject player;
@@ -137,7 +139,7 @@ namespace Nimbi.Interaction
 							}
 							else
 							{
-								if (player.GetComponent<Player>().Onesie.type == OnesieType.Elephant)
+                                if (player.GetComponent<Player>().Onesie.type == OnesieType.Elephant)
 								{
 									if (!EvenBoardLerpFinished)
 									{
@@ -147,6 +149,10 @@ namespace Nimbi.Interaction
 									{
 										getOnesiePartFinished = true;
 									}
+								}
+								else if(!GameObject.Find("CenterFocus").GetComponent<OnesieInfoPopup>().IsPopupShowing(OnesieType.Elephant))
+								{
+									obtainOnesieDialog.SetActive(true);
 								}
 							}
 						}
@@ -293,6 +299,8 @@ namespace Nimbi.Interaction
 
 			//Show popup
 			GameObject.Find("CenterFocus").GetComponent<OnesieInfoPopup>().ShowPopup(OnesieType.Elephant, 0);
+
+			obtainOnesieDialog.GetComponent<Dialogue>().removeText();
 
 			hasElephantOnesie = true;
 		}

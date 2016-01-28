@@ -101,9 +101,13 @@ namespace Nimbi.UI
                 dialogueObject.GetComponent<Text>().text = "";
                 Destroy(this);
             }
-        } 
+        }
+		public void removeText()
+		{
+			dialogueObject.GetComponent<Text>().text = "";
+		}
 
-        IEnumerator hideText()
+		IEnumerator hideText()
         {
             yield return new WaitForSeconds(showForSeconds);
             clearText();
