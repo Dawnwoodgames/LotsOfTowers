@@ -159,6 +159,10 @@ namespace Nimbi.Actors {
                     currentOnesie = (currentOnesie == onesies[index]) ? defaultOnesie : onesies[index];
                     AudioManager.Instance.PlaySoundeffect(AudioManager.Instance.GetOnesieSwitchSound(currentOnesie.name));
                     SetSkeleton(currentOnesie.name.Replace("Onesie", ""));
+                    if (currentOnesie.type == OnesieType.Hamster)
+                        GetComponent<TrailRenderer>().enabled = true;
+                    else
+                        GetComponent<TrailRenderer>().enabled = false;
                 }
                 catch (Exception ex)
                 {

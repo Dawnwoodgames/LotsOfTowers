@@ -4388,6 +4388,7 @@ GameObject:
   - 54: {fileID: 5425080}
   - 114: {fileID: 11467732}
   - 136: {fileID: 13693230}
+  - 96: {fileID: 9642092}
   m_Layer: 0
   m_Name: Nimbi
   m_TagString: Player
@@ -6984,7 +6985,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 169298}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.15, y: 50.281, z: 4.97}
+  m_LocalPosition: {x: -1.4662485, y: 50.27, z: 4.542502}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 431588}
@@ -12647,6 +12648,53 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!96 &9642092
+TrailRenderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 169298}
+  m_Enabled: 0
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 473d6d3ec0d161b4a85e466c8c6da3fb, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 1
+  m_ReflectionProbeUsage: 1
+  m_ProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingOrder: 0
+  m_Time: 0.4
+  m_StartWidth: 1
+  m_EndWidth: 1
+  m_Colors:
+    m_Color[0]:
+      serializedVersion: 2
+      rgba: 3338665983
+    m_Color[1]:
+      serializedVersion: 2
+      rgba: 3992977407
+    m_Color[2]:
+      serializedVersion: 2
+      rgba: 1929379839
+    m_Color[3]:
+      serializedVersion: 2
+      rgba: 1291845631
+    m_Color[4]:
+      serializedVersion: 2
+      rgba: 16777215
+  m_MinVertexDistance: 0.1
+  m_Autodestruct: 0
 --- !u!114 &11415412
 MonoBehaviour:
   m_ObjectHideFlags: 1

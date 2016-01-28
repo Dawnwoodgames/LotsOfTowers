@@ -8,6 +8,7 @@ namespace Nimbi.Actors
 	//We need the following components to make the player work
 	[RequireComponent(typeof(Player))]
 	[RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(TrailRenderer))]
 	public class PlayerController : MonoBehaviour
 	{
 		private static readonly float InputDelay = 1;
