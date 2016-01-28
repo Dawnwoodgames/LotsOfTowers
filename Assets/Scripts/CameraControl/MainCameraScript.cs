@@ -58,7 +58,7 @@ namespace Nimbi.CameraControl
 			}
 			else if(GetComponent<Animator>() != null)
 			{
-				GetComponent<Animator>().enabled = false;
+				Destroy(GetComponent<Animator>());
 				transform.localPosition = Vector3.back * 15;
 				transform.localRotation = Quaternion.identity;
 			}
