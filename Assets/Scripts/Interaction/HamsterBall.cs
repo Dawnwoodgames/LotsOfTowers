@@ -63,7 +63,7 @@ namespace Nimbi.Interaction
 
 		private void Move(Vector3 movement)
 		{
-            if (movement == Vector3.zero)
+            if (movement == Vector3.zero && EasyBallMovement)
             {
                 rb.velocity = Vector3.zero;
             }
@@ -76,7 +76,7 @@ namespace Nimbi.Interaction
 			movement = transform.InverseTransformDirection(movement);
 
 			rb.AddForce(movement * movementSpeed);
-            if(rb.velocity.magnitude > maxSpeed)
+            if(rb.velocity.magnitude > maxSpeed && EasyBallMovement)
             {
                 rb.velocity = rb.velocity.normalized * maxSpeed;
             }
