@@ -139,6 +139,7 @@ namespace Nimbi.Interaction
 							}
 							else
 							{
+                                playerController.DisableMovement();
                                 if (player.GetComponent<Player>().Onesie.type == OnesieType.Elephant)
 								{
 									if (!EvenBoardLerpFinished)

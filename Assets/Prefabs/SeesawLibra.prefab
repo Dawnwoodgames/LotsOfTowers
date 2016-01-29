@@ -451,6 +451,22 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &136152
+GameObject:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 485878}
+  - 65: {fileID: 6569278}
+  m_Layer: 0
+  m_Name: InvisWallForSeesaw
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &136254
 GameObject:
   m_ObjectHideFlags: 0
@@ -758,7 +774,7 @@ GameObject:
   - 4: {fileID: 435714}
   - 65: {fileID: 6551224}
   m_Layer: 0
-  m_Name: InvisWallForSeesaw
+  m_Name: InvisWallForSeesaw (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -896,8 +912,9 @@ Transform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 435714}
+  - {fileID: 485878}
   - {fileID: 437836}
+  - {fileID: 435714}
   m_Father: {fileID: 469478}
   m_RootOrder: 2
 --- !u!4 &402978
@@ -1049,7 +1066,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 140336}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.05, y: 2.48, z: -4.764}
+  m_LocalPosition: {x: 0.05, y: 2.48, z: -4.733}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 411552}
@@ -1161,11 +1178,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 182642}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0, y: -0.95000076, z: -3.379999}
+  m_LocalPosition: {x: 0, y: -0.16, z: -4.46}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 402420}
-  m_RootOrder: 0
+  m_RootOrder: 2
 --- !u!4 &437132
 Transform:
   m_ObjectHideFlags: 1
@@ -1401,7 +1418,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 105254}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.23, y: 2.311, z: 4.13}
+  m_LocalPosition: {x: -0.23, y: 2.311, z: 3.98}
   m_LocalScale: {x: 1.021697, y: 0.42461878, z: 0.9760984}
   m_Children: []
   m_Father: {fileID: 414390}
@@ -1426,7 +1443,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 121884}
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071067}
-  m_LocalPosition: {x: -18.94, y: 24.08, z: -0.76}
+  m_LocalPosition: {x: -18.79, y: 24.08, z: -0.76}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 439114}
@@ -1471,7 +1488,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 194818}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.67611223, y: 0.2263081, z: 0}
+  m_LocalPosition: {x: -0.68, y: 0.2263081, z: 0.51}
   m_LocalScale: {x: 4.034052, y: 1.0306741, z: 3.5745687}
   m_Children: []
   m_Father: {fileID: 419728}
@@ -1516,6 +1533,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 419728}
   m_RootOrder: 9
+--- !u!4 &485878
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 136152}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0, y: -0.95000076, z: -3.379999}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 402420}
+  m_RootOrder: 0
 --- !u!4 &486320
 Transform:
   m_ObjectHideFlags: 1
@@ -1944,8 +1973,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1.4448748}
-  m_Center: {x: -0.00000095124904, y: -0.0000007748604, z: -0.14034343}
+  m_Size: {x: 1, y: 2.333433, z: 1.1631447}
+  m_Center: {x: -0.0000024150381, y: 0.6667043, z: -0.28118944}
 --- !u!65 &6568382
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -1958,6 +1987,18 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.30138755, y: 2.5163586, z: 0.37607384}
   m_Center: {x: -0.077138215, y: 0.757934, z: -0.536643}
+--- !u!65 &6569278
+BoxCollider:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 136152}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1.4448748}
+  m_Center: {x: -0.00000095124904, y: -0.0000007748604, z: -0.14034343}
 --- !u!95 &9535068
 Animator:
   serializedVersion: 3
@@ -2052,6 +2093,7 @@ MonoBehaviour:
   - {fileID: 494738}
   - {fileID: 441112}
   - {fileID: 451334}
+  obtainOnesieDialog: {fileID: 0}
 --- !u!136 &13658716
 CapsuleCollider:
   m_ObjectHideFlags: 1
