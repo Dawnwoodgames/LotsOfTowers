@@ -76,7 +76,7 @@ namespace Nimbi.UI
         {
             if (type == TypeCollider.Elephant)
             {
-                if (col.name == "Elephant")
+                if (col && col.name == "Elephant")
                 {
                     dialogueObject.GetComponent<Text>().text = dialogueText.Localize();
                     StartCoroutine(hideText());
@@ -85,7 +85,7 @@ namespace Nimbi.UI
             }
             else if (type == TypeCollider.Player)
             {
-                if (col.tag == "Player" && !IsActive)
+                if (col && col.tag == "Player" && !IsActive)
                 {
                     dialogueObject.GetComponent<Text>().text = dialogueText.Localize();
                     StartCoroutine(hideText());
