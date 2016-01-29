@@ -14,9 +14,18 @@ namespace Nimbi.UI
 		private OnesieType onesieType;
 		private bool waiting = true;
 
+        private GameObject player;
+
+        void Start()
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
+        }
+
 		public void ShowPopup(OnesieType type, float waitingTime)
 		{
-			switch (type)
+            player.GetComponent<Player>().PlayerCanSwitchOnesie = false;
+            player.GetComponent<PlayerController>().DisableMovement();
+            switch (type)
 			{
 				case OnesieType.Elephant:
 					elephantTip.SetActive(true);
@@ -60,7 +69,10 @@ namespace Nimbi.UI
 		{
 			if (Input.GetButtonDown("Submit") && !waiting)
 			{
-				if (elephantTip.activeSelf || hamsterTip.activeSelf || dragonTip.activeSelf)
+                player.GetComponent<Player>().PlayerCanSwitchOnesie = true;
+                player.GetComponent<PlayerController>().EnableMovement();
+
+                if (elephantTip.activeSelf || hamsterTip.activeSelf || dragonTip.activeSelf)
 				{
 					elephantTip.SetActive(false);
 					hamsterTip.SetActive(false);
