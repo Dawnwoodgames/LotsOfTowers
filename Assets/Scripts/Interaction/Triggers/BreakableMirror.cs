@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Nimbi.Actors;
 
 namespace Nimbi.Interaction.Triggers
 {
@@ -8,7 +9,7 @@ namespace Nimbi.Interaction.Triggers
         public GameObject[] ropes;
         private void OnTriggerStay(Collider coll)
         {
-            if (coll.tag == "Player")
+            if (coll.tag == "Player" && coll.GetComponent<Player>().Onesie.type == OnesieType.Hamster)
                 if (Input.GetButtonDown("Submit"))
                     BreakObject();
         }
