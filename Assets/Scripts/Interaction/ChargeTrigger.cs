@@ -1,8 +1,8 @@
-﻿using LotsOfTowers.Actors;
+﻿using Nimbi.Actors;
 using UnityEngine;
 
-namespace LotsOfTowers.Interaction {
-	public sealed class ChargeTrigger : MonoBehaviour {
+namespace Nimbi.Interaction {
+	public class ChargeTrigger : MonoBehaviour {
 		private bool connected;
 		private Player player;
 		private float x, y, z;

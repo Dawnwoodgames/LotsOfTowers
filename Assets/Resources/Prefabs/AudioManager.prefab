@@ -1,0 +1,333 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &118616
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 497272}
+  - 82: {fileID: 8270056}
+  m_Layer: 0
+  m_Name: SoundEffects
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &157622
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 439466}
+  - 114: {fileID: 11459900}
+  m_Layer: 0
+  m_Name: AudioManager
+  m_TagString: AudioManager
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &168310
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 480018}
+  - 82: {fileID: 8264148}
+  m_Layer: 0
+  m_Name: BackgroundMusic
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &439466
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157622}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.647835, y: 3.362704, z: 2.1402688}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 497272}
+  - {fileID: 480018}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!4 &480018
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 168310}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 439466}
+  m_RootOrder: 1
+--- !u!4 &497272
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 118616}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 439466}
+  m_RootOrder: 0
+--- !u!82 &8264148
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 168310}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 0.5
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+--- !u!82 &8270056
+AudioSource:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 118616}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 0}
+  m_PlayOnAwake: 1
+  m_Volume: 1
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 0
+--- !u!114 &11459900
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 157622}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fc66c2958f90ea54c9c0702d443259d6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundEffects: {fileID: 118616}
+  backgroundMusic: {fileID: 168310}
+  backgroundMusicTowerOne: {fileID: 8300000, guid: f288e25de800ce14a97437a0831ad9b8,
+    type: 3}
+  backgroundMusicTowerTwo: {fileID: 8300000, guid: 572d7ede65b777a45a9ab894583692ad,
+    type: 3}
+  backgroundMusicTowerThree: {fileID: 8300000, guid: c2921a312409604469ea075c730adb0a,
+    type: 3}
+  backgroundMusicTowerFour: {fileID: 8300000, guid: 1a90a1561ee43c54f8d58899e637acbd,
+    type: 3}
+  backgroundMusicTowerFive: {fileID: 8300000, guid: 6d3994d72ee8b384cb5e3494350da2d4,
+    type: 3}
+  switchOnesieToDefaultSoundFile: {fileID: 8300000, guid: 3fcdd9c8e32a0144eb5a7d63ad8b060f,
+    type: 3}
+  switchOnesieToDragonSoundFile: {fileID: 8300000, guid: f4580aece824a36498622088f8f05779,
+    type: 3}
+  switchOnesieToElephantSoundFile: {fileID: 8300000, guid: a81ad974c06489045b41aa09f13c8703,
+    type: 3}
+  switchOnesieToHamsterSoundFile: {fileID: 8300000, guid: e3902857617ec2e4dbf03a1c8c0a9ddd,
+    type: 3}
+  pickupKeySoundFile: {fileID: 8300000, guid: 759d3aaa394b98e44897b94f1e5fc5c7, type: 3}
+  doorOpenSoundFile: {fileID: 8300000, guid: 5f6036fe3cf77984384dd278a0f37a0c, type: 3}
+  pickupNutSoundFile: {fileID: 8300000, guid: aa2a124b5096d6848a99beba229fa59b, type: 3}
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 0}
+      propertyPath: switchOnesieToDragonSoundFile
+      value: 
+      objectReference: {fileID: 8300000, guid: f4580aece824a36498622088f8f05779, type: 3}
+    - target: {fileID: 0}
+      propertyPath: backgroundMusic
+      value: 
+      objectReference: {fileID: 168310}
+    - target: {fileID: 0}
+      propertyPath: m_Name
+      value: BackgroundMusic
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: backgroundMusicTowerOne
+      value: 
+      objectReference: {fileID: 8300000, guid: f288e25de800ce14a97437a0831ad9b8, type: 3}
+    - target: {fileID: 0}
+      propertyPath: backgroundMusicTowerTwo
+      value: 
+      objectReference: {fileID: 8300000, guid: 572d7ede65b777a45a9ab894583692ad, type: 3}
+    - target: {fileID: 0}
+      propertyPath: m_Volume
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: backgroundMusicTowerThree
+      value: 
+      objectReference: {fileID: 8300000, guid: c2921a312409604469ea075c730adb0a, type: 3}
+    - target: {fileID: 0}
+      propertyPath: backgroundMusicTowerFour
+      value: 
+      objectReference: {fileID: 8300000, guid: 1a90a1561ee43c54f8d58899e637acbd, type: 3}
+    - target: {fileID: 0}
+      propertyPath: backgroundMusicTowerFive
+      value: 
+      objectReference: {fileID: 8300000, guid: 6d3994d72ee8b384cb5e3494350da2d4, type: 3}
+    - target: {fileID: 0}
+      propertyPath: Loop
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 0}
+      propertyPath: pickupKeySoundFile
+      value: 
+      objectReference: {fileID: 8300000, guid: 759d3aaa394b98e44897b94f1e5fc5c7, type: 3}
+    - target: {fileID: 0}
+      propertyPath: doorOpenSoundFile
+      value: 
+      objectReference: {fileID: 8300000, guid: 5f6036fe3cf77984384dd278a0f37a0c, type: 3}
+    - target: {fileID: 0}
+      propertyPath: pickupNutSoundFile
+      value: 
+      objectReference: {fileID: 8300000, guid: aa2a124b5096d6848a99beba229fa59b, type: 3}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 157622}
+  m_IsPrefabParent: 1

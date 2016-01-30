@@ -1,9 +1,9 @@
 ﻿using System;
 using UnityEngine;
 
-namespace LotsOfTowers.UI {
+namespace Nimbi.UI {
 	[RequireComponent(typeof(Camera))]
-	public sealed class CameraController : MonoBehaviour {
+	public class CameraController : MonoBehaviour {
 
 		public Transform mount;
 		public float speed;

@@ -1,33 +1,37 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
-using LotsOfTowers.Actors;
-using LotsOfTowers.Framework;
+using Nimbi.Actors;
+using Nimbi.Framework;
 
 
-namespace LotsOfTowers.Interaction
+namespace Nimbi.Interaction
 {
     public class BlowWind : MonoBehaviour
     {
+        public float interval = 0f;
         public float force = 50f;
         public Direction direction = Direction.Forward;
+		public bool hasIceBlock = false;
 
-        private Vector3 dir;
+		private Vector3 dir;
         private List<GameObject> collisions = new List<GameObject>();
-
-        private bool hasPlayer;
-        private bool hasBlock;
-        private bool active;
+		
+        private bool hasBlock = false;
+		private bool hasPlayer = false;
+		private bool active;
 
         private GameObject block;
         private GameObject player;
+        private bool isBlowing = true;
+        private float nextBlow;
 
-        private ParticleSystem windParticles; // We can use this to maybe stop the windparticles at the block?
+        public ParticleSystem windParticles; // We can use this to maybe stop the windparticles at the block?
 
-        void Start()
+		void Start()
         {
             DetermineDirection();
-
+            nextBlow = Time.time;
             block = GameObject.FindGameObjectWithTag("MovableByWind");
             player = GameObject.FindGameObjectWithTag("Player");
 
@@ -35,10 +39,35 @@ namespace LotsOfTowers.Interaction
         
         void FixedUpdate()
         {
-            hasPlayer = false;
+            CheckBlowing();
             hasBlock = false;
+			hasPlayer = false;
+			hasIceBlock = false;
             checkCollisions();
             Wind();
+        }
+
+        private void CheckBlowing()
+        {
+            if (interval > 0)
+            {
+                if (Time.time > nextBlow)
+                {
+                    isBlowing = !isBlowing;
+                    windParticles.loop = isBlowing;
+					if (isBlowing && !hasIceBlock)
+					{
+						windParticles.Play();
+					}
+					else if (hasIceBlock)
+					{
+						active = false;
+						windParticles.loop = false;
+						windParticles.Stop();
+                    }
+					nextBlow = Time.time + interval;
+                }
+            }
         }
 
         //
@@ -46,23 +75,33 @@ namespace LotsOfTowers.Interaction
         {
             foreach (GameObject collision in collisions)
             {
-                if(collision.tag == "Player")
-                {
-                    hasPlayer = true;
-                }
                 if(collision.tag == "MovableByWind")
                 {
                     hasBlock = true;
                 }
+
+				if (collision.tag == "IceBlock")
+				{
+					hasIceBlock = true;
+				}
+
+				if (collision.tag == "Player")
+				{
+					hasPlayer = true;
+				}
             }
         }
 
         private void Wind()
         {
-            if (active)
+            if (active && isBlowing && !hasIceBlock)
             {
-                block.GetComponent<Rigidbody>().AddForce(dir * force, ForceMode.Acceleration);
-                if (!hasBlock)
+				if (block != null)
+				{
+					block.GetComponent<Rigidbody>().AddForce(dir * force, ForceMode.Acceleration);
+				}
+
+                if (!hasBlock && hasPlayer)
                 {
                     if (!player.GetComponent<Player>().Onesie.isHeavy)
                     {
@@ -76,10 +115,13 @@ namespace LotsOfTowers.Interaction
         void OnTriggerStay(Collider col)
         {
             active = true;
-            if (!col.GetComponent<Rigidbody>().isKinematic)
+            if (!col.GetComponent<Rigidbody>().isKinematic || col.tag == "IceBlock")
             {
-                collisions.Add(col.gameObject);
-            }
+				if(!collisions.Contains(col.gameObject))
+				{
+					collisions.Add(col.gameObject);
+				}
+			}
         }
 
         void OnTriggerExit(Collider col)
@@ -87,10 +129,12 @@ namespace LotsOfTowers.Interaction
             active = false;
             if (!col.GetComponent<Rigidbody>().isKinematic)
             {
-                collisions.Remove(col.gameObject);
+				if (collisions.Contains(col.gameObject))
+				{
+					collisions.Remove(col.gameObject);
+				}
             }
         }
-
 
         // Sets the direction the wind is blowing
         private void DetermineDirection()
@@ -109,14 +153,17 @@ namespace LotsOfTowers.Interaction
                 case Direction.Right:
                     dir = Vector3.right;
                     break;
+				case Direction.Up:
+					dir = Vector3.up;
+					break;
+				case Direction.Down:
+					dir = Vector3.down;
+					break;
                 default:
                     dir = Vector3.forward;
                     break;
             }
-
-            
         }
-        
     }
 }
 

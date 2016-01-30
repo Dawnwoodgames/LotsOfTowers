@@ -1,14 +1,15 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-using LotsOfTowers.Framework;
+using Nimbi.Framework;
 
-namespace LotsOfTowers.Interaction
+namespace Nimbi.Interaction
 {
 
     public class OpenDoorLever : MonoBehaviour
     {
         public GameObject targetDoor;
+        public GameObject wind;
 
         public float targetX;
         public float targetY;
@@ -35,24 +36,29 @@ namespace LotsOfTowers.Interaction
                 if(doorOpen)
                 {
                     CloseDoor();
+                    GetComponent<Animator>().SetBool("GoingDown", false);
                 }
                 else
                 {
                     OpenDoor();
+                    GetComponent<Animator>().SetBool("GoingDown", true);
                 }
             }
         }
 
-        private void OnCollisionEnter(Collision coll)
+        void OnTriggerEnter(Collider coll)
         {
             if (coll.gameObject.tag == "Player")
             {
                 inTrigger = true;
             }
         }
-        private void OnCollisionExit()
+        void OnTriggerExit(Collider coll)
         {
-            inTrigger = false;
+            if (coll.gameObject.tag == "Player")
+            {
+                inTrigger = false;
+            }
         }
 
         // Open the door to the given position.
@@ -60,6 +66,7 @@ namespace LotsOfTowers.Interaction
         {
             targetDoor.transform.localPosition = new Vector3(targetX, targetY, targetZ); // Move position
             targetDoor.transform.Rotate(new Vector3(0, 90, 0)); // Rotate, so it `opens`
+            wind.transform.position = new Vector3(transform.position.x, transform.position.y, 26);
             doorOpen = true;
         }
 
@@ -67,6 +74,7 @@ namespace LotsOfTowers.Interaction
         {
             targetDoor.transform.position = new Vector3(defaultX, defaultY, defaultZ); // Move position
             targetDoor.transform.Rotate(new Vector3(0, 90, 0)); // Rotate, so it `closes`
+            wind.transform.position = new Vector3(transform.position.x, transform.position.y, 11.75f);
             doorOpen = false;
         }
 

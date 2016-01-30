@@ -1,6 +1,8 @@
-﻿using UnityEngine;
+﻿using Nimbi.Platform;
+using UnityEngine;
+using Nimbi.Audio;
 
-namespace LotsOfTowers.Interaction
+namespace Nimbi.Interaction
 {
 	public class Door : MonoBehaviour
 	{
@@ -27,6 +29,7 @@ namespace LotsOfTowers.Interaction
 
 		private void OpenDoor(GameObject key)
 		{
+			AudioManager.Instance.PlaySoundeffect(AudioManager.Instance.doorOpenSoundFile);
 			Destroy(mirrorDoor);
 			Destroy(key);
 			Destroy(gameObject);

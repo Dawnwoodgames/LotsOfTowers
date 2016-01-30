@@ -1,27 +1,31 @@
-﻿using UnityEngine;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using UnityEngine;
 
-namespace LotsOfTowers.Framework
+namespace Nimbi.Framework
 {
-	public class LevelSlider : MonoBehaviour
-	{
-		public GameObject[] toMove;
-		private Vector3[] oldPosition;
-		public float increaseBy;
+    public class LevelSlider : MonoBehaviour
+    {
+        public GameObject[] toMove;
+        private Vector3[] oldPosition;
+        public float increaseBy;
         public float speed = 1f;
-		private bool moveUp = false;
+        public bool InTrigger = false;
         private bool[] isActive;
-
-		void Start()
+        
+        void Start()
 		{
 			oldPosition = new Vector3[toMove.Length];
             isActive = new bool[toMove.Length];
 			for (int i = 0; i < toMove.Length; i++)
-				oldPosition[i] = toMove[i].transform.position;
+			    oldPosition[i] = toMove[i].transform.position;
+            
 		}
 
 		void Update()
 		{
-			if (moveUp)
+			if (InTrigger) { 
 				for (int obj = 0; obj < toMove.Length; obj++)
 				{
                     if (!isActive[obj])
@@ -30,7 +34,9 @@ namespace LotsOfTowers.Framework
                     if (toMove[obj].transform.position == new Vector3(oldPosition[obj].x, oldPosition[obj].y+increaseBy, oldPosition[obj].z))
                         isActive[obj] = false;
                 }
-			else
+            }
+            else
+            {
 				for (int obj = 0; obj < toMove.Length; obj++)
 				{
                     if (!isActive[obj])
@@ -38,23 +44,25 @@ namespace LotsOfTowers.Framework
                     toMove[obj].transform.position = Vector3.MoveTowards(toMove[obj].transform.position, new Vector3(oldPosition[obj].x, oldPosition[obj].y, oldPosition[obj].z), Time.deltaTime * speed);
                     if (toMove[obj].transform.position == new Vector3(oldPosition[obj].x, oldPosition[obj].y, oldPosition[obj].z))
                         isActive[obj] = false;
-				}
-		}
+                }
+            }
+        }
 
-		void OnTriggerEnter(Collider other)
+		void OnTriggerEnter(Collider col)
 		{
-			if (other.tag == "Player")
+			if (col.tag == "Player" || col.tag == "HamsterBall")
 			{
-				moveUp = true;
+				InTrigger = true;
                 for (int i = 0; i < toMove.Length; i++)
                     isActive[i] = true;
             }
 		}
-		void OnTriggerExit(Collider other)
+
+		void OnTriggerExit(Collider col)
 		{
-			if (other.tag == "Player")
+			if (col.tag == "Player" || col.tag == "HamsterBall")
 			{
-				moveUp = false;
+				InTrigger = false;
                 for (int i = 0; i < toMove.Length; i++)
                     isActive[i] = true;
             }

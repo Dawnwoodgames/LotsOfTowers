@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Nimbi.Actors;
 
-namespace LotsOfTowers.Interaction.Triggers
+namespace Nimbi.Interaction.Triggers
 {
     class SeesawLibraBoardTrigger : MonoBehaviour
     {

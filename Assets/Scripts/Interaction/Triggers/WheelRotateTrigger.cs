@@ -1,7 +1,8 @@
 ﻿using UnityEngine;
+using Nimbi.Actors;
 using System.Collections;
 
-namespace LotsOfTowers.Interaction.Triggers
+namespace Nimbi.Interaction.Triggers
 {
     public class WheelRotateTrigger : MonoBehaviour
     {
@@ -10,7 +11,8 @@ namespace LotsOfTowers.Interaction.Triggers
 
         private void OnTriggerStay(Collider coll)
         {
-            playerRunning = true;
+            if (coll.tag == "Player" && coll.GetComponent<Player>().Onesie.type == OnesieType.Hamster)
+                playerRunning = true;
         }
 
         private void OnTriggerExit()

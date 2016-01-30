@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace LotsOfTowers.UI {
+namespace Nimbi.UI {
 	[RequireComponent(typeof(Slider))]
-	public sealed class AudioSlider : MonoBehaviour {
+	public class AudioSlider : MonoBehaviour {
 		private Slider slider;
 
 		public void Awake() {
@@ -17,6 +17,7 @@ namespace LotsOfTowers.UI {
 
 		public void Update() {
 			AudioListener.volume = slider.value / 100;
+            PlayerPrefs.SetFloat("AudioVolume", AudioListener.volume);
 			slider.value = AudioListener.volume * 100;
 		}
 	}

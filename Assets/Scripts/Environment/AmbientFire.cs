@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 
-namespace LotsOfTowers.Environment {
-	public sealed class AmbientFire : MonoBehaviour {
+namespace Nimbi.Environment {
+	public class AmbientFire : MonoBehaviour {
 		private new Light light;
 
 		public float maxIntensity = 0.9f;

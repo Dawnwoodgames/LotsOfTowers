@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 
-namespace LotsOfTowers.Interaction {
+namespace Nimbi.Interaction {
 	public abstract class TriggerBehaviour : MonoBehaviour {
 		
 		public abstract IEnumerator TriggerOn(GameObject source);

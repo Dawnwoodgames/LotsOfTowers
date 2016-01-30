@@ -1,45 +1,51 @@
-﻿using LotsOfTowers.Environment;
+﻿using Nimbi.Environment;
 using UnityEngine;
 
-namespace LotsOfTowers.Interaction {
-	[RequireComponent(typeof(BoxCollider))]
-	public sealed class BuoyGateTrigger : MonoBehaviour {
-		private WaterMazeManager manager;
-		private Buoy leftBuoy, rightBuoy;
-		private float timer;
+namespace Nimbi.Interaction {
 
-		public float delay = 0.5f; // Seconds between triggers
+    [RequireComponent(typeof(BoxCollider))]
+    public class BuoyGateTrigger : MonoBehaviour {
+        private WaterMazeManager manager;
 
-		public void Awake() {
-			RaycastHit hit;
+        public float delay = 0.5f; // Seconds between triggers
+        public bool lastGate;
+        public Buoy leftBuoy, rightBuoy;
+        public Material lineMaterial;
 
-			GetComponent<BoxCollider>().isTrigger = true;
-			this.manager = FindObjectOfType<WaterMazeManager>();
+        public void Awake() {
+            RaycastHit hit;
 
-			// Try and find a buoy on the left
-			Physics.Raycast(transform.position, transform.rotation * (Vector3.left * 5), out hit);
-			leftBuoy = hit.collider.GetComponent<Buoy>();
+            GetComponent<BoxCollider>().isTrigger = true;
+            manager = FindObjectOfType<WaterMazeManager>();
 
-			// Try and find a buoy on the right
-			Physics.Raycast(transform.position, transform.rotation * (Vector3.right * 5), out hit);
-			rightBuoy = hit.collider.GetComponent<Buoy>();
-		}
+            // Try and find a buoy on the left
+            if (leftBuoy == null) {
+                Physics.Raycast(transform.position, transform.rotation * (Vector3.left * 5), out hit);
+                leftBuoy = hit.collider.GetComponent<Buoy>();
+            }
 
-		public void OnTriggerEnter(Collider coll) {
-			if (timer > 0) {
-				return;
-			}
-			manager.GateOpened (this, leftBuoy.Red || rightBuoy.Red);
-		}
+            // Try and find a buoy on the right
+            if (rightBuoy == null) {
+                Physics.Raycast(transform.position, transform.rotation * (Vector3.right * 5), out hit);
+                rightBuoy = hit.collider.GetComponent<Buoy>();
+            }
+        }
 
-		public void OnTriggerExit(Collider coll) {
-			timer = delay;
-		}
-
-		public void Update() {
-			if (timer > 0) {
-				timer -= Time.deltaTime;
-			}
-		}
-	}
+        public void OnTriggerEnter(Collider coll) {
+            if (coll.gameObject.name != "GateTrigger") {
+                return;
+            }
+            try {
+                manager.GateOpened(this, leftBuoy.red || rightBuoy.red, lastGate);
+                if (!(leftBuoy.red || rightBuoy.red)) {
+                    LineRenderer line = gameObject.AddComponent<LineRenderer>();
+                    line.material = lineMaterial;
+                    line.SetPosition(0, leftBuoy.transform.position);
+                    line.SetPosition(1, rightBuoy.transform.position);
+                }
+            } catch (System.Exception) {
+                manager.GateOpened(this, false, false);
+            }
+        }
+    }
 }

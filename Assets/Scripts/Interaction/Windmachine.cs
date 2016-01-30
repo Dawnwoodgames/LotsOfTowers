@@ -1,10 +1,10 @@
-﻿using LotsOfTowers.Framework;
-using LotsOfTowers.Actors;
-using LotsOfTowers.Interaction.Triggers;
+﻿using Nimbi.Framework;
+using Nimbi.Actors;
+using Nimbi.Interaction.Triggers;
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace LotsOfTowers.Objects
+namespace Nimbi.Objects
 {
 	public class Windmachine : MonoBehaviour
 	{

@@ -1,11 +1,11 @@
 ﻿using UnityEngine;
 using System.Collections;
-using LotsOfTowers.Framework;
+using Nimbi.Framework;
 using System.Collections.Generic;
 using System.Linq;
-using LotsOfTowers.Actors;
+using Nimbi.Actors;
 
-namespace LotsOfTowers.Interaction.Triggers
+namespace Nimbi.Interaction.Triggers
 {
 	[RequireComponent(typeof(BoxCollider))]
 
@@ -28,7 +28,7 @@ namespace LotsOfTowers.Interaction.Triggers
 			}
 			catch (System.Exception ex)
 			{
-				Logger.Log(ex);
+				Nimbi.Framework.Logger.Log(ex);
 				throw;
 			}
 		}

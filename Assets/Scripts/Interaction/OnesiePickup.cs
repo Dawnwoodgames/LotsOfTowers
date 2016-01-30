@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
-using LotsOfTowers.Actors;
+using Nimbi.Actors;
 
-namespace LotsOfTowers.Interaction
+namespace Nimbi.Interaction
 {
 	public class OnesiePickup : MonoBehaviour
 	{
@@ -19,25 +19,10 @@ namespace LotsOfTowers.Interaction
 		public void OnTriggerEnter(Collider collider) {
 			actor = collider.gameObject.GetComponent<Player>();
 
-			if (actor != null)
+			if (actor != null && Onesie != null)
 			{
-				if (actor.HasFreeSlots && actor.AddOnesieToFirstFreeSlot(Onesie))
-				{
-					Destroy(gameObject);
-				}
-			}
-		}
-
-		public void OnTriggerStay(Collider collider) {
-			if (actor != null) {
-				if (Input.GetAxis ("Onesie 1") > 0 || Input.GetAxis ("Onesie 2") > 0 || Input.GetAxis ("Onesie 3") > 0) {
-					Onesie = actor.AddOnesie(Input.GetAxis("Onesie 1") > 0 ? 0 :
-                         (Input.GetAxis("Onesie 2") > 0 ? 1 : (Input.GetAxis("Onesie 3") > 0 ? 2 : -1)), Onesie);
-
-					if (Onesie == null) {
-						Destroy(gameObject);
-					}
-				}
+                actor.AddOnesie(Onesie);
+                Destroy(gameObject);
 			}
 		}
 

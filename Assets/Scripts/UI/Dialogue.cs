@@ -1,56 +1,113 @@
 ﻿using UnityEngine;
 using System.Collections;
 using UnityEngine.UI;
-using LotsOfTowers.Framework;
+using Nimbi.Framework;
 
-namespace LotsOfTowers.UI
+namespace Nimbi.UI
 {
     public class Dialogue : MonoBehaviour
     {
         public GameObject dialogueObject;
         public float showForSeconds = 1f;
         public string dialogueText;
-
         public TypeCollider type = TypeCollider.Player;
+        public StartOnTrigger onTrigger = StartOnTrigger.Enter;
 
-        private bool triggered = false;
+        public bool IsActive { get; set; }
 
+        private bool canShow = true;
+      
         void Start()
         {
             dialogueObject.GetComponent<Text>().text = "";
+            IsActive = false;
         }
         
-        void OnTriggerEnter(Collider col)
+        void Update()
         {
-            if(type == TypeCollider.Elephant)
+            canShow = true;
+            Dialogue[] dialogues = FindObjectsOfType<Dialogue>();
+            foreach(Dialogue d in dialogues)
             {
-                if(col.name == "Elephant")
+                if(d.IsActive && d.GetInstanceID() != this.GetInstanceID())
                 {
-                    dialogueObject.GetComponent<Text>().text = dialogueText;
-                    StartCoroutine(hideText());
-                    triggered = true;
-                }
-            }
-            else if(type == TypeCollider.Player)
-            {
-                if (col.tag == "Player" && !triggered)
-                {
-                    dialogueObject.GetComponent<Text>().text = dialogueText;
-                    StartCoroutine(hideText());
-                    triggered = true;
+                    canShow = false;
                 }
             }
         }
 
-        private void clearText()
+        void OnTriggerEnter(Collider col)
         {
-            if(dialogueObject.GetComponent<Text>().text == dialogueText)
+            if(onTrigger == StartOnTrigger.Enter)
+            {
+                if (canShow)
+                {
+                    showText(col);
+                }
+                else
+                {
+                    StartCoroutine(tryAgainInTwoSeconds(col));
+                }
+            }
+        }
+
+        void OnTriggerExit(Collider col)
+        {
+            if (onTrigger == StartOnTrigger.Exit)
+            {
+                if (canShow)
+                {
+                    showText(col);
+                }
+                else
+                {
+                    StartCoroutine(tryAgainInTwoSeconds(col));
+                }
+            }
+        }
+
+        IEnumerator tryAgainInTwoSeconds(Collider col)
+        {
+            yield return new WaitForSeconds(1f);
+            showText(col);
+        }
+
+        private void showText(Collider col)
+        {
+            if (type == TypeCollider.Elephant)
+            {
+                if (col && col.name == "Elephant")
+                {
+                    dialogueObject.GetComponent<Text>().text = dialogueText.Localize();
+                    StartCoroutine(hideText());
+                    IsActive = true;
+                }
+            }
+            else if (type == TypeCollider.Player)
+            {
+                if (col && col.tag == "Player" && !IsActive)
+                {
+                    dialogueObject.GetComponent<Text>().text = dialogueText.Localize();
+                    StartCoroutine(hideText());
+                    IsActive = true;
+                }
+            }
+        }
+
+        public void clearText()
+        {
+            if(dialogueObject.GetComponent<Text>().text == dialogueText.Localize())
             {
                 dialogueObject.GetComponent<Text>().text = "";
+                Destroy(this);
             }
-        } 
+        }
+		public void removeText()
+		{
+			dialogueObject.GetComponent<Text>().text = "";
+		}
 
-        IEnumerator hideText()
+		IEnumerator hideText()
         {
             yield return new WaitForSeconds(showForSeconds);
             clearText();

@@ -1,90 +1,87 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Nimbi.Actors;
 
-public class MainCameraScript : MonoBehaviour
+namespace Nimbi.CameraControl
 {
-	private Transform centerFocus;
-	public float degree;
-	public float verticalDegree;
-	public float cameraSpeed = 6;
-
-	private float maxPeekLeftPosition = 25f;
-	private float maxPeekRightPosition = 25f;
-
-
-	// Use this for initialization
-	void Start()
+	public class MainCameraScript : MonoBehaviour
 	{
-		centerFocus = GameObject.Find("CenterFocus").transform;
-		verticalDegree = 30;
-	}
+		private Transform centerFocus;
+		public float degree;
+		public float verticalDegree = 30;
+		public float cameraSpeed = 6;
 
-	// Update is called once per frame
-	void Update()
-	{
-		CameraInput();
-	}
+		[HideInInspector]
+		public bool playingAnimation;
+		private bool doneWithAnimating;
 
-	private void CameraInput()
-	{
-		// Rotate controls
-		if (Input.GetButtonDown("LeftBumper") && !Input.GetKey(KeyCode.LeftShift))
+		#region Properties
+		public float Sensitivity
 		{
-			degree += 90;
+			get { return PlayerPrefs.GetFloat("CameraSensitivity", 2f); }
 		}
-		if (Input.GetButtonDown("RightBumper") && !Input.GetKey(KeyCode.LeftShift))
+		#endregion
+
+		void Awake()
 		{
-			degree -= 90;
+			playingAnimation = true;
 		}
 
-		// Quick corner looks (Shift-Q) to look Left
-		if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && Input.GetKey(KeyCode.Q))
+		void Start()
 		{
-			//Max look position
-			if (maxPeekLeftPosition != 0f)
+			centerFocus = GameObject.Find("CenterFocus").transform;
+        }
+
+		void Update()
+		{
+			if (playingAnimation)
 			{
-				degree += 1;
-				maxPeekLeftPosition -= 1;
+				if(Input.GetButtonDown("Submit"))
+				{
+					GetComponent<Animator>().speed = 1000;
+					GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().enabled = true;
+					playingAnimation = false;
+				}
+				else
+				{
+					GetComponent<Animator>().enabled = true;
+					GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().enabled = false;
+				}
+
+				if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Idle"))
+				{
+					GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().enabled = true;
+					playingAnimation = false;
+					transform.localPosition = Vector3.back * 15;
+					transform.localRotation = Quaternion.identity;
+				}
 			}
-		}
-		else
-		{
-			if (maxPeekLeftPosition != 25f)
+			else if(GetComponent<Animator>() != null)
 			{
-				degree -= 1;
-				maxPeekLeftPosition += 1;
+				GetComponent<Animator>().enabled = false;
+				doneWithAnimating = true;
 			}
-
-		}
-
-		// Quick corner looks (Shift-E) to look right
-		if ((Input.GetKey(KeyCode.LeftShift) || Input.GetKey(KeyCode.RightShift)) && Input.GetKey(KeyCode.E))
-		{
-			//Max look position
-			if (maxPeekRightPosition != 0f)
+			else if(doneWithAnimating)
 			{
-				degree -= 1;
-				maxPeekRightPosition -= 1;
-			}
-		}
-		else
-		{
-			if (maxPeekRightPosition != 25f)
+				transform.localPosition = Vector3.back * 15;
+				transform.localRotation = Quaternion.identity;
+				doneWithAnimating = false;
+            }
+
+			// Rotate controls
+			if ((Input.GetMouseButton(0) || Input.GetMouseButton(1)) && !playingAnimation)
 			{
-				degree += 1;
-				maxPeekRightPosition += 1;
+				degree += Input.GetAxis("Mouse X") * Sensitivity * 1.2f;
+			}
+			else if ((Input.GetAxis("RightJoystick") != 0) && !playingAnimation)
+			{
+				degree += Input.GetAxis("RightJoystick") * Sensitivity;
 			}
 
+			degree = degree % 360;
+
+			//Set rotation to next degree with a slight lerp
+			centerFocus.rotation = Quaternion.Slerp(centerFocus.rotation, Quaternion.Euler(verticalDegree, degree, 0), Time.deltaTime * cameraSpeed);
 		}
-
-		degree = degree % 360;
-
-		//Set rotation to next degree with a slight lerp
-		centerFocus.rotation = Quaternion.Slerp(centerFocus.rotation, Quaternion.Euler(verticalDegree, degree, 0), Time.deltaTime * cameraSpeed);
-
-		//if (Input.GetKeyDown(KeyCode.K))
-		//	verticalDegree = 10f;
-		//else if (Input.GetKeyUp(KeyCode.K))
-		//	verticalDegree = 30f;
 	}
 }

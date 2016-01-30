@@ -2,9 +2,9 @@
 using UnityEngine.UI;
 using System.Collections;
 using UnityStandardAssets.CrossPlatformInput;
-using LotsOfTowers.Actors;
+using Nimbi.Actors;
 
-namespace LotsOfTowers.Interaction
+namespace Nimbi.Interaction
 {
 	public class Binocular : MonoBehaviour
 	{
@@ -12,16 +12,13 @@ namespace LotsOfTowers.Interaction
 		public Image levelPreview;
 		bool isDisplayed = false;
 		RectTransform imageTransform;
-		Vector2 startSize;
-		// Use this for initialization
+
 		void Start()
 		{
 			levelPreview.gameObject.SetActive(false);
 			imageTransform = levelPreview.GetComponent<RectTransform>();
-			startSize = imageTransform.sizeDelta;
 		}
 
-		// Update is called once per frame
 		void Update()
 		{
             if (isDisplayed && (imageTransform.rect.width < Screen.width || imageTransform.rect.height < Screen.height))

@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace LotsOfTowers.Environment {
+namespace Nimbi.Environment {
 
-	public sealed class Battery : MonoBehaviour {
+	public class Battery : MonoBehaviour {
 		private float internalClock;
 		private float originalY;
 

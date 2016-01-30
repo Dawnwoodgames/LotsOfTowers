@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-namespace LotsOfTowers.Interaction
+namespace Nimbi.Interaction
 {
     public class AssociatedWheelCypher : MonoBehaviour
     {

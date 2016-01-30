@@ -1,27 +1,20 @@
 ﻿using UnityEngine;
 
-namespace LotsOfTowers.Environment {
-	[RequireComponent(typeof(MeshRenderer))]
-	public sealed class Buoy : MonoBehaviour {
-		private float internalClock;
-		private float originalY;
+namespace Nimbi.Environment {
+	public class Buoy : MonoBehaviour {
+        private float awakeY;
+        private float deviation;
 
-		public Color Color {
-			get { return GetComponent<MeshRenderer>().material.color; }
-		}
+        public bool red = false;
+        public float speed = 0.5f;
 
-		public bool Red {
-			get { return Color.r > 0.5f; }
-		}
+        public void Awake() {
+            this.awakeY = transform.localPosition.y;
+            this.deviation = Random.Range(0f, 0.5f);
+        }
 
-		public void Awake() {
-			this.internalClock = Random.Range(0f, 1f);
-			this.originalY = transform.position.y;
-		}
-
-		public void FixedUpdate() {
-			internalClock += Time.deltaTime;
-			transform.position = new Vector3(transform.position.x, Mathf.Sin(internalClock) * 0.25f + originalY, transform.position.z);
-		}
+        public void FixedUpdate() {
+            transform.localPosition = new Vector3(transform.localPosition.x, Mathf.PingPong(Time.timeSinceLevelLoad * speed + deviation, awakeY), transform.localPosition.z);
+        }
 	}
 }

@@ -5,8 +5,10 @@ using UnityEngine.EventSystems;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-namespace LotsOfTowers.UI {
-	public sealed class MenuController : MonoBehaviour {
+namespace Nimbi.UI
+{
+	public class MenuController : MonoBehaviour
+	{
 		private new CameraController camera;
 		private GameObject currentMenu;
 		private EventSystem eventSystem;
@@ -16,7 +18,8 @@ namespace LotsOfTowers.UI {
 		public ColorBlock colors = ColorBlock.defaultColorBlock;
 		public Font font = /*Resources.GetBuiltinResource<Font>("Arial.ttf")*/null;
 
-		public void Awake() {
+		public void Awake()
+		{
 			this.camera = FindObjectOfType<CameraController>();
 			this.eventSystem = FindObjectOfType<EventSystem>();
 			this.font = (font == null) ? Resources.GetBuiltinResource<Font>("Arial.ttf") : font;
@@ -25,59 +28,84 @@ namespace LotsOfTowers.UI {
 
 			GetComponentsInChildren<Selectable>().ToList().ForEach(s => s.colors = colors);
 
-			foreach (Text label in labels) {
+			foreach (Text label in labels)
+			{
 				label.font = font;
 				label.text = label.text.Localize();
 			}
 
-			if (eventSystem == null) {
+			if (eventSystem == null)
+			{
 				eventSystem = new GameObject("Event System", typeof(EventSystem)).GetComponent<EventSystem>();
 			}
 		}
 
-		public void SetActiveMenu(GameObject menu) {
-			if (menus.Contains(menu)) {
+		public void SetActiveMenu(GameObject menu)
+		{
+			if (menus.Contains(menu))
+			{
 				camera.mount = GameObject.Find(menu.name + "/Mounting Point").transform;
 				currentMenu = menu;
+                menus.ToList().ForEach(m => m.GetComponent<Canvas>().enabled = m.name == currentMenu.name );
 
-				if (eventSystem.currentSelectedGameObject == null || eventSystem.currentSelectedGameObject.transform.parent.gameObject != menu) {
-					try {
+				if (eventSystem.currentSelectedGameObject == null || eventSystem.currentSelectedGameObject.transform.parent.gameObject != menu)
+				{
+					try
+					{
 						eventSystem.SetSelectedGameObject(menu.GetComponentsInChildren<Selectable>().FirstOrDefault().gameObject);
-					} catch (NullReferenceException) { }
+					}
+					catch (NullReferenceException) { }
 				}
 			}
 		}
 
-		public void Start() {
-			if (camera != null) {
+		public void Start()
+		{
+			if (camera != null)
+			{
 				SetActiveMenu(menus.FirstOrDefault());
 			}
 		}
 
-		public void Update() {
-			if (currentMenu != null && eventSystem.currentSelectedGameObject == null) {
-				SetActiveMenu(menus.FirstOrDefault());
+		public void Update()
+		{
+			if (currentMenu != null && eventSystem.currentSelectedGameObject == null)
+			{
+				if (currentMenu.name != "Preferences")
+				{
+					SetActiveMenu(menus.FirstOrDefault());
+				}
 			}
 		}
 
 		// Event handles used by the menu
-		public void ChangeLanguage(string language) {
+		public void ChangeLanguage(string language)
+		{
 			GameManager.Instance.Language = language;
 			GameManager.Instance.LoadLevel(SceneManager.GetActiveScene().buildIndex);
 		}
 
-		public void LoadLevel(int index) {
+		public void LoadLevel(int index)
+		{
 			GameManager.Instance.LoadLevel(index);
 		}
 
-		public void ResetGameData() {
+		public void ResetGameData()
+		{
+            // Destroy sliders because they continuously alter game data
+            Destroy(FindObjectOfType<AudioSlider>());
+            Destroy(FindObjectOfType<CameraSlider>());
+            
+            // Destroy all game data (R.I.P.)
 			PlayerPrefs.DeleteAll();
-			PlayerPrefs.Save();
+
+            // Reset LanguageManager & reload level
 			GameManager.Instance.Language = "en";
-			GameManager.Instance.LoadLevel(SceneManager.GetActiveScene().buildIndex, true);
+            GameManager.Instance.Quit();
 		}
 
-		public void QuitApplication() {
+		public void QuitApplication()
+		{
 			GameManager.Instance.Quit();
 		}
 	}

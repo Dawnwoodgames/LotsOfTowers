@@ -1,9 +1,9 @@
 ﻿using UnityEngine;
 using UnityEngine.UI;
 
-namespace LotsOfTowers.UI {
+namespace Nimbi.UI {
 	[RequireComponent(typeof(Image))]
-	public sealed class UITooltip : MonoBehaviour {
+	public class UITooltip : MonoBehaviour {
 		private string axis;
 		private Image image;
 

@@ -3,13 +3,14 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace LotsOfTowers.Interaction.Triggers
+namespace Nimbi.Interaction.Triggers
 {
 	public class CombineFractures : MonoBehaviour
 	{
 		public FanSnapTrigger[] fracturesSnapped;
         public GameObject completeFan;
         public GameObject fractures;
+		public GameObject outline;
 
 		void Start()
 		{
@@ -32,6 +33,7 @@ namespace LotsOfTowers.Interaction.Triggers
                 fractures.SetActive(false);
                 completeFan.SetActive(true);
                 gameObject.SetActive(false);
+				outline.SetActive(false);
 			}
 		}
 	}

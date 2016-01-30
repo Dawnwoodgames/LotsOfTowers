@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
-using LotsOfTowers.Actors;
+using Nimbi.Actors;
 
-namespace LotsOfTowers.Interaction
+namespace Nimbi.Interaction
 {
 	[RequireComponent(typeof(Rigidbody))]
-	public sealed class MovableObject : MonoBehaviour
+	public class MovableObject : MonoBehaviour
 	{
 		private Player player;
 		private Rigidbody rigidBody;

@@ -3,8 +3,8 @@ using UnityEngine;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
 
-namespace LotsOfTowers.UI {
-	public sealed class LevelSelectController : MonoBehaviour {
+namespace Nimbi.UI {
+	public class LevelSelectController : MonoBehaviour {
 		private new CameraController camera;
 		private GameObject currentSelectedInput;
 		private GameObject[] chapters;
@@ -18,11 +18,19 @@ namespace LotsOfTowers.UI {
 			this.eventSystem = FindObjectOfType<EventSystem>();
 			this.menu = FindObjectOfType<MenuController>();
 			this.mounts = chapters.Select(c => c.transform.FindChild("Mounting Point").gameObject).ToArray();
+            
+            // Enable Menu, Intro & Tower 1
+            PlayerPrefs.SetInt("bIsLevelAvailable0", 1);
+            PlayerPrefs.SetInt("bIsLevelAvailable1", 1);
+            PlayerPrefs.SetInt("bIsLevelAvailable2", 1);
+            if (Debug.isDebugBuild) { // Enable all towers when in editor
+                PlayerPrefs.SetInt("bIsLevelAvailable3", 1);
+                PlayerPrefs.SetInt("bIsLevelAvailable4", 1);
+                PlayerPrefs.SetInt("bIsLevelAvailable5", 1);
+                PlayerPrefs.SetInt("bIsLevelAvailable6", 1);
+            }
 
-			PlayerPrefs.SetInt("bIsLevelAvailable0", 1);
-			PlayerPrefs.SetInt("bIsLevelAvailable1", 1);
-			PlayerPrefs.SetInt("bIsLevelAvailable2", 1);
-			int levelIndex = 1;
+            int levelIndex = 1;
 
 			foreach (Button button in GetComponentsInChildren<Button>()) {
 				// Assign functions to each button in the menu
@@ -31,6 +39,10 @@ namespace LotsOfTowers.UI {
 				} else {
 					button.interactable = false;
 				}
+
+                if (levelIndex == 1) {
+                    levelIndex++;
+                }
 
 				levelIndex++;
 			}

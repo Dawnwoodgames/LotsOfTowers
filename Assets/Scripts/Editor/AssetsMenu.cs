@@ -1,8 +1,8 @@
-﻿using LotsOfTowers.Actors;
+﻿using Nimbi.Actors;
 using UnityEditor;
 using UnityEngine;
 
-namespace LotsOfTowers.Unity {
+namespace Nimbi.Unity {
 	public static class AssetsMenu {
 
 		[MenuItem("Assets/Create/Onesie")]

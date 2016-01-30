@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace LotsOfTowers.Interaction.Triggers
+namespace Nimbi.Interaction.Triggers
 {
 	public class FanSnapTrigger : MonoBehaviour
 	{
@@ -9,7 +9,7 @@ namespace LotsOfTowers.Interaction.Triggers
 
 		private void OnTriggerEnter(Collider coll)
 		{
-			if (coll.name == gameObject.name.Replace("Trigger", ""))
+			if (coll.name == gameObject.name.Replace("Trigger", "") && !coll.GetComponent<LiftingObject>().pickedUp)
 			{
 				try
 				{
@@ -19,6 +19,12 @@ namespace LotsOfTowers.Interaction.Triggers
 					coll.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
 					coll.GetComponent<LiftingObject>().enabled = false;
 					isPlaced = true;
+
+                    // Remove that outlining shitzz
+                    if(coll.GetComponent<InteractableObjectOutline>())
+                    {
+                        Destroy(coll.GetComponent<InteractableObjectOutline>());
+                    }
                 }
 				catch (System.Exception)
 				{

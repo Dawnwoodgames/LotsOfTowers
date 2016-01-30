@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Collections;
 using System.Linq;
 
-namespace LotsOfTowers.Interaction
+namespace Nimbi.Interaction
 {
     public class PuzzleCube : MonoBehaviour
     {
@@ -26,7 +26,7 @@ namespace LotsOfTowers.Interaction
 				if (GetComponentsInChildren<Rigidbody>().All(ri => ri.isKinematic == true) && triggerBrickPuzzle.GetComponent<BoxCollider>().enabled == false)
 				{
 					snapArea.SetActive(false);
-					brickPuzzleComplete = true;
+                    brickPuzzleComplete = true;
 					ActivateFloatingFloor();
                 }
 			}
@@ -47,17 +47,17 @@ namespace LotsOfTowers.Interaction
 				col.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeRotation;
 			}
 		}
-
-
+        
 		private void ActivateFloatingFloor()
 		{
 			foreach (Transform child in transform)
 			{
 				child.gameObject.GetComponent<Rigidbody>().isKinematic = false;
 				child.gameObject.GetComponent<Rigidbody>().constraints = RigidbodyConstraints.FreezeAll;
-			}
+                child.gameObject.GetComponent<InteractableObjectOutline>().enabled = false;
+            }
 
-			Rigidbody ri = GetComponent<Rigidbody>();
+            Rigidbody ri = GetComponent<Rigidbody>();
 			GetComponent<BoxCollider>().enabled = true;
 			ri.isKinematic = false;
 			ri.useGravity = true;

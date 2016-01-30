@@ -1,8 +1,8 @@
 ﻿using UnityEngine;
 
-namespace LotsOfTowers.UI {
+namespace Nimbi.UI {
 	[RequireComponent(typeof(RectTransform))]
-	public sealed class UIComponent : MonoBehaviour {
+	public class UIComponent : MonoBehaviour {
 		private Canvas canvas;
 		private float originHeight, originWidth;
 		private RectTransform rectTransform;

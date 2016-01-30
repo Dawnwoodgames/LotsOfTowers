@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace LotsOfTowers.Framework
+namespace Nimbi.Framework
 {
 	public enum State
 	{
@@ -19,7 +19,9 @@ namespace LotsOfTowers.Framework
         Forward,
         Backward,
         Left,
-        Right
+        Right,
+		Up,
+		Down
     }
 
     public enum TypeCollider
@@ -27,4 +29,17 @@ namespace LotsOfTowers.Framework
         Player,
         Elephant
     }
+
+	public enum TriggerType
+	{
+		Start,
+		End
+	}
+
+    public enum StartOnTrigger
+    {
+        Enter,
+        Exit
+    }
+
 }

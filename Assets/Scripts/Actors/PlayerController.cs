@@ -1,26 +1,27 @@
-﻿using LotsOfTowers.Framework;
-using System.Collections.Generic;
+﻿using Nimbi.UI;
+using Nimbi.VFX;
 using UnityEngine;
 using UnityStandardAssets.CrossPlatformInput;
 
-namespace LotsOfTowers.Actors
+namespace Nimbi.Actors
 {
 	//We need the following components to make the player work
 	[RequireComponent(typeof(Player))]
 	[RequireComponent(typeof(Rigidbody))]
+    [RequireComponent(typeof(TrailRenderer))]
 	public class PlayerController : MonoBehaviour
 	{
-		private static readonly float InputDelay = 0.5f;
+		private static readonly float InputDelay = 1;
 
 		//The actual player with all the movement properties
-		private Player player;
-		private Transform mainCamera;
 		private BoxCollider box;
 		private CapsuleCollider capsule;
         private HeadsUpDisplayScript hudUi;
+        private Transform mainCamera;
+        private Player player;
 
-		//Moving variables
-		private Vector3 movement;
+        //Moving variables
+        private Vector3 movement;
 		private float turnAmount;
 		private float forwardAmount;
 		private float movingTurnSpeed = 360;
@@ -31,19 +32,23 @@ namespace LotsOfTowers.Actors
 
         private bool canMove = true;
 		private bool moving;
+        private float abilityCooldown;
+        private OnesieSwitch switchAnimation;
 
-		private void Awake() {
+        private void Awake() {
 			this.mainCamera = Camera.main.transform;
 			this.player = GetComponent<Player>();
+            this.switchAnimation = FindObjectOfType<OnesieSwitch>();
         }
 
 		private void FixedUpdate()
 		{
 			//Get Input controls
-			float h = CrossPlatformInputManager.GetAxis("Horizontal");
-			float v = CrossPlatformInputManager.GetAxis("Vertical");
+			float h = CrossPlatformInputManager.GetAxisRaw("Horizontal") == 0 ? 0 : CrossPlatformInputManager.GetAxis("Horizontal");
+			float v = CrossPlatformInputManager.GetAxisRaw("Vertical") == 0 ? 0 : CrossPlatformInputManager.GetAxis("Vertical");
 
-			bool onesie1 = CrossPlatformInputManager.GetButton("Onesie 1");
+
+            bool onesie1 = CrossPlatformInputManager.GetButton("Onesie 1");
 			bool onesie2 = CrossPlatformInputManager.GetButton("Onesie 2");
 			bool onesie3 = CrossPlatformInputManager.GetButton("Onesie 3");
 			bool submit = CrossPlatformInputManager.GetButton("Submit");
@@ -52,11 +57,21 @@ namespace LotsOfTowers.Actors
 				switchDelay -= Time.smoothDeltaTime;
 			}
 
-			if ((onesie1 || onesie2 || onesie3) && switchDelay <= 0)
-			{
-				//Switch to the selected onesie
-				player.SwitchOnesie(onesie1 ? 0 : (onesie2 ? 1 : 2));
-                switchDelay = InputDelay;
+            if(player.PlayerCanSwitchOnesie)
+            {
+                if ((onesie1 || onesie2 || onesie3) && switchDelay <= 0)
+                {
+                    int input = onesie1 ? 0 : (onesie2 ? 1 : 2);
+
+                    if ((input == 0 && player.HasOnesie(OnesieType.Elephant)) ||
+                        (input == 1 && player.HasOnesie(OnesieType.Hamster)) ||
+                        (input == 2 && player.HasOnesie(OnesieType.Dragon)))
+                    {
+                        //Switch to the selected onesie
+                        switchAnimation.Play(input);
+                        switchDelay = InputDelay;
+                    }
+                }
             }
 
             if(canMove)
@@ -66,16 +81,24 @@ namespace LotsOfTowers.Actors
                 Move(movement);
             }
 
-			if (removeChargeOnNextFrame) {
+			if (removeChargeOnNextFrame)
+            {
 				player.StaticCharge = 0;
 				removeChargeOnNextFrame = false;
 			}
 
-			if (submit) {
-				// Remove charge in next frame to avoid it being removed before it can be used
+			if (submit)
+            {
+                // Remove charge in next frame to avoid it being removed before it can be used
+                // Use onesie special ability if it has one
+                if (abilityCooldown <= 0) {
+                    abilityCooldown = 0.65f;
+                    player.UseOnesieSpecialAbility();
+                }
 				removeChargeOnNextFrame = true;
 			}
 
+            abilityCooldown -= Time.deltaTime;
 			player.Animator.SetBool("Moving", h != 0 || v != 0);
         }
 
@@ -147,5 +170,9 @@ namespace LotsOfTowers.Actors
             }
         }
 
+        public bool GetMovement()
+        {
+            return canMove;
+        }
 	}
 }

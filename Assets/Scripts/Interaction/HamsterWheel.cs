@@ -1,20 +1,22 @@
 ﻿using UnityEngine;
+using Nimbi.Actors;
 using System.Collections;
 
-namespace LotsOfTowers.Interaction
+namespace Nimbi.Interaction
 {
 	public class HamsterWheel : MonoBehaviour
 	{
 		public GameObject waterToPump;
 		public GameObject newWater;
+		public float waterHeight = 0.315f;
 		private float newHeight = 0f;
 		private Vector3 defaultPosition;
 		private bool pumping;
 		public float pumpDelay = 1.0f;
 		private float nextPump;
+        private int waterAmount = 0;
 		public GameObject wheel;
-		private GameObject player;
-        private GameObject nut;
+		private GameObject nut;
 
 		void Start()
 		{
@@ -27,15 +29,17 @@ namespace LotsOfTowers.Interaction
 		{
 			if (nextPump < Time.time && pumping && waterToPump.GetComponent<HamsterWater>().spitcount > 0)
 			{
-				newHeight += 0.63f;
+				newHeight += waterHeight;
 				nextPump = Time.time + pumpDelay;
 				waterToPump.GetComponent<HamsterWater>().spitcount -= 1;
+                waterAmount++;
 
-                nut.transform.position = new Vector3(nut.transform.position.x, nut.transform.position.y + 1.29f, nut.transform.position.z);
-                if (waterToPump.GetComponent<HamsterWater>().spitcount <= 0)
+                nut.transform.position = new Vector3(nut.transform.position.x, nut.transform.position.y + 0.645f, nut.transform.position.z);
+                if (waterAmount == 4)
                 {
                     nut.GetComponent<Rigidbody>().useGravity = true;
-                    nut.GetComponent<Rigidbody>().AddForce(new Vector3(-1,0,-.5f) * 4f, ForceMode.Impulse);
+					nut.GetComponent<Rigidbody>().isKinematic = false;
+					nut.GetComponent<Rigidbody>().AddForce(new Vector3(-1,0,-.5f) * 4f, ForceMode.Impulse);
                 }
 			}
 			newWater.transform.localScale = Vector3.MoveTowards(newWater.transform.localScale, new Vector3(newWater.transform.localScale.x, newHeight, newWater.transform.localScale.z), Time.deltaTime * 2);
@@ -44,18 +48,17 @@ namespace LotsOfTowers.Interaction
 				wheel.transform.Rotate(new Vector3(5f,0,0));
 		}
 
-		void OnTriggerEnter(Collider other)
+		void OnTriggerEnter(Collider coll)
 		{
-			if (other.tag == "Player")
+			if (coll.tag == "Player" && coll.GetComponent<Player>().Onesie.type == OnesieType.Hamster)
 			{
-				player = other.gameObject;
 				pumping = true;
 			}
 		}
 
-		void OnTriggerExit(Collider other)
+		void OnTriggerExit(Collider coll)
 		{
-			if (other.tag == "Player")
+			if (coll.tag == "Player")
 				pumping = false;
 		}
 	}

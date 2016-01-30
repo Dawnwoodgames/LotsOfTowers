@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 
-namespace LotsOfTowers.Interaction.Triggers
+namespace Nimbi.Interaction.Triggers
 {
 	public class BrickPuzzleTrigger : MonoBehaviour
 	{
@@ -15,7 +15,7 @@ namespace LotsOfTowers.Interaction.Triggers
 			foreach (Transform child in floatingFloor.transform)
 			{
 				fractures.Add(child);
-			}
+            }
 		}
 		void OnTriggerEnter(Collider coll)
 		{
@@ -32,7 +32,8 @@ namespace LotsOfTowers.Interaction.Triggers
 					childRigid.AddForce(child.forward * 291, ForceMode.Acceleration);
 
 					childRigid.useGravity = true;
-				}
+                    child.gameObject.GetComponent<InteractableObjectOutline>().enabled = true;
+                }
 
 				//Disable trigger to add force to fracments
 				GetComponent<BoxCollider>().enabled = false;

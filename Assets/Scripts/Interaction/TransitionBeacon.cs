@@ -1,13 +1,13 @@
 ﻿using UnityEngine;
 
-namespace LotsOfTowers.Interaction {
-	public sealed class TransitionBeacon : MonoBehaviour {
+namespace Nimbi.Interaction {
+	public class TransitionBeacon : MonoBehaviour {
 
 		public int levelIndex;
 
 		public void OnTriggerEnter(Collider coll) {
 			if (coll.tag == "Player") {
-				GameManager.Instance.LoadLevel(levelIndex, true);
+				GameManager.Instance.LoadLevel(levelIndex);
 			}
 		}
 	}

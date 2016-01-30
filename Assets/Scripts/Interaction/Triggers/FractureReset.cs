@@ -2,7 +2,7 @@
 using System.Collections;
 using System;
 
-namespace LotsOfTowers.Interaction.Triggers
+namespace Nimbi.Interaction.Triggers
 {
 	public class FractureReset : MonoBehaviour
 	{

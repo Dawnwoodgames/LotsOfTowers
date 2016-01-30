@@ -1,48 +1,62 @@
-﻿using LotsOfTowers.Actors;
+﻿using Nimbi.Actors;
 using UnityEngine;
 
-namespace LotsOfTowers.Environment {
-	public sealed class Water : MonoBehaviour {
-		private RigidbodyConstraints driftConstraints, sinkConstraints;
-		private Player player;
-		private Rigidbody playerRigidbody;
-		private float surfaceHeight;
+namespace Nimbi.Environment {
+	public class Water : MonoBehaviour {
 
-		public void Awake() {
-			this.driftConstraints = RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
-			this.sinkConstraints = RigidbodyConstraints.FreezeRotation;
-			this.surfaceHeight = (transform.position.y + transform.localScale.y / 2) - 0.75f;
-		}
+        private Player player;
+        private Rigidbody playerRigidbody;
+        private RigidbodyConstraints swimConstraints;
+        private bool playerIsElephant, playerSwimming;
+        private float playerPositionY;
+        public bool lowWater = false;
 
-		public void FixedUpdate() {
-			if (player != null) {
-				if (player.Onesie.isHeavy) {
-					// Player is heavy, sink to bottom
-					playerRigidbody.constraints = sinkConstraints;
-					playerRigidbody.useGravity = true;
-				} else {
-					// Player isn't heavy, drift on surface
-					player.transform.position = Vector3.Lerp(player.transform.position,
-						new Vector3(player.transform.position.x, surfaceHeight, player.transform.position.z), 0.05f);
-					playerRigidbody.constraints = driftConstraints;
-					playerRigidbody.useGravity = false;
-				}
-			}
-		}
+        void Start()
+        {
+            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
+            playerRigidbody = player.GetComponent<Rigidbody>();
 
-		public void OnTriggerEnter(Collider coll) {
-			if (coll.gameObject.tag == "Player") {
-				player = coll.GetComponent<Player>();
-				playerRigidbody = coll.GetComponent<Rigidbody>();
-			}
-		}
+            swimConstraints = RigidbodyConstraints.FreezeRotation;
+        }
 
-		public void OnTriggerExit(Collider coll) {
-			if (coll.gameObject.tag == "Player") {
-				player = null;
-				playerRigidbody.constraints = sinkConstraints;
-				playerRigidbody.useGravity = true;
-			}
+		public void Update()
+        {
+            if (playerSwimming)
+            {
+                if (!lowWater)
+                {
+                    swimConstraints = (playerIsElephant) ? RigidbodyConstraints.FreezeRotation : RigidbodyConstraints.FreezePositionY | RigidbodyConstraints.FreezeRotation;
+                    if (!playerIsElephant)
+                        player.transform.position = new Vector3(player.transform.position.x, playerPositionY - (GetComponent<Collider>().bounds.extents.y / 2) + .3f, player.transform.position.z);
+                }
+                else
+                    swimConstraints = RigidbodyConstraints.FreezeRotation;
+            }
+            else
+                swimConstraints = RigidbodyConstraints.FreezeRotation;
+        }
+
+        private void OnTriggerEnter(Collider coll)
+        {
+			if (coll.tag == "Player")
+            {
+                playerSwimming = true;
+                playerPositionY = player.transform.position.y;
+            }
+        }
+
+        private void OnTriggerStay(Collider coll)
+        {
+            playerIsElephant = (player.Onesie.type == OnesieType.Elephant) ? true : false;
+            playerRigidbody.constraints = swimConstraints;
+        }
+
+		private void OnTriggerExit(Collider coll)
+        {
+			if (coll.tag == "Player")
+            {
+                playerSwimming = false;
+            }
 		}
 	}
 }

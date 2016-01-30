@@ -1,9 +1,9 @@
-﻿using LotsOfTowers.Actors;
+﻿using Nimbi.Actors;
 using UnityEditor;
 using UnityEngine;
 
-namespace LotsOfTowers.Unity {
-	[CustomEditor(typeof(Player))] public sealed class ActorHelper : Editor {
+namespace Nimbi.Unity {
+	[CustomEditor(typeof(Player))] public class ActorHelper : Editor {
 
 		public override void OnInspectorGUI()
 		{

@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-namespace LotsOfTowers.Interaction
+namespace Nimbi.Interaction
 {
     [RequireComponent(typeof(BoxCollider))]
     public class ResetCarpet : MonoBehaviour

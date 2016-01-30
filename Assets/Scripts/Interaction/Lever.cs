@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace LotsOfTowers.Interaction
+namespace Nimbi.Interaction
 {
 	public class Lever : MonoBehaviour
 	{

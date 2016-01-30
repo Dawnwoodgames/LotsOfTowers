@@ -1,10 +1,10 @@
 ﻿using UnityEngine;
 
-namespace LotsOfTowers.Actors {
+namespace Nimbi.Actors {
 	[RequireComponent(typeof(Animator))]
-	public sealed class Skeleton : MonoBehaviour {
+	public class Skeleton : MonoBehaviour {
 		private Animator animator;
-		private SkinnedMeshRenderer renderer;
+		private new SkinnedMeshRenderer renderer;
 
 		public Animator Animator {
 			get { return animator; }
@@ -15,8 +15,8 @@ namespace LotsOfTowers.Actors {
 		}
 
 		public void Awake() {
-			this.animator = GetComponent<Animator>();
-			this.renderer = GetComponentInChildren<SkinnedMeshRenderer>();
+			animator = GetComponent<Animator>();
+			renderer = GetComponentInChildren<SkinnedMeshRenderer>();
 		}
 	}
 }

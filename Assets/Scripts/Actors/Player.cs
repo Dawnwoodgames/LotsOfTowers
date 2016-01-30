@@ -1,130 +1,182 @@
-﻿using System;
+﻿using Nimbi.Audio;
+using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 
-using LotsOfTowers.Audio;
+namespace Nimbi.Actors {
+    public class Player : MonoBehaviour {
+        private float charge;
+        private Onesie currentOnesie;
+        private Skeleton currentSkeleton;
+        private Onesie defaultOnesie;
+        private Onesie[] onesies;
+        private List<GameObject> particleSystems;
+        private List<Skeleton> skeletons;
 
-using LotsOfTowers.Framework;
+        public bool hasDragonOnesie;
+        public bool hasElephantOnesie;
+        public bool hasHamsterOnesie;
 
-namespace LotsOfTowers.Actors {
-	public sealed class Player : MonoBehaviour {
-		private float charge;
-		private Onesie currentOnesie;
-		private Skeleton currentSkeleton;
-		private Onesie defaultOnesie;
-		private Onesie[] onesies;
-		private List<GameObject> particleSystems;
-		private List<Skeleton> skeletons;
+        public bool PlayerCanSwitchOnesie { get; set; }
 
-        private AudioManager audioManager;
+        public Animator Animator
+        {
+            get { return currentSkeleton.GetComponent<Animator>(); }
+        }
 
-		public Animator Animator {
-			get { return currentSkeleton.GetComponent<Animator>(); }
-		}
+        public bool HoldingWater
+        {
+            get;
+            set;
+        }
 
-		public bool HasFreeSlots {
-			get { return onesies[0] == null || onesies[1] == null || onesies[2] == null; }
-		}
+        public Onesie Onesie
+        {
+            get { return currentOnesie == null ? defaultOnesie : currentOnesie; }
+            set { currentOnesie = onesies.Contains(value) ? value : currentOnesie; }
+        }
 
-		public bool HoldingWater {
-			get;
-			set;
-		}
+        public Onesie[] Onesies
+        {
+            get { return onesies; }
+        }
 
-		public Onesie Onesie {
-			get { return currentOnesie == null ? defaultOnesie : currentOnesie; }
-			set { currentOnesie = onesies.Contains(value) ? value : currentOnesie; }
-		}
+        public float StaticCharge
+        {
+            get { return charge; }
+            set { charge = Mathf.Max(0, Mathf.Min(value, 100)); }
+        }
 
-		public Onesie[] Onesies {
-			get { return onesies; }
-		}
+        public void AddOnesie(Onesie onesie)
+        {
+            switch (onesie.type) {
+                case OnesieType.Dragon:
+                    onesies[2] = onesie;
+                    break;
 
-		public float StaticCharge {
-			get { return charge; }
-			set { charge = Mathf.Max(0, Mathf.Min(value, 100)); }
-		}
+                case OnesieType.Elephant:
+                    onesies[0] = onesie;
+                    break;
 
-		public Onesie AddOnesie(int index, Onesie onesie) {
-			if (index > -1 && index < 3 && onesies.Where(o => o.name == onesie.name).Count() == 0) {
-				Onesie replacedOnesie = onesies.ElementAtOrDefault(index);
+                case OnesieType.Hamster:
+                    onesies[1] = onesie;
+                    break;
 
-				currentOnesie = currentOnesie == replacedOnesie ? onesie : currentOnesie;
-				onesies[index] = onesie;
+                default:
+                    break;
+            }
+        }
 
-				return replacedOnesie;
-			}
+        public void Awake()
+        {
+            PlayerCanSwitchOnesie = true;
+            defaultOnesie = Resources.Load<Onesie>("OnesieDefault");
+            onesies = new Onesie[3];
+            particleSystems = GameObject.Find("Nimbi/VFX").transform.Cast<Transform>()
+                .Where(t => t.GetComponent<ParticleSystem>() != null)
+                .Select(t => t.gameObject).ToList();
+            skeletons = GetComponentsInChildren<Skeleton>().ToList();
+        }
 
-			return null;
-		}
+        public bool HasOnesie(OnesieType type)
+        {
+            if (onesies == null)
+            {
+                return false;
+            }
 
-		public bool AddOnesieToFirstFreeSlot(Onesie onesie) {
-			for (int i = 0; i < onesies.Length; i++) {
-				if (onesies[i] != null) {
-					continue;
-				}
-				onesies[i] = onesie;
+            foreach (Onesie onesie in onesies)
+            {
+                if (onesie != null && onesie.type == type)
+                {
+                    return true;
+                }
+            }
+            return false;
+        }
 
-				return true;
-			}
+        public void ResetRenderers()
+        {
+            currentSkeleton.Renderer.enabled = true;
+            skeletons.Where(s => s != currentSkeleton).ToList().ForEach(s => s.Renderer.enabled = false);
+        }
 
-			return false;
-		}
+        public void SetEffectActive(string name, bool active) {
+            particleSystems.Single(g => g.name == name).SetActive(active);
+        }
 
-		public void Awake() {
-			this.defaultOnesie = Resources.Load<Onesie>("OnesieDefault");
-			this.onesies = new Onesie[3];
-			this.particleSystems = GameObject.Find("Nimbi/VFX").transform.Cast<Transform>()
-				.Where(t => t.GetComponent<ParticleSystem>() != null)
-				.Select(t => t.gameObject).ToList();
-			this.skeletons = GetComponentsInChildren<Skeleton>().ToList();
-            audioManager = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioManager>();
-		}
+        public IEnumerator SetEffectActiveForDuration(string name, float duration)
+        {
+            ParticleSystem effect = particleSystems.Single(g => g.name == name).GetComponent<ParticleSystem>();
+            float t = 0;
 
-		public void ResetRenderers() {
-			currentSkeleton.Renderer.enabled = true;
-			skeletons.Where(s => s != currentSkeleton).ToList().ForEach(s => s.Renderer.enabled = false);
-		}
+            effect.gameObject.SetActive(true);
+            effect.loop = true;
+            effect.Play();
 
-		public void SetEffectActive(string name, bool active) {
-			particleSystems.Single(g => g.name == name).SetActive(active);
-		}
+            while (t < duration) {
+                t += Time.deltaTime;
+                yield return null;
+            }
 
-		private void SetSkeleton(string name) {
-			currentSkeleton = skeletons.Single(s => s.name == name);
-			currentSkeleton.Renderer.enabled = true;
-			skeletons.Where(s => s != currentSkeleton).ToList().ForEach(s => s.Renderer.enabled = false);
-		}
+            effect.gameObject.SetActive(false);
+            effect.loop = false;
+            effect.Stop();
+        }
 
-		public void Start() {
-			Physics.gravity = new Vector3(0, -35, 0);
-			SetSkeleton("Default");
-		}
+        private void SetSkeleton(string name)
+        {
+            currentSkeleton = skeletons.Single(s => s.name == "Onesie" + name);
+            currentSkeleton.GetComponent<Animator>().SetTrigger("To_" + name);
+            currentSkeleton.Renderer.enabled = true;
+            skeletons.Where(s => s != currentSkeleton).ToList().ForEach(s => s.Renderer.enabled = false);
+        }
 
-		public void SwitchOnesie(int index) {
-			if (index > -1 && index < 3 && onesies[index] != null) {
-				try {
-					currentOnesie = (currentOnesie == onesies[index]) ? defaultOnesie : onesies[index];
+        public void Start()
+        {
+            Physics.gravity = new Vector3(0, -35, 0);
+            SetSkeleton("Default");
+
+            if (hasDragonOnesie) {
+                AddOnesie(Resources.Load<Onesie>("OnesieDragon"));
+            }
+            if (hasElephantOnesie) {
+                AddOnesie(Resources.Load<Onesie>("OnesieElephant"));
+            }
+            if (hasHamsterOnesie) {
+                AddOnesie(Resources.Load<Onesie>("OnesieHamster"));
+            }
+        }
+
+        public void SwitchOnesie(int index)
+        {
+            if (index > -1 && index < 3 && onesies[index] != null)
+            {
+                try
+                {
+                    currentOnesie = (currentOnesie == onesies[index]) ? defaultOnesie : onesies[index];
+                    AudioManager.Instance.PlaySoundeffect(AudioManager.Instance.GetOnesieSwitchSound(currentOnesie.name));
                     SetSkeleton(currentOnesie.name.Replace("Onesie", ""));
-
-                    // Ugly ass code, fix soon. (c) Axel
-                    if (currentOnesie.name.Replace("Onesie", "") == "Elephant")
-                    {
-                        audioManager.PlaySoundeffect(audioManager.onesieSwitchElephantSound);
-                    }
+                    if (currentOnesie.type == OnesieType.Hamster)
+                        GetComponent<TrailRenderer>().enabled = true;
                     else
-                    {
-                        audioManager.PlaySoundeffect(audioManager.onesieSwitchDefaultSound);
-                    }
+                        GetComponent<TrailRenderer>().enabled = false;
+                }
+                catch (Exception ex)
+                {
+                    Debug.Log("Error in Player.cs: " + ex.Message + ", \r\nTrace: " + ex.StackTrace);
+                    SetSkeleton("Default");
+                }
+            }
+        }
 
-				} catch (Exception) { SetSkeleton("Default"); }
-			}
-		}
-
-		public void Update() {
-			SetEffectActive("Drops", HoldingWater);
-			SetEffectActive("Sparks", StaticCharge > 90);
-		}
-	}
+        public void UseOnesieSpecialAbility()
+        {
+            if (Onesie.type == OnesieType.Dragon) {
+                StartCoroutine(SetEffectActiveForDuration("Flame Breath", 0.5f));
+            }
+        }
+    }
 }

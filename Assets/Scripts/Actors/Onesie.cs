@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-namespace LotsOfTowers.Actors {
+namespace Nimbi.Actors {
 	public class Onesie : ScriptableObject {
 
 		/*
@@ -19,6 +19,7 @@ namespace LotsOfTowers.Actors {
 	public enum OnesieType {
 		Human,
 
+        Dragon,
 		Elephant,
 		Hamster
 	}
