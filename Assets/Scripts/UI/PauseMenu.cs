@@ -8,6 +8,7 @@ namespace Nimbi.UI {
         private Canvas canvas;
         private EventSystem eventSystem;
         private bool wasCancelPressed;
+		private bool wasDisabled;
 
         public void Awake() {
             GameManager.Instance.CursorEnabled = false;
@@ -20,6 +21,7 @@ namespace Nimbi.UI {
             canvas.enabled = false;
             eventSystem.SetSelectedGameObject(null);
             Time.timeScale = 1;
+			wasDisabled = true;
         }
 
         public void Enable() {
@@ -44,6 +46,10 @@ namespace Nimbi.UI {
                 // Key down
                 wasCancelPressed = true;
             }
+			if (wasDisabled) {
+				GameManager.Instance.CursorEnabled = false;
+				wasDisabled = false;
+			}
         }
     }
 }
