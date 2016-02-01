@@ -8,7 +8,7 @@ namespace Nimbi.Interaction
     public class CaveGateTrigger : MonoBehaviour
     {
         private Player player;
-        private bool inTrigger;
+        private bool inTrigger = false;
         public ScaryStatue scaryStatue;
         private bool isPushed;
 
@@ -18,9 +18,6 @@ namespace Nimbi.Interaction
         void Start()
         {
             player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
-            inTrigger = false;
-
-            
         }
 
         void Update()
@@ -28,7 +25,7 @@ namespace Nimbi.Interaction
             if (inTrigger && scaryStatue.isScary)
             {
                 isPushed = true;
-                    player.GetComponent<Rigidbody>().AddForce(Vector3.right * pushBackRate, ForceMode.VelocityChange);
+                player.GetComponent<Rigidbody>().AddForce(Vector3.right * pushBackRate, ForceMode.VelocityChange);
             }
         }
 
@@ -40,8 +37,7 @@ namespace Nimbi.Interaction
                 inTrigger = true;
             }
         }
-
-
+        
         //If Nimbi gets Pushed back!
         private void OnTriggerExit()
         {

@@ -13,15 +13,10 @@ namespace Nimbi.Interaction.Triggers
 
         //Fields for Scary Statue
         public ScaryStatue scaryStatue;
-        private bool inTrigger;
-
-
+        private bool inTrigger = false;
+        
         void Start() {
-  
-           
-            inTrigger = false;
             flyPosition = transform.position;
-
         }
 
         void FixedUpdate() {
