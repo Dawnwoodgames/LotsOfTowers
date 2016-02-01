@@ -48,6 +48,7 @@ namespace Nimbi.Interaction.Triggers
 
             if(col.name == PushOffObject.name)
             {
+                Destroy(GameObject.Find("DeathTrigger"));
                 StartCoroutine(TransiteToTowerFive(1f));
             }
            
