@@ -172,7 +172,9 @@ namespace Nimbi {
             if (index != 0 && index != 1) {
                 loadingScreen.sprite = loadingSpriteB;
 
-                Camera.main.GetComponent<MainCameraScript>().playingAnimation = false;
+				try {
+                	Camera.main.GetComponent<MainCameraScript>().playingAnimation = false;
+				} catch (Exception) { }
 
                 while (Input.GetAxis("Submit") == 0) {
                     yield return null;
