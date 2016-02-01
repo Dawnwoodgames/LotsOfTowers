@@ -36,7 +36,7 @@ namespace Nimbi.CameraControl
 		{
 			if (playingAnimation)
 			{
-				if(Input.GetButtonDown("Submit"))
+				if(Input.GetButtonDown("Submit") && GetComponent<Animator>().enabled == true)
 				{
 					GetComponent<Animator>().speed = 1000;
 					GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().enabled = true;
@@ -44,7 +44,6 @@ namespace Nimbi.CameraControl
 				}
 				else
 				{
-					GetComponent<Animator>().enabled = true;
 					GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().enabled = false;
 				}
 
