@@ -17,6 +17,7 @@ namespace Nimbi.Interaction.Triggers
         public HingedDoor door;
         public GameObject waterval2;
         public Fans fan;
+        public GameObject fullrope;
 
         void Start()
         {
@@ -34,6 +35,8 @@ namespace Nimbi.Interaction.Triggers
                 door.Open();
                 waterval.SetActive(true);
                 fan.Restart();
+                rope.transform.parent = transform;
+                Destroy(fullrope);
             }
             else if (active && heightIncrease + startPosition.y > stopje.transform.position.y)
             {
