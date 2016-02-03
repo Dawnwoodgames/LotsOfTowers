@@ -212,15 +212,6 @@ namespace Nimbi
 				}
 
 				loadingScreen.enabled = false;
-
-				try
-				{
-					GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Animator>().enabled = true;
-				}
-				catch (Exception)
-				{
-
-				}
 			}
 
 			yield return FadeInCoroutine();
