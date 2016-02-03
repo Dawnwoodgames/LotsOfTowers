@@ -8,15 +8,18 @@ namespace Nimbi.Interaction.Triggers
 
         public float horizonSpeed;
         public float verticalSpeed;
+        public Transform[] walkspots;
         public float aplitude;
-        private Vector3 flyPosition;
+
+        private bool isWalking;
+        private int nextPosition;
 
         //Fields for Scary Statue
         public ScaryStatue scaryStatue;
         private bool inTrigger = false;
         
         void Start() {
-            flyPosition = transform.position;
+            
         }
 
         void FixedUpdate() {
@@ -27,10 +30,10 @@ namespace Nimbi.Interaction.Triggers
         {
             if (!scaryStatue.isScary)
             {
-                //Check if Statue is still scary!
-                flyPosition.x += horizonSpeed;
-                flyPosition.y = Mathf.Sin(Time.realtimeSinceStartup * verticalSpeed) * aplitude;
-                transform.position = flyPosition;
+                if (isWalking)
+                {
+
+                }
             }
         }
 

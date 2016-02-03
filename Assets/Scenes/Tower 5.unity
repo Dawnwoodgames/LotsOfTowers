@@ -876,8 +876,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 201939680}
   m_LocalRotation: {x: 0, y: 0.50000006, z: 0, w: 0.8660254}
-  m_LocalPosition: {x: 40.72, y: 1.69, z: 10.73}
-  m_LocalScale: {x: 20, y: 20, z: 20}
+  m_LocalPosition: {x: 39.23, y: 1.25, z: 11.27}
+  m_LocalScale: {x: 10, y: 10, z: 10}
   m_Children: []
   m_Father: {fileID: 886475586}
   m_RootOrder: 0
@@ -1444,6 +1444,33 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 164a8b93614e4b8468f949b6379be751, type: 3}
   m_IsPrefabParent: 0
+--- !u!1 &498017062
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 498017063}
+  m_Layer: 0
+  m_Name: Walkspot5
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &498017063
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 498017062}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 15.83, y: 5.54, z: 4.66}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 886475586}
+  m_RootOrder: 7
 --- !u!1 &539715363
 GameObject:
   m_ObjectHideFlags: 0
@@ -1630,6 +1657,33 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 589158555}
   m_Mesh: {fileID: 10206, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &619761520
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 619761521}
+  m_Layer: 0
+  m_Name: Walkspot4
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &619761521
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 619761520}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 23.79, y: 5.98, z: 6.83}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 886475586}
+  m_RootOrder: 6
 --- !u!1 &626147333
 GameObject:
   m_ObjectHideFlags: 0
@@ -2170,6 +2224,33 @@ MeshCollider:
 Transform:
   m_PrefabParentObject: {fileID: 400000, guid: a092fd2e792d3164ca95120e70a1271c, type: 3}
   m_PrefabInternal: {fileID: 1585295445}
+--- !u!1 &873726592
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 873726593}
+  m_Layer: 0
+  m_Name: Walkspot2
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &873726593
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 873726592}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 32.82, y: -1.124, z: 10.67}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 886475586}
+  m_RootOrder: 4
 --- !u!1 &886475585
 GameObject:
   m_ObjectHideFlags: 0
@@ -2198,6 +2279,11 @@ Transform:
   - {fileID: 201939686}
   - {fileID: 1520154390}
   - {fileID: 1161343958}
+  - {fileID: 1355198776}
+  - {fileID: 873726593}
+  - {fileID: 1524499238}
+  - {fileID: 619761521}
+  - {fileID: 498017063}
   m_Father: {fileID: 1689910037}
   m_RootOrder: 1
 --- !u!1 &914813981
@@ -4501,7 +4587,7 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400146, guid: 5abebd46df306fe4590bf3f93ceef102, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 38.477
+      value: 38.286
       objectReference: {fileID: 0}
     - target: {fileID: 400146, guid: 5abebd46df306fe4590bf3f93ceef102, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4509,7 +4595,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400146, guid: 5abebd46df306fe4590bf3f93ceef102, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 14.686
+      value: 15.371
       objectReference: {fileID: 0}
     - target: {fileID: 400146, guid: 5abebd46df306fe4590bf3f93ceef102, type: 3}
       propertyPath: m_LocalRotation.x
@@ -4517,7 +4603,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400146, guid: 5abebd46df306fe4590bf3f93ceef102, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: 0.74993795
       objectReference: {fileID: 0}
     - target: {fileID: 400146, guid: 5abebd46df306fe4590bf3f93ceef102, type: 3}
       propertyPath: m_LocalRotation.z
@@ -4525,11 +4611,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400146, guid: 5abebd46df306fe4590bf3f93ceef102, type: 3}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.6615082
       objectReference: {fileID: 0}
     - target: {fileID: 400146, guid: 5abebd46df306fe4590bf3f93ceef102, type: 3}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 400146, guid: 5abebd46df306fe4590bf3f93ceef102, type: 3}
       propertyPath: m_LocalScale.x
@@ -4571,6 +4657,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   horizonSpeed: 0.2
   verticalSpeed: 5
+  walkspots:
+  - {fileID: 1355198776}
+  - {fileID: 873726593}
+  - {fileID: 1524499238}
+  - {fileID: 619761521}
+  - {fileID: 498017063}
   aplitude: 2
   scaryStatue: {fileID: 201939681}
 --- !u!1 &1196919978
@@ -4918,6 +5010,33 @@ Transform:
   m_Children: []
   m_Father: {fileID: 237507542}
   m_RootOrder: 0
+--- !u!1 &1355198775
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1355198776}
+  m_Layer: 0
+  m_Name: Walkspot1
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1355198776
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1355198775}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 38.537148, y: 0.975826, z: 13.485821}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 886475586}
+  m_RootOrder: 3
 --- !u!1 &1368130524
 GameObject:
   m_ObjectHideFlags: 0
@@ -5589,6 +5708,33 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1520154389}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1524499237
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1524499238}
+  m_Layer: 0
+  m_Name: Walkspot3
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1524499238
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1524499237}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 28.82, y: 1.988, z: 9.43}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 886475586}
+  m_RootOrder: 5
 --- !u!1 &1528874335
 GameObject:
   m_ObjectHideFlags: 0
@@ -8086,6 +8232,10 @@ Prefab:
     - target: {fileID: 11443302, guid: 07e7a2ad4c8131443b190b37e9e4dc33, type: 2}
       propertyPath: degree
       value: 250
+      objectReference: {fileID: 0}
+    - target: {fileID: 9558206, guid: 07e7a2ad4c8131443b190b37e9e4dc33, type: 2}
+      propertyPath: m_Enabled
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 07e7a2ad4c8131443b190b37e9e4dc33, type: 2}
