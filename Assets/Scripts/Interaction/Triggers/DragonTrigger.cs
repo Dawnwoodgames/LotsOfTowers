@@ -6,6 +6,7 @@ namespace Nimbi.Interaction.Triggers
 {
     public class DragonTrigger : MonoBehaviour {
 
+        public GameObject dragon;
         public float horizonSpeed;
         public float verticalSpeed;
         public Transform[] walkspots;
@@ -30,10 +31,12 @@ namespace Nimbi.Interaction.Triggers
         {
             if (!scaryStatue.isScary)
             {
-                if (isWalking)
+               if(isWalking)
                 {
-
+                    dragon.GetComponent<Animator>().SetBool("isWalking", true);
                 }
+                    
+               
             }
         }
 
