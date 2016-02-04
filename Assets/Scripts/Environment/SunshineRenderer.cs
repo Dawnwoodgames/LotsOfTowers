@@ -15,6 +15,12 @@ namespace Nimbi.Environment
         public GameObject mirrorDoor;
         public GameObject newMirror;
         public GameObject newDoor;
+        public Color finishedColor;
+        private Material newmat;
+        private bool magnifyHit;
+
+        [HideInInspector]
+        public bool Locked;
 
         private List<Vector3> linePositions;
         private Ray ray;
@@ -24,14 +30,15 @@ namespace Nimbi.Environment
         void Awake()
         {
             lines = new List<GameObject>();
+            newmat = new Material(lineMat);
         }
 
         void Update()
         {
             linePositions = new List<Vector3>();
-
+            
             linePositions.Add(transform.position);
-
+            magnifyHit = false;
             AddRay(transform.position, transform.forward);
             CreateLines(linePositions);
         }
@@ -44,13 +51,18 @@ namespace Nimbi.Environment
             bool mirrorfound = false;
             Debug.DrawRay(start, direction * 100, Color.blue);
 
-
+            
             foreach (RaycastHit hit in rays)
             {
+
+                if (hit.collider.name == "MagnifyGlass")
+                    magnifyHit = true;
+
                 if (mirrorfound || hit.collider.tag == "Player" || hit.collider.name == "MagnifyGlass")
                     continue;
 
-                if (hit.collider.tag == "MirrorDoor")
+
+                if (hit.collider.tag == "MirrorDoor" && magnifyHit)
                     Complete();
 
                 mirrorfound = true;
@@ -66,6 +78,8 @@ namespace Nimbi.Environment
 
         private void Complete()
         {
+            Locked = true;
+            newmat.SetColor("_EmissionColor", finishedColor * Mathf.LinearToGammaSpace(4));
             if (mirrorWind.activeInHierarchy)
             {
                 mirrorDoor.SetActive(false);
@@ -109,7 +123,7 @@ namespace Nimbi.Environment
             ringMesh.mesh = cylinderMesh;
 
             MeshRenderer ringRenderer = go.AddComponent<MeshRenderer>();
-            ringRenderer.material = lineMat;
+            ringRenderer.material = newmat;
 
             return go;
         }
