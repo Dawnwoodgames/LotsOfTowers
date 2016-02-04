@@ -2,6 +2,7 @@
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Linq;
+using Nimbi.Interaction;
 
 namespace Nimbi.Environment
 {
@@ -16,6 +17,10 @@ namespace Nimbi.Environment
         public GameObject newMirror;
         public GameObject newDoor;
         public Color finishedColor;
+        public HamsterWheelRotateObject wheel1;
+        public HamsterWheelRotateObject wheel2;
+        public Rigidbody mirror1;
+        public Rigidbody mirror2;
         private Material newmat;
         private bool magnifyHit;
 
@@ -79,6 +84,10 @@ namespace Nimbi.Environment
         private void Complete()
         {
             Locked = true;
+            wheel1.rotateSpeed = 0;
+            wheel2.rotateSpeed = 0;
+            mirror1.constraints = RigidbodyConstraints.FreezeAll;
+            mirror2.constraints = RigidbodyConstraints.FreezeAll;
             newmat.SetColor("_EmissionColor", finishedColor * Mathf.LinearToGammaSpace(4));
             if (mirrorWind.activeInHierarchy)
             {
