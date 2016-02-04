@@ -42,7 +42,7 @@ namespace Nimbi.CameraControl
 			{
 				if(Input.GetButtonDown("Submit") && GetComponent<Animator>().enabled == true)
 				{
-					GetComponent<Animator>().speed = 1000;
+					GetComponent<Animator>().Play(0,-1,1f);
 					GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().enabled = true;
 					playingAnimation = false;
 				}
@@ -71,9 +71,8 @@ namespace Nimbi.CameraControl
 				doneWithAnimating = false;
             }
 
-            if (GameObject.Find("Loading Screen") != null && !GameObject.Find("Loading Screen").GetComponent<Image>().enabled && !animationPlayed)
+            if (!animationPlayed && GameObject.Find("Loading Screen") != null && !GameObject.Find("Loading Screen").GetComponent<Image>().enabled)
             {
-                Debug.Log(GameObject.Find("Loading Screen"));
                 animationPlayed = true;
                 playingAnimation = true;
                 GetComponent<Animator>().enabled = true;
