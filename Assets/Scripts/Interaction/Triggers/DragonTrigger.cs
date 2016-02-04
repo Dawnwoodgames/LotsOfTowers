@@ -4,9 +4,9 @@ using Nimbi.Actors;
 
 namespace Nimbi.Interaction.Triggers
 {
-    public class DragonTrigger : MonoBehaviour {
+    public class DragonTrigger : MonoBehaviour
+    {
 
-        public GameObject dragon;
         private GameObject player;
         public float horizonSpeed;
         public float verticalSpeed;
@@ -15,51 +15,59 @@ namespace Nimbi.Interaction.Triggers
 
         private bool isWalking;
         private int nextPosition;
+        private bool scared = true;
 
         //Fields for Scary Statue
         public ScaryStatue scaryStatue;
         private bool inTrigger = false;
-        
-        void Start() {
+
+        void Start()
+        {
             player = GameObject.FindGameObjectWithTag("Player");
         }
 
-        void FixedUpdate() {
+        void FixedUpdate()
+        {
             BraveDragon();
         }
 
         private void BraveDragon()
         {
-            if (!scaryStatue.isScary)
+            if (!scaryStatue.isScary && scared)
             {
                 isWalking = true;
                 nextPosition = 0;
+                scared = false;
+            }
 
-                if (isWalking)
+            //Lets Give our Dragon something to Move!
+            if (isWalking)
+            {
+                GetComponent<Animator>().SetBool("isWalking", true);
+                transform.position = Vector3.MoveTowards(transform.position, new Vector3(walkspots[nextPosition].position.x, transform.position.y, walkspots[nextPosition].position.z), 3 * Time.smoothDeltaTime);
+                if (Mathf.Abs(transform.position.x - walkspots[nextPosition].position.x) < 0.1f && Mathf.Abs(transform.position.z - walkspots[nextPosition].position.z) < 0.1f)
                 {
-                    dragon.transform.position = Vector3.MoveTowards(dragon.transform.position, new Vector3(walkspots[nextPosition].position.x, dragon.transform.position.y, walkspots[nextPosition].position.z), 3 * Time.smoothDeltaTime);
-                    if (Mathf.Abs(dragon.transform.position.x - walkspots[nextPosition].position.x) < 0.1f && Mathf.Abs(dragon.transform.position.z - walkspots[nextPosition].position.z) < 0.1f)
+
+                    nextPosition++;
+
+                    if (walkspots.Length <= nextPosition)
                     {
-
-                        nextPosition++;
-
-                        if (walkspots.Length <= nextPosition)
-                        {
-                            isWalking = false;
-                            dragon.GetComponent<Animator>().SetBool("isWalking", false);
-                            dragon.transform.LookAt(new Vector3(player.transform.position.x, dragon.transform.position.y, dragon.transform.position.z));
-                        }
-                        else
-                            dragon.transform.LookAt(new Vector3(walkspots[nextPosition].position.x, dragon.transform.position.y, walkspots[nextPosition].position.z));
+                        isWalking = false;
+                        GetComponent<Animator>().SetBool("isWalking", false);
+                        transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, transform.position.z));
                     }
-               
+                    else
+                        transform.LookAt(new Vector3(walkspots[nextPosition].position.x, transform.position.y, walkspots[nextPosition].position.z));
                 }
             }
+
         }
+
+
 
         private void OnTriggerStay(Collider coll)
         {
-           if(coll.attachedRigidbody)
+            if (coll.attachedRigidbody)
             {
                 inTrigger = true;
             }
