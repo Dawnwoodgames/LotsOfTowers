@@ -1,15 +1,17 @@
 ﻿using UnityEngine;
-using System.Collections;
 using Nimbi.Actors;
+using UnityEngine.UI;
 
 namespace Nimbi.CameraControl
 {
+    [RequireComponent(typeof(Animator))]
 	public class MainCameraScript : MonoBehaviour
 	{
 		private Transform centerFocus;
 		public float degree;
 		public float verticalDegree = 30;
 		public float cameraSpeed = 6;
+        private bool animationPlayed;
 
 		[HideInInspector]
 		public bool playingAnimation;
@@ -24,7 +26,7 @@ namespace Nimbi.CameraControl
 
 		void Awake()
 		{
-			playingAnimation = true;
+			playingAnimation = false;
 		}
 
 		void Start()
@@ -34,9 +36,11 @@ namespace Nimbi.CameraControl
 
 		void Update()
 		{
+
+            
 			if (playingAnimation)
 			{
-				/*if(Input.GetButtonDown("Submit") && GetComponent<Animator>().enabled == true)
+				if(Input.GetButtonDown("Submit") && GetComponent<Animator>().enabled == true)
 				{
 					GetComponent<Animator>().speed = 1000;
 					GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().enabled = true;
@@ -45,7 +49,7 @@ namespace Nimbi.CameraControl
 				else
 				{
 					GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().enabled = false;
-				}*/
+				}
 
 				if (GetComponent<Animator>().GetCurrentAnimatorStateInfo(0).IsName("Idle"))
 				{
@@ -65,6 +69,14 @@ namespace Nimbi.CameraControl
 				transform.localPosition = Vector3.back * 15;
 				transform.localRotation = Quaternion.identity;
 				doneWithAnimating = false;
+            }
+
+            if (GameObject.Find("Loading Screen") != null && !GameObject.Find("Loading Screen").GetComponent<Image>().enabled && !animationPlayed)
+            {
+                Debug.Log(GameObject.Find("Loading Screen"));
+                animationPlayed = true;
+                playingAnimation = true;
+                GetComponent<Animator>().enabled = true;
             }
 
 			// Rotate controls
