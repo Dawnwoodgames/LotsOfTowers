@@ -3476,6 +3476,47 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 954116531}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &977934204
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 182642, guid: 491cbeb1a2219044497df49b26ffcab0, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 977934205}
+  - 65: {fileID: 977934206}
+  m_Layer: 0
+  m_Name: InvisWallForVijvertje
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &977934205
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 435714, guid: 491cbeb1a2219044497df49b26ffcab0, type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 977934204}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1.192, y: -0.15999794, z: 3.956}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 1343247871}
+  m_RootOrder: 3
+--- !u!65 &977934206
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 6551224, guid: 491cbeb1a2219044497df49b26ffcab0,
+    type: 2}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 977934204}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 2.333433, z: 2.01}
+  m_Center: {x: -0.0000024150381, y: 0.6667043, z: -0.28118944}
 --- !u!1 &982074417
 GameObject:
   m_ObjectHideFlags: 0
@@ -4780,15 +4821,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 409022, guid: 4d5d69b59f39a4e43a381b37bc52cfa1, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -3.85
+      value: 1.71
       objectReference: {fileID: 0}
     - target: {fileID: 409022, guid: 4d5d69b59f39a4e43a381b37bc52cfa1, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 0.57
+      value: 16.17
       objectReference: {fileID: 0}
     - target: {fileID: 409022, guid: 4d5d69b59f39a4e43a381b37bc52cfa1, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 1.14
+      value: 3.41
       objectReference: {fileID: 0}
     - target: {fileID: 409022, guid: 4d5d69b59f39a4e43a381b37bc52cfa1, type: 2}
       propertyPath: m_LocalRotation.x
@@ -5060,6 +5101,10 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1343004200}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!4 &1343247871 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 402420, guid: 491cbeb1a2219044497df49b26ffcab0, type: 2}
+  m_PrefabInternal: {fileID: 818775579}
 --- !u!1 &1359988463
 GameObject:
   m_ObjectHideFlags: 0
