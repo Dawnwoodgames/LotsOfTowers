@@ -1,21 +1,25 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Nimbi.Actors;
+using Nimbi.UI;
 
 namespace Nimbi.Interaction.Triggers
 {
     public class DragonTrigger : MonoBehaviour
     {
 
-        private GameObject player;
+
         public float horizonSpeed;
         public float verticalSpeed;
         public Transform[] walkspots;
-        public float aplitude;
+        public Onesie dragonOnesie;
 
+        private GameObject player;
         private bool isWalking;
         private int nextPosition;
         private bool scared = true;
+        private bool firstInteraction = false;
+        private bool onesieGiven = false;
 
         //Fields for Scary Statue
         public ScaryStatue scaryStatue;
@@ -38,7 +42,10 @@ namespace Nimbi.Interaction.Triggers
                 isWalking = true;
                 nextPosition = 0;
                 scared = false;
+                firstInteraction = true;
             }
+
+
 
             //Lets Give our Dragon something to Move!
             if (isWalking)
@@ -58,11 +65,32 @@ namespace Nimbi.Interaction.Triggers
                     }
                     else
                         transform.LookAt(new Vector3(walkspots[nextPosition].position.x, transform.position.y, walkspots[nextPosition].position.z));
+                    
                 }
             }
 
+            if (Input.GetButtonDown("Submit") && firstInteraction)
+            {
+                if (!onesieGiven)
+                {
+                    showOnesiePopupAndGiveOnesie();
+                }
+
+                if (onesieGiven)
+                {
+
+                }
+            }
         }
 
+
+
+        private void showOnesiePopupAndGiveOnesie()
+        {
+            player.GetComponent<Player>().AddOnesie(dragonOnesie);
+            GameObject.Find("CenterFocus").GetComponent<OnesieInfoPopup>().ShowPopup(OnesieType.Dragon, 0);
+            onesieGiven = true;
+        }
 
 
         private void OnTriggerStay(Collider coll)
