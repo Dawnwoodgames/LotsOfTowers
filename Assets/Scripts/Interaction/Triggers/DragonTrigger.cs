@@ -18,7 +18,7 @@ namespace Nimbi.Interaction.Triggers
         private bool isWalking;
         private int nextPosition;
         private bool scared = true;
-        private bool firstInteraction = false;
+        private bool abletoGiveOnesie = false;
         private bool onesieGiven = false;
 
         //Fields for Scary Statue
@@ -42,7 +42,6 @@ namespace Nimbi.Interaction.Triggers
                 isWalking = true;
                 nextPosition = 0;
                 scared = false;
-                firstInteraction = true;
             }
 
 
@@ -60,16 +59,17 @@ namespace Nimbi.Interaction.Triggers
                     if (walkspots.Length <= nextPosition)
                     {
                         isWalking = false;
+
                         GetComponent<Animator>().SetBool("isWalking", false);
                         transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, transform.position.z));
                     }
                     else
                         transform.LookAt(new Vector3(walkspots[nextPosition].position.x, transform.position.y, walkspots[nextPosition].position.z));
-                    
+
                 }
             }
 
-            if (Input.GetButtonDown("Submit") && firstInteraction)
+            if (Input.GetButtonDown("Submit") && abletoGiveOnesie && inTrigger)
             {
                 if (!onesieGiven)
                 {
@@ -93,11 +93,13 @@ namespace Nimbi.Interaction.Triggers
         }
 
 
+
         private void OnTriggerStay(Collider coll)
         {
-            if (coll.attachedRigidbody)
+            if (coll.tag == "DragonTriggerBox")
             {
                 inTrigger = true;
+                abletoGiveOnesie = true;
             }
         }
     }
