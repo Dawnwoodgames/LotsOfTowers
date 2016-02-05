@@ -38,7 +38,7 @@ namespace Nimbi.Interaction.Triggers
 		{
 			float t0 = 0;
 			float t1 = 0;
-			float y0 = DownwardsObject.transform.position.y;
+			float y0 = DownwardsObject.transform.localPosition.y;
             Vector3 startRotation = RotatingObject.transform.localEulerAngles;
 
 			while (t0 < Delay)
@@ -54,12 +54,12 @@ namespace Nimbi.Interaction.Triggers
 
 				if (t1 >= Duration)
 				{
-					DownwardsObject.transform.position = new Vector3(DownwardsObject.transform.position.x, y0 - DownwardDistance, DownwardsObject.transform.position.z);
+					DownwardsObject.transform.localPosition = new Vector3(DownwardsObject.transform.localPosition.x, y0 - DownwardDistance, DownwardsObject.transform.localPosition.z);
 					RotatingObject.transform.localEulerAngles = new Vector3();
 				}
 				else
 				{
-					DownwardsObject.transform.position = new Vector3(DownwardsObject.transform.position.x, y0 - (DownwardDistance * (t1 / Duration)), DownwardsObject.transform.position.z);
+					DownwardsObject.transform.localPosition = new Vector3(DownwardsObject.transform.localPosition.x, y0 - (DownwardDistance * (t1 / Duration)), DownwardsObject.transform.localPosition.z);
 					RotatingObject.transform.localEulerAngles = RotatingObject.transform.localEulerAngles - (Vector3.forward * startRotation.z/Duration*Time.smoothDeltaTime);
 				}
 

@@ -56,7 +56,6 @@ namespace Nimbi.CameraControl
 					playingAnimation = false;
 					transform.localPosition = Vector3.back * 15;
 					transform.localRotation = Quaternion.identity;
-                    Debug.Log("WOoooooo");
                 }
 			}
 			else if(GetComponent<Animator>() != null && GetComponent<Animator>().enabled)
@@ -69,7 +68,6 @@ namespace Nimbi.CameraControl
 				transform.localPosition = Vector3.back * 15;
                 transform.localRotation = Quaternion.Euler(Vector3.zero);
 				doneWithAnimating = false;
-                Debug.Log("DHHDhfhdf");
             }
 
             if (!animationPlayed && GameObject.Find("Loading Screen") != null && !GameObject.Find("Loading Screen").GetComponent<Image>().enabled)
