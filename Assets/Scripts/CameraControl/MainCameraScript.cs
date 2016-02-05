@@ -42,10 +42,11 @@ namespace Nimbi.CameraControl
 			{
 				if(Input.GetButtonDown("Submit") && GetComponent<Animator>().enabled == true)
 				{
-					GetComponent<Animator>().Play(0,-1,1f);
+					GetComponent<Animator>().Play(0,-1,0.99f);
 					GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().enabled = true;
 					playingAnimation = false;
-				}
+                    transform.localPosition = new Vector3(0, 0, -15);
+                }
 				else
 				{
 					GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().enabled = false;
