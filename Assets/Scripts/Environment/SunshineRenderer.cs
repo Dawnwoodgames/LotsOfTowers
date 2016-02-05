@@ -2,6 +2,7 @@
 using System.Text.RegularExpressions;
 using System.Collections.Generic;
 using System.Linq;
+using Nimbi.Interaction;
 
 namespace Nimbi.Environment
 {
@@ -15,6 +16,16 @@ namespace Nimbi.Environment
         public GameObject mirrorDoor;
         public GameObject newMirror;
         public GameObject newDoor;
+        public Color finishedColor;
+        public HamsterWheelRotateObject wheel1;
+        public HamsterWheelRotateObject wheel2;
+        public Rigidbody mirror1;
+        public Rigidbody mirror2;
+        private Material newmat;
+        private bool magnifyHit;
+
+        [HideInInspector]
+        public bool Locked;
 
         private List<Vector3> linePositions;
         private Ray ray;
@@ -24,14 +35,15 @@ namespace Nimbi.Environment
         void Awake()
         {
             lines = new List<GameObject>();
+            newmat = new Material(lineMat);
         }
 
         void Update()
         {
             linePositions = new List<Vector3>();
-
+            
             linePositions.Add(transform.position);
-
+            magnifyHit = false;
             AddRay(transform.position, transform.forward);
             CreateLines(linePositions);
         }
@@ -44,13 +56,18 @@ namespace Nimbi.Environment
             bool mirrorfound = false;
             Debug.DrawRay(start, direction * 100, Color.blue);
 
-
+            
             foreach (RaycastHit hit in rays)
             {
+
+                if (hit.collider.name == "MagnifyGlass")
+                    magnifyHit = true;
+
                 if (mirrorfound || hit.collider.tag == "Player" || hit.collider.name == "MagnifyGlass")
                     continue;
 
-                if (hit.collider.tag == "MirrorDoor")
+
+                if (hit.collider.tag == "MirrorDoor" && magnifyHit)
                     Complete();
 
                 mirrorfound = true;
@@ -66,6 +83,12 @@ namespace Nimbi.Environment
 
         private void Complete()
         {
+            Locked = true;
+            wheel1.rotateSpeed = 0;
+            wheel2.rotateSpeed = 0;
+            mirror1.constraints = RigidbodyConstraints.FreezeAll;
+            mirror2.constraints = RigidbodyConstraints.FreezeAll;
+            newmat.SetColor("_EmissionColor", finishedColor * Mathf.LinearToGammaSpace(4));
             if (mirrorWind.activeInHierarchy)
             {
                 mirrorDoor.SetActive(false);
@@ -109,7 +132,7 @@ namespace Nimbi.Environment
             ringMesh.mesh = cylinderMesh;
 
             MeshRenderer ringRenderer = go.AddComponent<MeshRenderer>();
-            ringRenderer.material = lineMat;
+            ringRenderer.material = newmat;
 
             return go;
         }

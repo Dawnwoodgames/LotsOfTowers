@@ -33,7 +33,7 @@ namespace Nimbi.Interaction.Triggers
                 active = true;
                 waterval.SetActive(true);
                 door.Open();
-                waterval.SetActive(true);
+                waterval2.SetActive(true);
                 fan.Restart();
                 rope.transform.parent = transform;
                 Destroy(fullrope);
