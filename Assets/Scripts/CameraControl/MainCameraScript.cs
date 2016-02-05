@@ -42,10 +42,8 @@ namespace Nimbi.CameraControl
 			{
 				if(Input.GetButtonDown("Submit") && GetComponent<Animator>().enabled == true)
 				{
-					GetComponent<Animator>().Play(0,-1,0.99f);
+					GetComponent<Animator>().Play("Idle",-1,0f);
 					GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().enabled = true;
-					playingAnimation = false;
-                    transform.localPosition = new Vector3(0, 0, -15);
                 }
 				else
 				{
@@ -58,9 +56,10 @@ namespace Nimbi.CameraControl
 					playingAnimation = false;
 					transform.localPosition = Vector3.back * 15;
 					transform.localRotation = Quaternion.identity;
-				}
+                    Debug.Log("WOoooooo");
+                }
 			}
-			else if(GetComponent<Animator>() != null)
+			else if(GetComponent<Animator>() != null && GetComponent<Animator>().enabled)
 			{
 				GetComponent<Animator>().enabled = false;
 				doneWithAnimating = true;
@@ -68,8 +67,9 @@ namespace Nimbi.CameraControl
 			else if(doneWithAnimating)
 			{
 				transform.localPosition = Vector3.back * 15;
-				transform.localRotation = Quaternion.identity;
+                transform.localRotation = Quaternion.Euler(Vector3.zero);
 				doneWithAnimating = false;
+                Debug.Log("DHHDhfhdf");
             }
 
             if (!animationPlayed && GameObject.Find("Loading Screen") != null && !GameObject.Find("Loading Screen").GetComponent<Image>().enabled)
