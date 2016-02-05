@@ -7,19 +7,14 @@ namespace Nimbi.Interaction.Triggers
 {
     public class DragonTrigger : MonoBehaviour
     {
-
-
-        public float horizonSpeed;
-        public float verticalSpeed;
         public Transform[] walkspots;
-        public Onesie dragonOnesie;
+
 
         private GameObject player;
         private bool isWalking;
         private int nextPosition;
         private bool scared = true;
-        private bool abletoGiveOnesie = false;
-        private bool onesieGiven = false;
+
 
         //Fields for Scary Statue
         public ScaryStatue scaryStatue;
@@ -69,38 +64,7 @@ namespace Nimbi.Interaction.Triggers
                 }
             }
 
-            if (Input.GetButtonDown("Submit") && abletoGiveOnesie && inTrigger)
-            {
-                if (!onesieGiven)
-                {
-                    showOnesiePopupAndGiveOnesie();
-                }
 
-                if (onesieGiven)
-                {
-
-                }
             }
         }
-
-
-
-        private void showOnesiePopupAndGiveOnesie()
-        {
-            player.GetComponent<Player>().AddOnesie(dragonOnesie);
-            GameObject.Find("CenterFocus").GetComponent<OnesieInfoPopup>().ShowPopup(OnesieType.Dragon, 0);
-            onesieGiven = true;
-        }
-
-
-
-        private void OnTriggerStay(Collider coll)
-        {
-            if (coll.tag == "DragonTriggerBox")
-            {
-                inTrigger = true;
-                abletoGiveOnesie = true;
-            }
-        }
-    }
 }
