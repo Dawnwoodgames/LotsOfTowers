@@ -140,7 +140,7 @@ QualitySettings:
     name: Fantastic
     pixelLightCount: 4
     shadows: 2
-    shadowResolution: 2
+    shadowResolution: 1
     shadowProjection: 1
     shadowCascades: 4
     shadowDistance: 150
@@ -162,4 +162,8 @@ QualitySettings:
     asyncUploadTimeSlice: 2
     asyncUploadBufferSize: 4
     excludedTargetPlatforms: []
-  m_PerPlatformDefaultQuality: {}
+  m_PerPlatformDefaultQuality:
+    Android: 0
+    Standalone: 0
+    Web: 0
+    WebGL: 0
