@@ -8,6 +8,7 @@ namespace Nimbi.Interaction.Triggers
     public class GiveDragonOnesie : MonoBehaviour
     {
 
+        //Aanpasje voor bob
         public Onesie dragonOnesie;
 
         private GameObject player;
