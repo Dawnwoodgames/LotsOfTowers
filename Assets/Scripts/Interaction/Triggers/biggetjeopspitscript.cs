@@ -4,7 +4,7 @@ using Nimbi.Actors;
 
 namespace Nimbi.Interaction.Triggers
 {
-	public class biggetjeopspitscript : MonoBehaviour
+	public class Biggetjeopspitscript : MonoBehaviour
 	{
 		private ParticleSystem vuurtje;
 		private Player player;
