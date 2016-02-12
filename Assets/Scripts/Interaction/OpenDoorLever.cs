@@ -50,6 +50,11 @@ namespace Nimbi.Interaction
             }
         }
 
+        void OnDestroy()
+        {
+            material.color = Color.green;
+        }
+
         void OnTriggerEnter(Collider coll)
         {
             if (coll.gameObject.tag == "Player")
