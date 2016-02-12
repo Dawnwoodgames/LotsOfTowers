@@ -17,8 +17,8 @@ namespace Nimbi.Interaction
         {
             key = GameObject.Find("Key").gameObject;
 
-            dupMarker = Quaternion.Euler(0, transform.rotation.eulerAngles.y + 60, 0);
-            originMarker = Quaternion.Euler(0, originDoor.transform.rotation.eulerAngles.y - 60, 0);
+            dupMarker = Quaternion.Euler(0, transform.rotation.eulerAngles.y + 45, 0);
+            originMarker = Quaternion.Euler(0, originDoor.transform.rotation.eulerAngles.y - 45, 0);
         }
 
         private void Update()
