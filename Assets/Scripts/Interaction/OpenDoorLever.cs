@@ -70,7 +70,7 @@ namespace Nimbi.Interaction
         {
             targetDoor.transform.localPosition = new Vector3(targetX, targetY, targetZ); // Move position
             targetDoor.transform.Rotate(new Vector3(0, 90, 0)); // Rotate, so it `opens`
-            wind.transform.position = new Vector3(transform.position.x, transform.position.y, 26);
+            wind.transform.position = new Vector3(transform.position.x, transform.position.y, 16.5f);
             doorOpen = true;
         }
 
