@@ -1,6 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Nimbi.Actors;
+using Nimbi.Framework;
+using UnityEngine.SceneManagement;
 
 namespace Nimbi.Interaction.Triggers
 {
@@ -62,6 +64,7 @@ namespace Nimbi.Interaction.Triggers
        
         private void TransitionToTowerFive()
         {
+            UnityAnalytics.CompleteLevel(SceneManager.GetActiveScene().name, Mathf.RoundToInt(Time.time - GameManager.Instance.levelStart));
             GameManager.Instance.LoadLevel(6);
         }
 

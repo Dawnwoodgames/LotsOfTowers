@@ -3,6 +3,7 @@ using System.Collections;
 using Nimbi.Actors;
 using Nimbi.Framework;
 using Nimbi.Interaction.Triggers;
+using UnityEngine.SceneManagement;
 
 namespace Nimbi.Interaction
 {
@@ -71,7 +72,7 @@ namespace Nimbi.Interaction
                 StartCoroutine(CompletedLevel());
             }
 
-			if (inTrigger && isHeavy && furnaceDoor.isDoorOpen())
+			if (inTrigger && isHeavy && furnaceDoor.isDoorOpen() && !completed)
 			{
 				animator.SetBool("GoingDown", true);
 				animator.SetBool("GoingUp", false);
@@ -84,6 +85,8 @@ namespace Nimbi.Interaction
                 }
                 if (blowCount >= 3)
                     completed = true;
+
+                UnityAnalytics.CompleteLevel(SceneManager.GetActiveScene().name,Mathf.RoundToInt(Time.time - GameManager.Instance.levelStart));
 
                 currentlyDown = true;
 			}

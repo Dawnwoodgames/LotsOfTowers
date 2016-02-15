@@ -10,6 +10,7 @@ namespace Nimbi.Interaction
     {
         public GameObject targetDoor;
         public GameObject wind;
+        public Material material;
 
         public float targetX;
         public float targetY;
@@ -27,6 +28,7 @@ namespace Nimbi.Interaction
             defaultX = targetDoor.transform.position.x;
             defaultY = targetDoor.transform.position.y;
             defaultZ = targetDoor.transform.position.z;
+            material.color = Color.red;
         }
 
         void Update()
@@ -37,13 +39,20 @@ namespace Nimbi.Interaction
                 {
                     CloseDoor();
                     GetComponent<Animator>().SetBool("GoingDown", false);
+                    material.color = Color.red;
                 }
                 else
                 {
                     OpenDoor();
                     GetComponent<Animator>().SetBool("GoingDown", true);
+                    material.color = Color.green;
                 }
             }
+        }
+
+        void OnDestroy()
+        {
+            material.color = Color.green;
         }
 
         void OnTriggerEnter(Collider coll)
@@ -66,7 +75,7 @@ namespace Nimbi.Interaction
         {
             targetDoor.transform.localPosition = new Vector3(targetX, targetY, targetZ); // Move position
             targetDoor.transform.Rotate(new Vector3(0, 90, 0)); // Rotate, so it `opens`
-            wind.transform.position = new Vector3(transform.position.x, transform.position.y, 26);
+            wind.transform.position = new Vector3(transform.position.x, transform.position.y, 16.5f);
             doorOpen = true;
         }
 

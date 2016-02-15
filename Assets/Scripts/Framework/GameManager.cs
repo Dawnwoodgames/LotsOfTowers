@@ -18,6 +18,7 @@ namespace Nimbi
 	public class GameManager : MonoBehaviour
 	{
 		public const float FadeDuration = 0.5f;
+        public float levelStart;
 
 		private static GameManager instance;
 		private Canvas canvas;
@@ -176,6 +177,7 @@ namespace Nimbi
 			Time.timeScale = 1;
 			StopAllCoroutines();
 			StartCoroutine(LoadLevelCoroutine(index));
+            levelStart = Time.time;
 		}
 
 		private IEnumerator LoadLevelCoroutine(int index)
