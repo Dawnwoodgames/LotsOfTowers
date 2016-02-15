@@ -34,7 +34,10 @@ namespace Nimbi.UI
                 m_CurrentFps = (int) (m_FpsAccumulator/fpsMeasurePeriod);
                 m_FpsAccumulator = 0;
                 m_FpsNextPeriod += fpsMeasurePeriod;
-                m_Text.text = string.Format(display, m_CurrentFps);
+                if (Debug.isDebugBuild)
+                    m_Text.text = string.Format(display, m_CurrentFps);
+                else
+                    m_Text.text = "";
                 UnityAnalytics.AddFPSMeasurement(m_CurrentFps);
             }
         }
