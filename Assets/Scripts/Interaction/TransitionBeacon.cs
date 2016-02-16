@@ -9,7 +9,7 @@ namespace Nimbi.Interaction {
 
 		public void OnTriggerEnter(Collider coll) {
 			if (coll.tag == "Player") {
-                UnityAnalytics.CompleteLevel(SceneManager.GetActiveScene().name,Mathf.RoundToInt(GameManager.Instance.levelStart-Time.time));
+                UnityAnalytics.CompleteLevel(SceneManager.GetActiveScene().name,Mathf.RoundToInt(Time.time - GameManager.Instance.levelStart));
 				GameManager.Instance.LoadLevel(levelIndex);
 			}
 		}

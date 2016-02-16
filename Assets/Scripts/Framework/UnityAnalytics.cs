@@ -17,6 +17,8 @@ namespace Nimbi.Framework
         private static float totalfps;
         private static int fpsSamples;
 
+        private static List<Segment> segments = new List<Segment>();
+
         /// <summary>
         /// Sends statistics about completing a level to Unity
         /// </summary>
@@ -38,6 +40,42 @@ namespace Nimbi.Framework
         {
             fpsSamples++;
             totalfps += fps;
+        }
+
+        public static void StartSegment(string name)
+        {
+            bool segmentfound = false;
+            foreach(Segment s in segments)
+            {
+                if (s.name == name)
+                    segmentfound = true;
+            }
+
+            if (!segmentfound)
+            {
+                segments.Add(new Segment(name));
+            }
+        }
+
+        public static void AddTries(string name)
+        {
+            foreach(Segment s in segments)
+            {
+                if (s.name == name)
+                    s.tries++;
+            }
+        }
+
+        public static void FinishSegment(string name)
+        {
+            foreach(Segment s in segments)
+            {
+                if(s.name == name && !s.finished)
+                {
+                    Analytics.CustomEvent("Complete Segment " + s.name, new Dictionary<string, object> { { "duration", (Time.time - s.startTime) }, { "tries", s.tries } });
+                    s.finished = true;
+                }
+            }
         }
     }
 }
