@@ -4,7 +4,7 @@ using Nimbi.Actors;
 
 namespace Nimbi.Interaction
 {
-	public class TransistionIce : MonoBehaviour
+	public class TransitionIce : MonoBehaviour
 	{
 		public Transform start;
 		public TransistionTrigger startTrigger;

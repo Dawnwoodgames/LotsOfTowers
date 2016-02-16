@@ -4,7 +4,7 @@ using Nimbi.Actors;
 
 namespace Nimbi.Interaction
 {
-	public class Transistion : MonoBehaviour
+	public class Transition : MonoBehaviour
 	{
 		public Transform start;
 		public TransistionTrigger startTrigger;
@@ -56,11 +56,11 @@ namespace Nimbi.Interaction
 		{
 			if (insideStartTrigger)
 			{
-				if (!raisingUp && transport.localPosition.y > -25)
+				if (!raisingUp && transport.localPosition.y > -10)
 				{
 					transport.localPosition = Vector3.MoveTowards(transport.localPosition, transport.localPosition - (Vector3.up * 20), Time.deltaTime * 20);
 				}
-				else if (!raisingUp && transport.localPosition.y < -25)
+				else if (!raisingUp && transport.localPosition.y < -10)
 				{
 					transport.localPosition = end.localPosition - (Vector3.up * 20);
 					raisingUp = true;
@@ -81,11 +81,11 @@ namespace Nimbi.Interaction
 			}
 			else if (insideEndTrigger)
 			{
-				if (!raisingUp && transport.localPosition.y > -25)
+				if (!raisingUp && transport.localPosition.y > -10)
 				{
 					transport.localPosition = Vector3.MoveTowards(transport.localPosition, transport.localPosition - (Vector3.up * 20), Time.deltaTime * 20);
 				}
-				else if (!raisingUp && transport.localPosition.y < -25)
+				else if (!raisingUp && transport.localPosition.y < -10)
 				{
 					transport.localPosition = start.localPosition - (Vector3.up * 20);
 					raisingUp = true;
