@@ -1,14 +1,18 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class Segment {
+namespace Nimbi.Framework
+{
+    public class Segment
+    {
 
-    public string name;
-    public float startTime;
-    public int tries;
-    public bool finished;
+        public string name;
+        public float startTime;
+        public int tries;
+        public bool finished;
 
-    public Segment() { this.startTime = Time.time; }
-    public Segment(string name) { this.name = name; this.startTime = Time.time; }
+        public Segment():this("") {}
+        public Segment(string name) { this.name = name; this.startTime = Time.time; this.tries = 1; }
 
+    }
 }

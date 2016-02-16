@@ -57,6 +57,10 @@ namespace Nimbi.Framework
             }
         }
 
+        /// <summary>
+        /// Adds a try to the segment
+        /// </summary>
+        /// <param name="name">Name of the segment</param>
         public static void AddTries(string name)
         {
             foreach(Segment s in segments)
@@ -66,6 +70,10 @@ namespace Nimbi.Framework
             }
         }
 
+        /// <summary>
+        /// Finishes a segment and submits the data to Unity Analytics
+        /// </summary>
+        /// <param name="name">Name of the segment to finish</param>
         public static void FinishSegment(string name)
         {
             foreach(Segment s in segments)
@@ -75,6 +83,18 @@ namespace Nimbi.Framework
                     Analytics.CustomEvent("Complete Segment " + s.name, new Dictionary<string, object> { { "duration", (Time.time - s.startTime) }, { "tries", s.tries } });
                     s.finished = true;
                 }
+            }
+        }
+
+        /// <summary>
+        /// Cleans up the segment list whenever you (re)start a level
+        /// </summary>
+        /// <param name="name">Name of the segment to remove</param>
+        public static void RemoveSegment(string name)
+        {
+            foreach (Segment s in segments)
+            {
+                segments.Remove(s);
             }
         }
     }
