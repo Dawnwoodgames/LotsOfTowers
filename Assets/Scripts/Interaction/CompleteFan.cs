@@ -66,6 +66,7 @@ namespace Nimbi.Interaction
 
                 if(!dialogueFinished)
                 {
+                    UnityAnalytics.FinishSegment("Tower 3 Last Floor");
                     finishDialogOne.SetActive(true);
                     StartCoroutine(ActivateSecondDialogue());
                 }
@@ -84,9 +85,10 @@ namespace Nimbi.Interaction
                     fire.startSize += 0.2f;
                 }
                 if (blowCount >= 3)
+                {
                     completed = true;
-
-                UnityAnalytics.CompleteLevel(SceneManager.GetActiveScene().name,Mathf.RoundToInt(Time.time - GameManager.Instance.levelStart));
+                    UnityAnalytics.CompleteLevel(SceneManager.GetActiveScene().name, Mathf.RoundToInt(Time.time - GameManager.Instance.levelStart));
+                }
 
                 currentlyDown = true;
 			}

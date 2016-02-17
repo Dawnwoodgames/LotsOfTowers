@@ -29,5 +29,10 @@ namespace Nimbi.Interaction.Triggers
         {
             UnityAnalytics.RemoveSegment(name);
         }
+
+        void Reset()
+        {
+            GetComponent<Collider>().isTrigger = true;
+        }
     }
 }
