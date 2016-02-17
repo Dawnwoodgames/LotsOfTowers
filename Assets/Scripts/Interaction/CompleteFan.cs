@@ -24,6 +24,7 @@ namespace Nimbi.Interaction
         private int blowCount;
         private bool currentlyDown = false;
         private bool dialogueFinished = false;
+        private bool completionstarted;
 
         private Vector3 endMarker;
         private float speed = 15f;
@@ -69,8 +70,13 @@ namespace Nimbi.Interaction
                     UnityAnalytics.FinishSegment("Tower 3 Last Floor");
                     finishDialogOne.SetActive(true);
                     StartCoroutine(ActivateSecondDialogue());
+                    
                 }
-                StartCoroutine(CompletedLevel());
+                if(!completionstarted)
+                    StartCoroutine(CompletedLevel());
+
+                completionstarted = true;
+                
             }
 
 			if (inTrigger && isHeavy && furnaceDoor.isDoorOpen() && !completed)

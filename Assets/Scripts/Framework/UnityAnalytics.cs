@@ -96,7 +96,7 @@ namespace Nimbi.Framework
                     if (testmode && Debug.isDebugBuild)
                         Analytics.CustomEvent("Complete Segment " + s.name, new Dictionary<string, object> { { "duration", (Time.time - s.startTime) }, { "tries", s.tries } });
                     s.finished = true;
-                    Debug.Log("Finished " + s.name + " in "+ (Time.time - s.startTime)+"s");
+                    Debug.Log("Finished " + s.name + " in "+ (Time.time - s.startTime)+"s and "+(s.tries!=1?s.tries+" tries":s.tries+" try"));
                 }
             }
         }

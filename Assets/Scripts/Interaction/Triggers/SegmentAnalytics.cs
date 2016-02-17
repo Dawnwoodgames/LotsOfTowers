@@ -19,9 +19,9 @@ namespace Nimbi.Interaction.Triggers
 
         void OnTriggerEnter(Collider collider)
         {
-            if (collider.tag == "Player" && triggertype == SegmentAnalyticsTriggerType.Start)
+            if ((collider.tag == "Player" || collider.tag == "HamsterBall") && triggertype == SegmentAnalyticsTriggerType.Start)
                 UnityAnalytics.StartSegment(segmentName);
-            else if (collider.tag == "Player" && triggertype == SegmentAnalyticsTriggerType.Finish)
+            else if ((collider.tag == "Player" || collider.tag == "HamsterBall") && triggertype == SegmentAnalyticsTriggerType.Finish)
                 UnityAnalytics.FinishSegment(segmentName);
         }
 
