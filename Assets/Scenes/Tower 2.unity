@@ -554,6 +554,8 @@ Transform:
   - {fileID: 1384967807}
   - {fileID: 1598082266}
   - {fileID: 1648744902}
+  - {fileID: 742556926}
+  - {fileID: 98749154}
   m_Father: {fileID: 1689910037}
   m_RootOrder: 3
 --- !u!1 &64882349
@@ -1370,6 +1372,60 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 95467608}
   m_Mesh: {fileID: 4300058, guid: 3bd0059f8b4306844888535c827a6af7, type: 3}
+--- !u!1 &98749153
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 98749154}
+  - 65: {fileID: 98749156}
+  - 114: {fileID: 98749155}
+  m_Layer: 0
+  m_Name: Analytics_end
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &98749154
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 98749153}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.89, y: 1.21, z: 2.35}
+  m_LocalScale: {x: 1.5013926, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 60455499}
+  m_RootOrder: 7
+--- !u!114 &98749155
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 98749153}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c7dd85bd7d2d58448ba0edd9b2c901d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  segmentName: Tower 2 Mirror Puzzle
+  triggertype: 1
+--- !u!65 &98749156
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 98749153}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &107580201
 GameObject:
   m_ObjectHideFlags: 0
@@ -1905,6 +1961,8 @@ Transform:
   - {fileID: 1939691415}
   - {fileID: 475200383}
   - {fileID: 1792222266}
+  - {fileID: 946036594}
+  - {fileID: 206401637}
   m_Father: {fileID: 1689910037}
   m_RootOrder: 4
 --- !u!1 &174476342
@@ -2415,6 +2473,60 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1104488878}
   m_RootOrder: 19
+--- !u!1 &206401636
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 206401637}
+  - 65: {fileID: 206401639}
+  - 114: {fileID: 206401638}
+  m_Layer: 0
+  m_Name: Analytics_end
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &206401637
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 206401636}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 3.98, y: 10.04, z: 5.84}
+  m_LocalScale: {x: 1.573876, y: 1, z: 1.5512711}
+  m_Children: []
+  m_Father: {fileID: 173765445}
+  m_RootOrder: 4
+--- !u!114 &206401638
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 206401636}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c7dd85bd7d2d58448ba0edd9b2c901d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  segmentName: Tower 2 Pressure Plate
+  triggertype: 1
+--- !u!65 &206401639
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 206401636}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &216430622
 GameObject:
   m_ObjectHideFlags: 0
@@ -8287,6 +8399,60 @@ Transform:
   - {fileID: 707615636}
   m_Father: {fileID: 1136262849}
   m_RootOrder: 0
+--- !u!1 &742556925
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 742556926}
+  - 65: {fileID: 742556928}
+  - 114: {fileID: 742556927}
+  m_Layer: 0
+  m_Name: Analytics_start
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &742556926
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 742556925}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.99, y: 1.21, z: -4.91}
+  m_LocalScale: {x: 2.3834434, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 60455499}
+  m_RootOrder: 6
+--- !u!114 &742556927
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 742556925}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c7dd85bd7d2d58448ba0edd9b2c901d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  segmentName: Tower 2 Mirror Puzzle
+  triggertype: 0
+--- !u!65 &742556928
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 742556925}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &748303182
 GameObject:
   m_ObjectHideFlags: 0
@@ -10257,15 +10423,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 409022, guid: 4d5d69b59f39a4e43a381b37bc52cfa1, type: 2}
       propertyPath: m_LocalPosition.x
-      value: 0.55
+      value: -0.09
       objectReference: {fileID: 0}
     - target: {fileID: 409022, guid: 4d5d69b59f39a4e43a381b37bc52cfa1, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 11.81
+      value: 1.58
       objectReference: {fileID: 0}
     - target: {fileID: 409022, guid: 4d5d69b59f39a4e43a381b37bc52cfa1, type: 2}
       propertyPath: m_LocalPosition.z
-      value: -2.47
+      value: -11.29
       objectReference: {fileID: 0}
     - target: {fileID: 409022, guid: 4d5d69b59f39a4e43a381b37bc52cfa1, type: 2}
       propertyPath: m_LocalRotation.x
@@ -11055,6 +11221,7 @@ Transform:
   m_Children:
   - {fileID: 2081827888}
   - {fileID: 1460251329}
+  - {fileID: 1965214522}
   m_Father: {fileID: 1689910037}
   m_RootOrder: 6
 --- !u!1 &932633927
@@ -11201,6 +11368,60 @@ MeshFilter:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 941239411}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &946036593
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 946036594}
+  - 65: {fileID: 946036596}
+  - 114: {fileID: 946036595}
+  m_Layer: 0
+  m_Name: Analytics_start
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &946036594
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 946036593}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -5.76, y: 3.62, z: 5.855}
+  m_LocalScale: {x: 1.573876, y: 1, z: 1.5512711}
+  m_Children: []
+  m_Father: {fileID: 173765445}
+  m_RootOrder: 3
+--- !u!114 &946036595
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 946036593}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c7dd85bd7d2d58448ba0edd9b2c901d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  segmentName: Tower 2 Pressure Plate
+  triggertype: 0
+--- !u!65 &946036596
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 946036593}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &947917228
 GameObject:
   m_ObjectHideFlags: 0
@@ -14279,6 +14500,60 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 112
   m_CollisionDetection: 0
+--- !u!1 &1314935143
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1314935144}
+  - 65: {fileID: 1314935146}
+  - 114: {fileID: 1314935145}
+  m_Layer: 0
+  m_Name: Analytics_start
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1314935144
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1314935143}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.89, y: 10.21, z: 4.44}
+  m_LocalScale: {x: 2.3090537, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 2081246480}
+  m_RootOrder: 28
+--- !u!114 &1314935145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1314935143}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c7dd85bd7d2d58448ba0edd9b2c901d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  segmentName: Tower 2 Windmachine
+  triggertype: 0
+--- !u!65 &1314935146
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1314935143}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1321651859
 GameObject:
   m_ObjectHideFlags: 0
@@ -16839,6 +17114,60 @@ Transform:
   - {fileID: 1700914254}
   m_Father: {fileID: 1526326347}
   m_RootOrder: 1
+--- !u!1 &1569363676
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1569363677}
+  - 65: {fileID: 1569363679}
+  - 114: {fileID: 1569363678}
+  m_Layer: 0
+  m_Name: Analytics_end
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1569363677
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1569363676}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 15.98, z: 0}
+  m_LocalScale: {x: 2, y: 1, z: 2}
+  m_Children: []
+  m_Father: {fileID: 2081246480}
+  m_RootOrder: 29
+--- !u!114 &1569363678
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1569363676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c7dd85bd7d2d58448ba0edd9b2c901d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  segmentName: Tower 2 Windmachine
+  triggertype: 1
+--- !u!65 &1569363679
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1569363676}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1570917261
 GameObject:
   m_ObjectHideFlags: 0
@@ -20134,6 +20463,60 @@ Transform:
   - {fileID: 68636632}
   m_Father: {fileID: 1526326347}
   m_RootOrder: 0
+--- !u!1 &1894800488
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1894800489}
+  - 65: {fileID: 1894800491}
+  - 114: {fileID: 1894800490}
+  m_Layer: 0
+  m_Name: Analytics_start
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1894800489
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1894800488}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.102283955, y: 17.369999, z: 0.1543827}
+  m_LocalScale: {x: 2, y: 1, z: 2}
+  m_Children: []
+  m_Father: {fileID: 2081246480}
+  m_RootOrder: 30
+--- !u!114 &1894800490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1894800488}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c7dd85bd7d2d58448ba0edd9b2c901d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  segmentName: Tower 2 Brick Puzzle
+  triggertype: 0
+--- !u!65 &1894800491
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1894800488}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1899418227
 GameObject:
   m_ObjectHideFlags: 0
@@ -20749,6 +21132,60 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1709988470}
   m_RootOrder: 0
+--- !u!1 &1965214521
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1965214522}
+  - 65: {fileID: 1965214524}
+  - 114: {fileID: 1965214523}
+  m_Layer: 0
+  m_Name: Analytics_end
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1965214522
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1965214521}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 20.8, z: 0}
+  m_LocalScale: {x: 3, y: 1, z: 3}
+  m_Children: []
+  m_Father: {fileID: 923387191}
+  m_RootOrder: 2
+--- !u!114 &1965214523
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1965214521}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c7dd85bd7d2d58448ba0edd9b2c901d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  segmentName: Tower 2 Brick Puzzle
+  triggertype: 1
+--- !u!65 &1965214524
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1965214521}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1968542536
 GameObject:
   m_ObjectHideFlags: 0
@@ -21678,6 +22115,9 @@ Transform:
   - {fileID: 679482702}
   - {fileID: 6294791}
   - {fileID: 1875605027}
+  - {fileID: 1314935144}
+  - {fileID: 1569363677}
+  - {fileID: 1894800489}
   m_Father: {fileID: 1689910037}
   m_RootOrder: 5
 --- !u!1 &2081827887
