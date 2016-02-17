@@ -2,6 +2,12 @@
 using System.Collections;
 using Nimbi.Framework;
 
+public enum SegmentAnalyticsTriggerType
+{
+    Finish,
+    Start
+}
+
 namespace Nimbi.Interaction.Triggers
 {
     [RequireComponent(typeof(BoxCollider))]
@@ -9,13 +15,13 @@ namespace Nimbi.Interaction.Triggers
     {
 
         public string segmentName;
-        public bool finish;
+        public SegmentAnalyticsTriggerType triggertype;
 
         void OnTriggerEnter(Collider collider)
         {
-            if (collider.tag == "Player" && !finish)
+            if (collider.tag == "Player" && triggertype == SegmentAnalyticsTriggerType.Start)
                 UnityAnalytics.StartSegment(segmentName);
-            else if (collider.tag == "Player" && finish)
+            else if (collider.tag == "Player" && triggertype == SegmentAnalyticsTriggerType.Finish)
                 UnityAnalytics.FinishSegment(segmentName);
         }
 
