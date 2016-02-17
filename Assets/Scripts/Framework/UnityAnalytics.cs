@@ -16,6 +16,7 @@ namespace Nimbi.Framework
 
         private static float totalfps;
         private static int fpsSamples;
+        private static bool testmode = true;
 
         private static List<Segment> segments = new List<Segment>();
 
@@ -26,7 +27,8 @@ namespace Nimbi.Framework
         /// <param name="duration">Seconds (!) between the start and end of the level</param>
         public static void CompleteLevel(string level, int duration)
         {
-            Analytics.CustomEvent("CompleteLevel_"+level, new Dictionary<string, object>{ { "duration", duration }, { "FPS", (totalfps/fpsSamples) }});
+            if(testmode && Debug.isDebugBuild)
+                Analytics.CustomEvent("CompleteLevel_"+level, new Dictionary<string, object>{ { "duration", duration }, { "FPS", (totalfps/fpsSamples) }});
             Debug.Log("Average FPS: " + (totalfps / fpsSamples));
         }
 
@@ -91,7 +93,8 @@ namespace Nimbi.Framework
             {
                 if(s.name == name && !s.finished)
                 {
-                    Analytics.CustomEvent("Complete Segment " + s.name, new Dictionary<string, object> { { "duration", (Time.time - s.startTime) }, { "tries", s.tries } });
+                    if (testmode && Debug.isDebugBuild)
+                        Analytics.CustomEvent("Complete Segment " + s.name, new Dictionary<string, object> { { "duration", (Time.time - s.startTime) }, { "tries", s.tries } });
                     s.finished = true;
                     Debug.Log("Finished " + s.name + " in "+ (Time.time - s.startTime)+"s");
                 }
