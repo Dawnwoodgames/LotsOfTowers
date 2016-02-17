@@ -4,8 +4,8 @@ using Nimbi.Framework;
 
 public enum SegmentAnalyticsTriggerType
 {
-    Finish,
-    Start
+    Start,
+    Finish
 }
 
 namespace Nimbi.Interaction.Triggers
