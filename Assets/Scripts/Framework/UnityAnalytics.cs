@@ -42,19 +42,30 @@ namespace Nimbi.Framework
             totalfps += fps;
         }
 
-        public static void StartSegment(string name)
+        /// <summary>
+        /// Starts segment with the specified name
+        /// </summary>
+        /// <param name="name">Name of the segment to start</param>
+        /// <returns>Segment that was started or the segment that is already there.</returns>
+        public static Segment StartSegment(string name)
         {
             bool segmentfound = false;
             foreach(Segment s in segments)
             {
                 if (s.name == name)
+                {
                     segmentfound = true;
+                    return s;
+                }
             }
 
             if (!segmentfound)
             {
-                segments.Add(new Segment(name));
+                Segment seg = new Segment(name);
+                segments.Add(seg);
+                return seg;
             }
+            return new Segment(name);
         }
 
         /// <summary>
@@ -82,6 +93,7 @@ namespace Nimbi.Framework
                 {
                     Analytics.CustomEvent("Complete Segment " + s.name, new Dictionary<string, object> { { "duration", (Time.time - s.startTime) }, { "tries", s.tries } });
                     s.finished = true;
+                    Debug.Log("Finished " + s.name + " in "+ (Time.time - s.startTime)+"s");
                 }
             }
         }
@@ -94,7 +106,11 @@ namespace Nimbi.Framework
         {
             foreach (Segment s in segments)
             {
-                segments.Remove(s);
+                if (s.name == name)
+                {
+                    segments.Remove(s);
+                    break;
+                }
             }
         }
     }
