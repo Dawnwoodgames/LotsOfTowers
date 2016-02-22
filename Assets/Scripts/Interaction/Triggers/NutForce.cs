@@ -15,7 +15,7 @@ namespace Nimbi.Interaction.Triggers
             {
                 nut.GetComponent<Rigidbody>().useGravity = true;
                 nut.GetComponent<Rigidbody>().isKinematic = false;
-                nut.GetComponent<Rigidbody>().AddForce(new Vector3(-1, 0, -.5f) * 4f, ForceMode.Impulse);
+                nut.GetComponent<Rigidbody>().AddForce(new Vector3(-1, 0, -.5f) * 2f, ForceMode.Impulse);
             }
         }
 

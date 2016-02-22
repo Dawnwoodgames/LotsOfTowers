@@ -17,12 +17,14 @@ namespace Nimbi.Interaction
         private int waterAmount = 0;
 		public GameObject wheel;
 		private GameObject nut;
+        private Vector3 nutgoal;
 
 		void Start()
 		{
 			nextPump = Time.time;
 			defaultPosition = newWater.transform.localPosition;
             nut = GameObject.Find("Nut");
+            nutgoal = nut.transform.position;
 		}
 
 		void Update()
@@ -33,11 +35,12 @@ namespace Nimbi.Interaction
 				nextPump = Time.time + pumpDelay;
 				waterToPump.GetComponent<HamsterWater>().spitcount -= 1;
                 waterAmount++;
-
-                nut.transform.position = new Vector3(nut.transform.position.x, nut.transform.position.y + 0.645f, nut.transform.position.z);
+                nutgoal += Vector3.up*0.6f;
+                
 			}
-			newWater.transform.localScale = Vector3.MoveTowards(newWater.transform.localScale, new Vector3(newWater.transform.localScale.x, newHeight, newWater.transform.localScale.z), Time.deltaTime * 2);
-			newWater.transform.localPosition = Vector3.MoveTowards(newWater.transform.localPosition, new Vector3(newWater.transform.localPosition.x, defaultPosition.y + newHeight, newWater.transform.localPosition.z), Time.deltaTime * 2);
+            nut.transform.position = Vector3.MoveTowards(nut.transform.position, nutgoal, Time.smoothDeltaTime * 1.5f);
+            newWater.transform.localScale = Vector3.MoveTowards(newWater.transform.localScale, new Vector3(newWater.transform.localScale.x, newHeight, newWater.transform.localScale.z), Time.deltaTime * 1.5f);
+			newWater.transform.localPosition = Vector3.MoveTowards(newWater.transform.localPosition, new Vector3(newWater.transform.localPosition.x, defaultPosition.y + newHeight, newWater.transform.localPosition.z), Time.deltaTime * 1.5f);
 			if (pumping)
 				wheel.transform.Rotate(new Vector3(5f,0,0));
 		}

@@ -7,6 +7,7 @@ namespace Nimbi.CameraControl
         private GameObject cameraObject;
         private Transform startTransform;
 		private GameObject focus;
+        public bool canZoom = true;
 
 		public void Start()
         {
@@ -18,13 +19,13 @@ namespace Nimbi.CameraControl
 		void Update()
 		{
             // Mousewheel zoom (should probably rename mouse wheel axis to "Zoom" at some point)
-			if (Input.GetAxis("Mouse Wheel") != 0) {
+			if (Input.GetAxis("Mouse Wheel") != 0 && canZoom) {
                 cameraObject.transform.localPosition = new Vector3(0, 0, Mathf.Max(-15,
                     Mathf.Min(cameraObject.transform.localPosition.z + Input.GetAxis("Mouse Wheel"), -5)));
             }
 
             // Controller zoom
-            if (Input.GetAxis("Zoom") > 0.05f || Input.GetAxis("Zoom") < -0.05f) {
+            if ((Input.GetAxis("Zoom") > 0.05f || Input.GetAxis("Zoom") < -0.05f) && canZoom) {
                 bool zoomIn = Input.GetAxis("Zoom") > 0;
 
                 cameraObject.transform.localPosition = new Vector3(0, 0, Mathf.Max(-15,

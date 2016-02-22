@@ -4,6 +4,7 @@ using Nimbi.Actors;
 using Nimbi.Framework;
 using Nimbi.Interaction.Triggers;
 using UnityEngine.SceneManagement;
+using Nimbi.CameraControl;
 
 namespace Nimbi.Interaction
 {
@@ -62,6 +63,7 @@ namespace Nimbi.Interaction
                 tower.transform.position = new Vector3(tower.transform.position.x, tower.transform.position.y, tower.transform.position.z - Time.deltaTime * 3);
 				Camera.main.transform.localPosition = new Vector3(Camera.main.transform.localPosition.x, Camera.main.transform.localPosition.y + Time.deltaTime, Camera.main.transform.localPosition.z - Time.deltaTime * 3);
 				player.GetComponent<PlayerController>().enabled = false;
+                Camera.main.transform.parent.GetComponent<CameraFollowScript>().canZoom = false;
 
                 MoveLevelSliderDown();
 
