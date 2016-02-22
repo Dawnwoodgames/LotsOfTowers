@@ -38,7 +38,10 @@ namespace Nimbi.Interaction
                 nutgoal += Vector3.up*0.6f;
                 
 			}
-            nut.transform.position = Vector3.MoveTowards(nut.transform.position, nutgoal, Time.smoothDeltaTime * 1.5f);
+
+            if(!nut.GetComponent<Nut>().pickedUp)
+                nut.transform.position = Vector3.MoveTowards(nut.transform.position, nutgoal, Time.smoothDeltaTime * 1.5f);
+
             newWater.transform.localScale = Vector3.MoveTowards(newWater.transform.localScale, new Vector3(newWater.transform.localScale.x, newHeight, newWater.transform.localScale.z), Time.deltaTime * 1.5f);
 			newWater.transform.localPosition = Vector3.MoveTowards(newWater.transform.localPosition, new Vector3(newWater.transform.localPosition.x, defaultPosition.y + newHeight, newWater.transform.localPosition.z), Time.deltaTime * 1.5f);
 			if (pumping)
