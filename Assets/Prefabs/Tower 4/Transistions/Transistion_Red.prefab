@@ -51,6 +51,51 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &119726
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 488852}
+  m_Layer: 0
+  m_Name: EndGoal
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &119808
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 448510}
+  m_Layer: 0
+  m_Name: StartFinish
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &137730
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 408436}
+  m_Layer: 0
+  m_Name: EndFinish
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &139530
 GameObject:
   m_ObjectHideFlags: 0
@@ -61,6 +106,21 @@ GameObject:
   - 4: {fileID: 444614}
   m_Layer: 0
   m_Name: end
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &149602
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 473956}
+  m_Layer: 0
+  m_Name: StartGoal
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -144,6 +204,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 485132}
   m_RootOrder: 0
+--- !u!4 &408436
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 137730}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.83, y: 23.59, z: 63.39}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 485132}
+  m_RootOrder: 6
 --- !u!4 &427994
 Transform:
   m_ObjectHideFlags: 1
@@ -192,6 +264,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 485132}
   m_RootOrder: 1
+--- !u!4 &448510
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 119808}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.52, y: 3.26, z: 15.86}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 485132}
+  m_RootOrder: 5
 --- !u!4 &465416
 Transform:
   m_ObjectHideFlags: 1
@@ -204,6 +288,18 @@ Transform:
   m_Children: []
   m_Father: {fileID: 485132}
   m_RootOrder: 3
+--- !u!4 &473956
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 149602}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -7.24, y: -11.78, z: 18.11}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 485132}
+  m_RootOrder: 7
 --- !u!4 &485132
 Transform:
   m_ObjectHideFlags: 1
@@ -219,8 +315,24 @@ Transform:
   - {fileID: 427994}
   - {fileID: 465416}
   - {fileID: 495906}
+  - {fileID: 448510}
+  - {fileID: 408436}
+  - {fileID: 473956}
+  - {fileID: 488852}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!4 &488852
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 119726}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -6.51, y: 5, z: 63.2}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 485132}
+  m_RootOrder: 8
 --- !u!4 &495906
 Transform:
   m_ObjectHideFlags: 1
@@ -382,11 +494,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5dd343988ac56f479fbd2f8efe6df0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  start: {fileID: 401410}
   startTrigger: {fileID: 11483638}
-  end: {fileID: 444614}
   endTrigger: {fileID: 11401676}
+  start: {fileID: 401410}
+  end: {fileID: 444614}
   transport: {fileID: 495906}
+  startFinish: {fileID: 448510}
+  endFinish: {fileID: 408436}
+  startGoal: {fileID: 473956}
+  endGoal: {fileID: 488852}
 --- !u!114 &11483638
 MonoBehaviour:
   m_ObjectHideFlags: 1

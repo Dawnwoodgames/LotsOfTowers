@@ -6,20 +6,15 @@ namespace Nimbi.Interaction
 {
 	public class Transition : MonoBehaviour
 	{
-		public Transform start;
-		public TransistionTrigger startTrigger;
-		public Transform end;
-		public TransistionTrigger endTrigger;
-		public Transform transport;
+		public TransistionTrigger startTrigger, endTrigger;
+		public Transform start, end, transport, startFinish, endFinish, startGoal, endGoal;
 
-        public bool pushPlayerIntoStartPosition = false;
-        public GameObject playerPostionAfterEndToStartTransfer;
+        private bool moving;
 
         private GameObject player;
-		private bool insideStartTrigger = false;
-		private bool insideEndTrigger = false;
-		private bool raisingUp = false;
-		private TransistionTrigger trigger;
+		private bool insideStartTrigger;
+		private bool insideEndTrigger;
+		private bool goingDown;
 
 		void Start()
 		{
@@ -39,6 +34,8 @@ namespace Nimbi.Interaction
                     player.GetComponent<Rigidbody>().isKinematic = true;
                     player.GetComponent<PlayerController>().enabled = false;
                     insideStartTrigger = true;
+                    goingDown = true;
+                    moving = true;
                 }
                 else if (endTrigger.insideEndTrigger && Input.GetButtonDown("Submit")
 				&& player.GetComponent<Player>().Onesie.type == OnesieType.Hamster)
@@ -48,66 +45,58 @@ namespace Nimbi.Interaction
                     player.GetComponent<Rigidbody>().isKinematic = true;
                     player.GetComponent<PlayerController>().enabled = false;
                     insideEndTrigger = true;
+                    goingDown = true;
+                    moving = true;
                 }
             }
 		}
 
 		void FixedUpdate()
 		{
-			if (insideStartTrigger)
-			{
-				if (!raisingUp && transport.localPosition.y > -10)
-				{
-					transport.localPosition = Vector3.MoveTowards(transport.localPosition, transport.localPosition - (Vector3.up * 20), Time.deltaTime * 20);
-				}
-				else if (!raisingUp && transport.localPosition.y < -10)
-				{
-					transport.localPosition = end.localPosition - (Vector3.up * 20);
-					raisingUp = true;
-				}
-				else if (raisingUp && transport.localPosition != end.localPosition)
-				{
-					transport.localPosition = Vector3.MoveTowards(transport.localPosition, end.localPosition, Time.deltaTime * 20);
-				}
-				else
-				{
-					player.transform.parent = null;
-					player.transform.localScale = new Vector3(1, 1, 1);
-					player.GetComponent<Rigidbody>().isKinematic = false;
-					player.GetComponent<PlayerController>().enabled = true;
-					insideStartTrigger = false;
-					raisingUp = false;
-				}
-			}
-			else if (insideEndTrigger)
-			{
-				if (!raisingUp && transport.localPosition.y > -10)
-				{
-					transport.localPosition = Vector3.MoveTowards(transport.localPosition, transport.localPosition - (Vector3.up * 20), Time.deltaTime * 20);
-				}
-				else if (!raisingUp && transport.localPosition.y < -10)
-				{
-					transport.localPosition = start.localPosition - (Vector3.up * 20);
-					raisingUp = true;
-				}
-				else if (raisingUp && transport.localPosition != start.localPosition)
-				{
-					transport.localPosition = Vector3.MoveTowards(transport.localPosition, start.localPosition, Time.deltaTime * 20);
-				}
-				else
-				{
-					player.transform.parent = null;
-					player.transform.localScale = new Vector3(1, 1, 1);
-                    if (pushPlayerIntoStartPosition)
+            if (moving)
+            {
+                Vector3 firstgoal = new Vector3(), secondgoal = new Vector3(), secondstart = new Vector3();
+                if (insideStartTrigger)
+                {
+
+                    firstgoal = startGoal.position;
+                    secondgoal = end.position;
+                    secondstart = endGoal.position;
+                }
+                else if (insideEndTrigger)
+                {
+                    firstgoal = endGoal.position;
+                    secondgoal = start.position;
+                    secondstart = startGoal.position;
+                }
+
+                if (goingDown)
+                {
+                    transport.position = Vector3.MoveTowards(transport.position, firstgoal, Time.smoothDeltaTime * 15);
+                    if (transport.position == Vector3.MoveTowards(transport.position, firstgoal, Time.smoothDeltaTime * 15))
                     {
-                        player.transform.localPosition = playerPostionAfterEndToStartTransfer.transform.position;
+                        transport.position = secondstart;
+                        goingDown = false;
                     }
-                    player.GetComponent<Rigidbody>().isKinematic = false;
-					player.GetComponent<PlayerController>().enabled = true;
-                    insideEndTrigger = false;
-					raisingUp = false;
-				}
-			}
+                }
+                else if (!goingDown)
+                {
+                    transport.position = Vector3.MoveTowards(transport.position, secondgoal, Time.smoothDeltaTime * 15);
+                    if (transport.position == Vector3.MoveTowards(transport.position, secondgoal, Time.smoothDeltaTime * 15))
+                    {
+                        transport.position = Vector3.MoveTowards(transport.position, secondgoal, Time.smoothDeltaTime * 15);
+                        moving = false;
+                        player.transform.parent = null;
+                        player.transform.localScale = new Vector3(1, 1, 1);
+                        player.GetComponent<Rigidbody>().isKinematic = false;
+                        player.GetComponent<PlayerController>().enabled = true;
+                        player.transform.position = insideStartTrigger ? endFinish.position : startFinish.position;
+                        insideStartTrigger = false;
+                        insideEndTrigger = false;
+                    }
+                }
+            }
+			
 		}
 	}
 }
