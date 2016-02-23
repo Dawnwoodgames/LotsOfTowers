@@ -23,7 +23,7 @@ namespace Nimbi.Interaction.Triggers
 
         void Start()
         {
-            GameObject.FindGameObjectWithTag("Player");
+            player = GameObject.FindGameObjectWithTag("Player");
             startRotation = transform.localRotation;
         }
 
@@ -50,7 +50,7 @@ namespace Nimbi.Interaction.Triggers
 
         public void PushNimbiAway()
         {
-            player.GetComponent<Rigidbody>().AddForce(Vector3.right * pushBackRate, ForceMode.VelocityChange);
+            player.GetComponent<Rigidbody>().AddForce(Vector3.right * pushBackRate, ForceMode.Impulse);
         }
     }
 }

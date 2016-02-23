@@ -37,6 +37,12 @@ namespace Nimbi.Actors.Triggers
             }
         }
 
+        //If Nimbi gets Pushed back!
+        private void OnTriggerExit()
+        {
+            inTrigger = false;
+        }
+
     }
 
 
