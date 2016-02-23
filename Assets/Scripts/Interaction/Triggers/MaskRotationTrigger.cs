@@ -6,14 +6,14 @@ namespace Nimbi.Interaction.Triggers
 {
     public class MaskRotationTrigger : MonoBehaviour
     {
-        
-        public float rotationSpeed = 10;
-        public float acceleration = 0.02f;
+        bool restoreRotation = false;
+        public float rotationSpeed = 10f;
+        public float rotateBackSpeed = 10f;
 
-        private bool isCheating = true;
-        private Quaternion startRotation = Quaternion.Euler(0,0,0);
+        private bool isCheating;
+        private Quaternion startRotation;
         private int rotationCount;
-        
+
 
         void Start()
         {
@@ -22,27 +22,25 @@ namespace Nimbi.Interaction.Triggers
 
         public void Update()
         {
-            transform.Rotate(rotationSpeed, 0, 0);
-            if(transform.rotation.eulerAngles.x >= 180)
+
+            if(rotationSpeed > 0)
             {
-                rotationCount++;
-                Debug.Log(rotationCount);
+                transform.Rotate(rotationSpeed, 0, 0);
             }
 
-            if(rotationCount >= 300)
+            rotationSpeed -= Time.deltaTime / 2f;
+
+
+            if (rotationSpeed <= 0)
             {
-                rotationSpeed -= acceleration;
-                if (isCheating)
-                {
-                    
-                }
                 
             }
+
         }
-
-
-
     }
 
-  }
+
+
+}
+
 
