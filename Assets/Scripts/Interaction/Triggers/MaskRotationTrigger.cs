@@ -6,18 +6,38 @@ namespace Nimbi.Interaction.Triggers
 {
     public class MaskRotationTrigger : MonoBehaviour
     {
-        float targetRotation = 360f; //Rotation to stop at
-        float distanceToSlow = 50f; //How far from target to start slowing down
-        float minDistance = 1f; //How far from target to stop completely
+        
+        public float rotationSpeed = 10;
+        public float acceleration = 0.02f;
 
-        private float curAngle = 0f;
-        private float startAngle = 0f;
-        private float startTime = 0f;
+        private bool isCheating = true;
+        private Quaternion startRotation = Quaternion.Euler(0,0,0);
+        private int rotationCount;
+        
+
+        void Start()
+        {
+            startRotation = transform.rotation;
+        }
 
         public void Update()
         {
-            float t = (Time.time - startTime);
-            curAngle = Mathf.Lerp(startAngle, targetRotation, t);
+            transform.Rotate(rotationSpeed, 0, 0);
+            if(transform.rotation.eulerAngles.x >= 180)
+            {
+                rotationCount++;
+                Debug.Log(rotationCount);
+            }
+
+            if(rotationCount >= 300)
+            {
+                rotationSpeed -= acceleration;
+                if (isCheating)
+                {
+                    
+                }
+                
+            }
         }
 
 

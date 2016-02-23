@@ -12,6 +12,7 @@ namespace Nimbi.CameraControl
 		public float verticalDegree = 30;
 		public float cameraSpeed = 6;
         private bool animationPlayed;
+        private bool cameraEnabled = false; // Boolean to call when Nimbi can Interact with the Camera.
 
 		[HideInInspector]
 		public bool playingAnimation;
@@ -78,7 +79,7 @@ namespace Nimbi.CameraControl
             }
 
 			// Rotate controls
-			if ((Input.GetMouseButton(0) || Input.GetMouseButton(1)) && !playingAnimation)
+			if ((Input.GetMouseButton(0) || Input.GetMouseButton(1)) && !playingAnimation && cameraEnabled) //Disable Camera for Introduction Level
 			{
 				degree += Input.GetAxis("Mouse X") * Sensitivity * 1.2f;
 			}
