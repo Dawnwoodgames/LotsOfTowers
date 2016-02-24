@@ -28,8 +28,8 @@ namespace Nimbi.Framework
         public static void CompleteLevel(string level, int duration)
         {
             if(testmode && Debug.isDebugBuild)
-                Analytics.CustomEvent("CompleteLevel_"+level, new Dictionary<string, object>{ { "duration", duration }, { "FPS", (totalfps/fpsSamples) }});
-            Debug.Log("Average FPS: " + (totalfps / fpsSamples));
+                Analytics.CustomEvent("Complete Level "+level, new Dictionary<string, object>{ { "duration", duration }, { "FPS", (totalfps/fpsSamples)>50?"50+":Mathf.Floor((totalfps / fpsSamples)/10)+" - "+Mathf.Floor((totalfps / fpsSamples)/10)+10 } });
+            Debug.Log("Average FPS: " + ((totalfps / fpsSamples) > 50 ? "50+" : Mathf.Floor((totalfps / fpsSamples) / 10) + " - " + Mathf.Floor((totalfps / fpsSamples) / 10) + 10));
         }
 
         public static void StartFPSMeasurement()
