@@ -7,17 +7,21 @@ namespace Nimbi.Interaction.Triggers
     public class MaskRotationTrigger : MonoBehaviour
     {
 
+        //Public values for chaning in Editor
         public float rotationSpeed = 10f;
         public float rotateBackSpeed = 10f;
         public float pushBackRate = 30;
 
+        //Public Booleans So we can check states in other classes.
+        public bool isCheating = true;
+        public bool isSpinning;
+        public bool isScary = true;
+
+        //Private Objects for Inner Class purposes only
         private GameObject player;
-        public bool isCheating;
         private Quaternion startRotation;
         private int rotationCount;
 
-        public bool isSpinning;
-        public bool isScary = true;
         private bool inTrigger;
 
 
@@ -47,6 +51,13 @@ namespace Nimbi.Interaction.Triggers
             }
 
         }
+
+
+        public void CheckMaskPosition()
+        {
+
+        }
+
 
         public void PushNimbiAway()
         {

@@ -49,9 +49,15 @@ namespace Nimbi.Actors.Triggers
             if (!player.GetComponent<Player>().Onesie.isHeavy)
             {
                 cheatingMask.isSpinning = false;
+                
                 cheatingMask.PushNimbiAway();
             }
-            Debug.Log("You are not heavy enough!");
+            else
+            {
+                cheatingMask.rotationSpeed = 0;
+            }
+           
+            
         }
     }
 
