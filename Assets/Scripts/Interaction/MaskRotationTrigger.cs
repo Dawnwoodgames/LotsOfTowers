@@ -17,7 +17,7 @@ namespace Nimbi.Interaction.Triggers
         private int rotationCount;
 
         public bool isSpinning;
-        public bool isScary;
+        public bool isScary = true;
         private bool inTrigger;
 
 
@@ -50,6 +50,7 @@ namespace Nimbi.Interaction.Triggers
 
         public void PushNimbiAway()
         {
+            Debug.Log("You are not Heavy enough, Wimbi!");
             player.GetComponent<Rigidbody>().AddForce(Vector3.right * pushBackRate, ForceMode.Impulse);
         }
     }

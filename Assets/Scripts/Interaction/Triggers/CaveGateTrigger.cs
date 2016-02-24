@@ -34,6 +34,7 @@ namespace Nimbi.Interaction
         {
             if (coll.attachedRigidbody)
             {
+                Debug.Log("Peg hitted");
                 inTrigger = true;
             }
         }

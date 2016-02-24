@@ -24,7 +24,7 @@ namespace Nimbi.Actors.Triggers
         {
             if(inTrigger && cheatingMask.isCheating)
             {
-                cheatingMask.PushNimbiAway();
+                CheckNimbiState();
             }
         }
 
@@ -32,7 +32,7 @@ namespace Nimbi.Actors.Triggers
         {
             if (coll.tag == "Player")
             {
-                Debug.Log("Whatttttt, player is hitting meeeeeeee?");
+                Debug.Log("Peg is hitted");
                 inTrigger = true;
             }
         }
@@ -43,6 +43,16 @@ namespace Nimbi.Actors.Triggers
             inTrigger = false;
         }
 
+
+        public void CheckNimbiState()
+        {
+            if (!player.GetComponent<Player>().Onesie.isHeavy)
+            {
+                cheatingMask.isSpinning = false;
+                cheatingMask.PushNimbiAway();
+            }
+            Debug.Log("You are not heavy enough!");
+        }
     }
 
 
