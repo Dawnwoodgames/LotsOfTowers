@@ -63,15 +63,16 @@ namespace Nimbi.Interaction
         public void CheckMaskPosition()
         {
             if (happyTrigger.isHappy == true)
-            {
+            {               
                 completeDoor.transform.rotation = Quaternion.Euler(0, 338.0217f, 88.9f);
+                isScary = false;
             }
         }
 
 
         public void PushNimbiAway()
         {
-            Debug.Log("You are not Heavy enough, Wimbi!");
+            if(isScary)
             player.GetComponent<Rigidbody>().AddForce(Vector3.right * pushBackRate, ForceMode.Impulse);
         }
     }
