@@ -50,8 +50,8 @@ namespace Nimbi.Interaction
             rotationSpeed -= Time.deltaTime / 1f;
 
 
-            if (rotationSpeed <= 0)
-            {
+            if (rotationSpeed <= 0 && !happyTrigger.isHappy)
+            {              
                 transform.localRotation = Quaternion.Slerp(transform.localRotation, startRotation, 0.1f);
                 if (Mathf.Abs(transform.localRotation.eulerAngles.x - startRotation.eulerAngles.x) < 0.1f)
                     rotationSpeed = 10;
@@ -64,7 +64,7 @@ namespace Nimbi.Interaction
         {
             if (happyTrigger.isHappy == true)
             {
-                completeDoor.transform.Rotate(0, 338.0217f, 88.9f);
+                completeDoor.transform.rotation = Quaternion.Euler(0, 338.0217f, 88.9f);
             }
         }
 
