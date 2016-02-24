@@ -112,6 +112,59 @@ Transform:
   m_Children: []
   m_Father: {fileID: 589158556}
   m_RootOrder: 0
+--- !u!1 &16467572
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 16467573}
+  - 65: {fileID: 16467574}
+  - 114: {fileID: 16467575}
+  m_Layer: 0
+  m_Name: HappyTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &16467573
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 16467572}
+  m_LocalRotation: {x: 0, y: -0.0070537627, z: 0, w: 0.99997514}
+  m_LocalPosition: {x: 1.247, y: 1.32, z: 0.002}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 853092447}
+  m_RootOrder: 0
+--- !u!65 &16467574
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 16467572}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 0.18, y: 0.46, z: 1.56}
+  m_Center: {x: -1.17, y: 0.05, z: 0.04}
+--- !u!114 &16467575
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 16467572}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea5cc7bd104a8eb4282d752ff83ad093, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isHappy: 0
 --- !u!1 &49647106
 GameObject:
   m_ObjectHideFlags: 0
@@ -2671,10 +2724,14 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sendTriggerMessage: 1
-  layerMask:
-    serializedVersion: 2
-    m_Bits: 4294967295
+  layerMask: {}
   skinWidth: 0.1
+  minimumExtent: 0
+  partialExtent: 0
+  sqrMinimumExtent: 0
+  previousPosition: {x: 0, y: 0, z: 0}
+  myRigidbody: {fileID: 0}
+  myCollider: {fileID: 0}
 --- !u!1 &368085758
 GameObject:
   m_ObjectHideFlags: 0
@@ -4962,6 +5019,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0ebad79768065df4287a38340b72bc58, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  happyTrigger: {fileID: 16467575}
+  completeDoor: {fileID: 1413960624}
   rotationSpeed: 10
   rotateBackSpeed: 10
   pushBackRate: 10
@@ -12008,7 +12067,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400002, guid: 8aa47f4d12bc7d743b5aa91fcd80bdbb, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1413960624}
-  m_LocalRotation: {x: 0, y: -0.19062312, z: 0, w: 0.9816633}
+  m_LocalRotation: {x: 0, y: 0.19062296, z: 0, w: -0.98166335}
   m_LocalPosition: {x: 36.519478, y: -1.3199997, z: 12.830009}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:

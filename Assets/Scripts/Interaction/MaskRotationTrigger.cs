@@ -1,19 +1,24 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Nimbi.Actors;
+using Nimbi.Interaction.Triggers;
 
-namespace Nimbi.Interaction.Triggers
+namespace Nimbi.Interaction
 {
     public class MaskRotationTrigger : MonoBehaviour
     {
+
+        public MaskHappyTrigger happyTrigger;
+        public GameObject completeDoor;
 
         //Public values for chaning in Editor
         public float rotationSpeed = 10f;
         public float rotateBackSpeed = 10f;
         public float pushBackRate = 30;
 
+
         //Public Booleans So we can check states in other classes.
-        public bool isCheating = true;
+        public bool isCheating;
         public bool isSpinning;
         public bool isScary = true;
 
@@ -21,6 +26,7 @@ namespace Nimbi.Interaction.Triggers
         private GameObject player;
         private Quaternion startRotation;
         private int rotationCount;
+
 
         private bool inTrigger;
 
@@ -37,6 +43,7 @@ namespace Nimbi.Interaction.Triggers
             if (rotationSpeed > 0)
             {
                 isSpinning = true;
+                isCheating = true;
                 transform.Rotate(rotationSpeed, 0, 0);
             }
 
@@ -55,7 +62,10 @@ namespace Nimbi.Interaction.Triggers
 
         public void CheckMaskPosition()
         {
-
+            if (happyTrigger.isHappy == true)
+            {
+                completeDoor.transform.Rotate(0, 338.0217f, 88.9f);
+            }
         }
 
 

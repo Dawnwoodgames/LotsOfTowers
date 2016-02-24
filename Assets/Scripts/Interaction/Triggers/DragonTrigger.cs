@@ -3,7 +3,7 @@ using System.Collections;
 using Nimbi.Actors;
 using Nimbi.UI;
 
-namespace Nimbi.Interaction.Triggers
+namespace Nimbi.Interaction
 {
     public class DragonTrigger : MonoBehaviour
     {

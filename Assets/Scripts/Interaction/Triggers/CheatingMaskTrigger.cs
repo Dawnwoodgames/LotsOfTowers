@@ -3,7 +3,8 @@ using System.Collections;
 using Nimbi.Actors;
 using Nimbi.Interaction.Triggers;
 
-namespace Nimbi.Actors.Triggers
+
+namespace Nimbi.Interaction
 {
     public class CheatingMaskTrigger : MonoBehaviour
     {
@@ -48,13 +49,13 @@ namespace Nimbi.Actors.Triggers
         {
             if (!player.GetComponent<Player>().Onesie.isHeavy)
             {
-                cheatingMask.isSpinning = false;
-                
                 cheatingMask.PushNimbiAway();
             }
             else
             {
+                cheatingMask.isSpinning = false;
                 cheatingMask.rotationSpeed = 0;
+                cheatingMask.CheckMaskPosition();
             }
            
             
