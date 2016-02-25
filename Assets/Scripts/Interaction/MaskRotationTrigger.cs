@@ -10,6 +10,7 @@ namespace Nimbi.Interaction
 
         public MaskHappyTrigger happyTrigger;
         public GameObject completeDoor;
+        public FortuneWheelHandle handle;
 
         //Public values for chaning in Editor
         public float rotationSpeed = 10f;
@@ -21,11 +22,13 @@ namespace Nimbi.Interaction
         public bool isCheating;
         public bool isSpinning;
         public bool isScary = true;
+        public bool isActivated;
 
         //Private Objects for Inner Class purposes only
         private GameObject player;
         private Quaternion startRotation;
         private int rotationCount;
+        private Vector3 layDownRotation;
 
 
         private bool inTrigger;
@@ -35,26 +38,33 @@ namespace Nimbi.Interaction
         {
             player = GameObject.FindGameObjectWithTag("Player");
             startRotation = transform.localRotation;
+            layDownRotation = new Vector3(0, 338.0217f, 89);
+            
         }
 
         public void Update()
         {
-
-            if (rotationSpeed > 0)
+            if (isActivated)
             {
-                isSpinning = true;
-                isCheating = true;
-                transform.Rotate(rotationSpeed, 0, 0);
-            }
+                if (rotationSpeed > 0)
+                {
+                    isCheating = true;
+                    transform.Rotate(rotationSpeed, 0, 0);
+                }
 
-            rotationSpeed -= Time.deltaTime / 1f;
+                rotationSpeed -= Time.deltaTime / 1f;
 
 
-            if (rotationSpeed <= 0 && !happyTrigger.isHappy)
-            {              
-                transform.localRotation = Quaternion.Slerp(transform.localRotation, startRotation, 0.1f);
-                if (Mathf.Abs(transform.localRotation.eulerAngles.x - startRotation.eulerAngles.x) < 0.1f)
-                    rotationSpeed = 10;
+                if (rotationSpeed <= 0 && !happyTrigger.isHappy)
+                {
+                    transform.localRotation = Quaternion.Slerp(transform.localRotation, startRotation, 0.1f);
+                    if (Mathf.Abs(transform.localRotation.eulerAngles.x - startRotation.eulerAngles.x) < 0.1f)
+                    {
+                        isActivated = false;
+                        handle.returnLever();
+                    }
+                }
+
             }
 
         }
@@ -63,8 +73,8 @@ namespace Nimbi.Interaction
         public void CheckMaskPosition()
         {
             if (happyTrigger.isHappy == true)
-            {               
-                completeDoor.transform.rotation = Quaternion.Euler(0, 338.0217f, 88.9f);
+            {
+                completeDoor.transform.rotation = Quaternion.Slerp(completeDoor.transform.rotation, Quaternion.Euler(layDownRotation), 0.2f);
                 isScary = false;
             }
         }
