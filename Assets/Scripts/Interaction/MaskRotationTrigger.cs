@@ -64,7 +64,10 @@ namespace Nimbi.Interaction
                         handle.returnLever();
                     }
                 }
-
+                if(happyTrigger.isHappy && !isScary)
+                {
+                    DropDown();
+                }
             }
 
         }
@@ -74,11 +77,14 @@ namespace Nimbi.Interaction
         {
             if (happyTrigger.isHappy == true)
             {
-                completeDoor.transform.rotation = Quaternion.Slerp(completeDoor.transform.rotation, Quaternion.Euler(layDownRotation), 0.2f);
                 isScary = false;
             }
         }
 
+        public void DropDown()
+        {
+            completeDoor.transform.rotation = Quaternion.Slerp(completeDoor.transform.rotation, Quaternion.Euler(layDownRotation), 0.2f);
+        }
 
         public void PushNimbiAway()
         {
