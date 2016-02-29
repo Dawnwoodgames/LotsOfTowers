@@ -46,13 +46,6 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
-          name: _MetallicGlossMap
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
-      data:
-        first:
           name: _OcclusionMap
         second:
           m_Texture: {fileID: 0}
@@ -75,6 +68,20 @@ Material:
       data:
         first:
           name: _DetailAlbedoMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _MetallicGlossMap
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
+          name: _Ramp
         second:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
@@ -106,10 +113,6 @@ Material:
         second: 0.5
       data:
         first:
-          name: _Metallic
-        second: 0
-      data:
-        first:
           name: _BumpScale
         second: 1
       data:
@@ -128,6 +131,14 @@ Material:
         first:
           name: _Mode
         second: 3
+      data:
+        first:
+          name: _Metallic
+        second: 0
+      data:
+        first:
+          name: _Outline
+        second: 0.002
     m_Colors:
       data:
         first:
@@ -136,4 +147,8 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 0.5696, g: 0.7762, b: 1, a: 0.31468683}
+        second: {r: 0.61764705, g: 0.018166106, b: 0.018166106, a: 0.615}
+      data:
+        first:
+          name: _OutlineColor
+        second: {r: 0.19117647, g: 0.10261679, b: 0.10261679, a: 1}
