@@ -11,6 +11,7 @@ namespace Nimbi.Interaction
         public MaskHappyTrigger happyTrigger;
         public GameObject completeDoor;
         public FortuneWheelHandle handle;
+        public Transform endPosition;
 
         //Public values for chaning in Editor
         public float rotationSpeed = 10f;
@@ -20,7 +21,8 @@ namespace Nimbi.Interaction
 
         //Public Booleans So we can check states in other classes.
         public bool isCheating;
-        public bool isSpinning;
+
+        public bool isSpinning; //Is Our wheel spinning? Or do we need to change it to an fast spinning bool instead.
         public bool isScary = true;
         public bool isActivated;
 
@@ -88,8 +90,9 @@ namespace Nimbi.Interaction
 
         public void PushNimbiAway()
         {
-            if(isScary)
-            player.GetComponent<Rigidbody>().AddForce(Vector3.right * pushBackRate, ForceMode.Impulse);
+            if (isScary && isCheating)
+                //player.GetComponent<Rigidbody>().AddForce(-transform.forward * pushBackRate, ForceMode.Impulse);
+                player.transform.position = endPosition.transform.position;
         }
     }
 }

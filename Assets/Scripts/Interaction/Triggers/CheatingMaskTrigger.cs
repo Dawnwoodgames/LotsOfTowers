@@ -17,13 +17,13 @@ namespace Nimbi.Interaction
         void Start()
         {
             player = GameObject.FindGameObjectWithTag("Player");
-            
+
         }
 
         // Update is called once per frame
         void Update()
         {
-            if(inTrigger && cheatingMask.isCheating)
+            if (inTrigger && cheatingMask.isCheating)
             {
                 CheckNimbiState();
             }
@@ -57,8 +57,8 @@ namespace Nimbi.Interaction
                 cheatingMask.rotationSpeed = 0;
                 cheatingMask.CheckMaskPosition();
             }
-           
-            
+
+
         }
     }
 
