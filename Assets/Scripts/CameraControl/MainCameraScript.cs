@@ -12,7 +12,7 @@ namespace Nimbi.CameraControl
 		public float verticalDegree = 30;
 		public float cameraSpeed = 6;
         private bool animationPlayed;
-        private bool cameraEnabled = true; // Boolean to call when Nimbi can Interact with the Camera.
+        public bool cameraEnabled = true; // Boolean to call when Nimbi can Interact with the Camera.
 
 		[HideInInspector]
 		public bool playingAnimation;
