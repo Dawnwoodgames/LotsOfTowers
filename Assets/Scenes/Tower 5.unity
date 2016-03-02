@@ -4248,6 +4248,7 @@ MonoBehaviour:
   happyTrigger: {fileID: 16467575}
   completeDoor: {fileID: 1413960624}
   handle: {fileID: 1984501067}
+  endPosition: {fileID: 1990639068}
   rotationSpeed: 10
   rotateBackSpeed: 10
   pushBackRate: 10
@@ -4709,15 +4710,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 409022, guid: 4d5d69b59f39a4e43a381b37bc52cfa1, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -20.47
+      value: -3.46
       objectReference: {fileID: 0}
     - target: {fileID: 409022, guid: 4d5d69b59f39a4e43a381b37bc52cfa1, type: 2}
       propertyPath: m_LocalPosition.y
-      value: 12.42
+      value: 5.34
       objectReference: {fileID: 0}
     - target: {fileID: 409022, guid: 4d5d69b59f39a4e43a381b37bc52cfa1, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 29.98
+      value: 3.99
       objectReference: {fileID: 0}
     - target: {fileID: 409022, guid: 4d5d69b59f39a4e43a381b37bc52cfa1, type: 2}
       propertyPath: m_LocalRotation.x
@@ -10912,7 +10913,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400066, guid: 758f2f2f1d0ecfb40866782581a23bbf, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0
+      value: 2.36
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 758f2f2f1d0ecfb40866782581a23bbf, type: 3}
@@ -12314,34 +12315,26 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 484586, guid: 07e7a2ad4c8131443b190b37e9e4dc33, type: 2}
       propertyPath: m_RootOrder
-      value: 3
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 9558206, guid: 07e7a2ad4c8131443b190b37e9e4dc33, type: 2}
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: e59fb49b0352d574599daae1f780519f, type: 2}
-    - target: {fileID: 414784, guid: 07e7a2ad4c8131443b190b37e9e4dc33, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 414784, guid: 07e7a2ad4c8131443b190b37e9e4dc33, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 414784, guid: 07e7a2ad4c8131443b190b37e9e4dc33, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 414784, guid: 07e7a2ad4c8131443b190b37e9e4dc33, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
     - target: {fileID: 11443302, guid: 07e7a2ad4c8131443b190b37e9e4dc33, type: 2}
       propertyPath: degree
       value: 250
       objectReference: {fileID: 0}
-    - target: {fileID: 9558206, guid: 07e7a2ad4c8131443b190b37e9e4dc33, type: 2}
-      propertyPath: m_Enabled
+    - target: {fileID: 11443302, guid: 07e7a2ad4c8131443b190b37e9e4dc33, type: 2}
+      propertyPath: shakeY
+      value: 90
+      objectReference: {fileID: 0}
+    - target: {fileID: 11443302, guid: 07e7a2ad4c8131443b190b37e9e4dc33, type: 2}
+      propertyPath: shakeSpeed
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11443302, guid: 07e7a2ad4c8131443b190b37e9e4dc33, type: 2}
+      propertyPath: shakeCamera
       value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
@@ -12903,7 +12896,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 22498990, guid: 44cf3614042464b60934e56286a271a5, type: 2}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 22498990, guid: 44cf3614042464b60934e56286a271a5, type: 2}
       propertyPath: m_AnchoredPosition.x

@@ -14,6 +14,11 @@ namespace Nimbi.CameraControl
         private bool animationPlayed;
         private bool cameraEnabled = true; // Boolean to call when Nimbi can Interact with the Camera.
 
+        //Create function to shake the camera when needed//
+        //public bool shakeCamera;
+        //public float shakeY;
+        //public float shakeSpeed;
+
 		[HideInInspector]
 		public bool playingAnimation;
 		private bool doneWithAnimating;
@@ -92,6 +97,18 @@ namespace Nimbi.CameraControl
 
 			//Set rotation to next degree with a slight lerp
 			centerFocus.rotation = Quaternion.Slerp(centerFocus.rotation, Quaternion.Euler(verticalDegree, degree, 0), Time.deltaTime * cameraSpeed);
+
+            //Set Camera void
+            ////if (shakeCamera)
+            //{
+            //    Vector2 _newPosition = new Vector2(0, shakeY);
+            //    if (shakeY < 0)
+            //    {
+            //        shakeY *= shakeSpeed;
+            //    }
+            //    shakeY = -shakeY;
+            //    transform.Translate(_newPosition, Space.Self);
+            //}
 		}
 	}
 }
