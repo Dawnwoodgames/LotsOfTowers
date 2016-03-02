@@ -12,6 +12,7 @@ namespace Nimbi.Interaction
         public GameObject completeDoor;
         public FortuneWheelHandle handle;
 
+
         //Public values for chaning in Editor
         public float rotationSpeed = 10f;
         public float rotateBackSpeed = 10f;
@@ -89,7 +90,7 @@ namespace Nimbi.Interaction
         public void PushNimbiAway()
         {
             if(isScary)
-            player.GetComponent<Rigidbody>().AddForce(Vector3.right * pushBackRate, ForceMode.Impulse);
+            player.GetComponent<Rigidbody>().AddForce(-transform.forward * pushBackRate, ForceMode.Impulse);
         }
     }
 }

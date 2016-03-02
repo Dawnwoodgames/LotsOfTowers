@@ -30,10 +30,10 @@ namespace Nimbi.Interaction
                 mask.rotationSpeed = 10f;
             }
 
-     
+
             lever.transform.localRotation = Quaternion.Slerp(lever.transform.localRotation, Quaternion.Euler(endRotation), 0.2f);
-                
-                
+
+
         }
 
 
