@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Nimbi.CameraControl;
 
 namespace Nimbi.Interaction
 {
@@ -9,6 +10,9 @@ namespace Nimbi.Interaction
         public GameObject rock;
         public GameObject handle;
         private bool inTrigger;
+
+        public CameraController camera;
+
 
         private Vector3 endRotation;
 
@@ -25,12 +29,23 @@ namespace Nimbi.Interaction
             if(inTrigger && Input.GetButtonDown("Submit") && !isActivated)
             {
                 endRotation = endRotation + new Vector3(55, 0, 0);
+                camera.ChangeCamera();
                 isActivated = true;
                 if (rock!= null)
                     Destroy(rock);
+                camera.cameraHasSwitched = true;
+                Invoke("DeactivateCamera", 3);
+                Debug.Log("Hmmz. I waited 3 seconds");
             }
-
+           
             handle.transform.localRotation = Quaternion.Slerp(handle.transform.localRotation, Quaternion.Euler(endRotation), 0.2f);
+            
+
+        }
+
+        public void DeactivateCamera()
+        {
+            camera.DeactivateCamera();
         }
 
         void OnTriggerEnter(Collider coll)
