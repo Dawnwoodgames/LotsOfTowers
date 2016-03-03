@@ -10,6 +10,7 @@ namespace Nimbi.Interaction
         public GameObject rock;
         public GameObject handle;
         private bool inTrigger;
+        public float rockSpeed = 1000f;
 
         public CameraController camera;
 
@@ -31,8 +32,8 @@ namespace Nimbi.Interaction
                 endRotation = endRotation + new Vector3(55, 0, 0);
                 camera.ChangeCamera();
                 isActivated = true;
-                if (rock!= null)
-                    Destroy(rock);
+                if (rock != null)
+                    DestroyRock();
                 camera.cameraHasSwitched = true;
                 Invoke("DeactivateCamera", 3);
                 Debug.Log("Hmmz. I waited 3 seconds");
@@ -42,6 +43,13 @@ namespace Nimbi.Interaction
             
 
         }
+
+        public void DestroyRock()
+        {
+
+            rock.transform.position = Vector3.down * 0.1f * Time.deltaTime;
+        }
+
 
         public void DeactivateCamera()
         {

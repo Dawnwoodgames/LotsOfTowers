@@ -16,7 +16,7 @@ namespace Nimbi.Interaction
         //Public values for chaning in Editor
         public float rotationSpeed = 10f;
         public float rotateBackSpeed = 10f;
-        public float pushBackRate = 30;
+        public float pushBackRate = 10;
 
 
         //Public Booleans So we can check states in other classes.
@@ -91,8 +91,8 @@ namespace Nimbi.Interaction
         public void PushNimbiAway()
         {
             if (isScary && isCheating)
-                //player.GetComponent<Rigidbody>().AddForce(-transform.forward * pushBackRate, ForceMode.Impulse);
-                player.transform.position = endPosition.transform.position;
+                player.GetComponent<Rigidbody>().AddForce(-transform.forward * pushBackRate, ForceMode.Impulse);
+          
         }
     }
 }
