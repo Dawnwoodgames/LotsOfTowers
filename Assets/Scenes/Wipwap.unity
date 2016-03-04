@@ -85,6 +85,56 @@ NavMeshSettings:
     cellSize: 0.16666667
     manualCellSize: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1001 &29541773
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 446214, guid: 98fc7158f4ffe0a4cbb6ee8bee3aa7f2, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 13.005905
+      objectReference: {fileID: 0}
+    - target: {fileID: 446214, guid: 98fc7158f4ffe0a4cbb6ee8bee3aa7f2, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 5.9728518
+      objectReference: {fileID: 0}
+    - target: {fileID: 446214, guid: 98fc7158f4ffe0a4cbb6ee8bee3aa7f2, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: -23.480467
+      objectReference: {fileID: 0}
+    - target: {fileID: 446214, guid: 98fc7158f4ffe0a4cbb6ee8bee3aa7f2, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 446214, guid: 98fc7158f4ffe0a4cbb6ee8bee3aa7f2, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 446214, guid: 98fc7158f4ffe0a4cbb6ee8bee3aa7f2, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 446214, guid: 98fc7158f4ffe0a4cbb6ee8bee3aa7f2, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 446214, guid: 98fc7158f4ffe0a4cbb6ee8bee3aa7f2, type: 2}
+      propertyPath: m_RootOrder
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 11446192, guid: 98fc7158f4ffe0a4cbb6ee8bee3aa7f2, type: 2}
+      propertyPath: direction.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 11446192, guid: 98fc7158f4ffe0a4cbb6ee8bee3aa7f2, type: 2}
+      propertyPath: direction.z
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 98fc7158f4ffe0a4cbb6ee8bee3aa7f2, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &108563834
 GameObject:
   m_ObjectHideFlags: 0
@@ -955,6 +1005,48 @@ Light:
   m_ShadowRadius: 0
   m_ShadowAngle: 0
   m_AreaSize: {x: 1, y: 1}
+--- !u!1 &1402386008
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1402386010}
+  - 114: {fileID: 1402386009}
+  m_Layer: 0
+  m_Name: WindSpawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1402386009
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1402386008}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c1040d4a79b7b924a8b2b41ea5d0d8bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  WindParticle: {fileID: 163282, guid: 98fc7158f4ffe0a4cbb6ee8bee3aa7f2, type: 2}
+  direction: {x: 1, y: 0, z: 0}
+  spawnRate: 4
+--- !u!4 &1402386010
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1402386008}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 13.005905, y: 5.9728518, z: -23.480467}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
 --- !u!1001 &1405675773
 Prefab:
   m_ObjectHideFlags: 0
