@@ -19,7 +19,7 @@ namespace Nimbi.Interaction
 		{
 			if (coll.tag == "Player" && Input.GetButtonDown("Submit"))
 			{
-				if (coll.GetComponent<Player>().HoldingWater && coll.GetComponent<Player>().Onesie.isHeavy)
+				if (!complete && coll.GetComponent<Player>().HoldingWater && coll.GetComponent<Player>().Onesie.isHeavy)
 				{
 					coll.GetComponent<Player>().HoldingWater = false;
 					waterGiven = true;

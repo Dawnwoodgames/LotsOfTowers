@@ -7,16 +7,16 @@ namespace Nimbi.Interaction
 {
     public class ScaryStatue : MonoBehaviour
     {
-        public Onesie dragonOnesie;
+
         public float maxRotationAngle = 180;
         private Player player;
         public GameObject scaryStatue;
         private bool inTrigger = false;
         private Vector3 goalRotation;
-        private bool onesieGiven = false;
+
 
         public bool isScary { get; set; }
-        
+
         void Start()
         {
             isScary = true;
@@ -33,32 +33,15 @@ namespace Nimbi.Interaction
             }
             if (scaryStatue.transform.localRotation.eulerAngles.z >= 180)
             {
-                if (!onesieGiven)
+                goalRotation.z = 180;
+                if (!GameObject.Find("CenterFocus").GetComponent<OnesieInfoPopup>().IsPopupShowing(OnesieType.Dragon))
                 {
-                    showOnesiePopupAndGiveOnesie();
-                }
-
-                if(onesieGiven)
-                {
-                    goalRotation.z = 180;
-                    if (!GameObject.Find("CenterFocus").GetComponent<OnesieInfoPopup>().IsPopupShowing(OnesieType.Dragon))
-                    {
-                        //If the statue show his happy face, the dragon will not be scared anymore.
-                        isScary = false;
-                    }
+                    //If the statue show his happy face, the dragon will not be scared anymore.
+                    isScary = false;
                 }
             }
             transform.localRotation = Quaternion.Slerp(transform.localRotation, Quaternion.Euler(goalRotation), Time.deltaTime);
         }
-
-        private void showOnesiePopupAndGiveOnesie()
-        {
-            player.GetComponent<Player>().AddOnesie(dragonOnesie);
-            GameObject.Find("CenterFocus").GetComponent<OnesieInfoPopup>().ShowPopup(OnesieType.Dragon, 0);
-            onesieGiven = true;
-        }
-
-
         private void OnTriggerStay(Collider coll)
         {
             if (coll.attachedRigidbody)
@@ -66,6 +49,12 @@ namespace Nimbi.Interaction
                 inTrigger = true;
             }
         }
+
     }
 }
- 
+
+
+
+
+
+

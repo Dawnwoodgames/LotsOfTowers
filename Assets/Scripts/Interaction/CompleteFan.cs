@@ -3,6 +3,8 @@ using System.Collections;
 using Nimbi.Actors;
 using Nimbi.Framework;
 using Nimbi.Interaction.Triggers;
+using UnityEngine.SceneManagement;
+using Nimbi.CameraControl;
 
 namespace Nimbi.Interaction
 {
@@ -23,6 +25,7 @@ namespace Nimbi.Interaction
         private int blowCount;
         private bool currentlyDown = false;
         private bool dialogueFinished = false;
+        private bool completionstarted;
 
         private Vector3 endMarker;
         private float speed = 15f;
@@ -60,18 +63,25 @@ namespace Nimbi.Interaction
                 tower.transform.position = new Vector3(tower.transform.position.x, tower.transform.position.y, tower.transform.position.z - Time.deltaTime * 3);
 				Camera.main.transform.localPosition = new Vector3(Camera.main.transform.localPosition.x, Camera.main.transform.localPosition.y + Time.deltaTime, Camera.main.transform.localPosition.z - Time.deltaTime * 3);
 				player.GetComponent<PlayerController>().enabled = false;
+                Camera.main.transform.parent.GetComponent<CameraFollowScript>().canZoom = false;
 
                 MoveLevelSliderDown();
 
                 if(!dialogueFinished)
                 {
+                    UnityAnalytics.FinishSegment("Tower 3 Last Floor");
                     finishDialogOne.SetActive(true);
                     StartCoroutine(ActivateSecondDialogue());
+                    
                 }
-                StartCoroutine(CompletedLevel());
+                if(!completionstarted)
+                    StartCoroutine(CompletedLevel());
+
+                completionstarted = true;
+                
             }
 
-			if (inTrigger && isHeavy && furnaceDoor.isDoorOpen())
+			if (inTrigger && isHeavy && furnaceDoor.isDoorOpen() && !completed)
 			{
 				animator.SetBool("GoingDown", true);
 				animator.SetBool("GoingUp", false);
@@ -83,7 +93,10 @@ namespace Nimbi.Interaction
                     fire.startSize += 0.2f;
                 }
                 if (blowCount >= 3)
+                {
                     completed = true;
+                    UnityAnalytics.CompleteLevel(SceneManager.GetActiveScene().name, Mathf.RoundToInt(Time.time - GameManager.Instance.levelStart));
+                }
 
                 currentlyDown = true;
 			}
@@ -112,7 +125,7 @@ namespace Nimbi.Interaction
         IEnumerator CompletedLevel()
 		{
 			yield return new WaitForSeconds(15);
-			GameManager.Instance.LoadLevel(5);
+			GameManager.Instance.LoadLevel(4);
 		}
 	}
 }

@@ -25,9 +25,9 @@ namespace Nimbi.Interaction {
 			}
 		}
 
-		public void OnCollisionEnter(Collision collision) {
-			connected = collision.gameObject.GetComponent<Player>() != null;
-			player = collision.gameObject.GetComponent<Player>();
+		public void OnTriggerEnter(Collider coll) {
+			connected = coll.gameObject.GetComponent<Player>() != null;
+			player = coll.gameObject.GetComponent<Player>();
 
 			if (player != null) {
 				x = player.transform.position.x;
@@ -36,8 +36,8 @@ namespace Nimbi.Interaction {
 			}
 		}
 
-		public void OnCollisionExit(Collision collision) {
-			if (collision.gameObject.GetComponent<Player>() == player) {
+		public void OnTriggerExit(Collider coll) {
+			if (coll.gameObject.GetComponent<Player>() == player) {
 				connected = false;
 			}
 		}

@@ -1,28 +1,26 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Nimbi.Actors;
+using Nimbi.Interaction.Triggers;
 
 namespace Nimbi.Interaction
 {
     public class PipebombExplosion : MonoBehaviour
     {
-        public GameObject blockade;
         public GameObject pipeBomb;
+        public StoneExplosionScript stoneExplosion;
 
         private GameObject player;
         private bool nearPipebomb;
-        
+        private bool exploded;
 
-        void Start()
-        {
-            
-        }
+        
+        
 
         void Update()
         {
-            if(nearPipebomb && Input.GetButton("Submit") && player.GetComponent<Player>().Onesie.isHeavy)
+            if(!exploded && nearPipebomb && Input.GetButton("Submit") && player.GetComponent<Player>().Onesie.isHeavy)
             {
-                print("Spuug maar lekker watertje!");
                 ActivateExplosion();
             }
                
@@ -32,9 +30,9 @@ namespace Nimbi.Interaction
         {
             if (player.GetComponent<Player>().HoldingWater)
             {
+                exploded = true;
                 player.GetComponent<Player>().HoldingWater = false;
-                Destroy(pipeBomb);
-                Destroy(blockade);
+                stoneExplosion.Explode();
             }
         }
 

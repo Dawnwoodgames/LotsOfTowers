@@ -5,12 +5,14 @@ using UnityEngine;
 
 namespace Nimbi.Framework
 {
+    [RequireComponent(typeof(BoxCollider))]
     public class LevelSlider : MonoBehaviour
     {
         public GameObject[] toMove;
         private Vector3[] oldPosition;
         public float increaseBy;
         public float speed = 1f;
+        [HideInInspector]
         public bool InTrigger = false;
         private bool[] isActive;
         

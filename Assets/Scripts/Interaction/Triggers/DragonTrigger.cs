@@ -1,45 +1,70 @@
 ﻿using UnityEngine;
 using System.Collections;
 using Nimbi.Actors;
+using Nimbi.UI;
 
-namespace Nimbi.Interaction.Triggers
+namespace Nimbi.Interaction
 {
-    public class DragonTrigger : MonoBehaviour {
+    public class DragonTrigger : MonoBehaviour
+    {
+        public Transform[] walkspots;
 
-        public float horizonSpeed;
-        public float verticalSpeed;
-        public float aplitude;
-        private Vector3 flyPosition;
+
+        private GameObject player;
+        private bool isWalking;
+        private int nextPosition;
+        private bool scared = true;
+
 
         //Fields for Scary Statue
-        public ScaryStatue scaryStatue;
+        public MaskRotationTrigger scaryStatue;
         private bool inTrigger = false;
-        
-        void Start() {
-            flyPosition = transform.position;
+
+        void Start()
+        {
+            player = GameObject.FindGameObjectWithTag("Player");
         }
 
-        void FixedUpdate() {
+        void FixedUpdate()
+        {
             BraveDragon();
         }
 
         private void BraveDragon()
         {
-            if (!scaryStatue.isScary)
+            if (!scaryStatue.isScary && scared)
             {
-                //Check if Statue is still scary!
-                flyPosition.x += horizonSpeed;
-                flyPosition.y = Mathf.Sin(Time.realtimeSinceStartup * verticalSpeed) * aplitude;
-                transform.position = flyPosition;
+                isWalking = true;
+                nextPosition = 0;
+                scared = false;
             }
-        }
 
-        private void OnTriggerStay(Collider coll)
-        {
-           if(coll.attachedRigidbody)
+
+
+            //Lets Give our Dragon something to Move!
+            if (isWalking)
             {
-                inTrigger = true;
+                GetComponent<Animator>().SetBool("isWalking", true);
+                transform.position = Vector3.MoveTowards(transform.position, new Vector3(walkspots[nextPosition].position.x, transform.position.y, walkspots[nextPosition].position.z), 3 * Time.smoothDeltaTime);
+                if (Mathf.Abs(transform.position.x - walkspots[nextPosition].position.x) < 0.1f && Mathf.Abs(transform.position.z - walkspots[nextPosition].position.z) < 0.1f)
+                {
+
+                    nextPosition++;
+
+                    if (walkspots.Length <= nextPosition)
+                    {
+                        isWalking = false;
+
+                        GetComponent<Animator>().SetBool("isWalking", false);
+                        transform.LookAt(new Vector3(player.transform.position.x, transform.position.y, transform.position.z));
+                    }
+                    else
+                        transform.LookAt(new Vector3(walkspots[nextPosition].position.x, transform.position.y, walkspots[nextPosition].position.z));
+
+                }
+            }
+
+
             }
         }
-    }
 }

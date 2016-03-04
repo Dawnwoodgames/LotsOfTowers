@@ -91,17 +91,12 @@ namespace Nimbi.UI
 		}
 
 		public void ResetGameData()
-		{
-            // Destroy sliders because they continuously alter game data
-            Destroy(FindObjectOfType<AudioSlider>());
-            Destroy(FindObjectOfType<CameraSlider>());
-            
+		{     
             // Destroy all game data (R.I.P.)
 			PlayerPrefs.DeleteAll();
 
             // Reset LanguageManager & reload level
 			GameManager.Instance.Language = "en";
-            GameManager.Instance.Quit();
 		}
 
 		public void QuitApplication()

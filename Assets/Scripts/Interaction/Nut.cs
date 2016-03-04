@@ -18,7 +18,7 @@ namespace Nimbi.Interaction
 					AudioManager.Instance.PlaySoundeffect(AudioManager.Instance.pickupNutSoundFile);
                     Destroy(GetComponent<Rigidbody>());
                     this.gameObject.transform.SetParent(coll.transform);
-                    this.gameObject.transform.localPosition = new Vector3(0, 1.5f, 0);
+                    this.gameObject.transform.localPosition = new Vector3(0, 1.8f, 0);
                     pickedUp = true;
                 }
 

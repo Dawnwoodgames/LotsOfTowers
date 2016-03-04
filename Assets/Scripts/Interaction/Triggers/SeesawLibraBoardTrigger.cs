@@ -8,14 +8,14 @@ namespace Nimbi.Interaction.Triggers
     {
         private bool playerOnTrigger = false;
         private bool elephantOnTrigger = false;
-        
+
         void OnTriggerEnter(Collider col)
         {
             if (col.tag == "Player")
             {
                 playerOnTrigger = true;
             }
-            if(col.name == "Elephant")
+            if (col.name == "Elephant")
             {
                 elephantOnTrigger = true;
             }

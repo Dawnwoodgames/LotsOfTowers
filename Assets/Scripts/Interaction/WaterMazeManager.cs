@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using UnityEngine;
 using System.Collections;
+using Nimbi.Framework;
 
 namespace Nimbi.Interaction {
     public class WaterMazeManager : MonoBehaviour {
@@ -78,6 +79,7 @@ namespace Nimbi.Interaction {
                 GameManager.Instance.PlayerPassOutAndRespawn(transform);
                 gates.Clear();
                 respawnOnNext = false;
+                UnityAnalytics.AddTries("Tower 3 Waterpuzzle");
             }
 
             if ((testMode && gates.Count > 0) || (!testMode && gates.Count == 12)) {

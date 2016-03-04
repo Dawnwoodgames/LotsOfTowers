@@ -1,15 +1,23 @@
 ﻿using UnityEngine;
-using System.Collections;
 using Nimbi.Actors;
+using UnityEngine.UI;
 
 namespace Nimbi.CameraControl
 {
+    [RequireComponent(typeof(Animator))]
 	public class MainCameraScript : MonoBehaviour
 	{
 		private Transform centerFocus;
 		public float degree;
 		public float verticalDegree = 30;
 		public float cameraSpeed = 6;
+        private bool animationPlayed;
+        public bool cameraEnabled = true; // Boolean to call when Nimbi can Interact with the Camera.
+
+        //Create function to shake the camera when needed//
+        //public bool shakeCamera;
+        //public float shakeY;
+        //public float shakeSpeed;
 
 		[HideInInspector]
 		public bool playingAnimation;
@@ -24,7 +32,7 @@ namespace Nimbi.CameraControl
 
 		void Awake()
 		{
-			playingAnimation = true;
+			playingAnimation = false;
 		}
 
 		void Start()
@@ -34,17 +42,17 @@ namespace Nimbi.CameraControl
 
 		void Update()
 		{
+
+            
 			if (playingAnimation)
 			{
-				if(Input.GetButtonDown("Submit"))
+				if(Input.GetButtonDown("Submit") && GetComponent<Animator>().enabled == true)
 				{
-					GetComponent<Animator>().speed = 1000;
+					GetComponent<Animator>().Play("Idle",-1,0f);
 					GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().enabled = true;
-					playingAnimation = false;
-				}
+                }
 				else
 				{
-					GetComponent<Animator>().enabled = true;
 					GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerController>().enabled = false;
 				}
 
@@ -54,9 +62,9 @@ namespace Nimbi.CameraControl
 					playingAnimation = false;
 					transform.localPosition = Vector3.back * 15;
 					transform.localRotation = Quaternion.identity;
-				}
+                }
 			}
-			else if(GetComponent<Animator>() != null)
+			else if(GetComponent<Animator>() != null && GetComponent<Animator>().enabled)
 			{
 				GetComponent<Animator>().enabled = false;
 				doneWithAnimating = true;
@@ -64,12 +72,19 @@ namespace Nimbi.CameraControl
 			else if(doneWithAnimating)
 			{
 				transform.localPosition = Vector3.back * 15;
-				transform.localRotation = Quaternion.identity;
+                transform.localRotation = Quaternion.Euler(Vector3.zero);
 				doneWithAnimating = false;
             }
 
+            if (!animationPlayed && GameObject.Find("Loading Screen") != null && !GameObject.Find("Loading Screen").GetComponent<Image>().enabled)
+            {
+                animationPlayed = true;
+                playingAnimation = true;
+                GetComponent<Animator>().enabled = true;
+            }
+
 			// Rotate controls
-			if ((Input.GetMouseButton(0) || Input.GetMouseButton(1)) && !playingAnimation)
+			if ((Input.GetMouseButton(0) || Input.GetMouseButton(1)) && !playingAnimation && cameraEnabled) //Disable Camera for Introduction Level
 			{
 				degree += Input.GetAxis("Mouse X") * Sensitivity * 1.2f;
 			}
@@ -82,6 +97,18 @@ namespace Nimbi.CameraControl
 
 			//Set rotation to next degree with a slight lerp
 			centerFocus.rotation = Quaternion.Slerp(centerFocus.rotation, Quaternion.Euler(verticalDegree, degree, 0), Time.deltaTime * cameraSpeed);
+
+            //Set Camera void
+            ////if (shakeCamera)
+            //{
+            //    Vector2 _newPosition = new Vector2(0, shakeY);
+            //    if (shakeY < 0)
+            //    {
+            //        shakeY *= shakeSpeed;
+            //    }
+            //    shakeY = -shakeY;
+            //    transform.Translate(_newPosition, Space.Self);
+            //}
 		}
 	}
 }
