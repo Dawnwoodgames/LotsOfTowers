@@ -16,6 +16,7 @@ namespace Nimbi.Interaction.Triggers
             {
                 playerOnTrigger = true;
                 triggerEnter = Time.time;
+                col.GetComponent<PlayerController>().DisableMovement();
             }
             if(col.name == "Elephant")
             {
