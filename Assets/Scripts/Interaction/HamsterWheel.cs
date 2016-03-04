@@ -39,7 +39,7 @@ namespace Nimbi.Interaction
                 
 			}
 
-            if(!nut.GetComponent<Nut>().pickedUp)
+            if(nut != null && !nut.GetComponent<Nut>().pickedUp)
                 nut.transform.position = Vector3.MoveTowards(nut.transform.position, nutgoal, Time.smoothDeltaTime * 1.5f);
 
             newWater.transform.localScale = Vector3.MoveTowards(newWater.transform.localScale, new Vector3(newWater.transform.localScale.x, newHeight, newWater.transform.localScale.z), Time.deltaTime * 1.5f);
