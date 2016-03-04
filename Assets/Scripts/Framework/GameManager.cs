@@ -174,6 +174,9 @@ namespace Nimbi
 			}
 
 			PlayerPrefs.SetInt("bIsLevelAvailable" + index, 1);
+
+            if (index >= SceneManager.sceneCountInBuildSettings)
+                index = 0;
 			Time.timeScale = 1;
 			StopAllCoroutines();
 			StartCoroutine(LoadLevelCoroutine(index));
