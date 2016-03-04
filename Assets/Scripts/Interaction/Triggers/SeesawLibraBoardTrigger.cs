@@ -8,17 +8,14 @@ namespace Nimbi.Interaction.Triggers
     {
         private bool playerOnTrigger = false;
         private bool elephantOnTrigger = false;
-        private float triggerEnter = 0;
-        
+
         void OnTriggerEnter(Collider col)
         {
             if (col.tag == "Player")
             {
                 playerOnTrigger = true;
-                triggerEnter = Time.time;
-                col.GetComponent<PlayerController>().DisableMovement();
             }
-            if(col.name == "Elephant")
+            if (col.name == "Elephant")
             {
                 elephantOnTrigger = true;
             }
@@ -43,7 +40,7 @@ namespace Nimbi.Interaction.Triggers
 
         public bool isPlayerOnTrigger()
         {
-            return playerOnTrigger && Time.time > triggerEnter +1;
+            return playerOnTrigger;
         }
 
     }
