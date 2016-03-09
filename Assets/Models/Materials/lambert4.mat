@@ -7,10 +7,10 @@ Material:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_Name: lambert4
-  m_Shader: {fileID: 4800000, guid: 054a31a99d11e49d110086ba44295342, type: 3}
+  m_Shader: {fileID: 4800000, guid: f4fbbe2f8729cc1458088113b8efa3ad, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 5
-  m_CustomRenderQueue: 2000
+  m_CustomRenderQueue: 3000
   stringTagMap: {}
   m_SavedProperties:
     serializedVersion: 2
@@ -138,6 +138,14 @@ Material:
         first:
           name: _Outline
         second: 0.002
+      data:
+        first:
+          name: _RimMin
+        second: 0.5
+      data:
+        first:
+          name: _RimMax
+        second: 1
     m_Colors:
       data:
         first:
@@ -151,3 +159,11 @@ Material:
         first:
           name: _OutlineColor
         second: {r: 0, g: 0, b: 0, a: 1}
+      data:
+        first:
+          name: _HColor
+        second: {r: 0.6, g: 0.6, b: 0.6, a: 1}
+      data:
+        first:
+          name: _SColor
+        second: {r: 0.3, g: 0.3, b: 0.3, a: 1}

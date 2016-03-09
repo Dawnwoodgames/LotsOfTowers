@@ -10,7 +10,7 @@ namespace Nimbi.Interaction.Triggers
             if (coll.tag == "Player")
                 this.transform.parent = coll.transform;
 
-            this.transform.localPosition = new Vector3(0, 1.5f);
+            this.transform.localPosition = new Vector3(0, 2.0f);
             GameObject.Find("Door").GetComponent<TutorialDoorTrigger>().doorBellPickedUp = true;
 
             Destroy(this);
