@@ -9,6 +9,7 @@ using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.CrashLog;
 
 namespace Nimbi
 {
@@ -95,7 +96,9 @@ namespace Nimbi
 				GameManager.instance = this;
 			}
 
-			AudioListener.volume = PlayerPrefs.GetFloat("AudioVolume", 1);
+            CrashReporting.Init("38b8edd0-ea57-415b-890b-6c74a60c96ba", "1.1.0");
+
+            AudioListener.volume = PlayerPrefs.GetFloat("AudioVolume", 1);
 			DontDestroyOnLoad(this);
 			Instantiate(Resources.Load("Prefabs/AudioManager"));
 			LanguageManager.Instance.ChangeLanguage(Language);
