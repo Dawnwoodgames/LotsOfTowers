@@ -38,7 +38,11 @@ namespace Nimbi.Interaction.Triggers
             if (coll.tag == "Player" && Input.GetButton("Submit"))
             {
                 if (doorBellPickedUp)
+                {
                     openingDoor = true;
+                    GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraControl.MainCameraScript>().cameraEnabled = true;
+                }
+                            
                 else {
                     infoBoard.SetActive(true);
                     GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraControl.MainCameraScript>().cameraEnabled = true;
