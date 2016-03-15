@@ -10,7 +10,6 @@ namespace Nimbi.Interaction
         private Player player;
         private bool inTrigger = false;
         public ScaryStatue scaryStatue;
-        private bool isPushed;
 
         public float pushBackRate = 10;
 
@@ -24,7 +23,6 @@ namespace Nimbi.Interaction
         {
             if (inTrigger && scaryStatue.isScary)
             {
-                isPushed = true;
                 player.GetComponent<Rigidbody>().AddForce(Vector3.right * pushBackRate, ForceMode.VelocityChange);
             }
         }

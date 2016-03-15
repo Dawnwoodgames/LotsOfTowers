@@ -22,7 +22,6 @@ namespace Nimbi.Interaction
         private float startTime;
         private float journeyLength;
         private bool firstInteraction = true;
-		private bool dialogIsGone = false;
 		private OnesieInfoPopup popup;
 
 		void Start()

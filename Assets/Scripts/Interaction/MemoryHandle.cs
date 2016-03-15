@@ -12,7 +12,7 @@ namespace Nimbi.Interaction
         private bool inTrigger;
         public float rockSpeed = 1000f;
 
-        public CameraController camera;
+        public CameraController cameracontroller;
 
 
         private Vector3 endRotation;
@@ -30,11 +30,11 @@ namespace Nimbi.Interaction
             if(inTrigger && Input.GetButtonDown("Submit") && !isActivated)
             {
                 endRotation = endRotation + new Vector3(55, 0, 0);
-                camera.ChangeCamera();
+                cameracontroller.ChangeCamera();
                 isActivated = true;
                 if (rock != null)
                     DestroyRock();
-                camera.cameraHasSwitched = true;
+                cameracontroller.cameraHasSwitched = true;
                 Invoke("DeactivateCamera", 3);
                 Debug.Log("Hmmz. I waited 3 seconds");
             }
@@ -53,7 +53,7 @@ namespace Nimbi.Interaction
 
         public void DeactivateCamera()
         {
-            camera.DeactivateCamera();
+            cameracontroller.DeactivateCamera();
         }
 
         void OnTriggerEnter(Collider coll)

@@ -9,18 +9,16 @@ namespace Nimbi.Interaction.Triggers
         public GameObject door;
         public bool doorBellPickedUp = false;
 
-        private Actors.Player player;
         private bool openingDoor = false;
         private Quaternion startRotation, endRotation;
         private float time = 0;
 
         void Start()
         {
-            player = GameObject.FindGameObjectWithTag("Player").GetComponent<Actors.Player>();
             startRotation = new Quaternion(0, 0, 0, 1);
             endRotation = new Quaternion(0, 0, 0, 1);
-            startRotation.SetEulerAngles(0, 0, 0);
-            endRotation.SetEulerAngles(0, 1, 0);
+            startRotation = Quaternion.Euler(0, 0, 0);
+            endRotation = Quaternion.Euler(0, 1, 0);
         }
 
         private void Update()

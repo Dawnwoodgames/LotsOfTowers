@@ -26,7 +26,6 @@ namespace Nimbi.Interaction
             {
                 Mesh mesh = GetComponent<MeshFilter>().mesh;
                 Vector3[] vertices = mesh.vertices;
-                Vector3[] normals = mesh.normals;
                 Bounds bounds = mesh.bounds;
                 int i = 0;
                 while (i < vertices.Length)

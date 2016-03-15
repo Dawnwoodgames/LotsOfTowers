@@ -5,18 +5,18 @@ namespace Nimbi.Interaction.Triggers
 {
     public class InfoCameraTutorial : MonoBehaviour
     {
-        private Transform camera;
+        private Transform maincamera;
 
         // Use this for initialization
         void Start()
         {
-            camera = GameObject.FindGameObjectWithTag("MainCamera").transform;
+            maincamera = GameObject.FindGameObjectWithTag("MainCamera").transform;
         }
 
         // Update is called once per frame
         void Update()
         {
-            transform.LookAt(camera);
+            transform.LookAt(maincamera);
         }
     }
 }

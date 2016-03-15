@@ -17,14 +17,12 @@ namespace Nimbi.Interaction
 		Vector3 cloudMovePosition = new Vector3(-2.55f, 15.06f, -4.5f);
 
 		private BoilerPressurePlate BoilerLid;
-		private Player player;
 		private bool hasFireContact;
 		private bool isTrigger;
 		private bool boilingWater;
 
 		void Start()
 		{
-			player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 			BoilerLid = GameObject.Find("PressurePlate").GetComponent<BoilerPressurePlate>();
 		}
 

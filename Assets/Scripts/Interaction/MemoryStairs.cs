@@ -7,7 +7,6 @@ namespace Nimbi.Interaction
     {
         public bool IsExpanded;
         private float height;
-        private bool moving;
         private float startHeight;
         
         void Start()
@@ -24,7 +23,6 @@ namespace Nimbi.Interaction
         public void SetHeight(int h)
         {
             height = startHeight+0.7f+h*0.36f;
-            moving = true;
             IsExpanded = true;
         }
 

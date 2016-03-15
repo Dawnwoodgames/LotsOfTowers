@@ -7,7 +7,6 @@ namespace Nimbi.Interaction.Triggers
 	public class Biggetjeopspitscript : MonoBehaviour
 	{
 		private ParticleSystem vuurtje;
-		private Player player;
 		private GameObject pigModel;
 		private GameObject pigColor;
 		private bool rotating = false;
@@ -16,7 +15,6 @@ namespace Nimbi.Interaction.Triggers
 		void Start()
 		{
 			vuurtje = GetComponentInChildren<ParticleSystem>();
-			player = GameObject.FindGameObjectWithTag("Player").GetComponent<Player>();
 			pigModel = GameObject.FindGameObjectWithTag("PigModel");
 			pigColor = GameObject.FindGameObjectWithTag("PigColor");
 			vuurtje.Stop();

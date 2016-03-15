@@ -8,14 +8,10 @@ namespace Nimbi.Interaction
     {
         public bool isHappy;
 
-        private bool inTrigger;
-
         void OnTriggerEnter(Collider coll)
         {
             if (coll.tag == "Player")
             {
-                Debug.Log("Happy is hitted");
-                inTrigger = true;
                 isHappy = true;
             }
         }

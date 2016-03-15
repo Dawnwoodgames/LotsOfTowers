@@ -12,12 +12,10 @@ namespace Nimbi.Interaction
         public Trashbag trash;
         private bool inTrigger;
         private bool activated;
-        private Quaternion startRotation;
         private Quaternion goalRotation;
 
         void Start()
         {
-            startRotation = wipwap.transform.localRotation;
             goalRotation = Quaternion.Euler(63.5f, 81, 350);
         }
 

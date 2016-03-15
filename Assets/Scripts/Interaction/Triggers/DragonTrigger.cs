@@ -18,7 +18,6 @@ namespace Nimbi.Interaction
 
         //Fields for Scary Statue
         public MaskRotationTrigger scaryStatue;
-        private bool inTrigger = false;
 
         void Start()
         {

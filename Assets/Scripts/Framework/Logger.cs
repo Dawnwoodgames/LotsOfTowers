@@ -60,7 +60,6 @@ namespace Nimbi.Framework
         public static void Log(Exception e)
         {
             Debug.LogException(e);
-            string message = "[Exception] " + e.ToString();
         }
 
     }

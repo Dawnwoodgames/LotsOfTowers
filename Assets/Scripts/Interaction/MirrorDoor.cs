@@ -5,11 +5,11 @@ public class MirrorDoor : MonoBehaviour {
 
     private bool inTrigger = false;
     private bool disappearing;
-    private Renderer renderer;
+    private Renderer mirrorRenderer;
 
     void Start()
     {
-        renderer = GetComponent<Renderer>();
+        mirrorRenderer = GetComponent<Renderer>();
     }
 
     void Update()
@@ -21,9 +21,9 @@ public class MirrorDoor : MonoBehaviour {
 
         if(disappearing)
         {
-            Color color = renderer.material.color;
+            Color color = mirrorRenderer.material.color;
             color.a -= 0.1f*Time.deltaTime;
-            renderer.material.color = color;
+            mirrorRenderer.material.color = color;
             if (color.a <= 0.01)
                 Destroy(gameObject);
         }

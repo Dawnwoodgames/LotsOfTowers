@@ -15,7 +15,6 @@ namespace Nimbi.Interaction
 		private Player player;
 		private float damage = 0;
 		private bool broken = false;
-		private bool inTrigger = false;
 
 		void Start()
 		{
@@ -65,22 +64,6 @@ namespace Nimbi.Interaction
                 Destroy(bumpWall);
                 Destroy(this);
             }
-		}
-
-        private void OnTriggerStay(Collider coll)
-		{
-			if (coll.tag == "Player")
-			{
-				inTrigger = true;
-			}
-		}
-
-		private void OnTriggerExit(Collider coll)
-		{
-			if (coll.tag == "Player")
-			{
-				inTrigger = false;
-			}
 		}
 	}
 }

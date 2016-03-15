@@ -5,8 +5,6 @@ namespace Nimbi.Environment
 {
     public class AnimatedUV : MonoBehaviour
     {
-        Vector2 uvOffset = Vector2.zero;
-
         float scale = 0.1f;
         float speed = 1.0f;
         float noiseStrength = 1f;
