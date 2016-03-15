@@ -33,7 +33,6 @@ namespace Nimbi.Interaction
         {
             if (coll.tag == "Player")
             {
-                Debug.Log("Peg is hitted");
                 inTrigger = true;
             }
         }

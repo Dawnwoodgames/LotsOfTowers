@@ -36,7 +36,6 @@ namespace Nimbi.Interaction
                     DestroyRock();
                 cameracontroller.cameraHasSwitched = true;
                 Invoke("DeactivateCamera", 3);
-                Debug.Log("Hmmz. I waited 3 seconds");
             }
            
             handle.transform.localRotation = Quaternion.Slerp(handle.transform.localRotation, Quaternion.Euler(endRotation), 0.2f);
