@@ -8,10 +8,6 @@ GameObject:
   serializedVersion: 4
   m_Component:
   - 224: {fileID: 22468102}
-  - 222: {fileID: 22272074}
-  - 114: {fileID: 11470788}
-  - 114: {fileID: 11479542}
-  - 114: {fileID: 11420194}
   - 114: {fileID: 11406448}
   m_Layer: 5
   m_Name: FPS
@@ -223,20 +219,6 @@ MonoBehaviour:
     type: 3}
   hamsterSlotEmpty: {fileID: 21300000, guid: ed6ee0c3fb30d53478c398a65d19e57c, type: 3}
   hamsterSlotEnabled: {fileID: 21300000, guid: bfc04f4c57770c14cb00478c1777efa6, type: 3}
---- !u!114 &11420194
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 116764}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: -900027084, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 1, y: -1}
-  m_UseGraphicAlpha: 1
 --- !u!114 &11431224
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -301,53 +283,6 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &11470788
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 116764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 708705254, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 0.93103445, b: 0, a: 1}
-  m_RaycastTarget: 1
-  m_OnCullStateChanged:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.UI.MaskableGraphic+CullStateChangedEvent, UnityEngine.UI,
-      Version=1.0.0.0, Culture=neutral, PublicKeyToken=null
-  m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
-    m_FontSize: 18
-    m_FontStyle: 0
-    m_BestFit: 0
-    m_MinSize: 1
-    m_MaxSize: 40
-    m_Alignment: 0
-    m_AlignByGeometry: 0
-    m_RichText: 1
-    m_HorizontalOverflow: 0
-    m_VerticalOverflow: 0
-    m_LineSpacing: 1
-  m_Text: FPS
---- !u!114 &11479542
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 116764}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 1573420865, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_EffectColor: {r: 0, g: 0, b: 0, a: 0.5}
-  m_EffectDistance: {x: 1, y: -1}
-  m_UseGraphicAlpha: 1
 --- !u!114 &11483654
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -498,12 +433,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 146802}
---- !u!222 &22272074
-CanvasRenderer:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 116764}
 --- !u!222 &22281678
 CanvasRenderer:
   m_ObjectHideFlags: 1
@@ -576,7 +505,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 22491138}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_AnchorMin: {x: 0.015328022, y: 0.047173187}
   m_AnchorMax: {x: 0.08265605, y: 0.18430728}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -627,7 +556,7 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 22491138}
-  m_RootOrder: 0
+  m_RootOrder: 1
   m_AnchorMin: {x: 0.09467198, y: 0.047173187}
   m_AnchorMax: {x: 0.16100001, y: 0.18430728}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -677,8 +606,8 @@ RectTransform:
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 0, y: 0, z: 0}
   m_Children:
-  - {fileID: 22457196}
   - {fileID: 22413518}
+  - {fileID: 22457196}
   - {fileID: 22491034}
   - {fileID: 22407986}
   - {fileID: 22468102}
