@@ -26,7 +26,6 @@ namespace Nimbi.CameraControl
             if (cameras.Length > 0)
             {
                 cameras[0].gameObject.SetActive(true);
-                Debug.Log("Main Camera is now Enabled!");
             }
         }
 

@@ -12,7 +12,6 @@ namespace Nimbi.Interaction
 			if (Input.GetButtonDown("Submit") && inTrigger)
 			{
 				//Destroy(pressurePlate.GetComponent<PressurePlateScript>());
-				Debug.Log(pressurePlate.name + " inactive");
 			}
 		}
 

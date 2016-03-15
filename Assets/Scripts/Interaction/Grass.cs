@@ -60,9 +60,6 @@ namespace Nimbi.Interaction
                 Vector3 distance = new Vector3(coll.transform.position.x - transform.position.x, 0, coll.transform.position.z - transform.position.z);
 
                 currentDeformation = distance.normalized * -1f;
-                //Debug.Log(currentDeformation.ToString("F4"));
-
-                //Debug.DrawRay(transform.position, currentDeformation * 20, Color.red);
             }
         }
 
