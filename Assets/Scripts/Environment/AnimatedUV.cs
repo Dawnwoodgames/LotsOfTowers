@@ -5,8 +5,8 @@ namespace Nimbi.Environment
 {
     public class AnimatedUV : MonoBehaviour
     {
-        float scale = 0.1f;
-        float speed = 1.0f;
+        public float scale = 0.1f;
+        public float speed = 1.0f;
         float noiseStrength = 1f;
         float noiseWalk = 1f;
 
