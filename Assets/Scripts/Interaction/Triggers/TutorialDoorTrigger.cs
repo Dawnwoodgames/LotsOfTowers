@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System;
 
 namespace Nimbi.Interaction.Triggers
 {
@@ -8,27 +9,33 @@ namespace Nimbi.Interaction.Triggers
         public GameObject infoBoard;
         public GameObject door;
         public bool doorBellPickedUp = false;
+        public float degreesPerSecond, rotationDegreesAmount;
 
-        private bool openingDoor = false;
+        private bool doorUnlocked = false;
         private Quaternion startRotation, endRotation;
         private float time = 0;
+        private float totalRotation;
 
         void Start()
         {
             startRotation = new Quaternion(0, 0, 0, 1);
             endRotation = new Quaternion(0, 0, 0, 1);
-            startRotation = Quaternion.Euler(0, 0, 0);
-            endRotation = Quaternion.Euler(0, 1, 0);
         }
 
         private void Update()
         {
-            if (openingDoor)
+            if (doorUnlocked)
             {
-                Destroy(GameObject.Find("DoorBell"));
-                door.transform.rotation = Quaternion.Slerp(startRotation, endRotation, time);
-                time += 0.03f;
+                if (Mathf.Abs(totalRotation) < Mathf.Abs(rotationDegreesAmount))
+                    OpenDoor();
             }
+        }
+
+        private void OpenDoor()
+        {
+            float currentAngle = door.transform.rotation.eulerAngles.y;
+            door.transform.rotation = Quaternion.AngleAxis(currentAngle + (Time.deltaTime * degreesPerSecond), Vector3.up);
+            totalRotation += Time.deltaTime * degreesPerSecond;
         }
 
         private void OnTriggerStay(Collider coll)
@@ -37,7 +44,8 @@ namespace Nimbi.Interaction.Triggers
             {
                 if (doorBellPickedUp)
                 {
-                    openingDoor = true;
+                    Debug.Log("opening");
+                    doorUnlocked = true;
                     GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraControl.MainCameraScript>().cameraEnabled = true;
                 }
                             
