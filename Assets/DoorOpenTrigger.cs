@@ -7,15 +7,17 @@ namespace Nimbi.Interaction.Triggers
     public class DoorOpenTrigger : MonoBehaviour
     {
 
-        public GameObject[] doors;
-
-      
+        public GameObject leftDoor;
+        public GameObject rightDoor;
 
         private Quaternion startRotation;
         private Quaternion endRotation;
 
-        public float degreesPerSecond, rotationDegreesAmount;
-        private float totalRotation;
+        public float rotatePerSecond, rotationAmount;
+
+
+        private float leftTotalRotation;
+        private float rightTotalRotation;
 
         private bool inTrigger;
 
@@ -29,10 +31,11 @@ namespace Nimbi.Interaction.Triggers
         // Update is called once per frame
         void Update()
         {
-            if (inTrigger)
+            if (Mathf.Abs(leftTotalRotation) < Mathf.Abs(rotationAmount) && Mathf.Abs(rightTotalRotation) < Mathf.Abs(rotationAmount) && inTrigger)
             {
                 OpenDoors();
             }
+                
         }
 
         void OnTriggerEnter(Collider coll)
@@ -45,14 +48,18 @@ namespace Nimbi.Interaction.Triggers
 
         void OpenDoors()
         {
-            foreach(GameObject d in doors)
             {
-                float currentAngle = d.transform.rotation.eulerAngles.y;
-                d.transform.rotation = Quaternion.AngleAxis(currentAngle + (Time.deltaTime * degreesPerSecond), Vector3.up);
-                totalRotation += Time.deltaTime * degreesPerSecond;
-            }
+                //Code for Left Door because it goes in the opposite direction of the right Door
+                float leftCurrentAngle = leftDoor.transform.rotation.eulerAngles.y;
+                leftDoor.transform.rotation = Quaternion.AngleAxis(leftCurrentAngle + (Time.deltaTime * rotatePerSecond), Vector3.up);
+                leftTotalRotation += Time.deltaTime * rotatePerSecond;
 
-           
+
+                //Right Door Code
+                float rightCurrentAngle = rightDoor.transform.rotation.eulerAngles.y;
+                rightDoor.transform.rotation = Quaternion.AngleAxis(rightCurrentAngle - (Time.deltaTime * rotatePerSecond), Vector3.up);
+                rightTotalRotation += Time.deltaTime * rotatePerSecond;
+            }     
         }
     }
 
