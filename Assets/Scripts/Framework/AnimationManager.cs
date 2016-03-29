@@ -10,6 +10,7 @@ namespace Nimbi.Framework
 
         public enum AnimationStates //With An Enum we can check in a Switch on what State we need an Animation!
         {
+            Special,
             Idle,
             Interacting
               
@@ -69,6 +70,12 @@ namespace Nimbi.Framework
                 inTrigger = true;
                 Debug.Log("Rigid Attached!");
             }
+        }
+
+        public void OnTriggerExit()
+        {
+            Debug.Log("Ik ben de trigger uit!");
+            inTrigger = false;
         }
 
     }
