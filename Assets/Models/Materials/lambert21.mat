@@ -39,6 +39,13 @@ Material:
           m_Offset: {x: 0, y: 0}
       data:
         first:
+          name: _Ramp
+        second:
+          m_Texture: {fileID: 0}
+          m_Scale: {x: 1, y: 1}
+          m_Offset: {x: 0, y: 0}
+      data:
+        first:
           name: _ParallaxMap
         second:
           m_Texture: {fileID: 0}
@@ -79,13 +86,6 @@ Material:
           m_Texture: {fileID: 0}
           m_Scale: {x: 1, y: 1}
           m_Offset: {x: 0, y: 0}
-      data:
-        first:
-          name: _Ramp
-        second:
-          m_Texture: {fileID: 0}
-          m_Scale: {x: 1, y: 1}
-          m_Offset: {x: 0, y: 0}
     m_Floats:
       data:
         first:
@@ -98,11 +98,15 @@ Material:
       data:
         first:
           name: _Cutoff
-        second: 0.5
+        second: .5
+      data:
+        first:
+          name: _Outline
+        second: .00200000009
       data:
         first:
           name: _Parallax
-        second: 0.02
+        second: .0199999996
       data:
         first:
           name: _ZWrite
@@ -135,10 +139,6 @@ Material:
         first:
           name: _Metallic
         second: 0
-      data:
-        first:
-          name: _Outline
-        second: 0.002
     m_Colors:
       data:
         first:
@@ -147,8 +147,8 @@ Material:
       data:
         first:
           name: _Color
-        second: {r: 0, g: 0.7935, b: 1, a: 0.59349966}
+        second: {r: .596020758, g: .729872406, b: .764705896, a: .59349966}
       data:
         first:
           name: _OutlineColor
-        second: {r: 0.109375, g: 0.114655174, b: 0.125, a: 0.722}
+        second: {r: .109375, g: .114655174, b: .125, a: .722000003}
