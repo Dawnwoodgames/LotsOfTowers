@@ -7,6 +7,7 @@ namespace Nimbi.Interaction.Triggers
     public class TutorialDoorTrigger : MonoBehaviour
     {
         public GameObject infoBoard;
+        public Transform gate;
         public bool doorBellPickedUp = false;
         public float degreesPerSecond, rotationDegreesAmount;
 
@@ -19,6 +20,7 @@ namespace Nimbi.Interaction.Triggers
         {
             startRotation = new Quaternion(0, 0, 0, 1);
             endRotation = new Quaternion(0, 0, 0, 1);
+            gate = GameObject.Find("FirstGate").transform;
         }
 
         private void Update()
@@ -36,8 +38,8 @@ namespace Nimbi.Interaction.Triggers
 
         private void OpenDoor()
         {
-            float currentAngle = transform.rotation.eulerAngles.y;
-            transform.rotation = Quaternion.AngleAxis(currentAngle + (Time.deltaTime * degreesPerSecond), Vector3.up);
+            float currentAngle = gate.rotation.eulerAngles.y;
+            gate.rotation = Quaternion.AngleAxis(currentAngle + (Time.deltaTime * degreesPerSecond), Vector3.up);
             totalRotation += Time.deltaTime * degreesPerSecond;
         }
 
