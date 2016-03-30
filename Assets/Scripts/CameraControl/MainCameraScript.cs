@@ -96,7 +96,8 @@ namespace Nimbi.CameraControl
 			degree = degree % 360;
 
 			//Set rotation to next degree with a slight lerp
-			centerFocus.rotation = Quaternion.Slerp(centerFocus.rotation, Quaternion.Euler(verticalDegree, degree, 0), Time.deltaTime * cameraSpeed);
+            if (cameraEnabled)
+			    centerFocus.rotation = Quaternion.Slerp(centerFocus.rotation, Quaternion.Euler(verticalDegree, degree, 0), Time.deltaTime * cameraSpeed);
 
             //Set Camera void
             ////if (shakeCamera)

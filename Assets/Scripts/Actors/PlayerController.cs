@@ -99,7 +99,8 @@ namespace Nimbi.Actors
 			}
 
             abilityCooldown -= Time.deltaTime;
-			player.Animator.SetBool("Moving", h != 0 || v != 0);
+            if (canMove)
+                player.Animator.SetBool("Moving", h != 0 || v != 0);
         }
 
 		private void Move(Vector3 movement)
