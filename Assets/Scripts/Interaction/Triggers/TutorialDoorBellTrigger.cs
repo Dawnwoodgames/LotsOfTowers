@@ -11,7 +11,9 @@ namespace Nimbi.Interaction.Triggers
                 this.transform.parent = coll.transform;
 
             this.transform.localPosition = new Vector3(0, 2.0f);
-            GameObject.Find("Door").GetComponent<TutorialDoorTrigger>().doorBellPickedUp = true;
+            GameObject.Find("FirstGate").GetComponent<TutorialDoorTrigger>().doorBellPickedUp = true;
+            GameObject.Find("BellIndicator").SetActive(true);
+            GameObject.Find("BellIndicator").GetComponent<Renderer>().materials = GetComponent<Renderer>().materials;
 
             Destroy(this);
         }

@@ -7,7 +7,6 @@ namespace Nimbi.Interaction.Triggers
     public class TutorialDoorTrigger : MonoBehaviour
     {
         public GameObject infoBoard;
-        public GameObject door;
         public bool doorBellPickedUp = false;
         public float degreesPerSecond, rotationDegreesAmount;
 
@@ -28,13 +27,17 @@ namespace Nimbi.Interaction.Triggers
             {
                 if (Mathf.Abs(totalRotation) < Mathf.Abs(rotationDegreesAmount))
                     OpenDoor();
+                else
+                {
+                    Destroy(this);
+                }
             }
         }
 
         private void OpenDoor()
         {
-            float currentAngle = door.transform.rotation.eulerAngles.y;
-            door.transform.rotation = Quaternion.AngleAxis(currentAngle + (Time.deltaTime * degreesPerSecond), Vector3.up);
+            float currentAngle = transform.rotation.eulerAngles.y;
+            transform.rotation = Quaternion.AngleAxis(currentAngle + (Time.deltaTime * degreesPerSecond), Vector3.up);
             totalRotation += Time.deltaTime * degreesPerSecond;
         }
 
@@ -47,8 +50,9 @@ namespace Nimbi.Interaction.Triggers
                     Debug.Log("opening");
                     doorUnlocked = true;
                     GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraControl.MainCameraScript>().cameraEnabled = true;
+                    Destroy(GameObject.Find("Bell"));
                 }
-                            
+
                 else {
                     infoBoard.SetActive(true);
                     GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraControl.MainCameraScript>().cameraEnabled = true;
