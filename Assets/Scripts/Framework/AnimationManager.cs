@@ -5,12 +5,14 @@ using System.Collections.Generic;
 namespace Nimbi.Framework
 {
     public class AnimationManager : MonoBehaviour
-    {
-        public AnimationClip[] animationsClips; // We make an Array we can add our custom Animations in!
+    {    
+        public bool firstInteraction;
+        public bool hasQuestHelp;
 
+        public AnimationClip[] animationsClips; // We make an Array we can add our custom Animations in!
         public enum AnimationStates //With An Enum we can check in a Switch on what State we need an Animation!
         {
-            Special,
+            Special, //Special is Default name for now (Mole digs up)
             Idle,
             Interacting
 
@@ -18,10 +20,11 @@ namespace Nimbi.Framework
 
         private AnimationStates myState; //This is a Private Variable we will Use to check the State in our Animation!
         private bool inTrigger;
+        private bool hasSingleAnimation;
 
         void Start()
         {
-            //Empty at The Moment
+            //Default state is Idle State
             myState = AnimationStates.Idle;
         }
 
@@ -29,34 +32,47 @@ namespace Nimbi.Framework
         void Update()
         {
 
+    
+            
             //We are checking each Animation (Added in the Editor) to what state they belong!
-            for (int i = 0; i <  animationsClips.Length; i++)
-            {
-                if (Input.GetButtonDown("Submit") && inTrigger)
-                {
-                    Debug.Log( i +" are loaded");
-                    whatToAnimate(myState);
-                }
+            if (Input.GetButtonDown("Submit") && inTrigger)
+            {          
+                myState = AnimationStates.Interacting;
+                whatToAnimate(myState);
+                Debug.Log(myState);
             }
 
         }
 
-
         //A public function we create to check our Enum States and attach the name of the animation!
         public void whatToAnimate(AnimationStates aS)
         {
-            switch (aS)
-            {
-                case AnimationStates.Idle:
+
+            for (int i = 0; i < animationsClips.Length; i++)
+            {        
+                if(i > animationsClips.Length)
+                {
+                    //Get Default Animation
                     GetComponent<Animation>().Play(animationsClips[0].name);
-                    break;
-                case AnimationStates.Interacting:
-                    GetComponent<Animation>().Play(animationsClips[1].name);
-                    break;
-                default:
-                    //Lets do nothing default for now!
-                    break;
+                    Debug.Log("No more Animations to Show!");
+                }
+
+                switch (aS)
+                {
+                    case AnimationStates.Idle:
+                        i++;
+                        GetComponent<Animation>().Play(animationsClips[i].name);
+                        break;
+                    case AnimationStates.Interacting:
+                        GetComponent<Animation>().Play(animationsClips[i].name);
+                        break;
+                    default:
+                        GetComponent<Animation>().Play(animationsClips[i].name);
+                        break;
+                }
             }
+
+           
         }
 
 
@@ -72,7 +88,7 @@ namespace Nimbi.Framework
 
         public void OnTriggerExit()
         {
-            Debug.Log("Ik ben de trigger uit!");
+            myState = AnimationStates.Idle;
             inTrigger = false;
         }
 
