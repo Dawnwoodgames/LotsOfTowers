@@ -15521,15 +15521,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5b3844242d80d2e42a5c7fe32ce3f410, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  leftDoor: {fileID: 868213395}
-  rightDoor: {fileID: 1424241269}
-  startRotation: {x: 0, y: 0, z: 0, w: 0}
-  endRotation: {x: 0, y: 0, z: 0, w: 0}
-  rotatePerSecond: 30
-  rotationAmount: 90
-  leftTotalRotation: 0
-  rightTotalRotation: 0
-  inTrigger: 0
 --- !u!65 &1052388643
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17681,6 +17672,48 @@ Transform:
   - {fileID: 1260547028}
   m_Father: {fileID: 269605413}
   m_RootOrder: 0
+--- !u!1001 &1213087576
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 2118634995}
+    m_Modifications:
+    - target: {fileID: 400002, guid: 4513ad407b0d04d48bf8fb83235765ac, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -0.394
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 4513ad407b0d04d48bf8fb83235765ac, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 9.573
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 4513ad407b0d04d48bf8fb83235765ac, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 16.658
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 4513ad407b0d04d48bf8fb83235765ac, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 4513ad407b0d04d48bf8fb83235765ac, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 4513ad407b0d04d48bf8fb83235765ac, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 4513ad407b0d04d48bf8fb83235765ac, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 400002, guid: 4513ad407b0d04d48bf8fb83235765ac, type: 3}
+      propertyPath: m_RootOrder
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 4513ad407b0d04d48bf8fb83235765ac, type: 3}
+  m_IsPrefabParent: 0
 --- !u!1 &1215771336
 GameObject:
   m_ObjectHideFlags: 0
@@ -20573,6 +20606,10 @@ Transform:
   m_Children: []
   m_Father: {fileID: 466326252}
   m_RootOrder: 0
+--- !u!4 &1423475485 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 400002, guid: 4513ad407b0d04d48bf8fb83235765ac, type: 3}
+  m_PrefabInternal: {fileID: 1213087576}
 --- !u!1 &1424241269
 GameObject:
   m_ObjectHideFlags: 0
@@ -33435,7 +33472,8 @@ Transform:
   m_LocalRotation: {x: 0, y: -0.043619394, z: 0, w: 0.99904823}
   m_LocalPosition: {x: 0.6699997, y: 0, z: 5.630001}
   m_LocalScale: {x: 4, y: 1, z: 1}
-  m_Children: []
+  m_Children:
+  - {fileID: 1423475485}
   m_Father: {fileID: 1730535336}
   m_RootOrder: 1
 --- !u!114 &2118634996
@@ -33451,6 +33489,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   infoBoard: {fileID: 8595720}
+  bell: {fileID: 1345247900}
   gate: {fileID: 1853748256}
   doorBellPickedUp: 0
   degreesPerSecond: 30

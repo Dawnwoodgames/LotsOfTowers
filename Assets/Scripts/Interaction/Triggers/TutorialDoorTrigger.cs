@@ -6,7 +6,7 @@ namespace Nimbi.Interaction.Triggers
 {
     public class TutorialDoorTrigger : MonoBehaviour
     {
-        public GameObject infoBoard;
+        public GameObject infoBoard, bell;
         public Transform gate;
         public bool doorBellPickedUp = false;
         public float degreesPerSecond, rotationDegreesAmount;
@@ -48,10 +48,10 @@ namespace Nimbi.Interaction.Triggers
             {
                 if (doorBellPickedUp)
                 {
-                    Debug.Log("opening");
                     doorUnlocked = true;
                     GameObject.FindGameObjectWithTag("MainCamera").GetComponent<CameraControl.MainCameraScript>().cameraEnabled = true;
-                    Destroy(GameObject.Find("Bell"));
+                    bell.transform.parent = GameObject.Find("FirstPlatform").transform;
+                    bell.transform.localPosition = new Vector3(-0.85f, 0.14f, 4.85f);
                 }
 
                 else {
