@@ -13,7 +13,7 @@ namespace Nimbi.Framework
             Special,
             Idle,
             Interacting
-              
+
         }
 
         private AnimationStates myState; //This is a Private Variable we will Use to check the State in our Animation!
@@ -29,18 +29,16 @@ namespace Nimbi.Framework
         void Update()
         {
 
-          
-
-            foreach (AnimationClip ac in animationsClips)
+            //We are checking each Animation (Added in the Editor) to what state they belong!
+            for (int i = 0; i <  animationsClips.Length; i++)
             {
-                //We are checking each Animation (Added in the Editor) to what state they belong!
                 if (Input.GetButtonDown("Submit") && inTrigger)
                 {
-                    Debug.Log("I Try to Interact With Something!");
+                    Debug.Log( i +" are loaded");
                     whatToAnimate(myState);
                 }
-                
             }
+
         }
 
 
