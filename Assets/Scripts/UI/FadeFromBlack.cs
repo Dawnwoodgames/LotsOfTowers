@@ -20,6 +20,7 @@ public class FadeFromBlack : MonoBehaviour {
         Color c = img.color;
         c.a -= ((Time.time-levelstart)*0.005f);
         img.color = c;
-        Debug.Log(c.a);
+        if (c.a < 0)
+            Destroy(gameObject);
 	}
 }
