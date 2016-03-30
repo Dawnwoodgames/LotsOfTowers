@@ -20,7 +20,6 @@ namespace Nimbi.Interaction.Triggers
         {
             startRotation = new Quaternion(0, 0, 0, 1);
             endRotation = new Quaternion(0, 0, 0, 1);
-            gate = GameObject.Find("FirstGate").transform;
         }
 
         private void Update()
