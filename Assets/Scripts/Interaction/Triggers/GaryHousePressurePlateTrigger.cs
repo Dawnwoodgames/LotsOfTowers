@@ -9,6 +9,7 @@ namespace Nimbi.Interaction.Triggers
 
         public GameObject stairs, mainCamera, cutsceneCamera;
         public GameObject targetPlate, targetStairs;
+        public GameObject groundParticle;
 
         private bool playerInRange = false;
         private bool plateActivated = false;
@@ -55,12 +56,15 @@ namespace Nimbi.Interaction.Triggers
                 cutsceneCamera.SetActive(true);
                 mainCamera.SetActive(false);
 
+                groundParticle.GetComponent<ParticleSystem>().Play();
+
                 cutsceneCamera.transform.position = Vector3.MoveTowards(cutsceneCamera.transform.position, GameObject.Find("cutsceneCameraTarget").transform.position, Time.deltaTime / 20);
             }
         }
 
         IEnumerator DelayCameraSwitch()
         {
+            groundParticle.GetComponent<ParticleSystem>().Stop();
             yield return new WaitForSeconds(2);
 
             mainCamera.SetActive(true);
