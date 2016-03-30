@@ -5,6 +5,8 @@ namespace Nimbi.Interaction.Triggers
 {
     public class TutorialDoorBellTrigger : MonoBehaviour
     {
+    
+
         private void OnTriggerEnter(Collider coll)
         {
             if (coll.tag == "Player")
