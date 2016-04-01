@@ -16,11 +16,12 @@ namespace Nimbi.Interaction.Triggers
 
         private bool inTrigger;
         private bool isActivated;
+        private bool isMoving;
 
         void Start()
         {
             endRotation = new Vector3(314, 0, 0);
-            endPosition = new Vector3(0.06480163f, -17.818f, 6.500424f);
+            endPosition = new Vector3(bridge.transform.localPosition.x, -17.808f, bridge.transform.localPosition.z);
         }
 
         void Update()
@@ -29,22 +30,29 @@ namespace Nimbi.Interaction.Triggers
             {
                 endRotation = endRotation + new Vector3(55, 0, 0);
                 isActivated = true;
-                if (bridge != null)
-                {
-                    bridge.transform.localPosition = Vector3.Lerp(startPosition, endPosition, Time.time * bridgeSpeed);
-                    
-                }
+                isMoving = true;
             }
 
-            
+            if (bridge != null && isMoving)
+            {
+
+                bridge.transform.localPosition = Vector3.MoveTowards(bridge.transform.localPosition, endPosition, bridgeSpeed);
+                if (bridge.transform.localPosition == endPosition)
+                {
+                    isMoving = false;
+                }
+
+            }
+
+
             handle.transform.localRotation = Quaternion.Slerp(handle.transform.localRotation, Quaternion.Euler(endRotation), 0.2f);
-            
+
 
         }
 
 
 
-      
+
 
         void OnTriggerEnter(Collider coll)
         {
