@@ -5,15 +5,13 @@ public class Fish : MonoBehaviour {
 
     public Transform goal;
 
-    void Start()
-    {
-        Debug.Log(Quaternion.LookRotation(goal.position - transform.position).eulerAngles);
-    }
-
     void Update()
     {
-        var q = Quaternion.LookRotation(goal.position - transform.position);
-        transform.localRotation = Quaternion.RotateTowards(transform.localRotation, q, 20 * Time.deltaTime);
+        var toTarget = goal.position - transform.position;
+        toTarget.y = 0;
+
+        // or with smoothing:
+        transform.forward = Vector3.MoveTowards(transform.forward, toTarget, 2*Time.deltaTime);
         transform.position += transform.forward * Time.deltaTime*0.2f;
     }
     float AngleDir(Vector3 fwd, Vector3 targetDir)
