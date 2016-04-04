@@ -12604,6 +12604,7 @@ Transform:
   - {fileID: 566736800}
   - {fileID: 6609560}
   - {fileID: 306616613}
+  - {fileID: 934726467}
   m_Father: {fileID: 2039323444}
   m_RootOrder: 0
 --- !u!64 &825389979
@@ -14123,6 +14124,59 @@ Transform:
   m_Children: []
   m_Father: {fileID: 381040532}
   m_RootOrder: 0
+--- !u!1 &934726466
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 934726467}
+  - 65: {fileID: 934726469}
+  - 114: {fileID: 934726468}
+  m_Layer: 0
+  m_Name: Brievenbus openen trigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &934726467
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 934726466}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 4.2, y: -23.8, z: -43.47}
+  m_LocalScale: {x: 2, y: 2, z: 2}
+  m_Children: []
+  m_Father: {fileID: 825389978}
+  m_RootOrder: 11
+--- !u!114 &934726468
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 934726466}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5565928c68f08e94990448cfe04ae0ed, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  interactableObject: {fileID: 1384294196}
+--- !u!65 &934726469
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 934726466}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &935026953
 GameObject:
   m_ObjectHideFlags: 0
@@ -15114,7 +15168,7 @@ Transform:
   m_PrefabParentObject: {fileID: 400030, guid: 2419d8e688f58eb47b4bc06853d4297f, type: 3}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1033143637}
-  m_LocalRotation: {x: 0.13053857, y: 0.7328906, z: 0.6663175, w: 0.043034792}
+  m_LocalRotation: {x: 0.13053858, y: 0.73289067, z: 0.6663176, w: 0.043034796}
   m_LocalPosition: {x: -0.031396627, y: 15.598497, z: 3.6126275}
   m_LocalScale: {x: 0.57748705, y: 0.22480573, z: 0.57748705}
   m_Children: []
@@ -18392,7 +18446,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1160613233}
   m_LocalRotation: {x: 0, y: 1, z: 0, w: -0.00000016292068}
-  m_LocalPosition: {x: 2.26, y: -16.87, z: -5.67}
+  m_LocalPosition: {x: 1.4, y: -25.2, z: -51}
   m_LocalScale: {x: 0.8, y: 0.8, z: 0.8}
   m_Children:
   - {fileID: 1772073271}
@@ -21681,7 +21735,7 @@ Animator:
   m_GameObject: {fileID: 1384294194}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: e8265b10bc6faeb419cfab71c6cd7f8b, type: 3}
-  m_Controller: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: acd529dcc1bb7544a9a9b3bffbcc8605, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
