@@ -10,6 +10,7 @@ namespace Nimbi.Interaction.Triggers
         public GameObject stairs, mainCamera, cutsceneCamera;
         public GameObject targetPlate, targetStairs;
         public GameObject groundParticle;
+        public GameObject levelSlider;
 
         private bool playerInRange = false;
         private bool plateActivated = false;
@@ -26,7 +27,10 @@ namespace Nimbi.Interaction.Triggers
                 transform.position = Vector3.MoveTowards(transform.position, targetPlate.transform.position, Time.deltaTime / 4);
 
                 if (transform.position == targetPlate.transform.position)
+                {
                     plateActivated = true;
+                    levelSlider.transform.localScale = new Vector3(1, 1, 1);
+                }
             }
 
             if (plateActivated)
