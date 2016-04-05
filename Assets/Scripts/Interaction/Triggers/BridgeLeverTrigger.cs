@@ -9,6 +9,7 @@ namespace Nimbi.Interaction.Triggers
         public GameObject bridge;
         public GameObject handle;
         public float bridgeSpeed = 0.2f;
+        public ParticleSystem particles;
 
         private Vector3 startPosition;
         private Vector3 endRotation;
@@ -31,6 +32,7 @@ namespace Nimbi.Interaction.Triggers
                 endRotation = endRotation + new Vector3(55, 0, 0);
                 isActivated = true;
                 isMoving = true;
+                particles.Play();
             }
 
             if (bridge != null && isMoving)
@@ -40,6 +42,7 @@ namespace Nimbi.Interaction.Triggers
                 if (bridge.transform.localPosition == endPosition)
                 {
                     isMoving = false;
+                    Destroy(particles);
                 }
 
             }

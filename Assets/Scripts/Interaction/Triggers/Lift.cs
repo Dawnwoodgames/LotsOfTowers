@@ -4,7 +4,6 @@ using System.Collections;
 public class Lift : MonoBehaviour
 {
 
-    bool inTrigger;
     public float speed = 1;
     public Transform start;
     public Transform end;
@@ -40,14 +39,12 @@ public class Lift : MonoBehaviour
 
     void OnTriggerEnter()
     {
-        inTrigger = true;
         moving = true;
 
     }
 
     void OnTriggerExit()
     {
-        inTrigger = false;
         if (moving)
         {
             goingdown = true;
